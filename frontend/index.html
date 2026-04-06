@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>雷达PPI显示器</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #050a12; color: #00ff88; font-family: 'Courier New', monospace; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+  .header { background: #0d1525; border-bottom: 1px solid #00ff8844; padding: 5px 12px; display: flex; align-items: center; gap: 14px; font-size: 12px; flex-shrink: 0; }
+  .header .title { font-size: 14px; font-weight: bold; flex-shrink: 0; }
+  .header .header-rows { display: flex; flex-direction: column; gap: 2px; }
+  .header .status { display: flex; gap: 10px; flex-wrap: wrap; }
+  .header .value.on { color: #00ff88; }
+  .header .value.off { color: #ff4444; }
+  .header .value.spin { color: #ffaa00; }
+  .header .value.stop { color: #00aaff; }
+  .main { display: flex; flex: 1; overflow: hidden; height: calc(100dvh - 42px); min-height: 0; }
+  .ppi-area { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; background: #050a12; --panel-w: 0px; }
+  #ppi { display: block; touch-action: none; }
+  .ppi-toolbar { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; z-index: 10; }
+  .toolbar-btn { background: rgba(0,255,136,0.15); border: 1.5px solid #00ff88; color: #00ff88; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .toolbar-btn:active { background: #00ff88; color: #050a12; }
+  .panel-toggle-btn { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: rgba(13,21,37,0.9); border: 1px solid #00ff8844; border-right: none; color: #00ff88; padding: 10px 6px; font-size: 14px; cursor: pointer; z-index: 20; writing-mode: vertical-rl; border-radius: 6px 0 0 6px; }
+  .panel-wrapper { width: 0; overflow: hidden; background: #0d1525; border-left: 1px solid #00ff8844; transition: width 0.25s; display: flex; flex-direction: column; flex-shrink: 0; }
+  .panel-wrapper.open { width: 250px; }
+  .panel { padding: 10px; overflow-y: auto; font-size: 12px; flex: 1; min-width: 250px; }
+  .panel h3 { color: #00ff88; font-size: 11px; margin: 8px 0 5px; border-bottom: 1px solid #00ff8833; padding-bottom: 3px; }
+  .panel h3:first-child { margin-top: 0; }
+  .control-group { margin-bottom: 8px; }
+  .control-group label { display: block; color: #00ff8877; margin-bottom: 3px; font-size: 10px; }
+  .control-group .row { display: flex; gap: 4px; align-items: center; }
+  .btn { background: rgba(0,255,136,0.15); border: 1px solid #00ff88; color: #00ff88; padding: 5px 9px; cursor: pointer; font-family: inherit; font-size: 11px; border-radius: 4px; }
+  .btn:active { background: #00ff88; color: #050a12; }
+  .btn.danger { border-color: #ff4444; color: #ff4444; }
+  .btn.danger:active { background: #ff4444; color: #fff; }
+  .btn-row { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+  .input-field { background: #050a12; border: 1px solid #00ff8866; color: #00ff88; padding: 4px 6px; font-family: inherit; font-size: 11px; width: 68px; border-radius: 4px; }
+  .input-field:focus { outline: none; border-color: #00ff88; }
+  .track-list { max-height: 200px; overflow-y: auto; }
+  .track-item { background: #050a12; border: 1px solid #00ff8833; border-radius: 4px; padding: 5px 6px; margin-bottom: 4px; font-size: 10px; }
+  .track-item .track-id { color: #00ff88; font-weight: bold; }
+  .track-item .track-model { color: #ffaa00; margin-left: 4px; }
+  .no-tracks { color: #00ff8855; font-size: 11px; text-align: center; padding: 12px; }
+
+  /* TAS Popup */
+  .tas-popup-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .tas-popup-overlay.open { display: flex; }
+  .tas-popup {
+    background: #0d1525;
+    border: 1.5px solid #00ff88;
+    border-radius: 10px;
+    padding: 20px 24px;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0,255,136,0.15);
+    font-family: inherit;
+  }
+  .tas-popup h4 {
+    color: #00ff88;
+    font-size: 13px;
+    margin-bottom: 14px;
+    text-align: center;
+    border-bottom: 1px solid #00ff8833;
+    padding-bottom: 8px;
+  }
+  .tas-popup .tas-popup-target {
+    color: #ffaa00;
+    font-size: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .tas-popup .tas-rate-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .tas-popup .tas-rate-btns button {
+    background: rgba(0,255,136,0.15);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  .tas-popup .tas-rate-btns button:hover { background: #00ff88; color: #050a12; }
+  .tas-popup .tas-cancel-btn {
+    display: block;
+    width: 100%;
+    background: rgba(255,68,68,0.15);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .tas-popup .tas-cancel-btn:hover { background: #ff4444; color: #fff; }
+  .tas-badge {
+    background: rgba(0,200,255,0.18);
+    border: 1px solid #00ccff;
+    color: #00ccff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+  .tas-badge:hover { background: #00ccff; color: #050a12; }
+  .tas-btn {
+    background: rgba(0,200,255,0.15);
+    border: 1px solid #00ccff;
+    color: #00ccff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+  .tas-btn:hover { background: #00ccff; color: #050a12; }
+
+  /* 手机竖屏：控制面板在底部 */
+  @media (orientation: portrait) {
+    .main { flex-direction: column; }
+    .panel-wrapper { width: 0 !important; height: 0; border-left: none; border-top: 1px solid #00ff8844; }
+    .panel-wrapper.open { width: 100% !important; height: 38%; }
+    .panel-toggle-btn { right: 8px; top: auto; bottom: 16px; transform: none; border-radius: 8px 8px 0 0; writing-mode: horizontal-tb; padding: 6px 10px; }
+    .ppi-area { flex: 1; }
+    .panel { padding: 6px; font-size: 11px; }
+    .panel h3 { font-size: 10px; margin: 5px 0 3px; padding-bottom: 2px; }
+    .btn { padding: 3px 8px; font-size: 10px; }
+    .input-field { padding: 2px 4px; font-size: 10px; }
+    .control-group { margin-bottom: 3px; }
+    .row { gap: 4px; }
+  }
+
+  /* 手机横屏 */
+  @media (orientation: landscape) and (max-height: 480px) {
+    .header { padding: 3px 8px; gap: 8px; font-size: 10px; height: 34px; }
+    .main { height: calc(100dvh - 34px); }
+    .header .title { font-size: 12px; }
+    .panel-wrapper { width: 0 !important; }
+    .panel-wrapper.open { width: 180px !important; }
+    .panel { padding: 6px; font-size: 10px; min-width: 180px; }
+    .toolbar-btn { width: 36px; height: 36px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="title">📡 雷达PPI</div>
+  <div class="header-rows">
+    <div class="status">
+      <div>功率: <span id="power-status" class="value off">关机</span></div>
+      <div>模式: <span id="mode-status" class="value stop">停转</span></div>
+      <div>天线: <span id="antenna-status" class="value">0.0°</span></div>
+    </div>
+    <div class="status">
+      <div>跟踪: <span id="track-count" class="value">0</span></div>
+      <div>TWS: <span id="tws-count" class="value" style="color:#ff9900">0</span></div>
+      <div>TAS: <span id="tas-count" class="value" style="color:#00ccff">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+  <div class="ppi-area">
+    <div class="ppi-toolbar">
+      <button class="toolbar-btn" id="toggle-panel-btn" title="显示/隐藏控制面板">☰</button>
+      <button class="toolbar-btn" id="fullscreen-btn" title="全屏">⛶</button>
+    </div>
+    <canvas id="ppi"></canvas>
+    <div class="panel-toggle-btn" id="panel-toggle-btn">☰</div>
+  </div>
+  <div class="panel-wrapper" id="panel-wrapper">
+    <div class="panel">
+      <h3>仿真控制</h3>
+      <div class="control-group"><label>目标数量</label><div class="row"><input class="input-field" id="sim-targets" type="number" value="5" min="1" max="50" step="1" style="width:50px"><button class="btn" id="btn-sim-reset">重置仿真</button></div></div>
+      <h3>雷达控制</h3>
+      <div class="control-group"><label>开关机</label><div class="btn-row"><button class="btn" id="btn-power-on">开机</button><button class="btn danger" id="btn-power-off">关机</button></div></div>
+      <div class="control-group"><label>雷达模式</label><div class="btn-row"><button class="btn" id="btn-mode-spin">转动</button><button class="btn" id="btn-mode-stop">停转</button></div></div>
+      <div class="control-group"><label>法线指向（停转）</label><div class="row"><span style="color:#00ff8877;font-size:10px">方°:</span><input class="input-field" id="steer-az" type="number" value="0" step="0.1"><span style="color:#00ff8877;font-size:10px">俯°:</span><input class="input-field" id="steer-el" type="number" value="0" step="0.1"></div><div class="btn-row"><button class="btn" id="btn-steer">设置</button></div></div>
+      <h3>搜索区</h3>
+      <div class="control-group"><label>方位°:</label><div class="row"><input class="input-field" id="sz-az-lo" type="number" value="-60" step="1"><span>~</span><input class="input-field" id="sz-az-hi" type="number" value="60" step="1"></div></div>
+      <div class="control-group"><label>俯仰°:</label><div class="row"><input class="input-field" id="sz-el-lo" type="number" value="-5" step="1"><span>~</span><input class="input-field" id="sz-el-hi" type="number" value="70" step="1"></div></div>
+      <div class="control-group"><label>距离km:</label><div class="row"><input class="input-field" id="sz-r-min" type="number" value="5" step="1"><span>~</span><input class="input-field" id="sz-r-max" type="number" value="450" step="1"></div></div>
+      <div class="btn-row"><button class="btn" id="btn-set-search-zone">设置搜索区</button></div>
+      <h3>目标列表</h3>
+      <div class="track-list" id="track-list"><div class="no-tracks">暂无跟踪目标</div></div>
+
+<!-- TAS Popup -->
+<div class="tas-popup-overlay" id="tas-popup-overlay">
+  <div class="tas-popup">
+    <h4>TAS跟踪</h4>
+    <div class="tas-popup-target" id="tas-popup-target-label"></div>
+    <div class="tas-rate-btns" id="tas-rate-btns">
+      <button onclick="window._tasConfirmRate(1)">1Hz</button>
+      <button onclick="window._tasConfirmRate(5)">5Hz</button>
+      <button onclick="window._tasConfirmRate(10)">10Hz</button>
+    </div>
+    <button class="tas-cancel-btn" id="tas-cancel-btn" style="display:none" onclick="window._tasDisengage()">取消TAS</button>
+    <button class="tas-cancel-btn" style="margin-top:6px" onclick="window.closeTASPopup()">关闭</button>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('ppi');
+const ctx = canvas.getContext('2d');
+
+const PPI_RANGE_KM = 500;
+const ZOOM_MIN = 0.4, ZOOM_MAX = 4.0;
+const ANGLE_OFFSET = -90; // 0°=top(N), 90°=right(E), clockwise
+
+let PPI_SIZE = 400;
+let PPI_CENTER = 200;
+let PPI_CENTER_X = 200;
+let PPI_CENTER_Y = 200;
+let PPI_SCALE = 1;
+let zoomFactor = 1.0;
+let radarState = null;
+let simTime = 0;
+let panelOpen = false;
+
+function calcPPI() {
+  const container = canvas.parentElement;
+  const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+  let maxW = container.clientWidth - 16;
+  let maxH = container.clientHeight - 16;
+  if (isPortrait) {
+    maxH = Math.min(maxH, (window.screen.availHeight || 600) * 0.5);
+  }
+  PPI_SIZE = Math.min(maxW, maxH, 600);
+  if (PPI_SIZE < 150) PPI_SIZE = Math.min(maxW, maxH);
+  PPI_CENTER = PPI_SIZE / 2;
+  PPI_CENTER_X = PPI_CENTER + ppiCenterOffsetX;
+  PPI_CENTER_Y = PPI_CENTER + ppiCenterOffsetY;
+  PPI_SCALE = PPI_SIZE / 2 / PPI_RANGE_KM;
+  canvas.width = PPI_SIZE;
+  canvas.height = PPI_SIZE;
+  canvas.style.width = PPI_SIZE + 'px';
+  canvas.style.height = PPI_SIZE + 'px';
+}
+
+function drawPPI() {
+  ctx.clearRect(0, 0, PPI_SIZE, PPI_SIZE);
+  ctx.fillStyle = '#050a12';
+  ctx.fillRect(0, 0, PPI_SIZE, PPI_SIZE);
+
+  // Range rings
+  ctx.strokeStyle = '#00ff8844';
+  ctx.lineWidth = 1.5;
+  for (let r = 100; r <= 400; r += 100) {
+    ctx.beginPath();
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, r * PPI_SCALE * zoomFactor, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Distance labels
+  ctx.fillStyle = '#00ff88cc';
+  ctx.font = `bold ${Math.max(8, PPI_SIZE / 55)}px Courier New`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  for (let r = 100; r <= 400; r += 100) {
+    const angleRad = -Math.PI / 4;
+    const ringR = r * PPI_SCALE * zoomFactor;
+    const labelDist = ringR - 14;
+    const lx = PPI_CENTER_X + labelDist * Math.cos(angleRad);
+    const ly = PPI_CENTER_Y + labelDist * Math.sin(angleRad);
+    ctx.fillStyle = 'rgba(5,10,18,0.8)';
+    ctx.fillRect(lx - 2, ly - 7, 32, 14);
+    ctx.fillStyle = '#00ff88cc';
+    ctx.fillText(`${r}`, lx, ly);
+  }
+
+  // Axes
+  ctx.strokeStyle = '#00ff8822';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(PPI_CENTER_X, 0); ctx.lineTo(PPI_CENTER_X, PPI_SIZE);
+  ctx.moveTo(0, PPI_CENTER_Y); ctx.lineTo(PPI_SIZE, PPI_CENTER_Y);
+  ctx.stroke();
+
+  // Outer circle
+  ctx.strokeStyle = '#00ff88';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, (PPI_SIZE / 2 - 3), 0, Math.PI * 2);
+  ctx.stroke();
+
+  // 1) Detection range sector (雷达探测范围) - ONLY in STOP mode when power is ON
+  //    Azimuth: normal ±60°, Elevation: -5°~70°, Distance: 5~450km
+  //    Drawn FIRST as light green base layer
+  if (radarState && radarState.power && radarState.mode === 'stop') {
+    const DR_MIN = 5;   // km
+    const DR_MAX = 450; // km
+    const DR_AZ_HALF = 60; // ±60° from antenna normal
+    const normalAz = radarState.steer_azimuth_deg;
+    const loA = (-DR_AZ_HALF + normalAz + ANGLE_OFFSET) * Math.PI / 180;
+    const hiA = (DR_AZ_HALF + normalAz + ANGLE_OFFSET) * Math.PI / 180;
+    const sweep = hiA - loA;
+    const ccw = sweep > 0;
+    ctx.beginPath();
+    ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, DR_MAX * PPI_SCALE * zoomFactor, hiA, loA, ccw);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, DR_MIN * PPI_SCALE * zoomFactor, loA, hiA, !ccw);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(0,255,136,0.06)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,255,136,0.20)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // 2) Search zone sector (搜索区) - USER-CONFIGURED, LIGHT RED, drawn when set (both modes)
+  if (radarState && radarState.power && radarState.search_zone_set) {
+    const sz = radarState.search_zone;
+    const rMin = sz.range_m[0] / 1000;
+    const rMax = sz.range_m[1] / 1000;
+    // Spin mode: az offsets are absolute (0-360°); stop mode: az offsets are relative to antenna normal
+    const steerAzOffset = radarState.mode === 'spin' ? 0 : radarState.steer_azimuth_deg;
+    const loA2 = (sz.azimuth[0] + steerAzOffset + ANGLE_OFFSET) * Math.PI / 180;
+    const hiA2 = (sz.azimuth[1] + steerAzOffset + ANGLE_OFFSET) * Math.PI / 180;
+    const sweep2 = hiA2 - loA2;
+    const ccw2 = sweep2 > 0;
+    ctx.beginPath();
+    ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, rMax * PPI_SCALE * zoomFactor, hiA2, loA2, ccw2);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, rMin * PPI_SCALE * zoomFactor, loA2, hiA2, !ccw2);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255,0,0,0.08)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,0,0,0.35)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Antenna normal line (ONLY this, NO afterglow)
+  if (radarState && radarState.power) {
+    const ANT = radarState.mode === 'spin' ? radarState.antenna_angle_deg : radarState.steer_azimuth_deg;
+    const A = -(ANT + ANGLE_OFFSET) * Math.PI / 180;
+    ctx.beginPath();
+    ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.lineTo(PPI_CENTER_X + Math.cos(A) * (PPI_CENTER - 2), PPI_CENTER_Y - Math.sin(A) * (PPI_CENTER - 2));
+    ctx.strokeStyle = '#ffcc00';
+    ctx.lineWidth = 2.5;
+    if (radarState.mode === 'stop') ctx.setLineDash([6, 4]);
+    else ctx.setLineDash([]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Detection point history: green dots (untracked, 10s) or yellow dots+lines (tracked, 60s)
+  // HIDDEN when power is OFF
+  if (radarState && radarState.power && radarState.sim_time) {
+    const now = simTime;
+    for (const t of radarState.targets) {
+      const pts = t.detection_points || [];
+      if (!pts.length) continue;
+      const isTracked = t.tracked;
+      // Filter points by age
+      // tracked目标检测点保留很久（消批时才清除），未跟踪目标保留30秒
+      const maxAge = isTracked ? 99999 : 30;
+      const recentPts = pts.filter(p => (now - p.time) < maxAge);
+      if (!recentPts.length) { if (!isTracked) console.log("green filtered:", pts.map(p=>({age:+(now-p.time).toFixed(2),time:p.time}))); continue;}
+      // Convert to screen coordinates
+      const screenPts = recentPts.map(p => {
+        const dist = p.r / 1000;
+        const rad = -(p.azimuth_deg + ANGLE_OFFSET) * Math.PI / 180;
+        return {
+          x: PPI_CENTER_X + dist * PPI_SCALE * zoomFactor * Math.cos(rad),
+          y: PPI_CENTER_Y - dist * PPI_SCALE * zoomFactor * Math.sin(rad),
+          age: now - p.time
+        };
+      });
+      if (isTracked) {
+        // Yellow dots with connecting lines
+        ctx.strokeStyle = '#ffcc0088';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let i = 0; i < screenPts.length; i++) {
+          if (i === 0) ctx.moveTo(screenPts[i].x, screenPts[i].y);
+          else ctx.lineTo(screenPts[i].x, screenPts[i].y);
+        }
+        ctx.stroke();
+        for (const pt of screenPts) {
+          const alpha = Math.max(0.3, 1 - pt.age / 99999);
+          ctx.fillStyle = `rgba(255,204,0,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else {
+        // Green dots (fading)
+        for (const pt of screenPts) {
+          const alpha = Math.max(0.2, 1 - pt.age / 30);
+          ctx.fillStyle = `rgba(0,255,136,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+  }
+
+  // Debug: show simTime and untracked detection ages in corner (hidden when power OFF)
+  if (radarState && radarState.power && radarState.sim_time) {
+    ctx.fillStyle = '#00ff8888';
+    ctx.font = `${Math.max(8, PPI_SIZE/50)}px Courier New`;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(`t=${Math.floor(radarState.sim_time)}s`, 4, 4);
+    const greenTgts = radarState.targets.filter(t => !t.tracked && (t.detection_points||[]).length > 0);
+    if (greenTgts.length > 0) {
+      ctx.fillText(`green:${greenTgts.length}`, 4, 18);
+      greenTgts.forEach((t, i) => {
+        const ages = (t.detection_points||[]).map(p=>`${Math.floor(radarState.sim_time-p.time)}s`).join(',');
+        ctx.fillText(`T${t.id} age:${ages}`, 4, 32+i*14);
+      });
+    }
+  }
+
+  // Current targets
+  if (radarState) {
+    for (const t of radarState.targets) {
+      // 未跟踪目标不显示（消批后彻底消失，不留残影）
+      if (!t.tracked) continue;
+      const dist = (t.last_detection_distance_m || t.distance_m) / 1000;
+      const az = t.last_detection_azimuth_deg || t.azimuth_deg;
+      const rad = -(az + ANGLE_OFFSET) * Math.PI / 180;
+      const px = PPI_CENTER_X + dist * PPI_SCALE * zoomFactor * Math.cos(rad);
+      const py = PPI_CENTER_Y - dist * PPI_SCALE * zoomFactor * Math.sin(rad);
+      const hl = radarState.highlighted_ids.includes(t.id);
+      let radius = PPI_SIZE / 120;
+      if (t.tracked) radius = PPI_SIZE / 90;
+      if (hl) radius = PPI_SIZE / 60;
+      ctx.fillStyle = hl ? '#ff4444' : (t.tracked ? '#ffcc00' : '#00ff88');
+      ctx.beginPath();
+      ctx.arc(px, py, radius, 0, Math.PI * 2);
+      ctx.fill();
+      // 批号标牌：仅对已建立跟踪的目标显示
+      if (t.tracked) {
+        ctx.fillStyle = hl ? '#ff4444' : '#00ff88';
+        ctx.font = `${Math.max(7, PPI_SIZE / 70)}px Courier New`;
+        let label = `#${t.id}`;
+        if (t.pending_identification) label += ` 识别中…`;
+        else if (t.identified_model) label += ` ${t.identified_model}`;
+        ctx.fillText(label, px + radius + 2, py - 2);
+      }
+    }
+  }
+}
+
+// ========== Drag to re-center + pinch-to-zoom ==========
+let isDragging = false, dragStartX = 0, dragStartY = 0;
+let ppiCenterOffsetX = 0, ppiCenterOffsetY = 0;
+
+// Mouse drag
+canvas.addEventListener('mousedown', e => {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+});
+canvas.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  ppiCenterOffsetX += dx;
+  ppiCenterOffsetY += dy;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  PPI_CENTER_X = PPI_SIZE / 2 + ppiCenterOffsetX;
+  PPI_CENTER_Y = PPI_SIZE / 2 + ppiCenterOffsetY;
+  drawPPI();
+});
+canvas.addEventListener('mouseup', () => { isDragging = false; });
+canvas.addEventListener('mouseleave', () => { isDragging = false; });
+
+// Touch drag (single finger)
+canvas.addEventListener('touchstart', e => {
+  if (e.touches.length === 1) {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+  } else if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastPinchDist = Math.sqrt(dx*dx + dy*dy);
+    pinchScale = zoomFactor;
+  }
+}, { passive: false });
+canvas.addEventListener('touchmove', e => {
+  if (e.touches.length === 1 && isDragging) {
+    const dx = e.touches[0].clientX - dragStartX;
+    const dy = e.touches[0].clientY - dragStartY;
+    ppiCenterOffsetX += dx;
+    ppiCenterOffsetY += dy;
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+    PPI_CENTER_X = PPI_SIZE / 2 + ppiCenterOffsetX;
+    PPI_CENTER_Y = PPI_SIZE / 2 + ppiCenterOffsetY;
+    drawPPI();
+  } else if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (lastPinchDist > 0) {
+      zoomFactor = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, pinchScale * dist / lastPinchDist));
+      drawPPI();
+    }
+  }
+}, { passive: false });
+canvas.addEventListener('touchend', e => {
+  if (e.touches.length < 2) lastPinchDist = 0;
+  if (e.touches.length === 0) isDragging = false;
+});
+
+// ========== Control panel ==========
+function togglePanel(open) {
+  panelOpen = open !== undefined ? open : !panelOpen;
+  document.getElementById('panel-wrapper').classList.toggle('open', panelOpen);
+  document.getElementById('panel-toggle-btn').textContent = panelOpen ? '✕' : '☰';
+}
+document.getElementById('toggle-panel-btn').onclick = () => togglePanel();
+document.getElementById('panel-toggle-btn').onclick = () => togglePanel();
+document.getElementById('panel-close-btn') && (document.getElementById('panel-close-btn').onclick = () => togglePanel(false));
+
+// ========== Fullscreen ==========
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+fullscreenBtn.onclick = () => {
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    document.exitFullscreen && document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+  }
+};
+document.addEventListener('fullscreenchange', () => {
+  fullscreenBtn.textContent = (document.fullscreenElement) ? '✕' : '⛶';
+});
+
+// ========== API ==========
+// 上一次各目标的检测时间（用于判断是否有新检测）
+const _lastDetectTimes = {};
+
+async function fetchState() {
+  try {
+    const res = await fetch('/api/state');
+    if (!res.ok) return;
+    const newState = await res.json();
+    const oldState = radarState;
+    radarState = newState;
+    simTime = radarState.sim_time || 0;
+    document.getElementById('power-status').textContent = radarState.power ? '开机' : '关机';
+    document.getElementById('power-status').className = `value ${radarState.power ? 'on' : 'off'}`;
+    document.getElementById('mode-status').textContent = radarState.mode === 'spin' ? '转动' : '停转';
+    document.getElementById('mode-status').className = `value ${radarState.mode}`;
+    const ant = radarState.mode === 'spin' ? radarState.antenna_angle_deg : radarState.steer_azimuth_deg;
+    document.getElementById('antenna-status').textContent = `${ant.toFixed(1)}°`;
+    const tracked = radarState.targets ? radarState.targets.filter(t => t.tracked) : [];
+    const tasTracking = radarState.tas_tracking || {};
+    const tasCount = Object.keys(tasTracking).length;
+    document.getElementById('track-count').textContent = tracked.length;
+    document.getElementById('tws-count').textContent = Math.max(0, tracked.length - tasCount);
+    document.getElementById('tas-count').textContent = tasCount;
+
+    // 判断是否需要更新目标列表：仅在有检测事件或状态变化的帧更新
+    let needUpdate = false;
+    if (!oldState) { needUpdate = true; }  // 首次加载
+    else {
+      // 检查任一目标是否有新的检测点（last_detection_time变了）
+      for (const t of (radarState.targets || [])) {
+        const prev = _lastDetectTimes[t.id];
+        if (t.last_detection_time !== prev) {
+          _lastDetectTimes[t.id] = t.last_detection_time;
+          needUpdate = true;
+          break;
+        }
+      }
+      // tracked状态变化（起批/消批）也要立即更新
+      if (!needUpdate && oldState.targets) {
+        for (const t of (radarState.targets || [])) {
+          const oldT = oldState.targets.find(o => o.id === t.id);
+          if (oldT && oldT.tracked !== t.tracked) {
+            needUpdate = true;
+            break;
+          }
+        }
+      }
+      // highlighted_ids变化也要更新
+      if (!needUpdate) {
+        const oldHL = (oldState.highlighted_ids || []).join(',');
+        const newHL = (radarState.highlighted_ids || []).join(',');
+        if (oldHL !== newHL) needUpdate = true;
+      }
+      // tas_tracking字典变化（TAS开启/取消/数据率改变）也要更新列表
+      if (!needUpdate) {
+        const oldTAS = JSON.stringify(oldState ? (oldState.tas_tracking || {}) : {});
+        const newTAS = JSON.stringify(radarState.tas_tracking || {});
+        if (oldTAS !== newTAS) needUpdate = true;
+      }
+      // pending_identification变化（识别中→识别结果）也要更新列表
+      if (!needUpdate && oldState.targets) {
+        for (const t of (radarState.targets || [])) {
+          const oldT = oldState.targets.find(o => o.id === t.id);
+          if (oldT && oldT.pending_identification !== t.pending_identification) {
+            needUpdate = true;
+            break;
+          }
+        }
+      }
+    }
+    if (needUpdate || Object.keys(radarState.tas_tracking || {}).length > 0) updateTrackList(radarState.targets);
+    drawPPI();
+  } catch(e) {}
+}
+
+function updateTrackList(targets) {
+  const list = document.getElementById('track-list');
+  const tracked = targets.filter(t => t.tracked);
+  const tasTracking = radarState.tas_tracking || {};
+  if (!tracked.length) { list.innerHTML = '<div class="no-tracks">暂无跟踪目标</div>'; return; }
+  list.innerHTML = tracked.map(t => {
+    const identified = t.identified_model;
+    const pending = t.pending_identification;
+    const modelLabel = identified ? `<span style="color:#00ccff">${identified}</span>` : pending ? `<span style="color:#888">识别中…</span>` : `<span style="color:#888">未知</span>`;
+    const idBtn = identified || pending
+      ? (identified ? `<span style="color:#00ccff;font-size:9px;margin-left:4px">✓已识别</span>` : `<span style="color:#888;font-size:9px;margin-left:4px">识别中…</span>`)
+      : `<button class="btn btn-xs" style="background:rgba(0,200,255,0.15);border:1px solid #00ccff;color:#00ccff;margin-left:4px;padding:1px 4px;font-size:9px" onclick="window.identifyTarget(${t.id})">识别</button>`;
+    const tasInfo = tasTracking[t.id];
+    // TAS button for ALL tracked targets (whether already in tas_tracking or not)
+    const tasControl = tasInfo
+      ? `<span class="tas-badge" onclick="window.openTASPopup(${t.id})">TAS: ${tasInfo}Hz</span>`
+      : `<button class="tas-btn" onclick="window.openTASPopup(${t.id})">TAS</button>`;
+    return `<div class="track-item">
+      <span class="track-id">#${t.id}</span>
+      <span class="track-model">${modelLabel}</span>
+      ${idBtn}
+      ${tasControl}
+      ${radarState.highlighted_ids.includes(t.id) ? '<span style="color:#ff4444">♥</span>' : ''}
+      <div style="font-size:9px;color:#00ff8877;margin-top:2px">${(t.distance_m/1000).toFixed(0)}km ${t.azimuth_deg.toFixed(1)}° ${(t.height_m).toFixed(0)}m</div>
+    </div>`;
+  }).join('');
+}
+
+async function apiPost(path, body) {
+  try {
+    const res = await fetch(path, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    if (!res.ok) { console.error('API错误', res.status, path); return; }
+    const json = await res.json();
+    console.log('API响应', path, json);
+  } catch(e) {
+    console.error('请求失败', path, e);
+  }
+  fetchState();
+}
+
+window.identifyTarget = (targetId) => {
+  const t = radarState.targets.find(t => t.id === targetId);
+  if (!t) return;
+  apiPost('/api/identify', {target_id: targetId, model: t.model});
+};
+
+window._tasCurrentTargetId = null;
+
+window.openTASPopup = (targetId) => {
+  window._tasCurrentTargetId = targetId;
+  const tasTracking = radarState.tas_tracking || {};
+  const isInTAS = tasTracking[targetId] != null;
+  document.getElementById('tas-popup-target-label').textContent = `目标 #${targetId}`;
+  document.getElementById('tas-rate-btns').style.display = isInTAS ? 'none' : 'flex';
+  document.getElementById('tas-cancel-btn').style.display = isInTAS ? 'block' : 'none';
+  if (isInTAS) {
+    document.getElementById('tas-cancel-btn').textContent = `取消TAS (当前${tasTracking[targetId]}Hz)`;
+  }
+  document.getElementById('tas-popup-overlay').classList.add('open');
+};
+
+window.closeTASPopup = () => {
+  document.getElementById('tas-popup-overlay').classList.remove('open');
+  window._tasCurrentTargetId = null;
+};
+
+window._tasConfirmRate = (rate) => {
+  if (window._tasCurrentTargetId == null) return;
+  apiPost('/api/tasEngage', {target_id: window._tasCurrentTargetId, data_rate: rate});
+  closeTASPopup();
+};
+
+window._tasDisengage = () => {
+  if (window._tasCurrentTargetId == null) return;
+  apiPost('/api/tasDisengage', {target_id: window._tasCurrentTargetId});
+  closeTASPopup();
+};
+
+// Close popup when clicking overlay background
+document.getElementById('tas-popup-overlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('tas-popup-overlay')) closeTASPopup();
+});
+
+document.getElementById('btn-power-on').onclick = () => {
+  const btn = document.getElementById('btn-power-on');
+  btn.style.background='#ffaa00'; // 点一下变橙色表示正在发请求
+  apiPost('/api/power', {state:'on'});
+  setTimeout(() => { if (radarState && radarState.power) btn.style.background=''; }, 2000);
+};
+document.getElementById('btn-power-off').onclick = () => {
+  const btn = document.getElementById('btn-power-off');
+  btn.style.background='#ffaa00';
+  apiPost('/api/power', {state:'off'});
+  setTimeout(() => { if (!radarState || !radarState.power) btn.style.background=''; }, 2000);
+};
+document.getElementById('btn-mode-spin').onclick = () => apiPost('/api/mode', {mode:'spin'});
+document.getElementById('btn-mode-stop').onclick = () => apiPost('/api/mode', {mode:'stop'});
+document.getElementById('btn-steer').onclick = () => {
+  apiPost('/api/steer', {azimuth: +document.getElementById('steer-az').value, elevation: +document.getElementById('steer-el').value});
+};
+document.getElementById('btn-set-search-zone').onclick = () => {
+  apiPost('/api/search_zone', {
+    azimuth_lo: +document.getElementById('sz-az-lo').value,
+    azimuth_hi: +document.getElementById('sz-az-hi').value,
+    elevation_lo: +document.getElementById('sz-el-lo').value,
+    elevation_hi: +document.getElementById('sz-el-hi').value,
+    range_min: +document.getElementById('sz-r-min').value * 1000,
+    range_max: +document.getElementById('sz-r-max').value * 1000,
+  });
+};
+document.getElementById('btn-sim-reset').onclick = () => {
+  const count = parseInt(document.getElementById('sim-targets').value);
+  apiPost('/api/target_count', {count}).then(() => apiPost('/api/simulation/reset', {}));
+};
+
+// ========== Init ==========
+window.addEventListener('resize', () => { calcPPI(); drawPPI(); });
+window.addEventListener('orientationchange', () => setTimeout(() => { calcPPI(); drawPPI(); }, 150));
+calcPPI();
+drawPPI();  // 立即画静态元素，不等API
+function pollState() { fetchState(); }
+setInterval(pollState, 250);
+pollState();
+</script>
+</body>
+</html>

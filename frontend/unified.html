@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>雷达智能脑</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #050a12;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── 顶部导航 ── */
+.header {
+  background: #0d1525;
+  border-bottom: 1px solid #00ff8844;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 100;
+}
+.header .title { font-size: 13px; font-weight: bold; flex-shrink: 0; }
+.header-tabs { display: flex; gap: 2px; }
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #00ff8877;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: #00ff88; }
+.tab-btn.active { color: #00ff88; border-bottom: 2px solid #00ff88; }
+
+/* ── 主区域：PPI全屏 + 右侧浮动面板 ── */
+.main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* PPI 画布：全屏覆盖 */
+.ppi-area {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ppi {
+  background: #050a12;
+  display: block;
+  touch-action: none;
+}
+
+/* 状态栏：叠在 PPI 底部 */
+.status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0d1525cc;
+  border-top: 1px solid #00ff8844;
+  padding: 4px 12px;
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  flex-shrink: 0;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+.status-bar .value.on { color: #00ff88; }
+.status-bar .value.off { color: #ff4444; }
+.status-bar .value.spin { color: #ffaa00; }
+.status-bar .value.stop { color: #00aaff; }
+
+/* ── 浮动面板容器（横屏=右侧，竖屏=底部） ── */
+.slide-panel {
+  position: absolute;
+  top: 0;
+  bottom: 36px; /* 留出状态栏 */
+  background: #0d1525ee;
+  border-left: 1px solid #00ff8844;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  transition: width 0.25s, height 0.25s;
+  overflow: hidden;
+}
+
+/* 竖屏：面板从底部滑上来，高度40% */
+@media (orientation: portrait) {
+  .slide-panel {
+    left: 0;
+    right: 0;
+    border-left: none;
+    border-top: 1px solid #00ff8844;
+    height: 0;
+    top: auto;
+    bottom: 36px;
+  }
+  .slide-panel.open {
+    height: 42%;
+  }
+  /* 竖屏PPI被面板挤上去 */
+  .main.ppi-compact .ppi-area {
+    height: 58%;
+  }
+}
+
+/* 横屏：面板固定在右侧 */
+@media (orientation: landscape) {
+  .slide-panel {
+    right: 0;
+    width: 0;
+  }
+  .slide-panel.open {
+    width: 300px;
+  }
+}
+
+/* ── 面板头部 + 关闭按钮 ── */
+.panel-header {
+  background: #0d1525;
+  border-bottom: 1px solid #00ff8833;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.panel-close {
+  background: none;
+  border: none;
+  color: #00ff8877;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+.panel-close:hover { color: #ff4444; }
+
+/* ── 控制面板内容 ── */
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: 11px;
+}
+.panel-body::-webkit-scrollbar { width: 4px; }
+.panel-body::-webkit-scrollbar-thumb { background: #00ff8844; border-radius: 2px; }
+
+.control-group { margin-bottom: 10px; }
+.control-group label { display: block; color: #00ff8877; margin-bottom: 3px; font-size: 10px; }
+.btn { background: rgba(0,255,136,0.15); border: 1px solid #00ff88; color: #00ff88; padding: 5px 9px; cursor: pointer; font-family: inherit; font-size: 11px; border-radius: 4px; }
+.btn:active { background: #00ff88; color: #050a12; }
+.btn.danger { border-color: #ff4444; color: #ff4444; }
+.btn.danger:active { background: #ff4444; color: #fff; }
+.btn-row { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.input-field { background: #050a12; border: 1px solid #00ff8866; color: #00ff88; padding: 4px 6px; font-family: inherit; font-size: 11px; width: 65px; border-radius: 4px; }
+.input-field:focus { outline: none; border-color: #00ff88; }
+.track-list { max-height: 180px; overflow-y: auto; }
+.track-item { background: #050a12; border: 1px solid #00ff8833; border-radius: 4px; padding: 5px 6px; margin-bottom: 4px; font-size: 10px; }
+.track-item .track-id { color: #00ff88; font-weight: bold; }
+.track-item .track-model { color: #ffaa00; margin-left: 4px; }
+.no-tracks { color: #00ff8855; font-size: 11px; text-align: center; padding: 10px; }
+
+/* ── 聊天面板 ── */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: #00ff8844; border-radius: 2px; }
+.chat-bubble {
+  max-width: 85%;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.chat-bubble.user { background: #00ff8833; align-self: flex-end; border-bottom-right-radius: 2px; }
+.chat-bubble.ai { background: #1a2a3a; align-self: flex-start; border-bottom-left-radius: 2px; }
+.chat-bubble.error { background: #3a1a1a; color: #ff6666; }
+.typing-indicator { display: none; padding: 8px 12px; }
+.typing-indicator.show { display: flex; gap: 4px; align-items: center; }
+.typing-dot { width: 6px; height: 6px; background: #00ff88; border-radius: 50%; animation: typing 1.4s infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+.chat-input-area {
+  padding: 8px;
+  border-top: 1px solid #00ff8833;
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+#chat-input {
+  flex: 1;
+  background: #050a12;
+  border: 1px solid #00ff8866;
+  color: #00ff88;
+  padding: 7px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  border-radius: 6px;
+  resize: none;
+  min-height: 36px;
+  max-height: 90px;
+}
+#chat-input:focus { outline: none; border-color: #00ff88; }
+#chat-send {
+  background: rgba(0,255,136,0.2);
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+#chat-send:hover { background: #00ff88; color: #050a12; }
+
+/* ── 配置面板 ── */
+.config-section {
+  background: #0a1020;
+  border: 1px solid #00ff8833;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.config-section h3 {
+  color: #00ff88;
+  font-size: 11px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #00ff8833;
+  padding-bottom: 5px;
+}
+.config-row { display: flex; align-items: center; margin-bottom: 8px; gap: 8px; }
+.config-row label { color: #00ff8877; font-size: 11px; min-width: 60px; flex-shrink: 0; }
+.config-row select,
+.config-row input[type="text"] {
+  background: #050a12;
+  border: 1px solid #00ff8866;
+  color: #00ff88;
+  padding: 5px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.config-row select:focus,
+.config-row input:focus { outline: none; border-color: #00ff88; }
+.config-row select option { background: #0d1525; }
+.checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.checkbox-row input[type="checkbox"] { accent-color: #00ff88; width: 14px; height: 14px; }
+.checkbox-row label { color: #00ff88; font-size: 11px; }
+.sync-info { color: #00ff8877; font-size: 10px; margin-top: 8px; }
+.config-btns { display: flex; gap: 8px; margin-top: 10px; }
+
+/* ── TAS Popup ── */
+.tas-popup-overlay {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.tas-popup-overlay.open { display: flex; }
+.tas-popup {
+  background: #0d1525;
+  border: 1.5px solid #00ff88;
+  border-radius: 10px;
+  padding: 20px 24px;
+  min-width: 240px;
+}
+.tas-popup h4 { color: #00ff88; font-size: 14px; margin-bottom: 12px; }
+.tas-rate-btns { display: flex; gap: 8px; margin-top: 10px; }
+.tas-rate-btns button {
+  background: rgba(0,200,255,0.15);
+  border: 1px solid #00ccff;
+  color: #00ccff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.tas-rate-btns button:hover { background: #00ccff; color: #050a12; }
+.tas-cancel-btn {
+  background: rgba(255,68,68,0.15);
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  margin-top: 10px;
+  width: 100%;
+}
+.tas-cancel-btn:hover { background: #ff4444; color: #fff; }
+
+/* ── 工具栏按钮（浮动在PPI右上角） ── */
+.ppi-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  z-index: 15;
+}
+.toolbar-btn {
+  background: rgba(13,21,37,0.85);
+  border: 1.5px solid #00ff88;
+  color: #00ff88;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toolbar-btn:active { background: #00ff88; color: #050a12; }
+.toolbar-btn.active { background: #00ff88; color: #050a12; }
+
+/* ── 小屏横屏 ── */
+@media (orientation: landscape) and (max-height: 480px) {
+  .header { padding: 3px 8px; gap: 8px; }
+  .tab-btn { padding: 3px 8px; font-size: 11px; }
+  .status-bar { font-size: 10px; padding: 3px 8px; }
+  .ppi-toolbar { top: 4px; right: 4px; gap: 4px; }
+  .toolbar-btn { width: 32px; height: 32px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部 Tab 导航 -->
+<header class="header">
+  <div class="title">📡 雷达智能脑</div>
+  <div class="header-tabs">
+    <button class="tab-btn" data-panel="control" id="tab-control">🔧 控制</button>
+    <button class="tab-btn" data-panel="chat" id="tab-chat">💬 对话</button>
+    <button class="tab-btn" data-panel="config" id="tab-config">⚙ 配置</button>
+  </div>
+</header>
+
+<!-- 主区域 -->
+<div class="main" id="main">
+
+  <!-- PPI 全屏显示 -->
+  <div class="ppi-area">
+    <canvas id="ppi"></canvas>
+    <div class="ppi-toolbar">
+      <button class="toolbar-btn" id="btn-fullscreen" title="全屏">⛶</button>
+    </div>
+  </div>
+
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <div>功率: <span id="power-status" class="value off">关机</span></div>
+    <div>模式: <span id="mode-status" class="value stop">停转</span></div>
+    <div>天线: <span id="antenna-status" class="value">0.0°</span></div>
+    <div>跟踪: <span id="track-count" class="value">0</span></div>
+    <div>TWS: <span id="tws-count" class="value" style="color:#ff9900">0</span></div>
+    <div>TAS: <span id="tas-count" class="value" style="color:#00ccff">0</span></div>
+  </div>
+
+  <!-- 控制面板 -->
+  <div class="slide-panel" id="panel-control">
+    <div class="panel-header">
+      <span>🔧 雷达控制</span>
+      <button class="panel-close" onclick="closePanel('control')">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="control-group"><label>开关机</label>
+        <div class="btn-row">
+          <button class="btn" id="btn-power-on">开机</button>
+          <button class="btn danger" id="btn-power-off">关机</button>
+        </div>
+      </div>
+      <div class="control-group"><label>雷达模式</label>
+        <div class="btn-row">
+          <button class="btn" id="btn-mode-spin">转动</button>
+          <button class="btn" id="btn-mode-stop">停转</button>
+        </div>
+      </div>
+      <div class="control-group"><label>法线指向（停转）</label>
+        <div class="btn-row">
+          <input class="input-field" id="steer-az" type="number" value="0" step="0.1">
+          <button class="btn" id="btn-steer">设置</button>
+        </div>
+      </div>
+      <div class="control-group"><label>搜索区方位°</label>
+        <div class="btn-row">
+          <input class="input-field" id="sz-az-lo" type="number" value="-60" step="1">
+          <span style="color:#00ff8877">~</span>
+          <input class="input-field" id="sz-az-hi" type="number" value="60" step="1">
+          <button class="btn" id="btn-set-search-zone">设置</button>
+        </div>
+      </div>
+      <div class="control-group"><label>目标数量</label>
+        <div class="btn-row">
+          <input class="input-field" id="sim-targets" type="number" value="5" min="1" max="50" style="width:50px">
+          <button class="btn" id="btn-sim-reset">重置仿真</button>
+        </div>
+      </div>
+      <h3 style="color:#00ff88;font-size:10px;margin:10px 0 5px;border-bottom:1px solid #00ff8833;padding-bottom:3px">目标列表</h3>
+      <div class="track-list" id="track-list"><div class="no-tracks">暂无跟踪目标</div></div>
+    </div>
+  </div>
+
+  <!-- 聊天面板 -->
+  <div class="slide-panel" id="panel-chat">
+    <div class="panel-header">
+      <span>💬 自然语言控制</span>
+      <button class="panel-close" onclick="closePanel('chat')">✕</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-bubble ai">有什么可以帮您的？</div>
+      <div class="typing-indicator" id="typing-indicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <textarea id="chat-input" placeholder="输入命令..." rows="1"></textarea>
+      <button id="chat-send">发送</button>
+    </div>
+  </div>
+
+  <!-- 配置面板 -->
+  <div class="slide-panel" id="panel-config">
+    <div class="panel-header">
+      <span>⚙ 配置</span>
+      <button class="panel-close" onclick="closePanel('config')">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="config-section">
+        <h3>🤖 大模型</h3>
+        <div class="config-row">
+          <label>模型:</label>
+          <select id="cfg-model">
+            <option value="qwen3:4b-instruct">qwen3:4b-instruct</option>
+            <option value="gemma4:e4b">gemma4:e4b</option>
+            <option value="gemma4:16k">gemma4:16k (e4b-16k)</option>
+            <option value="qwen3:8b-instruct">qwen3:8b-instruct</option>
+          </select>
+        </div>
+      </div>
+      <div class="config-section">
+        <h3>📂 Skills</h3>
+        <div class="checkbox-row">
+          <input type="checkbox" id="skill-radar-command" checked>
+          <label for="skill-radar-command">radar_command</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="skill-memory">
+          <label for="skill-memory">memory</label>
+        </div>
+      </div>
+      <div class="config-section">
+        <h3>🧠 记忆同步</h3>
+        <div class="sync-info" id="sync-info">未同步</div>
+        <div class="config-btns">
+          <button class="btn" id="btn-sync">手动同步</button>
+          <button class="btn" id="btn-save-config">保存配置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAS Popup -->
+<div class="tas-popup-overlay" id="tas-popup-overlay">
+  <div class="tas-popup">
+    <h4>TAS跟踪</h4>
+    <div class="tas-popup-target" id="tas-popup-target-label"></div>
+    <div class="tas-rate-btns" id="tas-rate-btns">
+      <button onclick="window._tasConfirmRate(1)">1Hz</button>
+      <button onclick="window._tasConfirmRate(5)">5Hz</button>
+      <button onclick="window._tasConfirmRate(10)">10Hz</button>
+    </div>
+    <button class="tas-cancel-btn" id="tas-cancel-btn" style="display:none" onclick="window._tasDisengage()">取消TAS</button>
+    <button class="tas-cancel-btn" style="margin-top:8px" onclick="window.closeTASPopup()">关闭</button>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   PPI 绘制代码（从 index.html 复制）
+══════════════════════════════════════════ */
+const canvas = document.getElementById('ppi');
+const ctx = canvas.getContext('2d');
+const PPI_RANGE_KM = 500;
+const ZOOM_MIN = 0.4, ZOOM_MAX = 4.0;
+const ANGLE_OFFSET = -90;
+let PPI_SIZE = 400, PPI_CENTER = 200, PPI_CENTER_X = 200, PPI_CENTER_Y = 200, PPI_SCALE = 1;
+let zoomFactor = 1.0;
+let radarState = null;
+let simTime = 0;
+let ppiCenterOffsetX = 0, ppiCenterOffsetY = 0;
+let lastPinchDist = 0, pinchScale = 1;
+let isDragging = false, dragStartX = 0, dragStartY = 0;
+
+function calcPPI() {
+  const container = canvas.parentElement;
+  const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+  let maxW = container.clientWidth - 16;
+  let maxH = container.clientHeight - 16 - 36; // 留状态栏
+  if (isPortrait) { maxH = Math.min(maxH, (window.screen.availHeight || 600) * 0.5); }
+  PPI_SIZE = Math.min(maxW, maxH, 700);
+  if (PPI_SIZE < 120) PPI_SIZE = Math.min(maxW, maxH);
+  PPI_CENTER = PPI_SIZE / 2;
+  PPI_CENTER_X = PPI_CENTER + ppiCenterOffsetX;
+  PPI_CENTER_Y = PPI_CENTER + ppiCenterOffsetY;
+  PPI_SCALE = PPI_SIZE / 2 / PPI_RANGE_KM;
+  canvas.width = PPI_SIZE;
+  canvas.height = PPI_SIZE;
+  canvas.style.width = PPI_SIZE + 'px';
+  canvas.style.height = PPI_SIZE + 'px';
+}
+
+function drawPPI() {
+  ctx.clearRect(0, 0, PPI_SIZE, PPI_SIZE);
+  ctx.fillStyle = '#050a12';
+  ctx.fillRect(0, 0, PPI_SIZE, PPI_SIZE);
+  ctx.strokeStyle = '#00ff8844'; ctx.lineWidth = 1.5;
+  for (let r = 100; r <= 400; r += 100) {
+    ctx.beginPath(); ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, r * PPI_SCALE * zoomFactor, 0, Math.PI * 2); ctx.stroke();
+  }
+  ctx.fillStyle = '#00ff88cc'; ctx.font = `bold ${Math.max(8, PPI_SIZE/55)}px Courier New`;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  for (let r = 100; r <= 400; r += 100) {
+    const angleRad = -Math.PI/4, ringR = r * PPI_SCALE * zoomFactor, labelDist = ringR - 14;
+    const lx = PPI_CENTER_X + labelDist * Math.cos(angleRad), ly = PPI_CENTER_Y + labelDist * Math.sin(angleRad);
+    ctx.fillStyle = 'rgba(5,10,18,0.8)'; ctx.fillRect(lx-2, ly-7, 32, 14);
+    ctx.fillStyle = '#00ff88cc'; ctx.fillText(`${r}`, lx, ly);
+  }
+  ctx.strokeStyle = '#00ff8822'; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(PPI_CENTER_X, 0); ctx.lineTo(PPI_CENTER_X, PPI_SIZE);
+  ctx.moveTo(0, PPI_CENTER_Y); ctx.lineTo(PPI_SIZE, PPI_CENTER_Y); ctx.stroke();
+  ctx.strokeStyle = '#00ff88'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, (PPI_SIZE/2-3), 0, Math.PI*2); ctx.stroke();
+
+  if (radarState && radarState.power && radarState.mode === 'stop') {
+    const DR_AZ_HALF = 60, normalAz = radarState.steer_azimuth_deg;
+    const loA = (-DR_AZ_HALF+normalAz+ANGLE_OFFSET)*Math.PI/180;
+    const hiA = (DR_AZ_HALF+normalAz+ANGLE_OFFSET)*Math.PI/180;
+    const ccw = (hiA-loA)>0;
+    ctx.beginPath(); ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, 450*PPI_SCALE*zoomFactor, hiA, loA, ccw);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, 5*PPI_SCALE*zoomFactor, loA, hiA, !ccw);
+    ctx.closePath(); ctx.fillStyle='rgba(0,255,136,0.06)'; ctx.fill();
+    ctx.strokeStyle='rgba(0,255,136,0.20)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  if (radarState && radarState.power && radarState.search_zone_set) {
+    const sz = radarState.search_zone;
+    const rMin = sz.range_m[0]/1000, rMax = sz.range_m[1]/1000;
+    const offset = radarState.mode==='spin' ? 0 : radarState.steer_azimuth_deg;
+    const loA = (sz.azimuth[0]+offset+ANGLE_OFFSET)*Math.PI/180;
+    const hiA = (sz.azimuth[1]+offset+ANGLE_OFFSET)*Math.PI/180;
+    const ccw = (hiA-loA)>0;
+    ctx.beginPath(); ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, rMax*PPI_SCALE*zoomFactor, hiA, loA, ccw);
+    ctx.arc(PPI_CENTER_X, PPI_CENTER_Y, rMin*PPI_SCALE*zoomFactor, loA, hiA, !ccw);
+    ctx.closePath(); ctx.fillStyle='rgba(255,0,0,0.08)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,0,0,0.35)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  if (radarState && radarState.power) {
+    const ANT = radarState.mode==='spin' ? radarState.antenna_angle_deg : radarState.steer_azimuth_deg;
+    const A = -(ANT+ANGLE_OFFSET)*Math.PI/180;
+    ctx.beginPath(); ctx.moveTo(PPI_CENTER_X, PPI_CENTER_Y);
+    ctx.lineTo(PPI_CENTER_X+Math.cos(A)*(PPI_CENTER-2), PPI_CENTER_Y-Math.sin(A)*(PPI_CENTER-2));
+    ctx.strokeStyle='#ffcc00'; ctx.lineWidth=2.5;
+    if (radarState.mode==='stop') ctx.setLineDash([6,4]); else ctx.setLineDash([]);
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  if (radarState && radarState.power && radarState.sim_time) {
+    const now = simTime;
+    for (const t of radarState.targets||[]) {
+      const pts = t.detection_points||[]; if (!pts.length) continue;
+      const isTracked = t.tracked;
+      const maxAge = isTracked ? 99999 : 30;
+      const recent = pts.filter(p=>(now-p.time)<maxAge); if (!recent.length) continue;
+      const screenPts = recent.map(p=>{
+        const dist=p.r/1000, rad=-(p.azimuth_deg+ANGLE_OFFSET)*Math.PI/180;
+        return {x:PPI_CENTER_X+dist*PPI_SCALE*zoomFactor*Math.cos(rad), y:PPI_CENTER_Y-dist*PPI_SCALE*zoomFactor*Math.sin(rad), age:now-p.time};
+      });
+      if (isTracked) {
+        ctx.strokeStyle='#ffcc0088'; ctx.lineWidth=1;
+        ctx.beginPath(); for(let i=0;i<screenPts.length;i++) { if(i===0)ctx.moveTo(screenPts[i].x,screenPts[i].y); else ctx.lineTo(screenPts[i].x,screenPts[i].y); } ctx.stroke();
+        for(const pt of screenPts) { ctx.fillStyle=`rgba(255,204,0,${Math.max(0.3,1-pt.age/99999)})`; ctx.beginPath(); ctx.arc(pt.x,pt.y,3,0,Math.PI*2); ctx.fill(); }
+      } else {
+        for(const pt of screenPts) { ctx.fillStyle=`rgba(0,255,136,${Math.max(0.2,1-pt.age/30)})`; ctx.beginPath(); ctx.arc(pt.x,pt.y,3,0,Math.PI*2); ctx.fill(); }
+      }
+    }
+  }
+
+  if (radarState && radarState.power && radarState.sim_time) {
+    ctx.fillStyle='#00ff8888'; ctx.font=`${Math.max(8,PPI_SIZE/50)}px Courier New`; ctx.textAlign='left'; ctx.textBaseline='top';
+    ctx.fillText(`t=${Math.floor(radarState.sim_time)}s`, 4, 4);
+  }
+
+  if (radarState) {
+    for (const t of radarState.targets||[]) {
+      if (!t.tracked) continue;
+      const dist=(t.last_detection_distance_m||t.distance_m)/1000;
+      const az=t.last_detection_azimuth_deg||t.azimuth_deg;
+      const rad=-(az+ANGLE_OFFSET)*Math.PI/180;
+      const px=PPI_CENTER_X+dist*PPI_SCALE*zoomFactor*Math.cos(rad);
+      const py=PPI_CENTER_Y-dist*PPI_SCALE*zoomFactor*Math.sin(rad);
+      const hl=radarState.highlighted_ids.includes(t.id);
+      let radius=PPI_SIZE/120; if(t.tracked)radius=PPI_SIZE/90; if(hl)radius=PPI_SIZE/60;
+      ctx.fillStyle=hl?'#ff4444':(t.tracked?'#ffcc00':'#00ff88');
+      ctx.beginPath(); ctx.arc(px,py,radius,0,Math.PI*2); ctx.fill();
+      if(t.tracked) {
+        ctx.fillStyle=hl?'#ff4444':'#00ff88'; ctx.font=`${Math.max(7,PPI_SIZE/70)}px Courier New`;
+        let label=`#${t.id}`; if(t.pending_identification)label+=` 识别中`; else if(t.identified_model)label+=` ${t.identified_model}`;
+        ctx.fillText(label, px+radius+2, py-2);
+      }
+    }
+  }
+}
+
+/* ── Drag + Pinch ── */
+canvas.addEventListener('mousedown', e=>{ isDragging=true; dragStartX=e.clientX; dragStartY=e.clientY; });
+canvas.addEventListener('mousemove', e=>{ if(!isDragging)return;
+  ppiCenterOffsetX+=e.clientX-dragStartX; ppiCenterOffsetY+=e.clientY-dragStartY;
+  dragStartX=e.clientX; dragStartY=e.clientY;
+  PPI_CENTER_X=PPI_SIZE/2+ppiCenterOffsetX; PPI_CENTER_Y=PPI_SIZE/2+ppiCenterOffsetY; drawPPI(); });
+canvas.addEventListener('mouseup', ()=>{ isDragging=false; });
+canvas.addEventListener('mouseleave', ()=>{ isDragging=false; });
+
+canvas.addEventListener('touchstart', e=>{
+  if(e.touches.length===1){isDragging=true;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;}
+  else if(e.touches.length===2){e.preventDefault();const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;lastPinchDist=Math.sqrt(dx*dx+dy*dy);pinchScale=zoomFactor;}
+},{passive:false});
+canvas.addEventListener('touchmove', e=>{
+  if(e.touches.length===1&&isDragging){ppiCenterOffsetX+=e.touches[0].clientX-dragStartX;ppiCenterOffsetY+=e.touches[0].clientY-dragStartY;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;PPI_CENTER_X=PPI_SIZE/2+ppiCenterOffsetX;PPI_CENTER_Y=PPI_SIZE/2+ppiCenterOffsetY;drawPPI();}
+  else if(e.touches.length===2){e.preventDefault();const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY,dist=Math.sqrt(dx*dx+dy*dy);if(lastPinchDist>0){zoomFactor=Math.max(ZOOM_MIN,Math.min(ZOOM_MAX,pinchScale*dist/lastPinchDist));drawPPI();}}
+},{passive:false});
+canvas.addEventListener('touchend', e=>{ if(e.touches.length<2)lastPinchDist=0; if(e.touches.length===0)isDragging=false; });
+
+/* ── 全屏 ── */
+document.getElementById('btn-fullscreen').onclick = () => {
+  if(document.fullscreenElement||document.webkitFullscreenElement){ document.exitFullscreen&&document.exitFullscreen(); }
+  else { document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); }
+};
+
+/* ── Tab 切换：打开/关闭面板 ── */
+let activePanel = null;
+const panelMap = { control:'panel-control', chat:'panel-chat', config:'panel-config' };
+
+function openPanel(name) {
+  // 关闭已打开的
+  Object.values(panelMap).forEach(id => document.getElementById(id).classList.remove('open'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (activePanel === name) { activePanel = null; return; } // toggle off
+  activePanel = name;
+  document.getElementById(panelMap[name]).classList.add('open');
+  document.getElementById('tab-' + name).classList.add('active');
+  // 更新主区域高度（竖屏模式下）
+  const main = document.getElementById('main');
+  const isOpen = document.getElementById(panelMap[name]).classList.contains('open');
+  if (window.matchMedia('(orientation: portrait)').matches) {
+    main.classList.toggle('ppi-compact', isOpen);
+  }
+  setTimeout(() => { calcPPI(); drawPPI(); }, 280);
+}
+
+document.getElementById('tab-control').onclick = () => openPanel('control');
+document.getElementById('tab-chat').onclick = () => openPanel('chat');
+document.getElementById('tab-config').onclick = () => openPanel('config');
+
+function closePanel(name) {
+  document.getElementById(panelMap[name]).classList.remove('open');
+  document.getElementById('tab-' + name).classList.remove('active');
+  if (activePanel === name) activePanel = null;
+  const main = document.getElementById('main');
+  main.classList.remove('ppi-compact');
+  setTimeout(() => { calcPPI(); drawPPI(); }, 280);
+}
+
+/* ── API 调用 ── */
+const _lastDetectTimes = {};
+async function apiPost(path, body) {
+  try {
+    const res = await fetch(path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    if(!res.ok) return;
+    fetchState();
+  } catch(e) {}
+}
+
+async function fetchState() {
+  try {
+    const res = await fetch('/api/state');
+    if(!res.ok) return;
+    const newState = await res.json();
+    const oldState = radarState;
+    radarState = newState;
+    simTime = radarState.sim_time || 0;
+    document.getElementById('power-status').textContent = radarState.power ? '开机' : '关机';
+    document.getElementById('power-status').className = `value ${radarState.power?'on':'off'}`;
+    document.getElementById('mode-status').textContent = radarState.mode==='spin'?'转动':'停转';
+    document.getElementById('mode-status').className = `value ${radarState.mode}`;
+    const ant = radarState.mode==='spin' ? radarState.antenna_angle_deg : radarState.steer_azimuth_deg;
+    document.getElementById('antenna-status').textContent = `${(ant||0).toFixed(1)}°`;
+    const tracked = radarState.targets ? radarState.targets.filter(t=>t.tracked) : [];
+    const tasTracking = radarState.tas_tracking||{};
+    document.getElementById('track-count').textContent = tracked.length;
+    document.getElementById('tws-count').textContent = Math.max(0, tracked.length - Object.keys(tasTracking).length);
+    document.getElementById('tas-count').textContent = Object.keys(tasTracking).length;
+    updateTrackList(radarState.targets||[]);
+    drawPPI();
+  } catch(e) {}
+}
+
+function updateTrackList(targets) {
+  const list = document.getElementById('track-list');
+  const tracked = targets.filter(t=>t.tracked);
+  const tasTracking = radarState ? radarState.tas_tracking||{} : {};
+  if (!tracked.length) { list.innerHTML='<div class="no-tracks">暂无跟踪目标</div>'; return; }
+  list.innerHTML = tracked.map(t => {
+    const identified = t.identified_model, pending = t.pending_identification;
+    const modelLabel = identified ? `<span style="color:#00ccff">${identified}</span>` : pending ? `<span style="color:#888">识别中…</span>` : `<span style="color:#888">未知</span>`;
+    const tasInfo = tasTracking[t.id];
+    const tasCtrl = tasInfo
+      ? `<span style="color:#00ccff;font-size:9px;margin-left:4px">TAS:${tasInfo}Hz</span>`
+      : `<button class="btn" style="padding:1px 4px;font-size:9px;margin-left:4px" onclick="window.openTASPopup(${t.id})">TAS</button>`;
+    return `<div class="track-item">
+      <span class="track-id">#${t.id}</span> <span class="track-model">${modelLabel}</span>
+      ${tasCtrl}
+      <div style="font-size:9px;color:#00ff8877;margin-top:2px">${((t.distance_m||0)/1000).toFixed(0)}km ${(t.azimuth_deg||0).toFixed(1)}°</div>
+    </div>`;
+  }).join('');
+}
+
+/* ── 控制面板按钮 ── */
+document.getElementById('btn-power-on').onclick = () => apiPost('/api/power', {state:'on'});
+document.getElementById('btn-power-off').onclick = () => apiPost('/api/power', {state:'off'});
+document.getElementById('btn-mode-spin').onclick = () => apiPost('/api/mode', {mode:'spin'});
+document.getElementById('btn-mode-stop').onclick = () => apiPost('/api/mode', {mode:'stop'});
+document.getElementById('btn-steer').onclick = () => {
+  const az = parseFloat(document.getElementById('steer-az').value)||0;
+  apiPost('/api/steer', {azimuth:az, elevation:0});
+};
+document.getElementById('btn-set-search-zone').onclick = () => {
+  const azLo = parseFloat(document.getElementById('sz-az-lo').value)||-60;
+  const azHi = parseFloat(document.getElementById('sz-az-hi').value)||60;
+  apiPost('/api/search_zone', {azimuth_lo:azLo, azimuth_hi:azHi, elevation_lo:-5, elevation_hi:70, range_min:5000, range_max:450000});
+};
+document.getElementById('btn-sim-reset').onclick = () => {
+  const count = parseInt(document.getElementById('sim-targets').value)||5;
+  apiPost('/api/target_count', {count});
+  apiPost('/api/simulation/reset', {});
+};
+
+/* ── TAS ── */
+window._tasCurrentTargetId = null;
+window.openTASPopup = (targetId) => {
+  window._tasCurrentTargetId = targetId;
+  const tasTracking = radarState ? radarState.tas_tracking||{} : {};
+  const isIn = tasTracking[targetId]!=null;
+  document.getElementById('tas-popup-target-label').textContent = `目标 #${targetId}`;
+  document.getElementById('tas-rate-btns').style.display = isIn ? 'none' : 'flex';
+  document.getElementById('tas-cancel-btn').style.display = isIn ? 'block' : 'none';
+  if (isIn) document.getElementById('tas-cancel-btn').textContent = `取消TAS (当前${tasTracking[targetId]}Hz)`;
+  document.getElementById('tas-popup-overlay').classList.add('open');
+};
+window.closeTASPopup = () => { document.getElementById('tas-popup-overlay').classList.remove('open'); window._tasCurrentTargetId=null; };
+window._tasConfirmRate = (rate) => {
+  if(window._tasCurrentTargetId==null) return;
+  apiPost('/api/tasEngage', {target_id:window._tasCurrentTargetId, data_rate:rate});
+  closeTASPopup();
+};
+window._tasDisengage = () => {
+  if(window._tasCurrentTargetId==null) return;
+  apiPost('/api/tasDisengage', {target_id:window._tasCurrentTargetId});
+  closeTASPopup();
+};
+
+/* ── 聊天 ── */
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const typingIndicator = document.getElementById('typing-indicator');
+
+function addBubble(role, text) {
+  const b = document.createElement('div');
+  b.className = `chat-bubble ${role}`;
+  b.textContent = text;
+  chatMessages.insertBefore(b, typingIndicator);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function showTyping() { typingIndicator.classList.add('show'); chatMessages.scrollTop = chatMessages.scrollHeight; }
+function removeTyping() { typingIndicator.classList.remove('show'); }
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  addBubble('user', text);
+  chatInput.value = '';
+  chatInput.style.height = 'auto';
+  showTyping();
+  try {
+    const res = await fetch('/api/agent/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:text})});
+    const json = await res.json();
+    removeTyping();
+    addBubble('ai', json.response || json.error || '无响应');
+  } catch(e) { removeTyping(); addBubble('ai', '请求失败: ' + e.message); }
+}
+
+document.getElementById('chat-send').onclick = sendMessage;
+chatInput.onkeydown = e => { if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); } };
+chatInput.addEventListener('input', () => { chatInput.style.height='auto'; chatInput.style.height=Math.min(chatInput.scrollHeight,90)+'px'; });
+
+/* ── 配置 ── */
+async function loadConfig() {
+  try {
+    const res = await fetch('/api/config');
+    if(res.ok) {
+      const cfg = await res.json();
+      if(cfg.ollama&&cfg.ollama.model) document.getElementById('cfg-model').value = cfg.ollama.model;
+      if(cfg.sync_time) document.getElementById('sync-info').textContent = '上次同步: '+cfg.sync_time;
+    }
+  } catch(e) {}
+}
+
+async function saveConfig() {
+  const model = document.getElementById('cfg-model').value;
+  try {
+    await fetch('/api/config/save', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ollama:{model}})});
+    addBubble('ai', '✅ 配置已保存');
+  } catch(e) { addBubble('ai', '❌ 保存失败'); }
+}
+
+async function manualSync() {
+  showTyping();
+  try {
+    const res = await fetch('/api/agent/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:'同步会话到记忆'})});
+    const json = await res.json();
+    removeTyping();
+    const now = new Date();
+    const ts = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    document.getElementById('sync-info').textContent = '上次同步: '+ts;
+    addBubble('ai', json.response || '✅ 同步完成');
+  } catch(e) { removeTyping(); addBubble('ai', '同步失败: '+e.message); }
+}
+
+document.getElementById('btn-save-config').onclick = saveConfig;
+document.getElementById('btn-sync').onclick = manualSync;
+
+/* ── 初始化 ── */
+window.addEventListener('resize', () => { calcPPI(); drawPPI(); });
+window.addEventListener('orientationchange', () => setTimeout(()=>{ calcPPI(); drawPPI(); }, 150));
+calcPPI(); drawPPI();
+setInterval(fetchState, 250);
+fetchState();
+loadConfig();
+</script>
+</body>
+</html>
