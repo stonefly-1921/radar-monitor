@@ -78,7 +78,11 @@ def get_state():
 def set_power(req: PowerRequest):
     """开机/关机"""
     sim = get_simulator()
-    sim.set_power(req.state == "on")
+    if req.state == "on":
+        sim.set_mode("spin")
+        sim.set_power(True)
+    else:
+        sim.set_power(False)
     return {"ok": True, "power": sim.state.power}
 
 @app.post("/api/mode")

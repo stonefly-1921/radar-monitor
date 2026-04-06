@@ -352,7 +352,9 @@ class RadarSimulator:
         return True, ""
 
     def reset_targets(self):
-        """重置所有目标的跟踪和识别状态（保留目标数量和初始参数）"""
+        """重置仿真时间和所有目标的跟踪和识别状态（保留目标数量和初始参数）"""
+        self._sim_time = 0.0
+        self._last_update = time.time()  # 重置时间基准，避免重置后第一帧dt过大
         for t in self.targets:
             t.tracked = False
             t.detected = False

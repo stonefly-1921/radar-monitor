@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>雷达智能脑</title>
 <style>
@@ -27,9 +28,56 @@ body {
   gap: 12px;
   flex-shrink: 0;
   z-index: 100;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .header .title { font-size: 13px; font-weight: bold; flex-shrink: 0; }
-.header-tabs { display: flex; gap: 2px; }
+.header-tabs { display: flex; gap: 2px; flex-shrink: 0; }
+
+/* ── 仿真工具栏 ── */
+.header-sim {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-left: 1px solid #00ff8844;
+  padding-left: 10px;
+  margin-left: 2px;
+}
+.header-sim::-webkit-scrollbar { height: 3px; }
+.header-sim::-webkit-scrollbar-track { background: transparent; }
+.header-sim::-webkit-scrollbar-thumb { background: #00ff8844; border-radius: 2px; }
+.header-sim-time {
+  font-size: 11px;
+  color: #00ff88;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+.sim-count-select {
+  background: #0a1520;
+  border: 1px solid #00ff8855;
+  color: #00ff88;
+  font-size: 11px;
+  padding: 2px 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 22px;
+}
+.sim-count-select:focus { outline: none; border-color: #00ff88; }
+#btn-header-sim-reset {
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff6666;
+  font-size: 11px;
+  padding: 2px 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 22px;
+  transition: all 0.2s;
+}
+#btn-header-sim-reset:hover { background: #ff444422; color: #ff8888; }
 .tab-btn {
   background: transparent;
   border: none;
@@ -56,13 +104,14 @@ body {
 .ppi-area {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 #ppi {
   background: #050a12;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   touch-action: none;
 }
 
@@ -74,13 +123,14 @@ body {
   right: 0;
   background: #0d1525cc;
   border-top: 1px solid #00ff8844;
-  padding: 4px 12px;
+  padding: 3px 10px;
   display: flex;
-  gap: 14px;
-  font-size: 11px;
+  gap: 10px;
+  font-size: 10px;
   flex-shrink: 0;
   z-index: 10;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 .status-bar .value.on { color: #00ff88; }
 .status-bar .value.off { color: #ff4444; }
@@ -113,11 +163,11 @@ body {
     bottom: 36px;
   }
   .slide-panel.open {
-    height: 42%;
+    height: 33%;
   }
   /* 竖屏PPI被面板挤上去 */
   .main.ppi-compact .ppi-area {
-    height: 58%;
+    height: 67%;
   }
 }
 
@@ -356,6 +406,40 @@ body {
   .ppi-toolbar { top: 4px; right: 4px; gap: 4px; }
   .toolbar-btn { width: 32px; height: 32px; font-size: 14px; }
 }
+
+/* ── 全屏模式：PPI 铺满，不被任何元素遮挡 ── */
+:fullscreen .ppi-area,
+:fullscreen .main,
+:fullscreen body {
+  width: 100% !important;
+  height: 100% !important;
+}
+:fullscreen .ppi-area {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 1 !important;
+}
+:fullscreen #ppi {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+:fullscreen .ppi-toolbar {
+  z-index: 9999 !important;
+}
+:fullscreen .header {
+  z-index: 10000 !important;
+}
+:fullscreen .status-bar {
+  z-index: 9998 !important;
+}
 </style>
 </head>
 <body>
@@ -367,6 +451,20 @@ body {
     <button class="tab-btn" data-panel="control" id="tab-control">🔧 控制</button>
     <button class="tab-btn" data-panel="chat" id="tab-chat">💬 对话</button>
     <button class="tab-btn" data-panel="config" id="tab-config">⚙ 配置</button>
+  </div>
+  <div class="header-sim">
+    <span class="header-sim-time" id="header-sim-time">t=0s</span>
+    <select class="sim-count-select" id="sim-count-select">
+      <option value="3">3</option>
+      <option value="5" selected>5</option>
+      <option value="8">8</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+    </select>
+    <button class="toolbar-btn" id="btn-header-sim-reset" title="重置仿真">⟳ 重置</button>
   </div>
 </header>
 
@@ -424,10 +522,9 @@ body {
           <button class="btn" id="btn-set-search-zone">设置</button>
         </div>
       </div>
-      <div class="control-group"><label>目标数量</label>
+      <div class="control-group"><label>PPI 显示</label>
         <div class="btn-row">
-          <input class="input-field" id="sim-targets" type="number" value="5" min="1" max="50" style="width:50px">
-          <button class="btn" id="btn-sim-reset">重置仿真</button>
+          <button class="btn" id="btn-ppi-init">画面初始化</button>
         </div>
       </div>
       <h3 style="color:#00ff88;font-size:10px;margin:10px 0 5px;border-bottom:1px solid #00ff8833;padding-bottom:3px">目标列表</h3>
@@ -535,8 +632,7 @@ function calcPPI() {
   const isPortrait = window.matchMedia('(orientation: portrait)').matches;
   let maxW = container.clientWidth - 16;
   let maxH = container.clientHeight - 16 - 36; // 留状态栏
-  if (isPortrait) { maxH = Math.min(maxH, (window.screen.availHeight || 600) * 0.5); }
-  PPI_SIZE = Math.min(maxW, maxH, 700);
+  PPI_SIZE = Math.min(maxW, maxH, 625);
   if (PPI_SIZE < 120) PPI_SIZE = Math.min(maxW, maxH);
   PPI_CENTER = PPI_SIZE / 2;
   PPI_CENTER_X = PPI_CENTER + ppiCenterOffsetX;
@@ -718,8 +814,8 @@ async function apiPost(path, body) {
   try {
     const res = await fetch(path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
     if(!res.ok) return;
-    fetchState();
   } catch(e) {}
+  fetchState();
 }
 
 async function fetchState() {
@@ -730,6 +826,7 @@ async function fetchState() {
     const oldState = radarState;
     radarState = newState;
     simTime = radarState.sim_time || 0;
+    document.getElementById('header-sim-time').textContent = `t=${Math.floor(simTime)}s`;
     document.getElementById('power-status').textContent = radarState.power ? '开机' : '关机';
     document.getElementById('power-status').className = `value ${radarState.power?'on':'off'}`;
     document.getElementById('mode-status').textContent = radarState.mode==='spin'?'转动':'停转';
@@ -754,13 +851,15 @@ function updateTrackList(targets) {
   list.innerHTML = tracked.map(t => {
     const identified = t.identified_model, pending = t.pending_identification;
     const modelLabel = identified ? `<span style="color:#00ccff">${identified}</span>` : pending ? `<span style="color:#888">识别中…</span>` : `<span style="color:#888">未知</span>`;
+    const idBtn = identified || pending
+      ? (identified ? `<span style="color:#00ccff;font-size:9px;margin-left:4px">已识别</span>` : `<span style="color:#888;font-size:9px;margin-left:4px">识别中…</span>`)
+      : `<button class="btn" style="background:rgba(0,200,255,0.15);border:1px solid #00ccff;color:#00ccff;margin-left:4px;padding:1px 4px;font-size:9px" onclick="window.identifyTarget(${t.id})">识别</button>`;
     const tasInfo = tasTracking[t.id];
     const tasCtrl = tasInfo
-      ? `<span style="color:#00ccff;font-size:9px;margin-left:4px">TAS:${tasInfo}Hz</span>`
+      ? `<span style="color:#00ccff;font-size:9px;margin-left:4px;cursor:pointer" onclick="window.openTASPopup(${t.id})">TAS:${tasInfo}Hz</span>`
       : `<button class="btn" style="padding:1px 4px;font-size:9px;margin-left:4px" onclick="window.openTASPopup(${t.id})">TAS</button>`;
     return `<div class="track-item">
-      <span class="track-id">#${t.id}</span> <span class="track-model">${modelLabel}</span>
-      ${tasCtrl}
+      <span class="track-id">#${t.id}</span> <span class="track-model">${modelLabel}</span> ${idBtn} ${tasCtrl}
       <div style="font-size:9px;color:#00ff8877;margin-top:2px">${((t.distance_m||0)/1000).toFixed(0)}km ${(t.azimuth_deg||0).toFixed(1)}°</div>
     </div>`;
   }).join('');
@@ -780,10 +879,27 @@ document.getElementById('btn-set-search-zone').onclick = () => {
   const azHi = parseFloat(document.getElementById('sz-az-hi').value)||60;
   apiPost('/api/search_zone', {azimuth_lo:azLo, azimuth_hi:azHi, elevation_lo:-5, elevation_hi:70, range_min:5000, range_max:450000});
 };
-document.getElementById('btn-sim-reset').onclick = () => {
-  const count = parseInt(document.getElementById('sim-targets').value)||5;
+document.getElementById('btn-ppi-init').onclick = () => {
+  ppiCenterOffsetX = 0;
+  ppiCenterOffsetY = 0;
+  zoomFactor = 1.0;
+  calcPPI();
+  drawPPI();
+};
+document.getElementById('btn-header-sim-reset').onclick = () => {
+  const count = parseInt(document.getElementById('sim-count-select').value) || 5;
   apiPost('/api/target_count', {count});
   apiPost('/api/simulation/reset', {});
+};
+document.getElementById('sim-count-select').onchange = () => {
+  document.getElementById('sim-targets').value = document.getElementById('sim-count-select').value;
+};
+
+/* ── 识别 ── */
+window.identifyTarget = (targetId) => {
+  const t = radarState.targets.find(t => t.id === targetId);
+  if (!t) return;
+  apiPost('/api/identify', {target_id: targetId, model: t.model});
 };
 
 /* ── TAS ── */
@@ -809,6 +925,10 @@ window._tasDisengage = () => {
   apiPost('/api/tasDisengage', {target_id:window._tasCurrentTargetId});
   closeTASPopup();
 };
+// 点击遮罩层关闭 popup（和 index.html 行为一致）
+document.getElementById('tas-popup-overlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('tas-popup-overlay')) window.closeTASPopup();
+});
 
 /* ── 聊天 ── */
 const chatMessages = document.getElementById('chat-messages');
@@ -883,7 +1003,7 @@ document.getElementById('btn-sync').onclick = manualSync;
 /* ── 初始化 ── */
 window.addEventListener('resize', () => { calcPPI(); drawPPI(); });
 window.addEventListener('orientationchange', () => setTimeout(()=>{ calcPPI(); drawPPI(); }, 150));
-calcPPI(); drawPPI();
+setTimeout(() => { calcPPI(); drawPPI(); }, 50);
 setInterval(fetchState, 250);
 fetchState();
 loadConfig();
