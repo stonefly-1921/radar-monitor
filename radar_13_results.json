@@ -1,0 +1,29 @@
+import requests
+import json
+
+BASE = "http://localhost:8000"
+
+cases = [
+    (2, "全方位搜索", "全方位搜索"),
+    (3, "目标识别", "识别目标"),
+    (4, "数据率设置", "把1号目标数据率设为10Hz"),
+    (5, "TAS接入", "对1号目标接入TAS"),
+    (6, "TAS断开", "断开1号目标TAS"),
+    (7, "定方位监视", "在方位45度进行定方位监视"),
+    (8, "象限监视", "在第一象限进行象限监视"),
+    (9, "点名召唤", "对2号目标点名召唤"),
+    (10, "目标报告", "给我一份目标报告"),
+    (11, "状态查询", "当前雷达状态如何"),
+    (12, "异常指令", "开机然后直接开TAS"),
+    (13, "组合指令", "先开机，然后全方位搜索，等3秒后查看目标"),
+]
+
+results = {}
+for case_num, label, msg in cases:
+    r = requests.post(f"{BASE}/api/agent/chat", json={"message": msg, "session_id": "decode"}, timeout=120)
+    data = r.json()
+    results[case_num] = {"label": label, "reply": data.get("reply", ""), "status": r.status_code}
+
+with open(r"C:\Users\15041\.openclaw\workspace\radar_13_results.json", "w", encoding="utf-8") as f:
+    json.dump(results, f, ensure_ascii=False, indent=2)
+print("Done, saved to radar_13_results.json")
