@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="baidu-site-verification" content="fB8eE9ovvj" />
+		<meta name="msvalidate.01" content="DC777FFE0E6EF08B103A414C8487492E" />
+		<meta name="google-site-verification" content="yJTPfpYQ-RN22i6mXlrsIgfvdEZ3AeaS-RVkJBWkv48" />
+		<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+		<meta name="description" content="Help everyone" />
+
+		<link rel="shortcut icon" href="/img/favicon.ico" />
+		<!-- <link href=https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css?v=0.9.8.0810" rel="stylesheet" /> -->
+		<link href="/css/semantic.min.css?v=0.9.8.0810" rel="stylesheet" />
+		<link href="/css/peach.css?v=0.9.8.0810" rel="stylesheet" />
+		<link href="/css/home.css?v=0.9.8.0810" rel="stylesheet" />
+
+		
+
+		
+			<script src="/js/jquery-1.11.3.min.js"></script>
+			<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+		
+		<script type="text/javascript" src="/js/semantic.min.js?v=0.9.8.0810"></script>
+		<script type="text/javascript" src="/js/emojify-1.1.0.min.js"></script>
+		<script type="text/javascript" src="/js/peach.js?v=0.9.8.0810"></script>
+		<script type="text/javascript" src="/js/axios.min.js"></script>
+		<!-- <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js?v=0.9.8.0810"></script> -->
+		<!-- <script src="https://cdn.bootcdn.net/ajax/libs/emojify.js/1.1.0/js/emojify.min.js"></script> -->
+		<!-- <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script> -->
+
+		
+			<link rel="stylesheet" href="/css/highlight-9.12.0/default.css">
+		
+		<script src="/js/highlight-9.12.0.pack.js"></script>
+
+
+		<!-- 万维网连接 -->
+		<script type="text/javascript" src="https://cdn.wwads.cn/js/makemoney.js"></script>
+		<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script> -->
+		<script>
+			// 百度统计
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?18e488355aa5520295fd0d8a76d5db04";
+				var s = document.getElementsByTagName("script")[0]; 
+				s.parentNode.insertBefore(hm, s);
+			})();
+			// 获取浏览器内核
+			function getBrowser(n) {
+				var ua = navigator.userAgent.toLowerCase(),
+						s,
+						name = '',
+						ver = 0;
+				//探测浏览器
+				(s = ua.match(/msie ([\d.]+)/)) ? _set("ie", _toFixedVersion(s[1])):
+				(s = ua.match(/firefox\/([\d.]+)/)) ? _set("firefox", _toFixedVersion(s[1])) :
+				(s = ua.match(/chrome\/([\d.]+)/)) ? _set("chrome", _toFixedVersion(s[1])) :
+				(s = ua.match(/opera.([\d.]+)/)) ? _set("opera", _toFixedVersion(s[1])) :
+				(s = ua.match(/version\/([\d.]+).*safari/)) ? _set("safari", _toFixedVersion(s[1])) : 0;
+				function _toFixedVersion(ver, floatLength) {
+					ver = ('' + ver).replace(/_/g, '.');
+					floatLength = floatLength || 1;
+					ver = String(ver).split('.');
+					ver = ver[0] + '.' + (ver[1] || '0');
+					ver = Number(ver).toFixed(floatLength);
+					return ver;
+				}
+				function _set(bname, bver) {
+					name = bname;
+					ver = bver;
+				}
+				return (n == 'n' ? name : (n == 'v' ? ver : name + ver));
+			};
+
+		var neihe = getBrowser("n")
+		var banben = getBrowser("v")
+		console.log("内核:",neihe,"版本:",banben)
+		if(neihe === 'chrome' && Number(banben) <= 53.0) {
+			alert("请使用更高版本的浏览器打开网页")
+			window.close()
+		}
+
+		// 根据操作系统修改切换语言
+		// let cookieStr = document.cookie
+		// let index = cookieStr.indexOf("lang=")
+		// if(index !== -1) {
+		// 	let lang = cookieStr.slice(index+5,index+10)
+		// 	if(lang !== navigator.language) {
+		// 		window.location.replace(`https://www.gitclone.com/?lang=${navigator.language}`);
+		// 	}
+		// }
+		</script>
+		<title>方达极客社区</title>
+	</head>
+	<body>
+		
+<script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
+	<div class="ui inverted vertical masthead center aligned segment">
+	  <div class="ui container">
+  <div class="ui large secondary inverted menu">
+  	
+      <a class="active item" href="/"  
+	  
+	  >
+        
+        Home
+      </a>
+    
+      <a class=" item" href="/docs" target="_blank" 
+	  
+	  >
+        
+        Document
+      </a>
+    
+      <a class=" item" href="https://gitclone.com/aiit/chat1/" target="_blank" 
+	  
+	  >
+        
+        AIWriteCode
+      </a>
+    
+      <a class=" item" href="https://5starsoft.com.cn/bidpro/" target="_blank" 
+	  
+	  >
+        
+        AI写标书
+      </a>
+    
+      <a class=" item" href="https://aliendao.cn/" target="_blank" 
+	  
+	  >
+        
+        llm-model
+      </a>
+    
+      <a class=" item" href="https://github.com/little51/llm-dev" target="_blank" 
+	  
+	  >
+        
+        newbook
+      </a>
+    
+      <a class=" item" href="https://github.com/git-cloner/gitcache" target="_blank" 
+	  
+	  >
+        <i class="github icon"></i>
+        GitHub
+      </a>
+    
+    <div class="right item">
+      
+        <!-- <form action="/search">
+          <div class="item">
+            <div class="ui small input">
+              <input name="q" value="" placeholder="Search mirror...">
+            </div>
+          </div>
+        </form> -->
+      
+      <div class="ui language floating dropdown link item">
+        <i class="world icon"></i>
+        <div class="text">English</div>
+      	<div class="menu">
+      		
+            <a class="item active selected" href="/?lang=en-US">English</a>
+					
+            <a class="item " href="/?lang=zh-CN">简体中文</a>
+					
+            <a class="item " href="/?lang=es-ES">Español</a>
+					
+            <a class="item " href="/?lang=ko-KR">한국인</a>
+					
+            <a class="item " href="/?lang=ja-JP">日本語</a>
+					
+            <a class="item " href="/?lang=de-DE">Deutsch</a>
+					
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+		<!-- 错误提示遮罩层 -->
+		<div class="ui basic modal">
+			<div class="ui icon header">
+				<i class="archive icon"></i>
+				<span id="mask-title"></span>
+			</div>
+			<div class="content" style="display: flex; justify-content: center;align-items: center;">
+				<span id="mask-tip"></span>
+			</div>
+			<div class="actions">
+				<div class="ui green ok inverted button">
+					<i class="checkmark icon"></i>
+					<span id="mask-yes"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 主题部分-->
+	  <div class="ui text container">
+			<!--镜像部分-->
+			<div class="home-title">
+				<img src="/img/title.ico" style="width:300px;margin-bottom: 10px;" >
+				<!-- <h1 style="margin-top: -10px;" class="ui inverted header">
+					方达极客社区
+				</h1> -->
+			</div>
+  		
+			<!--输入框部分-->
+			<div class="home-search-wrapper">
+				<input id="home-input" class="home-input" placeholder="Please enter the content to search" style="color:black;"/>
+				<div id="home-search" class="home-search" onclick="search()"><span class="search-a">Search</span></div>
+			</div>
+			<div id="hot-search" class="hot-search">
+				<span class="hot-search-item">Recommend:</span>
+			</div>
+
+			<!--介绍的部分-->
+			<div style="margin-bottom: -60px;margin-top:-40px">
+				<div id="introduce-part" class="introduce-part">
+					<h2 style="color:#ffffff">Use cache to speed up clone from github and Provide services for developers(use git2.0+)</h2>
+				</div>
+				<!-- 下载部分-->
+				<div class="introduce_wrapper">
+					<div class="introduce_github_app">
+						<a class="introduce_github_link" href="https://5starsoft.com.cn/bidpro/" onclick="axios({method: 'get',url: 'https://5starsoft.com.cn/bidpro/'}).then(function(res){})">AI Agent应用：一键生成电力行业标书（Demo）
+						</a>
+					</div>
+				</div>
+			</div>
+	    <!-- <a class="ui huge primary button" href="/docs">Get Start <i class="right arrow icon"></i></a> -->
+		</div>
+	</div>
+
+
+	<!-- 快速上手和效果显著 -->
+	<div class="ui vertical stripe segment" style="flex: 2;">
+		<style>
+		</style>
+		<div class="ui aligned stackable two column grid container">
+			<div class="column fadenum">
+				<div style="width: 100%;margin: 5px;">
+					<span style="font-size: 2.5em;font-weight: bold;text-align:center">
+						Get started quickly
+					</span>
+				</div>
+				<div style="margin-top: 10px;margin-left: 5px; padding-right: 20px;">
+						<p style="font-family: Lato, Helvetica Neue, Microsoft YaHei, Arial, Helvetica, sans-serif !important;color:#696969">
+							Simply embed the cloned address in gitclone.com in the git clone command
+						</p>
+				</div>
+				<div
+					style="
+						width: 100%;
+						flex: 1;
+						background-color: #1b1c1d;
+						color: rgba(255,255,255,.9);
+						padding-left: 15px;
+						padding-top: 10px;
+						margin-top: 20px;
+						padding-bottom: 10px;
+						box-shadow: 1px 1px 5px 3px #888888;
+						border-radius: 10px;
+					"
+				>
+					<p style="line-height: 0.8em;"><span style="color: #6A737D">Method 1 (replace url)</span></p>
+					<p style="line-height: 1.0em;">git clone https://gitclone.com/github.com/tendermint/tendermint.git</p>
+					<p style="line-height: 0.2em;"><span style="color: #6A737D">Method 2 (set git parameters)</span></p>
+					<p style="line-height: 0.8em;">git config --global url."https://gitclone.com/".insteadOf https://</p>
+					<p style="line-height: 0.8em;">git clone https://github.com/tendermint/tendermint.git</p>
+					<p style="line-height: 0.2em;"><span style="color: #6A737D">Method 3 (use cgit client)</span></p>
+					<p style="line-height: 1.0em;">cgit clone https://github.com/tendermint/tendermint.git</p>
+				</div>
+			</div>
+			<div class="column fadenum1">
+				<div style="width: 100%;margin: 5px;">
+					<span style="font-size: 2.5em;font-weight: bold;text-align:center">
+						Significant effect
+					</span>
+				</div>
+				<div style="margin-top: 10px;margin-left: 5px; padding-right: 20px;">
+					<p style="font-family: Lato, Helvetica Neue, Microsoft YaHei, Arial, Helvetica, sans-serif !important;color:#696969">
+						The first clone needs to be cached on github, and later clones can be directly pulled from the cache
+					</p>
+				</div>
+				<div
+					style="
+						width: 100%;
+						background-color: #1b1c1d;
+						color: rgba(255,255,255,.9);
+						margin-top: 20px;
+						padding-top: 30px;
+						padding-bottom: 30px;
+						box-shadow: 1px 1px 5px 3px #888888;
+						border-radius: 10px;
+					"
+				>
+					<p style="line-height: 0.2em;color: #1b1c1d;">git clone https://gitclone.com/github.com/tendermint/tendermint.git</p>
+					<img src="/img/data.png" style="height: 80%; width: 100%;border-radius: 10px;" alt="">
+				</div>
+			</div>
+			<div class="ui vertical stripe segment" style="flex: 2;">
+				<div style="width: 100%;margin: 5px;">
+					<span style="font-size: 2.5em;font-weight: bold;text-align:center">
+						作者新书及相关技术交流群
+					</span>
+					<a href="https://item.jd.com/14810472.html">出版社官方网店</a>
+				</div>
+				<img src="https://gitclone.com/download1/llm-dev/llm-dev.png">
+				<img src="https://gitclone.com/download1/ai-agent/agent-dev1.png">
+                                <img src="https://gitclone.com/download1/llm-dev/A2A.png">
+                                <img src="https://gitclone.com/download1/llm-dev/deepseek-dev.png">
+				<img src="https://gitclone.com/download1/aliendao/weixin-aliendao.jpg">
+			</div>
+		</div>
+	</div>
+
+	<div class="ui vertical stripe segment" style="flex: 2;">
+		<div class="ui aligned stackable three column grid container">
+			<!-- <div class="center row"> -->
+				<div class="column">
+					<h3 class="ui header">
+						<i class="world icon"></i> Cache acceleration
+					</h3>
+					<p>Cache github repository</p>
+					<p>Sync cache from github regularly</p>
+					<p>Speed ​​up commands like go get</p>
+				</div>
+				<div class="column">
+					<h3 class="ui header">
+						<i class="lightning icon"></i> Code hosting
+					</h3>
+					<p>Gogs-based repository technology managed code</p>
+					<p>Quickly mirror the repository from github</p>
+					<p>Easy to quickly browse the project code</p>
+				</div>
+				<div class="column">
+					<h3 class="ui header">
+						<i class="search icon"></i> Develop together
+					</h3>
+					<p>Just use git clone to generate a cache</p>
+					<p>The next time developers will use the cache</p>
+					<p>Extensive cache technology based on distributed github is being developed, so stay tuned</p>
+				</div>
+			<!-- </div> -->
+		</div>
+	</div>
+
+
+
+	<script>
+		var tempRequestAddress = 'http://192.168.10.9:5000/gitcache/system/info'
+		var RequestAddress = 'https://gitclone.com/gitcache/system/info/'
+		var hotSearchDataURL = 'https://gitclone.com/gitcache/system/recommend/'
+
+		// 通过检测上个github网页
+		var lastWebPageAddress = document.referrer !== ""
+
+		if(lastWebPageAddress) {
+			let mirrorAddressRep = /https:\/\/github.com\/*\/*/
+			if (mirrorAddressRep.test(document.referrer)) {
+				document.getElementById("home-input").value = document.referrer
+				document.getElementById("home-search").classList.add(["breath_light"])
+			}
+		}
+
+		// 输入框相关
+		var homeInput = document.getElementById("home-input")
+		var homeIntroduce = document.getElementById("introduce-part")
+		function search() {
+			let isSearchGithub = true
+			if(isSearchGithub) {
+				// 如果选择github镜像进行搜索
+				if (homeInput.value !== "") {
+					axios({method: 'get',url: 'https://gitclone.com/gitcache/stat/search'}).then(function(res){
+						window.open(`https://www.gitclone.com/gogs/search/clonesearch?q=${homeInput.value}`,"_self")
+					})
+				} else {
+					axios({method: 'get',url: 'https://gitclone.com/gitcache/stat/search'}).then(function(res){
+						window.open(`https://www.gitclone.com/gogs/search/clonesearch`,"_self")
+					})
+				}
+			} else {
+				// 如果选择stackoverflow镜像进行搜索
+				if (homeInput.value !== "") {
+					axios({method: 'get',url: 'https://gitclone.com/gitcache/stat/search'}).then(function(res){
+						window.open(`https://so.gitclone.com/questions?search==${homeInput.value}`,"_self")
+					})
+				} else {
+					axios({method: 'get',url: 'https://gitclone.com/gitcache/stat/search'}).then(function(res){
+						window.open(`https://so.gitclone.com/questions`,"_self")
+						// window.open(`http://61.133.217.141:3000/questions`,"_self")
+					})
+				}
+			}
+
+		}
+
+
+		// 发送生成镜像的请求
+		function checkReadme(path) {
+			let proUrl = `https://gitclone.com/${path.slice(8)}/git-upload-pack`
+			//let devUrl = `http://localhost:5000/${path.slice(8)}/git-upload-pack`
+			axios({method:'post', url: proUrl}).then(function(res) {
+				let hasCache = res.headers["cache-control"] === "no-cache, max-age=0, must-revalidate, no-cache, max-age=0, must-revalidate"
+				if(res.status === 200 && hasCache) {
+					showMask(
+						`正在为 ${path} 添加镜像，请稍后重新搜索，查看结果`,
+						`Adding a mirror for ${path}, please search again in ten minutes to see the results`
+					)
+				} else {
+					showMask(
+						"该项目已存在于gogs镜像当中，请勿重复添加",
+						"The project already exists in the gogs mirror, please do not add it repeatedly"
+					)
+				}
+			}).catch(err => {
+				showMask(
+					`${path}添加镜像失败，请检查网络或者联系管理员之后重试`,
+					`${path}failed to add mirror, please check the network or contact the administrator and try again`
+				)
+			})
+		}
+
+		// 展示错误提示框
+		function showMask(zhStr,enStr) {
+			let maskTitle = document.getElementById("mask-title")
+			let maskTip= document.getElementById("mask-tip")
+			let maskYes = document.getElementById("mask-yes")
+
+			let lastChildrenOfmaskTip = maskTip.lastChild
+			if(lastChildrenOfmaskTip) {
+				maskTip.removeChild(lastChildrenOfmaskTip)
+			}
+
+			let zh = document.cookie.indexOf("lang=zh-CN")!==-1
+			maskTitle.innerText = zh ? "温馨提示": "Tips"
+			maskYes.innerText = "yes"
+			if(typeof zhStr === "string" && typeof enStr === "string") {
+				maskTip.innerText = zh? zhStr: enStr
+			} else {
+				maskTip.appendChild(zh? zhStr: enStr)
+			}
+			$('.ui.basic.modal')
+				.modal('show')
+			;
+		}
+
+		// 添加镜像
+		function addmirror() {
+			console.log("进入生成镜像",!document.getElementById("github").checked)
+			if(!document.getElementById("github").checked){
+				showMask(
+					"请选择Github镜像条件下进行生成镜像",
+					"Please select the Github mirroring condition to generate the mirror"
+				)
+				return
+			}
+			// 检查输入地址的正确性
+			var mirrorAddress = /https:\/\/github.com\/*\/*/
+			if (homeInput.value !== "") {
+				let ismirrorAddressRight = mirrorAddress.test(homeInput.value)
+				// 地址正确就到镜像中查询项目是否存在
+				if(ismirrorAddressRight) {
+					checkReadme(homeInput.value)
+				} else {
+					// 地址不正确就向用户报错误
+					showMask(
+						"您输入的地址有误，请输入正确的地址，例如：https://github.com/flutter/flutter.git",
+						"The address you entered is wrong, please input right address like: https://github.com/flutter/flutter.git"
+					)
+				}
+			} else {
+				showMask(
+						"请输入正确的地址，例如：https://github.com/flutter/flutter.git",
+						"please input right address like: https://github.com/flutter/flutter.git"
+					)
+			}
+		}
+
+		// input绑定回车事件
+		$("#home-input").on("keydown",function(e) {
+			if(event.keyCode == "13") {
+				search()
+			}
+		});
+
+		// 获取热搜数据信息
+		axios({
+			method:'get',
+			url: hotSearchDataURL
+		}).then(function(res){
+			var rs = [
+				{name: "gitcache",path: "1"},
+				{name: "qa_common_codes",path: "1"},
+				{name: "shattered-pixel-dungeon",path: "1"},
+				{name: "deap",path: "1"},
+				{name: "from_coder_to_expert",path: "1"},
+				{name: "wechat-deleted-friends",path: "1"},
+				{name: "abigteam_server",path: "1"},
+				{name: "documents",path: "1"},
+				{name: "LOLBAS",path: "1"},
+				{name: "paddy-sketch-plugin",path: "1"},
+			]
+
+
+			if (Array.isArray(res.data)) {
+				var hotSearchDataNode = document.getElementById("hot-search")
+				res.data.map((item, index) => {
+					let tempNode = document.createElement("a")
+					tempNode.classList.add("ui","inverted", "button")
+					tempNode.innerHTML = item.name
+					tempNode.style.margin="2.5px 5px"
+					tempNode.style.fontSize="12px"
+					tempNode.style.fontWeight="normal"
+					tempNode.href = `https://www.gitclone.com/gogs/search/clonesearch?q=${item.path}`
+					hotSearchDataNode.appendChild(tempNode)
+				})
+			}
+		})
+
+
+
+		axios({
+			method: 'get',
+			url: RequestAddress
+		})
+		.then(function(res){
+			var count = res.data.count
+			var nodes = res.data.nodes
+			var size = res.data.size
+			var info = size  + '[' + nodes + '(' + count + ')]'
+			document.getElementById("dongtai").innerHTML = ` ${info} `
+		})
+		.catch(function(error) {
+			console.log(error)
+		})
+
+
+		Date.prototype.format = function(fmt) {
+			var o = {
+				"M+" : this.getMonth()+1,                 //月份
+				"d+" : this.getDate(),                    //日
+				"h+" : this.getHours(),                   //小时
+				"m+" : this.getMinutes(),                 //分
+				"s+" : this.getSeconds(),                 //秒
+				"q+" : Math.floor((this.getMonth()+3)/3), //季度
+				"S"  : this.getMilliseconds()             //毫秒
+			};
+			if(/(y+)/.test(fmt)) {
+				fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+			}
+			for(var k in o) {
+					if(new RegExp("("+ k +")").test(fmt)){
+							fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+					}
+			}
+			return fmt;
+		}
+	</script>
+
+ <!-- <div class="ui vertical stripe segment">
+	  <div class="ui aligned centered stackable grid container">
+	    <h1 class="ui icon header">
+	      <i class="thumbs up icon"></i>
+	      <div class="content">
+	        More Awesomeness
+	        <div class="sub header">Stop making documentation as if we&#39;re still in 90s!</div>
+	      </div>
+	    </h1>
+	  </div>
+	  <div class="ui aligned centered stackable four column grid container">
+	    <div class="column">
+	      <h3 class="ui header">
+	        <i class="file text icon"></i> Markdown
+	      </h3>
+	      <p>Markdown is getting more and more popular right now as the language of documentation.</p>
+	    </div>
+	    <div class="column">
+	      <h3 class="ui header">
+	        <i class="rocket icon"></i> Webhook
+	      </h3>
+	      <p>Use webhook to keep in sync at real-time to maximum performance of your workflow.</p>
+	    </div>
+	    <div class="column">
+	      <h3 class="ui header">
+	        <i class="settings icon"></i> Configurable
+	      </h3>
+	      <p>Never mess up Git history with your customization again, be clean and well-organized.</p>
+	    </div>
+	    <div class="column">
+	      <h3 class="ui header">
+	        <i class="comments icon"></i> Disqus
+	      </h3>
+	      <p>Built in ability to integrate with Disqus and let users give you feedback directly and instantly.</p>
+	    </div>
+	    <div class="row">
+	      <div class="center aligned column">
+	        <a class="ui huge blue button">Check Them Out</a>
+	      </div>
+	    </div>
+	    <h4 class="ui horizontal header divider">
+	      <a href="">Case Studies</a>
+	    </h4>
+	  </div>
+	</div> -->
+
+	<div class="ui inverted vertical footer segment">
+  <div class="ui container">
+    <div class="ui stackable inverted divided equal height stackable grid">
+      <div class="center row">
+        <div class="three wide column" style="width: 25%!important;">
+          <h4 class="ui inverted header">Website</h4>
+          <p>
+            GitClone website built on<a target="_blank" href="https://github.com/peachdocs/peach"> peach </a></p>
+        </div>
+        <div class="three wide column" style="width: 25%!important;">
+          <h4 class="ui inverted header">Code library</h4>
+          <div class="ui inverted link list">
+            <p>GitClone repository is created based on<a target="_blank" href="https://gogs.io"> gogs </a></p>
+          </div>
+        </div>
+        <div class="three wide column" style="width: 25%!important;">
+          <h4 class="ui inverted header">issues</h4>
+          <div class="ui inverted link list">
+            <p>Please issues here<a target="_blank" href="https://github.com/git-cloner/gitcache/issues"> GitCache </a></p>
+          </div>
+        </div>
+        <div class="three wide column" style="width: 25%!important;">
+          <div class="center column">
+            <h4 class="ui inverted header">Contact us</h4>
+            <div class="ui inverted link list">
+              <p>mailbox: gitclone@126.com</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+      <div class="center column">
+        <style>
+          .introduce {
+            text-align:center;
+            width: 100%;
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: center;
+            align-items: center;
+          }
+        </style>
+        <div class="introduce center">
+          <p>
+            <img style="width: 12px; height:12px" src="/img/batb.png" alt="">&nbsp<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=64010602000914">Ning Public Network Security No. 64010602000914</a>&nbsp|&nbsp
+            <a href="https://beian.miit.gov.cn"> Ning ICP No. 20000544-1</a>&nbsp|&nbsp
+            Copyright© 2021- GitClone.com 银川方达信息技术有限公司 版权所有&nbsp|&nbsp
+            Building 6, No. 490, Ning'an South Street, Jinfeng District, Yinchuan City, Ningxia&nbsp &nbsp
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+		<!-- 万维网广告处 -->
+		<div id="advancediv" class="wwads-cn wwads-vertical wwads-sticky" data-id="253" style="max-width:150px;position:fixed;bottom:10px;right:10px;"></div>
+	</body>
+</html>
