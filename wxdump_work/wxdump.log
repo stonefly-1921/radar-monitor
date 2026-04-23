@@ -1,0 +1,165 @@
+[I] 2026-04-23 15:10:02 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\lifespan\on.py:62 Application startup complete.
+[I] 2026-04-23 15:10:02 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\server.py:214 Uvicorn running on http://127.0.0.1:18799 (Press CTRL+C to quit)
+[E] 2026-04-23 15:11:33 [wx_core:40] D:\anaconda3\Lib\site-packages\pywxdump\wx_core\wx_info.py:306 [-] WeChat Get Info Error:expected str, bytes or os.PathLike object, not NoneType
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\pywxdump\wx_core\wx_info.py", line 272, in get_info_details
+    addrLen = get_exe_bit(path) // 8
+              ^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywxdump\wx_core\utils\common_utils.py", line 88, in get_exe_bit
+    with open(file_path, 'rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected str, bytes or os.PathLike object, not NoneType
+[E] 2026-04-23 15:11:49 [uvicorn.error:40] D:\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py:404 Exception in ASGI application
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\fastapi\routing.py", line 346, in app
+    raise validation_error
+fastapi.exceptions.RequestValidationError: [{'type': 'missing', 'loc': ('body', 'merge_path'), 'msg': 'Field required', 'input': {}}, {'type': 'missing', 'loc': ('body', 'wx_path'), 'msg': 'Field required', 'input': {}}, {'type': 'missing', 'loc': ('body', 'my_wxid'), 'msg': 'Field required', 'input': {}}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 399, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 76, in wrapped_app
+    await response(scope, receive, sender)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'dict' object is not callable
+[I] 2026-04-23 15:14:02 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\lifespan\on.py:62 Application startup complete.
+[I] 2026-04-23 15:14:02 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\server.py:214 Uvicorn running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+[E] 2026-04-23 15:16:29 [server:40] D:\anaconda3\Lib\site-packages\pywxdump\api\__init__.py:171 Port 5000 is already in use. Choose a different port.
+[I] 2026-04-23 15:16:51 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\lifespan\on.py:62 Application startup complete.
+[I] 2026-04-23 15:16:51 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\server.py:214 Uvicorn running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+[E] 2026-04-23 20:26:21 [server:40] D:\anaconda3\Lib\site-packages\pywxdump\api\__init__.py:171 Port 5000 is already in use. Choose a different port.
+[I] 2026-04-23 20:26:31 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\lifespan\on.py:62 Application startup complete.
+[I] 2026-04-23 20:26:31 [uvicorn.error:20] D:\anaconda3\Lib\site-packages\uvicorn\server.py:214 Uvicorn running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+[E] 2026-04-23 20:52:02 [uvicorn.error:40] D:\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py:404 Exception in ASGI application
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\dbutils\pooled_db.py", line 339, in connection
+    con = self._idle_cache.pop(0)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 399, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywxdump\api\remote_server.py", line 269, in get_audio
+    db = DBHandler(db_config, my_wxid=my_wxid)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywxdump\db\__init__.py", line 28, in __init__
+    super().__init__(self.config)
+  File "D:\anaconda3\Lib\site-packages\pywxdump\db\dbbase.py", line 93, in __init__
+    self.pool = self.connect(self.config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywxdump\db\dbbase.py", line 50, in connect
+    pool = PooledDB(
+           ^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\pooled_db.py", line 286, in __init__
+    idle = [self.dedicated_connection() for i in range(mincached)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\pooled_db.py", line 350, in dedicated_connection
+    return self.connection(False)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\pooled_db.py", line 341, in connection
+    con = self.steady_connection()
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\pooled_db.py", line 292, in steady_connection
+    return connect(
+           ^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\steady_db.py", line 138, in connect
+    return SteadyDBConnection(
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\steady_db.py", line 197, in __init__
+    self._store(self._create())
+                ^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\dbutils\steady_db.py", line 215, in _create
+    con = self._creator(*self._args, **self._kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: unable to open database file

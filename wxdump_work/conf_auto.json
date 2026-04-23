@@ -1,0 +1,17 @@
+{
+    "auto_setting": {
+        "last": "wshjustin"
+    },
+    "wshjustin": {
+        "db_config": {
+            "key": "wshjustin",
+            "type": "sqlite",
+            "path": "C:\\Users\\15041\\Documents\\WeChat Files\\wshjustin\\BackupFiles\\android_fb459f5ccd092a18d0f478741fd8841f"
+        },
+        "merge_path": "C:\\Users\\15041\\Documents\\WeChat Files\\wshjustin\\BackupFiles\\android_fb459f5ccd092a18d0f478741fd8841f",
+        "wx_path": "C:\\Users\\15041\\Documents\\WeChat Files\\wshjustin",
+        "key": null,
+        "my_wxid": "wshjustin",
+        "wxid": "wshjustin"
+    }
+}
