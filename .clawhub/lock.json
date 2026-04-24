@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "skills": {
+    "xiucheng-self-improving-agent": {
+      "version": "1.0.0",
+      "installedAt": 1774546261187
+    },
+    "academic-deep-research": {
+      "version": "1.0.0",
+      "installedAt": 1775213774116
+    },
+    "agentic-coding": {
+      "version": "1.0.0",
+      "installedAt": 1775213782062
+    },
+    "ddg-web-search": {
+      "version": "1.0.0",
+      "installedAt": 1775213788442
+    },
+    "elite-frontend-design": {
+      "version": "1.0.0",
+      "installedAt": 1775213837827
+    },
+    "feature-requirements-clarification": {
+      "version": "1.0.0",
+      "installedAt": 1775213881611
+    },
+    "find-skills-skill": {
+      "version": "1.0.0",
+      "installedAt": 1775213891112
+    },
+    "frontend-agent": {
+      "version": "1.0.0",
+      "installedAt": 1775213897969
+    },
+    "frontend-doctor": {
+      "version": "1.0.0",
+      "installedAt": 1775213942605
+    },
+    "git-notes-memory": {
+      "version": "1.0.0",
+      "installedAt": 1775228762462
+    },
+    "minimax-usage": {
+      "version": "1.0.1",
+      "installedAt": 1775214002411
+    },
+    "multi-search-engine": {
+      "version": "2.0.1",
+      "installedAt": 1775214061646
+    },
+    "openclaw-backup": {
+      "version": "1.0.0",
+      "installedAt": 1775214068783
+    },
+    "pptx-generator": {
+      "version": "1.0.2",
+      "installedAt": 1775214121927
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1775214132643
+    },
+    "requirements-analysis": {
+      "version": "1.0.0",
+      "installedAt": 1775214139913
+    },
+    "yh-minimax-docx": {
+      "version": "1.0.0",
+      "installedAt": 1775214192525
+    },
+    "minimax-web-search": {
+      "version": "1.0.7",
+      "installedAt": 1775214241421
+    },
+    "humanize-text": {
+      "version": "1.0.0",
+      "installedAt": 1775214241735
+    },
+    "tavily": {
+      "version": "1.0.0",
+      "installedAt": 1775214242002
+    },
+    "elite-longterm-memory": {
+      "version": "1.2.3",
+      "installedAt": 1775214242004
+    },
+    "minimax-xlsx-pro": {
+      "version": "1.0.0",
+      "installedAt": 1775214242384
+    },
+    "minimax-pdf-analysis-v2": {
+      "version": "1.0.0",
+      "installedAt": 1775214242434
+    },
+    "superpowers": {
+      "version": "1.0.0",
+      "installedAt": 1775214243913
+    },
+    "clipboard": {
+      "version": "1.0.0",
+      "installedAt": 1775214302385
+    },
+    "ardupilot": {
+      "version": "1.0.0",
+      "installedAt": 1775289319005
+    },
+    "camera-yolo-operator": {
+      "version": "1.2.0",
+      "installedAt": 1775289361921
+    },
+    "karpathy-llm-wiki": {
+      "version": "1.0.0",
+      "installedAt": 1775834718110
+    },
+    "article-writing": {
+      "version": "1.0.0",
+      "installedAt": 1776578821720
+    },
+    "turix-cua": {
+      "version": "1.0.8",
+      "installedAt": 1776608043349
+    },
+    "windows-gui-automation-cn": {
+      "version": "1.0.0",
+      "installedAt": 1776609121334
+    },
+    "windows-ui-automation": {
+      "version": "1.0.0",
+      "installedAt": 1776609181797
+    },
+    "win-mouse-native": {
+      "version": "1.0.0",
+      "installedAt": 1776609189094
+    },
+    "windows-desktop-control": {
+      "version": "1.0.3",
+      "installedAt": 1776609243705
+    },
+    "windows-screenshot": {
+      "version": "1.0.3",
+      "installedAt": 1776609252271
+    }
+  }
+}
