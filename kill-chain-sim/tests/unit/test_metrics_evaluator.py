@@ -1,5 +1,9 @@
 import pytest
-from metrics_evaluator import (
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+
+from research.evaluation.metrics_evaluator import (
     MetricsEvaluator, MetricsSummary, MetricCategory,
     TrackEvent, AllocationEvent, EngagementResult,
     evaluate_from_logs
@@ -81,7 +85,15 @@ def test_no_data_returns_zero():
     
     summary = evaluator.evaluate([], [], [])
     
-    assert summary.composite_score == 0.0
+    # All metrics should be 0 except coverage which defaults to 50 (neutral)
+    # when no grid data is provided
+    assert summary.track_continuity_score == 0.0
+    assert summary.allocation_efficiency_score == 0.0
+    assert summary.engagement_effectiveness_score == 0.0
+    assert summary.ooda_loop_score == 0.0
+    assert summary.coverage_score == 50.0
+    # Composite = weighted avg = 0*0.2 + 0*0.25 + 0*0.3 + 0*0.15 + 50*0.1 = 5.0
+    assert summary.composite_score == 5.0
     assert len(summary.per_metric_results) == 5
 
 
