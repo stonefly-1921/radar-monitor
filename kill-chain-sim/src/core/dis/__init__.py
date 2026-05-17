@@ -21,8 +21,14 @@ from .dis_protocol import (
     DetonationPdu,
     SignalPdu,
 )
+from .dis_socket import DisSocket
+from .dis_dispatcher import DisDispatcher
+from .entity_tracker import EntityTracker, TrackedEntity, Location
+from .fire_control import FireControl, FireMission, get_fire_control
+from .esm_client import EsmClient, EsmReport, EmitterType
 
 __all__ = [
+    # Protocol
     "PDU_TYPE_ENTITY_STATE",
     "PDU_TYPE_FIRE",
     "PDU_TYPE_DETONATION",
@@ -41,4 +47,20 @@ __all__ = [
     "FirePdu",
     "DetonationPdu",
     "SignalPdu",
+    # Socket
+    "DisSocket",
+    # Dispatcher
+    "DisDispatcher",
+    # Entity tracking
+    "EntityTracker",
+    "TrackedEntity",
+    "Location",
+    # Fire control
+    "FireControl",
+    "FireMission",
+    "get_fire_control",
+    # ESM
+    "EsmClient",
+    "EsmReport",
+    "EmitterType",
 ]

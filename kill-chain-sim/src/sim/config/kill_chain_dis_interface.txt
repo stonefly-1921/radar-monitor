@@ -1,0 +1,73 @@
+# AFSIM Configuration Snippet for DIS/xio Interface
+# Kill Chain Research & Simulation Validation Platform
+#
+# Include this in your AFSIM scenario to enable DIS communication
+# with the Python DIS client.
+#
+# Add to your scenario .txt file:
+#   include kill_chain_dis_interface.txt
+#
+# Or copy the contents directly into your scenario.
+
+# =============================================================================
+# DIS Interface Configuration
+# =============================================================================
+
+dis_interface
+
+   # Entity type definitions (matching kill chain manager)
+   entity_type TARGET                           2:1:222:2:1:1:0
+   entity_type ACQ_RADAR                        9:1:222:2:1:15:0
+   entity_type EW_RADAR                         9:1:222:2:2:7:0
+   entity_type LARGE_SAM_TTR                    1:1:222:28:4:3:0
+   entity_type LARGE_SAM_LAUNCHER               1:1:222:28:9:2:0
+   entity_type LARGE_SAM_BATTALION               1:1:222:7:0:0:0
+   entity_type IADS_CMDR                        1:1:225:0:5:0:0
+   entity_type RADAR_COMPANY                    1:1:222:7:6:0:0
+   entity_type BLUE_MULTIROLE_FIGHTER_1E          1:2:225:1:9:10:0
+   entity_type SOJ                              1:2:225:2:10:1:0
+   entity_type UCAV                             1:2:225:50:8:0:0
+   entity_type LARGE_SAM                        2:1:225:1:16:0:0
+
+   # Emitter types for ESM
+   emitter_type SOJ_SBAND_JAMMER 1
+   emitter_type SOJ_VHF_JAMMER   2
+   emitter_type SOJ_XBAND_JAMMER 3
+   emitter_type UCAV_ESM 10
+   emitter_type EW_RADAR  11
+   emitter_type TTR_RADAR 12
+   emitter_type ACQ_RADAR 13
+
+end_dis_interface
+
+# =============================================================================
+# XIO Interface Configuration
+# =============================================================================
+
+xio_interface
+   # Use UDP multicast for DIS
+   multicast 235.7.11.27 10.
+
+   # Port matches the Python client
+   port 3002
+
+   # Connect to other simulations
+   connect_to_simulations
+
+   # Auto-map DIS entities
+   auto_dis_mapping yes
+
+   # TTL for multicast packets
+   time_to_live 8
+
+   # Uncomment for debugging
+   # verbose true
+   # debug true
+end_xio_interface
+
+# =============================================================================
+# Event Output (optional - for AFSIM event recording)
+# =============================================================================
+
+event_output   file output/kill_chain.evt   end_event_output
+event_pipe     file output/kill_chain.aer   end_event_pipe
