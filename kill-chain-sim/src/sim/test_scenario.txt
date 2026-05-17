@@ -1,0 +1,7 @@
+; AFSIM Test Scenario
+; This is a minimal test scenario for verifying the kill-chain-sim environment
+;
+; Mission: none (test only)
+; Purpose: verify AFSIM runs and produces output
+
+end_time 30 sec
