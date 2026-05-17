@@ -1,0 +1,246 @@
+# ****************************************************************************
+# Kill Chain Simulation - Red Force Configuration
+#
+# Red Force: AWACS + Fighters + Ground Radars + SAM Defense
+# Total: ~15-20 platforms
+#
+# Command Hierarchy:
+#   AWACS (IADS Commander)
+#     -> Fighter Group (2 fighters with air-to-air missiles)
+#     -> Ground Radar Company (detection)
+#     -> SAM Battalion (2 launcher sites)
+#
+# Created: 2026-05-17
+# Project: kill-chain-sim
+# ****************************************************************************
+
+################################################################################
+# Include Common Definitions
+################################################################################
+
+include_once platforms/common.txt
+
+################################################################################
+# Platform Types - Custom for Kill Chain
+################################################################################
+
+# AWACS Platform with Kill Chain Management Processor
+platform_type AWACS_KCM WSF_PLATFORM
+   icon E3_SENTRY
+   category ISR
+   
+   infrared_signature    AIRCRAFT_INFRARED_SIGNATURE
+   optical_signature      AIRCRAFT_OPTICAL_SIGNATURE
+   radar_signature        LARGE_AIRCRAFT_SIGNATURE
+   
+   comm air_net AIR_DATALINK
+      network_name <local:master>
+      internal_link track_manager
+      internal_link battle_manager
+      internal_link asset_manager
+      internal_link sensors_manager
+      internal_link dissemination
+   end_comm
+   
+   mover WSF_AIR_MOVER
+      cruise_speed 400 kts
+      cruise_altitude 30 kft agl
+      max_speed 500 kts
+      max_altitude 45 kft agl
+      min_altitude 20 kft agl
+   end_mover
+   
+   processor track_manager WSF_TRACK_PROCESSOR
+      purge_interval 30 seconds
+      circular_report_rejection on
+      track_association enabled
+      association_time_window 10 sec
+   end_processor
+   
+   processor battle_manager KCM_BM
+      update_interval 1 sec
+      shot_doctrine Shoot-Look-Shoot
+      max_firing_time 300 secs
+      commit_authority true
+   end_processor
+   
+   processor asset_manager KCM_AM
+      update_interval 2 sec
+   end_processor
+   
+   processor sensors_manager KCM_SM
+      update_interval 1 sec
+   end_processor
+   
+   processor kill_chain_mgr KILL_CHAIN_MGR
+      update_interval 0.5 sec
+      enable_dynamic_reallocation true
+   end_processor
+   
+   processor dissemination KC_DC2
+   end_processor
+   
+end_platform_type
+
+# Fighter with Air-to-Air missiles
+platform_type RED_FIGHTER WSF_PLATFORM
+   icon FIGHTER
+   category AIR_TO_AIR
+   
+   infrared_signature    AIRCRAFT_INFRARED_SIGNATURE
+   optical_signature      SMALL_AIRCRAFT_SIGNATURE
+   radar_signature        SMALL_AIRCRAFT_SIGNATURE
+   
+   comm fighter_net AIR_DATALINK
+      network_name <local:member>
+      internal_link track_manager
+      internal_link weapon_control
+      internal_link dissemination
+   end_comm
+   
+   mover WSF_AIR_MOVER
+      cruise_speed 450 kts
+      cruise_altitude 35 kft agl
+      max_speed 900 kts
+      max_altitude 60 kft agl
+   end_mover
+   
+   processor track_manager WSF_TRACK_PROCESSOR
+      purge_interval 20 seconds
+      circular_report_rejection on
+   end_processor
+   
+   processor weapon_control WSF_WEAPON_CONTROL
+      fire_on_designated true
+   end_processor
+   
+   processor dissemination DC2
+   end_processor
+   
+   # Air-to-Air missiles (4x)
+   weapon AIM-120C WSF_MISSILE
+      max_range 70 nm
+      min_range 1 nm
+      max_target_speed 1200 kts
+      max_launch_altitude 50 kft agl
+      end_kinematic_limits
+      
+      pK 0.85
+      
+      end_pK
+      
+      seeker_mode active
+      end_seeker_mode
+      
+      terminal_guidance proportional_navigation
+      end_terminal_guidance
+      
+   end_weapon
+   
+   weapon AIM-9X WSF_MISSILE
+      max_range 10 nm
+      min_range 0.5 nm
+      max_target_speed 900 kts
+      pK 0.9
+      seeker_mode infrared
+   end_weapon
+   
+end_platform_type
+
+# Kill Chain Manager Processor (custom battle manager)
+processor_type KCM_BM WSF_BATTLE_MANAGER
+end_processor_type
+
+processor_type KCM_AM WSF_ASSET_MANAGER
+end_processor_type
+
+processor_type KCM_SM WSF_SENSORS_MANAGER
+end_processor_type
+
+processor_type KILL_CHAIN_MGR WSF_SCRIPT_PROCESSOR
+   update_interval 0.5 sec
+   
+   script_variables
+      int mAllocationCount = 0
+      double mLastReallocationTime = 0
+   end_script_variables
+   
+   on_initialize
+      writeln("Kill Chain Manager initialized")
+   end_on_initialize
+   
+   on_update
+      // Monitor track updates and trigger reallocation if needed
+      // This is a placeholder - real implementation would analyze tracks
+      // and coordinate with battle_manager for target allocation
+      extern void ProcessKillChain(WsfPlatform, double)
+   end_on_update
+   
+end_processor_type
+
+################################################################################
+# Red Force Instances
+################################################################################
+
+# AWACS - Kill Chain Command Center
+platform red_awacs AWACS_KCM
+   side red
+   position 38:30:00n 118:00:00w altitude 30 kft agl
+   
+   edit processor battle_manager
+      max_firing_time 300 secs
+      shot_doctrine Shoot-Look-Shoot
+      commit_authority true
+   end_processor
+   
+end_platform
+
+# Fighter 1 - Escort
+platform red_fighter_1 RED_FIGHTER
+   side red
+   position 38:20:00n 117:40:00w altitude 35 kft agl
+   
+   edit weapon AIM-120C
+      magazine 4
+   end_weapon
+   
+end_platform
+
+# Fighter 2 - Escort
+platform red_fighter_2 RED_FIGHTER
+   side red
+   position 38:25:00n 117:50:00w altitude 35 kft agl
+   
+   edit weapon AIM-120C
+      magazine 4
+   end_weapon
+   
+end_platform
+
+# Ground Radar - Early Warning
+platform red_ground_radar_1 RADAR_COMPANY
+   side red
+   position 38:41:35n 117:05:57w altitude 0 m agl
+   
+end_platform
+
+# Ground Radar - Acquisition
+platform red_ground_radar_2 ACQ_RADAR
+   side red
+   position 38:35:00n 117:15:00w altitude 0 m agl
+   
+end_platform
+
+# SAM Site 1
+platform red_sam_site_1 SAM_BATTALION
+   side red
+   position 38:15:00n 117:30:00w altitude 0 m agl
+   
+end_platform
+
+# SAM Site 2
+platform red_sam_site_2 SAM_BATTALION
+   side red
+   position 38:45:00n 117:20:00w altitude 0 m agl
+   
+end_platform

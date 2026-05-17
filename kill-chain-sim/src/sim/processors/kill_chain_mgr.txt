@@ -1,0 +1,144 @@
+# ****************************************************************************
+# Kill Chain Manager Processor Script
+#
+# Custom WSF processor for kill chain management
+# Monitors track table, coordinates allocation, evaluates engagement
+#
+# Created: 2026-05-17
+# Project: kill-chain-sim
+# ****************************************************************************
+
+processor_type KILL_CHAIN_MGR WSF_SCRIPT_PROCESSOR
+
+   update_interval 0.5 sec
+
+   script_variables
+      int mTrackCount = 0
+      int mAllocationCount = 0
+      double mLastAssessmentTime = 0
+      double mLastReallocationTime = 0
+      WsfPlatform mSelfPlatform = PLATFORM
+   end_script_variables
+
+   // Global functions available to this processor
+   extern void LogMessage(string)
+   extern void GetTrackTable(WsfTrackTable)
+   extern void RequestSensorMode(int, string)
+   extern void RequestWeaponAssignment(int, int)
+   extern void EvaluateEngagementOutcome(WsfAssignment)
+
+   // Script-defined functions
+   script void InitKillChain()
+      writeln("Kill Chain Manager Processor initialized")
+      mTrackCount = 0
+      mAllocationCount = 0
+   end_script
+
+   script void ProcessTrackUpdates(WsfTrackTable trackTable)
+      int numTracks = trackTable.NumTracks()
+      if (numTracks != mTrackCount) then
+         writeln("Track count changed: ", mTrackCount, " -> ", numTracks)
+         mTrackCount = numTracks
+         // Trigger re-evaluation on track change
+         extern void TriggerReallocation()
+      end
+   end_script
+
+   script void EvaluateTargetPriorities(WsfTrackTable trackTable)
+      // Iterate through tracks and score targets
+      foreach (WsfTrack track in trackTable.Tracks()) do
+         double priority = 0
+         // Factor 1: Target type (missiles highest)
+         if (track.TargetType() == WsfTargetType.MISSILE) then
+            priority = priority + 10
+         elseif (track.TargetType() == WsfTargetType.AIRCRAFT) then
+            priority = priority + 5
+         end
+         
+         // Factor 2: Time to intercept (closer = higher priority)
+         priority = priority + (5.0 / (track.RangeTo(PLATFORM) / 1 nm))
+         
+         // Factor 3: Target velocity (faster = higher priority)
+         priority = priority + (track.Velocity() / 100 kts)
+         
+         // Store priority for allocation decision
+         writeln("Target ", track.TrackId(), " priority: ", priority)
+      end
+   end_script
+
+   script void CoordinateSensorAssignment(WsfTrackTable trackTable)
+      // Assign sensors to tracks based on priority and coverage
+      foreach (WsfTrack track in trackTable.Tracks()) do
+         // Request high-priority targets be tracked by available sensors
+         extern void RequestSensorTrack(track.TrackId())
+      end
+   end_script
+
+   script void CoordinateWeaponAssignment(WsfTrackTable trackTable)
+      // Select appropriate weapons for high-priority targets
+      foreach (WsfTrack track in trackTable.Tracks()) do
+         // Evaluate if engagement is warranted
+         if (track.Priority() > 5.0) then
+            // Check weapon availability
+            // Request weapon assignment via battle manager
+            extern void RequestEngagement(track.TrackId())
+         end
+      end
+   end_script
+
+   script void AssessEngagementOutcome()
+      // Evaluate kill chain effectiveness
+      double currentTime = GetSimulationTime()
+      if ((currentTime - mLastAssessmentTime) > 30.0) then
+         // Perform assessment every 30 seconds
+         foreach (WsfAssignment assign in GetActiveAssignments()) do
+            EvaluateEngagementOutcome(assign)
+         end
+         mLastAssessmentTime = currentTime
+      end
+   end_script
+
+   script void HandleDynamicReallocation(WsfTrackTable trackTable)
+      // Check if reallocation is needed due to:
+      // - New tracks detected
+      // - Tracks escaping
+      // - Weapon availability changes
+      double currentTime = GetSimulationTime()
+      bool reallocationNeeded = false
+      
+      foreach (WsfTrack track in trackTable.Tracks()) do
+         if (track.Evading()) then
+            writeln("Track ", track.TrackId(), " evading - reallocation needed")
+            reallocationNeeded = true
+         end
+      end
+      
+      if (reallocationNeeded && ((currentTime - mLastReallocationTime) > 5.0)) then
+         writeln("Triggering dynamic reallocation")
+         extern void ExecuteReallocation()
+         mLastReallocationTime = currentTime
+      end
+   end_script
+
+   // Lifecycle hooks
+   on_initialize
+      InitKillChain()
+   end_on_initialize
+
+   on_update
+      // Main update loop
+      WsfTrackTable tracks = GetTrackTable()
+      ProcessTrackUpdates(tracks)
+      EvaluateTargetPriorities(tracks)
+      CoordinateSensorAssignment(tracks)
+      CoordinateWeaponAssignment(tracks)
+      AssessEngagementOutcome()
+      HandleDynamicReallocation(tracks)
+   end_on_update
+
+   on_finalize
+      writeln("Kill Chain Manager shutting down")
+      writeln("Total allocations processed: ", mAllocationCount)
+   end_on_finalize
+
+end_processor_type

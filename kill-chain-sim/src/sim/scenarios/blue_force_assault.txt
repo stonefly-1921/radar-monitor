@@ -1,0 +1,152 @@
+# ****************************************************************************
+# Kill Chain Simulation - Blue Force Configuration
+#
+# Blue Force: Enemy Air Assets (Attackers)
+# Total: ~10-15 platforms
+#
+# Blue Force Mission: Penetrate red airspace, attack critical assets
+#
+# Created: 2026-05-17
+# Project: kill-chain-sim
+# ****************************************************************************
+
+################################################################################
+# Blue Force Platform Types
+################################################################################
+
+# Enemy Fighter (Red Air Target - simulated as blue for kill chain testing)
+platform_type BLUE_FIGHTER WSF_PLATFORM
+   icon FIGHTER
+   category AIR_TO_AIR
+   
+   infrared_signature    AIRCRAFT_INFRARED_SIGNATURE
+   optical_signature      SMALL_AIRCRAFT_SIGNATURE
+   radar_signature        SMALL_AIRCRAFT_SIGNATURE
+   
+   mover WSF_AIR_MOVER
+      cruise_speed 400 kts
+      cruise_altitude 30 kft agl
+      max_speed 850 kts
+      max_altitude 55 kft agl
+   end_mover
+   
+end_platform_type
+
+# Enemy Strike Aircraft (携带对地攻击武器)
+platform_type BLUE_STRIKER WSF_PLATFORM
+   icon BOMBER
+   category AIR_TO_GROUND
+   
+   infrared_signature    AIRCRAFT_INFRARED_SIGNATURE
+   optical_signature      LARGE_AIRCRAFT_SIGNATURE
+   radar_signature        LARGE_AIRCRAFT_SIGNATURE
+   
+   mover WSF_AIR_MOVER
+      cruise_speed 350 kts
+      cruise_altitude 25 kft agl
+      max_speed 700 kts
+      max_altitude 45 kft agl
+   end_mover
+   
+end_platform_type
+
+# Enemy Anti-Ship Missile (模拟)
+platform_type BLUE_MISSILE WSF_PLATFORM
+   icon MISSILE
+   category ARMED_ENEMY
+   
+   mover WSF_MISSILE_MOVER
+      max_speed 600 kts
+      cruise_altitude 1000 ft agl
+   end_mover
+   
+end_platform_type
+
+################################################################################
+# Blue Force Instances - Attack Profile
+################################################################################
+
+# Blue Force Fighters - SEAD/Escort
+platform blue_fighter_1 BLUE_FIGHTER
+   side blue
+   
+   start_location 38:00:00n 119:00:00w altitude 30 kft agl
+   launch_sequence_time 0
+   
+   waypoint 38:05:00n 118:30:00w altitude 30 kft agl
+   waypoint 38:20:00n 118:00:00w altitude 32 kft agl
+   waypoint 38:40:00n 117:30:00w altitude 28 kft agl
+   
+end_platform
+
+platform blue_fighter_2 BLUE_FIGHTER
+   side blue
+   
+   start_location 37:55:00n 119:10:00w altitude 28 kft agl
+   
+   waypoint 38:00:00n 118:40:00w altitude 30 kft agl
+   waypoint 38:15:00n 118:10:00w altitude 32 kft agl
+   waypoint 38:35:00n 117:40:00w altitude 30 kft agl
+   
+end_platform
+
+platform blue_fighter_3 BLUE_FIGHTER
+   side blue
+   
+   start_location 38:10:00n 119:05:00w altitude 25 kft agl
+   
+   waypoint 38:15:00n 118:35:00w altitude 28 kft agl
+   waypoint 38:30:00n 118:05:00w altitude 30 kft agl
+   
+end_platform
+
+# Blue Striker - Main Attack Aircraft
+platform blue_striker_1 BLUE_STRIKER
+   side blue
+   
+   start_location 37:50:00n 119:20:00w altitude 22 kft agl
+   
+   waypoint 37:55:00n 118:50:00w altitude 20 kft agl
+   waypoint 38:05:00n 118:20:00w altitude 18 kft agl  // 下降高度进行突防
+   
+end_platform
+
+platform blue_striker_2 BLUE_STRIKER
+   side blue
+   
+   start_location 37:45:00n 119:15:00w altitude 24 kft agl
+   
+   waypoint 37:50:00n 118:45:00w altitude 22 kft agl
+   waypoint 38:00:00n 118:15:00w altitude 20 kft agl
+   
+end_platform
+
+# Enemy Anti-Ship Missiles (launched from strikers)
+platform blue_asm_1 BLUE_MISSILE
+   side blue
+   
+   start_location 38:05:00n 118:20:00w altitude 1000 ft agl
+   
+   // ASM targets SAM site 1
+   waypoint 38:15:00n 117:30:00w altitude 500 ft agl
+   
+end_platform
+
+platform blue_asm_2 BLUE_MISSILE
+   side blue
+   
+   start_location 38:00:00n 118:15:00w altitude 1000 ft agl
+   
+   // ASM targets SAM site 2
+   waypoint 38:45:00n 117:20:00w altitude 500 ft agl
+   
+end_platform
+
+################################################################################
+# Threat Assessment
+################################################################################
+
+# Blue force threat priority for kill chain allocation:
+# 1. Anti-Ship Missiles (high speed, time-critical)
+# 2. Strikers (large RCS, significant threat)
+# 3. Fighters (air-to-air threat)
