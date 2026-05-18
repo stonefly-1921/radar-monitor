@@ -86,8 +86,8 @@ class TestDisDispatcher:
 
         handlers = dispatcher.handlers
         assert len(handlers) == 2
-        assert handlers[1] is h1
-        assert handlers[2] is h2
+        assert h1 in handlers[1]
+        assert h2 in handlers[2]
 
     def test_register_non_callable_raises(self):
         """Test registering a non-callable raises TypeError."""

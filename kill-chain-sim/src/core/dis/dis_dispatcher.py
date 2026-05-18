@@ -14,23 +14,20 @@ class DisDispatcher:
 
     Handlers are registered by PDU type (integer 1-255) and called
     with the parsed PDU data dict when a matching PDU is dispatched.
+    Supports multiple handlers per PDU type (broadcast pattern).
 
     Thread-safe: register/unregister operations are protected by a lock.
     """
 
     def __init__(self) -> None:
-        self._handlers: Dict[int, Callable[[Dict], any]] = {}
+        self._handlers: Dict[int, list] = {}  # pdu_type -> list of handlers
         self._lock = threading.Lock()
 
     @property
-    def handlers(self) -> Dict[int, Callable[[Dict], any]]:
-        """Return a copy of the registered handlers dict.
-
-        Returns:
-            Dict mapping pdu_type (int) to handler (callable).
-        """
+    def handlers(self) -> Dict[int, list]:
+        """Return a copy of the registered handlers dict."""
         with self._lock:
-            return dict(self._handlers)
+            return {k: list(v) for k, v in self._handlers.items()}
 
     def register(self, pdu_type: int, handler: Callable[[Dict], any]) -> None:
         """Register a handler for a PDU type.
@@ -49,7 +46,9 @@ class DisDispatcher:
             raise ValueError(f"pdu_type must be an integer in range 1-255, got {pdu_type}")
 
         with self._lock:
-            self._handlers[pdu_type] = handler
+            if pdu_type not in self._handlers:
+                self._handlers[pdu_type] = []
+            self._handlers[pdu_type].append(handler)
 
     def unregister(self, pdu_type: int) -> None:
         """Remove the handler for a PDU type.
@@ -61,23 +60,29 @@ class DisDispatcher:
             self._handlers.pop(pdu_type, None)
 
     def dispatch(self, pdu: Dict) -> Optional[any]:
-        """Dispatch a PDU to its registered handler.
+        """Dispatch a PDU to all registered handlers for its type.
 
-        Looks up the handler by pdu['pdu_type'] and calls it with the
-        full PDU dict. If no handler is registered for the type, the
-        call is silently ignored.
+        Calls all handlers registered for pdu['pdu_type'] with the
+        full PDU dict. If no handlers are registered, silently returns.
 
         Args:
             pdu: Parsed PDU data dict. Must contain a 'pdu_type' key
                  with an integer value (1-255).
 
         Returns:
-            The return value of the handler, or None if no handler found.
+            The return value of the last handler called, or None if no handlers found.
         """
         pdu_type = pdu.get("pdu_type")
         with self._lock:
-            handler = self._handlers.get(pdu_type)
+            handlers = list(self._handlers.get(pdu_type, []))
 
-        if handler is not None:
-            return handler(pdu)
+        results = []
+        for handler in handlers:
+            try:
+                result = handler(pdu)
+                results.append(result)
+            except Exception as e:
+                import logging
+                logging.getLogger(__name__).warning(f"Handler error: {e}")
+        return results[-1] if results else None
         return None

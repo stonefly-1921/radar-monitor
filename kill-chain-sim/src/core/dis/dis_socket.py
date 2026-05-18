@@ -26,7 +26,7 @@ class DisSocket:
         self._is_open = False
 
     def open(self) -> None:
-        """Open the UDP multicast socket and join the multicast group."""
+        """Open the UDP multicast/broadcast socket."""
         if self._is_open:
             logger.warning("Socket already open")
             return
@@ -38,17 +38,30 @@ class DisSocket:
         # Bind to all interfaces on the port
         self.sock.bind(('', self.port))
 
-        # Join multicast group
-        mreq = struct.pack("4s4s",
-                          socket.inet_aton(self.multicast_addr),
-                          socket.inet_aton("0.0.0.0"))
-        self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+        # Check if this is a multicast or broadcast address
+        is_multicast = (self.multicast_addr.startswith('239.') or 
+                        self.multicast_addr.startswith('235.') or
+                        self.multicast_addr.startswith('224.'))
+        is_broadcast = (self.multicast_addr.endswith('.255') or 
+                        not is_multicast)
 
-        # Don't receive our own multicast packets
-        self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 0)
-
-        # Set TTL for multicast
-        self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 8)
+        if is_multicast:
+            # Join multicast group
+            mreq = struct.pack("4s4s",
+                              socket.inet_aton(self.multicast_addr),
+                              socket.inet_aton("0.0.0.0"))
+            self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+            # Don't receive our own multicast packets
+            self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 0)
+            # Set TTL for multicast
+            self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 8)
+        elif is_broadcast:
+            # Enable broadcast mode
+            self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            logger.info(f"Broadcast mode enabled for {self.multicast_addr}")
+        else:
+            # Unicast - no special setup needed
+            pass
 
         self.sock.setblocking(False)
         self._is_open = True
@@ -59,14 +72,19 @@ class DisSocket:
         if not self._is_open:
             return
 
-        try:
-            # Leave multicast group
-            mreq = struct.pack("4s4s",
-                              socket.inet_aton(self.multicast_addr),
-                              socket.inet_aton("0.0.0.0"))
-            self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_DROP_MEMBERSHIP, mreq)
-        except Exception as e:
-            logger.warning(f"Error leaving multicast group: {e}")
+        is_multicast = (self.multicast_addr.startswith('239.') or 
+                        self.multicast_addr.startswith('235.') or
+                        self.multicast_addr.startswith('224.'))
+
+        if is_multicast:
+            try:
+                # Leave multicast group
+                mreq = struct.pack("4s4s",
+                                  socket.inet_aton(self.multicast_addr),
+                                  socket.inet_aton("0.0.0.0"))
+                self.sock.setsockopt(socket.IPPROTO_IP, socket.IP_DROP_MEMBERSHIP, mreq)
+            except Exception as e:
+                logger.warning(f"Error leaving multicast group: {e}")
 
         try:
             self.sock.close()

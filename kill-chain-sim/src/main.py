@@ -139,7 +139,7 @@ class KillChainManager:
         """Handle Entity State PDU - track the entity."""
         self.stats["entities_tracked"] += 1
         entity_id = pdu["entity_id"]
-        logging.debug(f"Entity update: {entity_id}")
+        logging.debug(f"Entity update: {entity_id} (site={entity_id.site_id}, app={entity_id.application_id}, entity={entity_id.entity_id})")
 
         # Record track event
         from src.research.evaluation.metrics_evaluator import TrackEvent
@@ -185,8 +185,12 @@ class KillChainManager:
         # Get tracked entities
         entities = self.dis_client.get_tracked_entities()
         if not entities:
-            logging.debug("No entities to allocate")
+            logging.debug("No entities to allocate - tracker empty")
             return
+
+        # Log all entities and their categories
+        for e in entities:
+            logging.debug(f"Tracked entity: {e.entity_id}, category={e.category_name}, type={e.entity_type}")
 
         # Convert to allocator format
         from src.research.algorithms.milp_allocator import Target, Sensor, Weapon
@@ -196,7 +200,7 @@ class KillChainManager:
         weapons = []
 
         for entity in entities:
-            if entity.category_name == "AIR":
+            if entity.category_name == "AIR" and entity.force_side == "red":
                 targets.append(Target(
                     id=entity.entity_id.entity_id,
                     priority=5.0,
@@ -214,8 +218,8 @@ class KillChainManager:
         # Add default sensors and weapons
         sensors.append(Sensor(1, 150, "track", 60, 30))
         sensors.append(Sensor(2, 100, "search", 45, 20))
-        weapons.append(Weapon(1, 100, 0.8, 50, "sam"))
-        weapons.append(Weapon(2, 50, 0.6, 30, "aaa"))
+        weapons.append(Weapon(1, 600, 0.8, 600, "sam"))   # 600km range, 600kt max speed
+        weapons.append(Weapon(2, 200, 0.6, 500, "aaa"))   # 200km range, 500kt max speed
 
         # Solve
         result = self.allocator.solve(targets, sensors, weapons)
@@ -226,14 +230,29 @@ class KillChainManager:
 
         # Send fire commands for each allocation
         for alloc in result.allocations:
-            launcher_id = EntityId(1, 1, alloc.sensor_id)
-            target_id = EntityId(1, 2, alloc.target_id)
-            Munition_id = EntityId(1, 1, alloc.weapon_id)
+            # Get the tracked entity to find its normalized entity ID
+            all_entities = self.dis_client.get_tracked_entities()
+            # Find entity with matching entity_id
+            target_entity = None
+            for e in all_entities:
+                if e.entity_id.entity_id == alloc.target_id:
+                    target_entity = e
+                    break
+            if target_entity is None:
+                logging.warning(f"Target entity {alloc.target_id} not found in tracker")
+                continue
 
+            # Use the normalized entity ID from the tracker
+            launcher_id = EntityId(25, 1, alloc.sensor_id)
+            target_id = target_entity.entity_id  # Already normalized (25:1:X)
+            Munition_id = EntityId(25, 1, alloc.weapon_id)
+
+            logging.info(f"Fire: launcher={launcher_id}, target={target_id}, munition={Munition_id}")
             mission = self.dis_client.fire_control.create_fire_mission(
                 launcher_id, target_id, Munition_id
             )
             success = self.dis_client.send_fire(mission)
+            logging.info(f"Fire PDU result: {success}, total sent: {self.stats['fire_commands_sent']}")
             if success:
                 self.stats["fire_commands_sent"] += 1
 

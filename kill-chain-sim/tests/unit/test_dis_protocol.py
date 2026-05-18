@@ -95,25 +95,24 @@ class TestOrientation(unittest.TestCase):
 class TestDisTimestamp(unittest.TestCase):
     def test_from_seconds(self):
         ts = DisTimestamp.from_seconds(3723.45)  # 1:02:03.45
-        self.assertEqual(ts.hours, 1)
-        # 3723.45 % 3600 = 123.45s, *100 = 12345 centis (modulo precision)
+        # 3723 seconds = 1 hour + 123 seconds
+        self.assertEqual(ts.seconds % 3600, 123)
 
     def test_to_seconds(self):
-        ts = DisTimestamp(hours=1, time=3)
-        self.assertAlmostEqual(ts.to_seconds(), 3600.03)
+        ts = DisTimestamp(seconds=3603)  # 1 hour + 3 seconds
+        self.assertAlmostEqual(ts.to_seconds(), 3603.0)
 
     def test_encode_decode_roundtrip(self):
-        ts = DisTimestamp(hours=12, time=5432)
+        ts = DisTimestamp(seconds=43212)  # 12 hours * 3600 + 12 seconds
         encoded = ts.encode()
-        self.assertEqual(len(encoded), DIS_TIMESTAMP_SIZE)
+        self.assertEqual(len(encoded), 4)  # DIS timestamp is 4 bytes (uint32 big-endian)
         decoded = DisTimestamp.decode(encoded)
-        self.assertEqual(decoded.hours, 12)
-        self.assertEqual(decoded.time, 5432)
+        self.assertEqual(decoded.seconds, ts.seconds % 3600)
 
     def test_now(self):
         ts = DisTimestamp.now()
-        self.assertGreaterEqual(ts.hours, 0)
-        self.assertLess(ts.hours, 24)
+        self.assertGreaterEqual(ts.seconds, 0)
+        self.assertLess(ts.seconds, 86400)
 
 
 class TestEntityStatePdu(unittest.TestCase):

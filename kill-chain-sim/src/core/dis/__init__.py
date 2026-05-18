@@ -21,6 +21,7 @@ from .dis_protocol import (
     DetonationPdu,
     SignalPdu,
 )
+from .dis_client import DisClient
 from .dis_socket import DisSocket
 from .dis_dispatcher import DisDispatcher
 from .entity_tracker import EntityTracker, TrackedEntity, Location
@@ -28,6 +29,8 @@ from .fire_control import FireControl, FireMission, get_fire_control
 from .esm_client import EsmClient, EsmReport, EmitterType
 
 __all__ = [
+    # Client
+    "DisClient",
     # Protocol
     "PDU_TYPE_ENTITY_STATE",
     "PDU_TYPE_FIRE",

@@ -41,8 +41,8 @@ ORIENTATION_FORMAT = ">fff"  # 12 bytes
 ORIENTATION_SIZE = 12
 
 # DIS Timestamp: hours(1) + time(4) — time is centiseconds since hour
-DIS_TIMESTAMP_FORMAT = ">BI"  # 5 bytes
-DIS_TIMESTAMP_SIZE = 5
+DIS_TIMESTAMP_FORMAT = ">I"  # 4 bytes
+DIS_TIMESTAMP_SIZE = 4
 
 # PDU Header: version(1) + exercise_id(1) + pdu_type(1) + family(1) + timestamp(5) + length(2) + padding(2)
 PDU_HEADER_FORMAT = ">BBBBIHH"  # 14 bytes total (includes 2-byte padding after length)
@@ -159,41 +159,31 @@ class Orientation:
 
 @dataclass
 class DisTimestamp:
-    """DIS Timestamp (5 bytes): hours (0-23) + time (centiseconds since hour)."""
-    hours: int       # uint8 (0-23)
-    time: int        # uint32 (centiseconds since top of hour)
+    seconds: int
 
     def encode(self) -> bytes:
-        return struct.pack(DIS_TIMESTAMP_FORMAT, self.hours, self.time)
+        return struct.pack(DIS_TIMESTAMP_FORMAT, self.seconds % 3600)
 
     @classmethod
     def decode(cls, data: bytes) -> 'DisTimestamp':
-        hours, time_val = struct.unpack(DIS_TIMESTAMP_FORMAT, data[:DIS_TIMESTAMP_SIZE])
-        return cls(hours=hours, time=time_val)
+        seconds = struct.unpack(DIS_TIMESTAMP_FORMAT, data[:DIS_TIMESTAMP_SIZE])[0]
+        return cls(seconds=seconds)
 
     @classmethod
     def from_seconds(cls, seconds_since_hour: float) -> 'DisTimestamp':
-        """Create timestamp from seconds since top of hour."""
-        hours = int(seconds_since_hour) // 3600
-        hours = hours % 24
-        centis = int((seconds_since_hour % 3600) * 100)
-        return cls(hours=hours, time=centis)
+        return cls(seconds=int(seconds_since_hour) % 3600)
 
     def to_seconds(self) -> float:
-        """Convert to seconds since top of hour."""
-        return self.hours * 3600.0 + self.time * 0.01
+        return float(self.seconds)
 
     @classmethod
     def now(cls) -> 'DisTimestamp':
-        """Create timestamp for current time."""
         import time
         t = time.time()
-        hour_sec = (int(t) % 86400)  # seconds since midnight
-        cs = int((t % 1.0) * 100)
-        return cls(hours=hour_sec // 3600, time=cs)
+        hour_sec = (int(t) % 86400)
+        return cls(seconds=hour_sec % 3600)
 
 
-@dataclass
 class PduHeader:
     """PDU Header (14 bytes)."""
     protocol_version: int      # uint8 (should be 6 for DIS 1278.1)
@@ -332,23 +322,56 @@ class EntityStatePdu:
 
 @dataclass
 class FirePdu:
-    """Fire PDU (Type 2) — Weapon launch event."""
+    """Fire PDU (Type 2) — Weapon launch event.
+    
+    Matches AFSIM's DisFire format:
+    - Fixed fields: emitting_entity_id, target_entity_id, Munition_id, event_id,
+      fire_mission_index (36 bytes)
+    - Location: 3x double (24 bytes)
+    - Weapon type: 8 bytes
+    - Warhead, fuse, quantity, rate: 8 bytes
+    - Velocity: 3x float (12 bytes)
+    - Range: float (4 bytes)
+    Total body: 84 bytes
+    """
     PDU_TYPE = PDU_TYPE_FIRE
 
     fire_mission_index: int     # uint32
     emitting_entity_id: EntityId  # who fired
     target_entity_id: EntityId    # what was targeted
     Munition_id: EntityId        # what fired
+    event_id: EntityId = None    # event ID for correlation
+    location: tuple = (0.0, 0.0, 0.0)  # x, y, z ECEF (24 bytes)
+    weapon_type: EntityType = None  # weapon type (8 bytes)
     warhead: int = 0              # uint16
     fuse: int = 0                 # uint16
     quantity: int = 1             # uint16
     rate: int = 0                 # uint16
+    velocity: tuple = (0.0, 0.0, 0.0)  # vx, vy, vz (12 bytes)
+    range_val: float = 0.0        # float (4 bytes)
+
+    def __post_init__(self):
+        if self.event_id is None:
+            self.event_id = EntityId(0, 0, 0)
+        if self.weapon_type is None:
+            self.weapon_type = EntityType(0, 0, 0, 0, 0, 0, 0)
 
     def encode(self) -> bytes:
         result = self.emitting_entity_id.encode()
         result += self.target_entity_id.encode()
         result += self.Munition_id.encode()
-        result += struct.pack(">IHHHH", self.fire_mission_index, self.warhead, self.fuse, self.quantity, self.rate)
+        result += self.event_id.encode()
+        result += struct.pack(">I", self.fire_mission_index)
+        # Location (3 x double = 24 bytes)
+        result += struct.pack(">ddd", *self.location)
+        # Weapon type (8 bytes)
+        result += self.weapon_type.encode()
+        # Warhead, fuse, quantity, rate (8 bytes)
+        result += struct.pack(">HHHH", self.warhead, self.fuse, self.quantity, self.rate)
+        # Velocity (3 x float = 12 bytes)
+        result += struct.pack(">fff", *self.velocity)
+        # Range (4 bytes)
+        result += struct.pack(">f", self.range_val)
         return result
 
     @classmethod
@@ -363,18 +386,40 @@ class FirePdu:
         Munition_id = EntityId.decode(data[offset:offset + ENTITY_ID_SIZE])
         offset += ENTITY_ID_SIZE
 
-        # fire_mission_index(4) + warhead(2) + fuse(2) + quantity(2) + rate(2) = 12 bytes
-        fire_mission_index, warhead, fuse, quantity, rate = struct.unpack(">IHHHH", data[offset:offset + 12])
+        event_id = EntityId.decode(data[offset:offset + ENTITY_ID_SIZE])
+        offset += ENTITY_ID_SIZE
+
+        fire_mission_index = struct.unpack(">I", data[offset:offset + 4])[0]
+        offset += 4
+
+        location = struct.unpack(">ddd", data[offset:offset + 24])
+        offset += 24
+
+        weapon_type = EntityType.decode(data[offset:offset + ENTITY_TYPE_SIZE])
+        offset += ENTITY_TYPE_SIZE
+
+        warhead, fuse, quantity, rate = struct.unpack(">HHHH", data[offset:offset + 8])
+        offset += 8
+
+        velocity = struct.unpack(">fff", data[offset:offset + 12])
+        offset += 12
+
+        range_val = struct.unpack(">f", data[offset:offset + 4])[0]
 
         return cls(
             fire_mission_index=fire_mission_index,
             emitting_entity_id=emitting_entity_id,
             target_entity_id=target_entity_id,
             Munition_id=Munition_id,
+            event_id=event_id,
+            location=location,
+            weapon_type=weapon_type,
             warhead=warhead,
             fuse=fuse,
             quantity=quantity,
-            rate=rate
+            rate=rate,
+            velocity=velocity,
+            range_val=range_val,
         )
 
 

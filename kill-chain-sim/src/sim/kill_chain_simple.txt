@@ -1,0 +1,44 @@
+# Kill Chain Simple Scenario
+# Based on simple_scenario with XIO/DIS for kill chain testing
+#
+# Usage:
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_simple.txt
+#
+# Created: 2026-05-18
+# Project: kill-chain-sim
+
+define_path_variable CASE kill_chain
+
+file_path .
+file_path ../base_types
+file_path D:\afsim-2.9.0-win64\demos\simple_scenario
+
+#standard stuff
+include event_pipe.txt
+include event_output.txt
+include terrain.txt
+
+#overwrite standard stuff with what we want
+log_file output/kill_chain.log
+event_output file NULL end_event_output
+event_pipe file NULL end_event_pipe
+
+#include blue strikers and laydown
+include_once platforms/blue_strikers.txt
+include scenarios/laydown.txt
+
+# XIO for DIS connection to Python kill-chain-sim
+file_path D:\afsim-2.9.0-win64\demos\iads
+include xio_interface.txt
+
+# DIS interface for entity state output
+dis_interface
+   exercise    1
+   site        25
+   application 2
+   multicast   235.7.11.27 10.
+   port        3002
+   autostart
+end_dis_interface
+
+end_time 2 min

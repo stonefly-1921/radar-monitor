@@ -1,0 +1,48 @@
+# Kill Chain IADS Simulation Scenario
+# Tests kill chain management with red IADS vs blue strikers
+#
+# Usage:
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_iads.txt
+#
+# Created: 2026-05-18
+# Project: kill-chain-sim
+
+define_path_variable CASE kill_chain
+log_file output/kill_chain.log
+
+realtime
+
+# Core setup (with file_path for relative includes)
+file_path D:\afsim-2.9.0-win64\demos\iads
+
+include setup.txt
+
+# DIS entity types
+include dis_data.txt
+
+# XIO - connects to Python DIS client on 235.7.11.27:3002
+include xio_interface.txt
+
+# DIS interface - matches xio_interface settings
+# Exercise ID 1, Site 25, App 2 maps to AFSIM's internal DIS
+dis_interface
+   exercise    1
+   site        25
+   application 2
+   multicast   235.7.11.27 10.
+   port        3002
+   autostart
+end_dis_interface
+
+# Red force IADS
+include scenarios/iads_laydown.txt
+
+# Blue force strikers
+include scenarios/strike.txt
+
+# Disable event output (avoid file issues)
+event_output file NULL end_event_output
+csv_event_output file NULL end_csv_event_output
+event_pipe file NULL end_event_pipe
+
+end_time 5 min

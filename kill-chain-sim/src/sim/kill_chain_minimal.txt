@@ -1,0 +1,37 @@
+# Kill Chain Minimal Test Scenario
+# Simple test: red radar + blue striker
+#
+# Usage:
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_minimal.txt
+#
+# Created: 2026-05-18
+# Project: kill-chain-sim
+
+define_path_variable CASE kill_chain
+log_file output/kill_chain.log
+
+realtime
+
+# Core setup
+file_path D:\afsim-2.9.0-win64\demos\iads
+
+include setup.txt
+
+# DIS entity types (minimal)
+include dis_data.txt
+
+# XIO - connects to Python DIS client
+include xio_interface.txt
+
+# Simple red radar
+include platforms/red_radar.txt
+
+# Simple blue fighter
+include platforms/blue_players.txt
+
+# Kill chain evaluation settings
+event_output file NULL end_event_output
+csv_event_output file NULL end_csv_event_output
+event_pipe file NULL end_event_pipe
+
+end_time 2 min

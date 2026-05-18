@@ -1,0 +1,7 @@
+xio_interface
+   multicast 235.7.11.27 10.
+   port 3003
+   connect_to_simulations
+   auto_dis_mapping yes
+   time_to_live 8
+end_xio_interface

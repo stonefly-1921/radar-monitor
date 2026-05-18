@@ -146,6 +146,10 @@ class DisClient:
             try:
                 data, addr = self.socket.receive()
                 if data:
+                    # Log raw PDU info
+                    if len(data) >= 4:
+                        pdu_type = data[3]
+                        logger.debug(f"RX PDU type={pdu_type} size={len(data)} from {addr}")
                     self._recv_queue.put((data, addr))
                 else:
                     time.sleep(0.001)  # Small sleep when no data
@@ -207,9 +211,22 @@ class DisClient:
             if pdu_type == PDU_TYPE_ENTITY_STATE:
                 try:
                     pdu = EntityStatePdu.decode(data[5:])  # skip header
+                    # Normalize entity ID before dispatching so all handlers see consistent IDs
+                    normalized_eid = self.tracker.normalize_entity_id(pdu.entity_id)
+                    pdu = EntityStatePdu(
+                        entity_id=normalized_eid,
+                        entity_type=pdu.entity_type,
+                        location=pdu.location,
+                        orientation=pdu.orientation,
+                        velocity=pdu.velocity,
+                        dead_reckoning_type=pdu.dead_reckoning_type,
+                        entity_parameters=pdu.entity_parameters,
+                        number_of_datum=pdu.number_of_datum,
+                        datum_records=pdu.datum_records,
+                    )
                     pdu_dict = {
                         "pdu_type": pdu_type,
-                        "entity_id": pdu.entity_id,
+                        "entity_id": normalized_eid,  # Already normalized
                         "entity_type": pdu.entity_type,
                         "location": pdu.location,
                         "orientation": pdu.orientation,
@@ -268,21 +285,29 @@ class DisClient:
             return None
 
     def _track_entity_handler(self, pdu: dict) -> None:
-        """Auto-handler: track entity from Entity State PDU."""
+        """"Auto-handler: track entity from Entity State PDU."""
         try:
+            entity_id = pdu["entity_id"]
+            entity_type = pdu["entity_type"]
+            location = pdu["location"]
+            velocity = pdu["velocity"]
+            orientation = pdu["orientation"]
+            logger.debug(f"_track_entity_handler: entity_id={entity_id}, entity_type={entity_type}")
             # Convert location (ECEF to lat/lon/alt approximation)
-            loc = self._ecef_to_geodetic(pdu["location"])
+            loc = self._ecef_to_geodetic(location)
 
+            logger.debug(f"_track_entity_handler: about to call tracker.update with entity_id={entity_id}")
             self.tracker.update(
-                entity_id=pdu["entity_id"],
-                entity_type=pdu["entity_type"],
+                entity_id=entity_id,
+                entity_type=entity_type,
                 location=loc,
-                velocity=pdu["velocity"],
-                orientation=pdu["orientation"],
+                velocity=velocity,
+                orientation=orientation,
                 timestamp=time.time(),
             )
+            logger.debug(f"_track_entity_handler: tracker now has {self.tracker.count()} entities")
         except Exception as e:
-            logger.warning(f"Entity tracking error: {e}")
+            logger.warning(f"Entity tracking error: {e}", exc_info=True)
 
     def _esm_handler(self, pdu: dict) -> None:
         """Auto-handler: process ESM report from Signal PDU."""

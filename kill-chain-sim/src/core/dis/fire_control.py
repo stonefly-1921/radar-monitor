@@ -101,7 +101,9 @@ class FireControl:
     def build_fire_pdu_bytes(self, mission: FireMission) -> bytes:
         """Build raw Fire PDU bytes ready to send.
 
-        This builds a complete DIS Fire PDU with header.
+        Matches AFSIM format:
+        - Header (12 bytes): timestamp(4) + version(1) + exercise(1) + type(1) + family(1) + length(2) + padding(2)
+        - Fire data (84 bytes)
 
         Args:
             mission: FireMission to encode.
@@ -112,25 +114,25 @@ class FireControl:
         fire_pdu = self.generate_fire_pdu(mission)
         fire_data = fire_pdu.encode()
 
-        # Build PDU header
+        # Build PDU header (8 bytes of fields after timestamp)
         timestamp = DisTimestamp.now()
-        header = struct.pack(
+        header_fields = struct.pack(
             ">BBBBHH",
             6,                      # protocol version
             self.exercise_id,       # exercise ID
             PDU_TYPE_FIRE,          # pdu type = 2
-            1,                      # family = entity_management
-            0,                      # length (placeholder)
+            1,                      # family = warfare (1)
+            0,                      # length (placeholder - will set below)
             0,                      # padding
         )
 
-        # Timestamp is first 5 bytes
-        pdu_bytes = timestamp.encode() + header
-        total_length = len(pdu_bytes) + len(fire_data)
-        # Set length in header (offset: timestamp=0, version=5, exercise=6, type=7, family=8,
-        # length at bytes 9-10 from start of header... but we appended timestamp before header)
-        # Actually timestamp is first, then header fields. So length field is at byte offset 5+4=9 from start
-        pdu_bytes = pdu_bytes[:9] + struct.pack(">H", total_length) + pdu_bytes[11:]
+        # Header structure: timestamp(4) + fields(8) = 12 bytes (matches AFSIM BaseLength)
+        pdu_bytes = timestamp.encode() + header_fields  # 4 + 8 = 12 bytes
+        total_length = len(pdu_bytes) + len(fire_data)  # 12 + fire_data
+
+        # Fix length field at byte offset 8 (after 4-byte timestamp + 4 header bytes before length)
+        # After timestamp(4), the header fields are: version(1) at 4, exercise(1) at 5, type(1) at 6, family(1) at 7, length(2) at 8-9
+        pdu_bytes = pdu_bytes[:8] + struct.pack(">H", total_length) + pdu_bytes[10:]
         pdu_bytes += fire_data
 
         return pdu_bytes

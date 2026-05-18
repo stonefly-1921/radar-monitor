@@ -1,0 +1,44 @@
+# ****************************************************************************
+# Kill Chain Kill Chain Simulation - Main Scenario
+#
+# Integrates kill-chain-sim DIS client with AFSIM IADS simulation
+# Tests: Entity tracking, MILP allocation, engagement evaluation
+#
+# Usage:
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_scenario.txt
+#
+# Created: 2026-05-18
+# Project: kill-chain-sim
+# ****************************************************************************
+
+define_path_variable CASE kill_chain
+log_file output/$(CASE).log
+
+realtime
+
+# Core setup (platform types, common defs, terrain)
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+
+# DIS entity type definitions
+include D:\afsim-2.9.0-win64\demos\iads\dis_data.txt
+# NOTE: dis_realtime.txt removed - using xio_interface for DIS output instead
+# include D:\afsim-2.9.0-win64\demos\iads\dis_realtime.txt
+
+# XIO Interface (AFSIM -> Python DIS client)
+include D:\afsim-2.9.0-win64\demos\iads\xio_interface.txt
+
+# IADS Red Force laydown (radars, SAMs, commanders)
+include D:\afsim-2.9.0-win64\demos\iads\scenarios\iads_laydown.txt
+
+# Blue Force strikers (attackers)
+include D:\afsim-2.9.0-win64\demos\iads\scenarios\strike.txt
+
+# Kill chain evaluation settings
+event_output   file output/kill_chain.evt   end_event_output
+event_pipe     file NULL end_event_pipe
+
+dis_interface
+   application 2
+end_dis_interface
+
+end_time 10 min
