@@ -43,8 +43,8 @@ def parse_args():
                        help='DIS multicast address (default: 235.7.11.27)')
     parser.add_argument('--port', type=int, default=3002,
                        help='DIS port (default: 3002)')
-    parser.add_argument('--exercise-id', type=int, default=1,
-                       help='DIS exercise ID (default: 1)')
+    parser.add_argument('--exercise-id', type=int, default=0,
+                       help='DIS exercise ID (default: 0)')
     parser.add_argument('--afsim-host', default=None,
                        help='AFSIM host (if different from multicast sender)')
     parser.add_argument('--time-limit', type=float, default=30.0,

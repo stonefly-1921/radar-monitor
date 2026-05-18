@@ -19,6 +19,7 @@ from src.core.dis.dis_dispatcher import DisDispatcher
 from src.core.dis.entity_tracker import EntityTracker, Location
 from src.core.dis.fire_control import FireControl
 from src.core.dis.esm_client import EsmClient
+from src.core.dis.esm_trajectory_tracker import EsmTrajectoryTracker
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +44,7 @@ class DisClient:
         self,
         multicast_addr: str = "235.7.11.27",
         port: int = 3002,
-        exercise_id: int = 1,
+        exercise_id: int = 0,
     ):
         self.multicast_addr = multicast_addr
         self.port = port
@@ -55,6 +56,12 @@ class DisClient:
         self.tracker = EntityTracker()
         self.fire_control = FireControl(exercise_id=exercise_id)
         self.esm_client = EsmClient()
+        self.esm_trajectory_tracker = EsmTrajectoryTracker()
+
+        # ESM fallback tracking: detect when we only receive Signal PDUs
+        self._last_entity_state_time = 0.0
+        self._esm_fallback_threshold_sec = 5.0  # Activate ESM tracker after 5s with no Entity State
+        self._esm_fallback_active = False
 
         # Receive queue (from socket thread to main processing)
         self._recv_queue: queue.Queue = queue.Queue(maxsize=1000)
@@ -285,8 +292,14 @@ class DisClient:
             return None
 
     def _track_entity_handler(self, pdu: dict) -> None:
-        """"Auto-handler: track entity from Entity State PDU."""
+        """Auto-handler: track entity from Entity State PDU."""
         try:
+            # Reset ESM fallback timer when we receive Entity State PDUs
+            self._last_entity_state_time = time.time()
+            if self._esm_fallback_active:
+                logger.info("Entity State PDU received - deactivating ESM fallback")
+                self._esm_fallback_active = False
+
             entity_id = pdu["entity_id"]
             entity_type = pdu["entity_type"]
             location = pdu["location"]
@@ -322,8 +335,55 @@ class DisClient:
                 data=pdu["data"],
             )
             self.esm_client.process_signal_pdu(signal_pdu, sim_time=time.time())
+
+            # Also feed to ESM trajectory tracker for virtual track generation
+            current_time = time.time()
+            self.esm_trajectory_tracker.process_signal_pdu(signal_pdu, sim_time=current_time)
+
+            # Check if we should activate ESM fallback mode
+            # If no Entity State PDUs received for threshold seconds, activate
+            if not self._esm_fallback_active:
+                if current_time - self._last_entity_state_time > self._esm_fallback_threshold_sec:
+                    logger.info(f"No Entity State PDUs for {self._esm_fallback_threshold_sec}s - activating ESM trajectory fallback")
+                    self._esm_fallback_active = True
         except Exception as e:
             logger.warning(f"ESM processing error: {e}")
+
+    def run_trajectory_estimation(self) -> None:
+        """Update EntityTracker with virtual tracks from ESM fallback.
+        
+        Called periodically (e.g., from main loop) to merge virtual tracks
+        into the EntityTracker when ESM fallback mode is active.
+        """
+        if not self._esm_fallback_active:
+            return
+
+        virtual_tracks = self.esm_trajectory_tracker.get_virtual_tracks()
+        for track in virtual_tracks:
+            # Check if this virtual track already exists in EntityTracker
+            existing = self.tracker.get(track.entity_id)
+            if existing is None:
+                # Add new virtual track
+                self.tracker.add(track)
+                logger.debug(f"Added virtual track: {track.entity_id} at {track.location}")
+            else:
+                # Update existing track
+                self.tracker.update(
+                    entity_id=track.entity_id,
+                    entity_type=track.entity_type,
+                    location=track.location,
+                    velocity=track.velocity,
+                    orientation=track.orientation,
+                    timestamp=track.timestamp,
+                )
+
+    def add_virtual_track(self, track) -> None:
+        """Add a virtual track to the EntityTracker.
+        
+        Args:
+            track: TrackedEntity to add
+        """
+        self.tracker.add(track)
 
     def _ecef_to_geodetic(self, ecef: 'Vector3Double') -> Location:
         """Convert ECEF (meters) to geodetic (lat/lon/alt).

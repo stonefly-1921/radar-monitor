@@ -1,0 +1,796 @@
+00:00:00.0 SENSOR_TURNED_ON 200_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 39:22:36.00n 117:33:25.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 300_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 39:22:34.00n 117:33:10.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 400_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 39:04:09.00n 116:32:53.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 500_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 39:03:39.00n 116:33:34.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 600_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:41:35.00n 117:05:57.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 800_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:15:56.00n 117:44:36.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 900_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:15:56.00n 117:44:36.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1000_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:27:24.00n 117:32:40.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1100_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:26:08.00n 118:18:59.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1200_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:26:27.00n 118:18:31.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1300_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:26:19.00n 118:18:07.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1400_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:00:58.00n 118:14:58.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1600_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:01:09.00n 117:26:07.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1700_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:52:02.00n 117:29:15.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1800_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:53:09.00n 117:27:47.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 1900_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:53:10.00n 117:27:25.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2000_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:49:22.00n 117:14:50.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2100_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:49:17.00n 117:15:16.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2300_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:06:53.00n 116:52:58.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2400_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:06:52.00n 116:52:58.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2500_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 37:54:54.00n 116:08:57.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 2600_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 38:07:15.00n 116:52:20.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON 100_ucav Sensor: esm Type: UCAV_ESM \
+ LLA: 38:16:36.00n 116:19:48.00w 10668 m Heading: 259.822 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ -0.000 -0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.3 SENSOR_TRACK_INITIATED 100_ucav 200_ew_radar Sensor: esm TrackId: 100_ucav.1 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:22:36.00n 117:33:25.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:36.00n 117:33:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 162538 m Bearing: 319.278 deg Elevation: -4.48947 deg \
+  Truth: Range: 162538 m Bearing: 319.278 deg Elevation: -4.49159 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (150 MHz 150 MHz) ]
+00:00:00.3 LOCAL_TRACK_INITIATED 100_ucav 200_ew_radar TrackId: 100_ucav.2 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:22:36.00n 117:33:25.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:36.00n 117:33:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 162538 m Bearing: 319.278 deg Elevation: -4.48947 deg \
+  Truth: Range: 162538 m Bearing: 319.278 deg Elevation: -4.49159 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (150 MHz 150 MHz) ] \
+ Source_TrackId: 100_ucav.1 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5
+00:00:00.3 SENSOR_TRACK_INITIATED 100_ucav 300_ew_radar Sensor: esm TrackId: 100_ucav.3 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:22:34.00n 117:33:10.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:34.00n 117:33:10.00w 0 m  Difference: 6 m  \
+  Track: Range: 162254 m Bearing: 319.359 deg Elevation: -4.49478 deg \
+  Truth: Range: 162255 m Bearing: 319.359 deg Elevation: -4.4969 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (155 MHz 155 MHz) ]
+00:00:00.3 LOCAL_TRACK_INITIATED 100_ucav 300_ew_radar TrackId: 100_ucav.4 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:22:34.00n 117:33:10.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:34.00n 117:33:10.00w 0 m  Difference: 6 m  \
+  Track: Range: 162254 m Bearing: 319.359 deg Elevation: -4.49478 deg \
+  Truth: Range: 162255 m Bearing: 319.359 deg Elevation: -4.4969 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (155 MHz 155 MHz) ] \
+ Source_TrackId: 100_ucav.3 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5
+00:00:00.3 SENSOR_TRACK_INITIATED 100_ucav 400_ew_radar Sensor: esm TrackId: 100_ucav.5 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:04:09.00n 116:32:53.00w 6 m Flags: L3 \
+  Truth: LLA: 39:04:09.00n 116:32:53.00w 0 m  Difference: 6 m  \
+  Track: Range: 90701.6 m Bearing: 347.896 deg Elevation: -7.15587 deg \
+  Truth: Range: 90702.2 m Bearing: 347.896 deg Elevation: -7.15964 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (160 MHz 160 MHz) ]
+00:00:00.3 LOCAL_TRACK_INITIATED 100_ucav 400_ew_radar TrackId: 100_ucav.6 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:04:09.00n 116:32:53.00w 6 m Flags: L3 \
+  Truth: LLA: 39:04:09.00n 116:32:53.00w 0 m  Difference: 6 m  \
+  Track: Range: 90701.6 m Bearing: 347.896 deg Elevation: -7.15587 deg \
+  Truth: Range: 90702.2 m Bearing: 347.896 deg Elevation: -7.15964 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (160 MHz 160 MHz) ] \
+ Source_TrackId: 100_ucav.5 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5
+00:00:00.3 SENSOR_TRACK_INITIATED 100_ucav 500_ew_radar Sensor: esm TrackId: 100_ucav.7 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 500_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:03:39.00n 116:33:34.00w 6 m Flags: L3 \
+  Truth: LLA: 39:03:39.00n 116:33:34.00w 0 m  Difference: 6 m  \
+  Track: Range: 90018.3 m Bearing: 347.152 deg Elevation: -7.20425 deg \
+  Truth: Range: 90019 m Bearing: 347.152 deg Elevation: -7.20805 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (165 MHz 165 MHz) ]
+00:00:00.3 LOCAL_TRACK_INITIATED 100_ucav 500_ew_radar TrackId: 100_ucav.8 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 500_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 39:03:39.00n 116:33:34.00w 6 m Flags: L3 \
+  Truth: LLA: 39:03:39.00n 116:33:34.00w 0 m  Difference: 6 m  \
+  Track: Range: 90018.3 m Bearing: 347.152 deg Elevation: -7.20425 deg \
+  Truth: Range: 90019 m Bearing: 347.152 deg Elevation: -7.20805 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (165 MHz 165 MHz) ] \
+ Source_TrackId: 100_ucav.7 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5
+00:00:00.3 SENSOR_TRACK_INITIATED 100_ucav 600_ew_radar Sensor: esm TrackId: 100_ucav.9 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:41:35.00n 117:05:57.00w 6 m Flags: L3 \
+  Truth: LLA: 38:41:35.00n 117:05:57.00w 0 m  Difference: 6 m  \
+  Track: Range: 82248.9 m Bearing: 304.795 deg Elevation: -7.81414 deg \
+  Truth: Range: 82249.6 m Bearing: 304.795 deg Elevation: -7.81828 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (170 MHz 170 MHz) ]
+00:00:00.3 LOCAL_TRACK_INITIATED 100_ucav 600_ew_radar TrackId: 100_ucav.10 \
+  Start_Time: 00:00:00.3 Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:41:35.00n 117:05:57.00w 6 m Flags: L3 \
+  Truth: LLA: 38:41:35.00n 117:05:57.00w 0 m  Difference: 6 m  \
+  Track: Range: 82248.9 m Bearing: 304.795 deg Elevation: -7.81414 deg \
+  Truth: Range: 82249.6 m Bearing: 304.795 deg Elevation: -7.81828 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (170 MHz 170 MHz) ] \
+ Source_TrackId: 100_ucav.9 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.3 Update_Count: 0 Quality: 0.5
+00:00:00.5 SENSOR_TRACK_INITIATED 100_ucav 800_ew_radar Sensor: esm TrackId: 100_ucav.11 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 800_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:15:56.00n 117:44:36.00w 6 m Flags: L3 \
+  Truth: LLA: 38:15:56.00n 117:44:36.00w 0 m  Difference: 6 m  \
+  Track: Range: 124243 m Bearing: 269.866 deg Elevation: -5.47753 deg \
+  Truth: Range: 124243 m Bearing: 269.866 deg Elevation: -5.48029 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (175 MHz 175 MHz) ]
+00:00:00.5 LOCAL_TRACK_INITIATED 100_ucav 800_ew_radar TrackId: 100_ucav.12 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 800_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:15:56.00n 117:44:36.00w 6 m Flags: L3 \
+  Truth: LLA: 38:15:56.00n 117:44:36.00w 0 m  Difference: 6 m  \
+  Track: Range: 124243 m Bearing: 269.866 deg Elevation: -5.47753 deg \
+  Truth: Range: 124243 m Bearing: 269.866 deg Elevation: -5.48029 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (175 MHz 175 MHz) ] \
+ Source_TrackId: 100_ucav.11 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5
+00:00:00.5 SENSOR_TRACK_INITIATED 100_ucav 1300_ew_radar Sensor: esm TrackId: 100_ucav.13 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:19.00n 118:18:07.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:19.00n 118:18:07.00w 0 m  Difference: 6 m  \
+  Track: Range: 173755 m Bearing: 276.566 deg Elevation: -4.29506 deg \
+  Truth: Range: 173755 m Bearing: 276.566 deg Elevation: -4.29704 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (205 MHz 205 MHz) ]
+00:00:00.5 LOCAL_TRACK_INITIATED 100_ucav 1300_ew_radar TrackId: 100_ucav.14 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:19.00n 118:18:07.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:19.00n 118:18:07.00w 0 m  Difference: 6 m  \
+  Track: Range: 173755 m Bearing: 276.566 deg Elevation: -4.29506 deg \
+  Truth: Range: 173755 m Bearing: 276.566 deg Elevation: -4.29704 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (205 MHz 205 MHz) ] \
+ Source_TrackId: 100_ucav.13 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5
+00:00:00.5 SENSOR_TRACK_INITIATED 100_ucav 2100_ew_radar Sensor: esm TrackId: 100_ucav.15 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2100_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:49:17.00n 117:15:16.00w 6 m Flags: L3 \
+  Truth: LLA: 37:49:17.00n 117:15:16.00w 0 m  Difference: 6 m  \
+  Track: Range: 96262.4 m Bearing: 238.371 deg Elevation: -6.78824 deg \
+  Truth: Range: 96263 m Bearing: 238.371 deg Elevation: -6.79179 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (245 MHz 245 MHz) ]
+00:00:00.5 LOCAL_TRACK_INITIATED 100_ucav 2100_ew_radar TrackId: 100_ucav.16 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2100_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:49:17.00n 117:15:16.00w 6 m Flags: L3 \
+  Truth: LLA: 37:49:17.00n 117:15:16.00w 0 m  Difference: 6 m  \
+  Track: Range: 96262.4 m Bearing: 238.371 deg Elevation: -6.78824 deg \
+  Truth: Range: 96263 m Bearing: 238.371 deg Elevation: -6.79179 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (245 MHz 245 MHz) ] \
+ Source_TrackId: 100_ucav.15 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5
+00:00:00.5 SENSOR_TRACK_INITIATED 100_ucav 2300_ew_radar Sensor: esm TrackId: 100_ucav.17 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:06:53.00n 116:52:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:06:53.00n 116:52:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 52782.4 m Bearing: 249.805 deg Elevation: -11.8856 deg \
+  Truth: Range: 52783.6 m Bearing: 249.805 deg Elevation: -11.892 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (250 MHz 250 MHz) ]
+00:00:00.5 LOCAL_TRACK_INITIATED 100_ucav 2300_ew_radar TrackId: 100_ucav.18 \
+  Start_Time: 00:00:00.5 Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2300_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:06:53.00n 116:52:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:06:53.00n 116:52:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 52782.4 m Bearing: 249.805 deg Elevation: -11.8856 deg \
+  Truth: Range: 52783.6 m Bearing: 249.805 deg Elevation: -11.892 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (250 MHz 250 MHz) ] \
+ Source_TrackId: 100_ucav.17 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.5 Update_Count: 0 Quality: 0.5
+00:00:00.8 SENSOR_TRACK_INITIATED 100_ucav 2400_ew_radar Sensor: esm TrackId: 100_ucav.19 \
+  Start_Time: 00:00:00.8 Update_Time: 00:00:00.8 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:06:52.00n 116:52:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:06:52.00n 116:52:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 52793.1 m Bearing: 249.773 deg Elevation: -11.8833 deg \
+  Truth: Range: 52794.2 m Bearing: 249.773 deg Elevation: -11.8897 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (150 MHz 150 MHz) ]
+00:00:00.8 LOCAL_TRACK_INITIATED 100_ucav 2400_ew_radar TrackId: 100_ucav.20 \
+  Start_Time: 00:00:00.8 Update_Time: 00:00:00.8 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:06:52.00n 116:52:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:06:52.00n 116:52:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 52793.1 m Bearing: 249.773 deg Elevation: -11.8833 deg \
+  Truth: Range: 52794.2 m Bearing: 249.773 deg Elevation: -11.8897 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (150 MHz 150 MHz) ] \
+ Source_TrackId: 100_ucav.19 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:00.8 Update_Count: 0 Quality: 0.5
+00:00:03.5 SENSOR_TRACK_INITIATED 100_ucav 2600_ew_radar Sensor: esm TrackId: 100_ucav.21 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:07:15.00n 116:52:20.00w 6 m Flags: L3 \
+  Truth: LLA: 38:07:15.00n 116:52:20.00w 0 m  Difference: 6 m  \
+  Track: Range: 51701 m Bearing: 250.157 deg Elevation: -12.1279 deg \
+  Truth: Range: 51702.2 m Bearing: 250.157 deg Elevation: -12.1345 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (160 MHz 160 MHz) ]
+00:00:03.5 LOCAL_TRACK_INITIATED 100_ucav 2600_ew_radar TrackId: 100_ucav.22 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:07:15.00n 116:52:20.00w 6 m Flags: L3 \
+  Truth: LLA: 38:07:15.00n 116:52:20.00w 0 m  Difference: 6 m  \
+  Track: Range: 51701 m Bearing: 250.157 deg Elevation: -12.1279 deg \
+  Truth: Range: 51702.2 m Bearing: 250.157 deg Elevation: -12.1345 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (160 MHz 160 MHz) ] \
+ Source_TrackId: 100_ucav.21 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5
+00:00:03.5 SENSOR_TRACK_INITIATED 100_ucav 2500_ew_radar Sensor: esm TrackId: 100_ucav.23 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2500_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:54:54.00n 116:08:57.00w 6 m Flags: L3 \
+  Truth: LLA: 37:54:54.00n 116:08:57.00w 0 m  Difference: 6 m  \
+  Track: Range: 44497 m Bearing: 158.384 deg Elevation: -14.0579 deg \
+  Truth: Range: 44498.4 m Bearing: 158.384 deg Elevation: -14.0654 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (155 MHz 155 MHz) ]
+00:00:03.5 LOCAL_TRACK_INITIATED 100_ucav 2500_ew_radar TrackId: 100_ucav.24 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2500_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:54:54.00n 116:08:57.00w 6 m Flags: L3 \
+  Truth: LLA: 37:54:54.00n 116:08:57.00w 0 m  Difference: 6 m  \
+  Track: Range: 44497 m Bearing: 158.384 deg Elevation: -14.0579 deg \
+  Truth: Range: 44498.4 m Bearing: 158.384 deg Elevation: -14.0654 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (155 MHz 155 MHz) ] \
+ Source_TrackId: 100_ucav.23 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5
+00:00:03.5 SENSOR_TRACK_INITIATED 100_ucav 2000_ew_radar Sensor: esm TrackId: 100_ucav.25 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 2000_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:49:22.00n 117:14:50.00w 6 m Flags: L3 \
+  Truth: LLA: 37:49:22.00n 117:14:50.00w 0 m  Difference: 6 m  \
+  Track: Range: 95645.7 m Bearing: 238.246 deg Elevation: -6.82663 deg \
+  Truth: Range: 95646.3 m Bearing: 238.246 deg Elevation: -6.83021 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (240 MHz 240 MHz) ]
+00:00:03.5 LOCAL_TRACK_INITIATED 100_ucav 2000_ew_radar TrackId: 100_ucav.26 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 2000_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:49:22.00n 117:14:50.00w 6 m Flags: L3 \
+  Truth: LLA: 37:49:22.00n 117:14:50.00w 0 m  Difference: 6 m  \
+  Track: Range: 95645.7 m Bearing: 238.246 deg Elevation: -6.82663 deg \
+  Truth: Range: 95646.3 m Bearing: 238.246 deg Elevation: -6.83021 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (240 MHz 240 MHz) ] \
+ Source_TrackId: 100_ucav.25 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5
+00:00:03.5 SENSOR_TRACK_INITIATED 100_ucav 1900_ew_radar Sensor: esm TrackId: 100_ucav.27 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1900_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:53:10.00n 117:27:25.00w 6 m Flags: L3 \
+  Truth: LLA: 37:53:10.00n 117:27:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 108572 m Bearing: 246.673 deg Elevation: -6.12007 deg \
+  Truth: Range: 108572 m Bearing: 246.673 deg Elevation: -6.12322 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (235 MHz 235 MHz) ]
+00:00:03.5 LOCAL_TRACK_INITIATED 100_ucav 1900_ew_radar TrackId: 100_ucav.28 \
+  Start_Time: 00:00:03.5 Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1900_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:53:10.00n 117:27:25.00w 6 m Flags: L3 \
+  Truth: LLA: 37:53:10.00n 117:27:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 108572 m Bearing: 246.673 deg Elevation: -6.12007 deg \
+  Truth: Range: 108572 m Bearing: 246.673 deg Elevation: -6.12322 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (235 MHz 235 MHz) ] \
+ Source_TrackId: 100_ucav.27 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.5 Update_Count: 0 Quality: 0.5
+00:00:03.7 SENSOR_TRACK_INITIATED 100_ucav 1800_ew_radar Sensor: esm TrackId: 100_ucav.29 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1800_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:53:09.00n 117:27:47.00w 6 m Flags: L3 \
+  Truth: LLA: 37:53:09.00n 117:27:47.00w 0 m  Difference: 6 m  \
+  Track: Range: 109073 m Bearing: 246.774 deg Elevation: -6.09632 deg \
+  Truth: Range: 109074 m Bearing: 246.774 deg Elevation: -6.09946 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (230 MHz 230 MHz) ]
+00:00:03.7 LOCAL_TRACK_INITIATED 100_ucav 1800_ew_radar TrackId: 100_ucav.30 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1800_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:53:09.00n 117:27:47.00w 6 m Flags: L3 \
+  Truth: LLA: 37:53:09.00n 117:27:47.00w 0 m  Difference: 6 m  \
+  Track: Range: 109073 m Bearing: 246.774 deg Elevation: -6.09632 deg \
+  Truth: Range: 109074 m Bearing: 246.774 deg Elevation: -6.09946 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (230 MHz 230 MHz) ] \
+ Source_TrackId: 100_ucav.29 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5
+00:00:03.7 SENSOR_TRACK_INITIATED 100_ucav 1700_ew_radar Sensor: esm TrackId: 100_ucav.31 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1700_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:52:02.00n 117:29:15.00w 6 m Flags: L3 \
+  Truth: LLA: 37:52:02.00n 117:29:15.00w 0 m  Difference: 6 m  \
+  Track: Range: 111871 m Bearing: 246.251 deg Elevation: -5.96823 deg \
+  Truth: Range: 111871 m Bearing: 246.251 deg Elevation: -5.97129 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (225 MHz 225 MHz) ]
+00:00:03.7 LOCAL_TRACK_INITIATED 100_ucav 1700_ew_radar TrackId: 100_ucav.32 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1700_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 37:52:02.00n 117:29:15.00w 6 m Flags: L3 \
+  Truth: LLA: 37:52:02.00n 117:29:15.00w 0 m  Difference: 6 m  \
+  Track: Range: 111871 m Bearing: 246.251 deg Elevation: -5.96823 deg \
+  Truth: Range: 111871 m Bearing: 246.251 deg Elevation: -5.97129 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (225 MHz 225 MHz) ] \
+ Source_TrackId: 100_ucav.31 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5
+00:00:03.7 SENSOR_TRACK_INITIATED 100_ucav 1600_ew_radar Sensor: esm TrackId: 100_ucav.33 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:01:09.00n 117:26:07.00w 6 m Flags: L3 \
+  Truth: LLA: 38:01:09.00n 117:26:07.00w 0 m  Difference: 6 m  \
+  Track: Range: 101655 m Bearing: 253.905 deg Elevation: -6.47355 deg \
+  Truth: Range: 101656 m Bearing: 253.905 deg Elevation: -6.47692 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (220 MHz 220 MHz) ]
+00:00:03.7 LOCAL_TRACK_INITIATED 100_ucav 1600_ew_radar TrackId: 100_ucav.34 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1600_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:01:09.00n 117:26:07.00w 6 m Flags: L3 \
+  Truth: LLA: 38:01:09.00n 117:26:07.00w 0 m  Difference: 6 m  \
+  Track: Range: 101655 m Bearing: 253.905 deg Elevation: -6.47355 deg \
+  Truth: Range: 101656 m Bearing: 253.905 deg Elevation: -6.47692 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (220 MHz 220 MHz) ] \
+ Source_TrackId: 100_ucav.33 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5
+00:00:03.7 SENSOR_TRACK_INITIATED 100_ucav 1400_ew_radar Sensor: esm TrackId: 100_ucav.35 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:00:58.00n 118:14:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:00:58.00n 118:14:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 171188 m Bearing: 260.84 deg Elevation: -4.33641 deg \
+  Truth: Range: 171188 m Bearing: 260.84 deg Elevation: -4.33842 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (210 MHz 210 MHz) ]
+00:00:03.7 LOCAL_TRACK_INITIATED 100_ucav 1400_ew_radar TrackId: 100_ucav.36 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1400_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:00:58.00n 118:14:58.00w 6 m Flags: L3 \
+  Truth: LLA: 38:00:58.00n 118:14:58.00w 0 m  Difference: 6 m  \
+  Track: Range: 171188 m Bearing: 260.84 deg Elevation: -4.33641 deg \
+  Truth: Range: 171188 m Bearing: 260.84 deg Elevation: -4.33842 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (210 MHz 210 MHz) ] \
+ Source_TrackId: 100_ucav.35 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5
+00:00:03.7 SENSOR_TRACK_INITIATED 100_ucav 1200_ew_radar Sensor: esm TrackId: 100_ucav.37 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:27.00n 118:18:31.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:27.00n 118:18:31.00w 0 m  Difference: 6 m  \
+  Track: Range: 174356 m Bearing: 276.629 deg Elevation: -4.28561 deg \
+  Truth: Range: 174357 m Bearing: 276.629 deg Elevation: -4.28758 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (200 MHz 200 MHz) ]
+00:00:03.7 LOCAL_TRACK_INITIATED 100_ucav 1200_ew_radar TrackId: 100_ucav.38 \
+  Start_Time: 00:00:03.7 Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:27.00n 118:18:31.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:27.00n 118:18:31.00w 0 m  Difference: 6 m  \
+  Track: Range: 174356 m Bearing: 276.629 deg Elevation: -4.28561 deg \
+  Truth: Range: 174357 m Bearing: 276.629 deg Elevation: -4.28758 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (200 MHz 200 MHz) ] \
+ Source_TrackId: 100_ucav.37 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:03.7 Update_Count: 0 Quality: 0.5
+00:00:04.0 SENSOR_TRACK_INITIATED 100_ucav 1100_ew_radar Sensor: esm TrackId: 100_ucav.39 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1100_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:08.00n 118:18:59.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:08.00n 118:18:59.00w 0 m  Difference: 6 m  \
+  Track: Range: 174978 m Bearing: 276.416 deg Elevation: -4.27593 deg \
+  Truth: Range: 174978 m Bearing: 276.416 deg Elevation: -4.27789 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (190 MHz 190 MHz) ]
+00:00:04.0 LOCAL_TRACK_INITIATED 100_ucav 1100_ew_radar TrackId: 100_ucav.40 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1100_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:26:08.00n 118:18:59.00w 6 m Flags: L3 \
+  Truth: LLA: 38:26:08.00n 118:18:59.00w 0 m  Difference: 6 m  \
+  Track: Range: 174978 m Bearing: 276.416 deg Elevation: -4.27593 deg \
+  Truth: Range: 174978 m Bearing: 276.416 deg Elevation: -4.27789 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (190 MHz 190 MHz) ] \
+ Source_TrackId: 100_ucav.39 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5
+00:00:04.0 SENSOR_TRACK_INITIATED 100_ucav 1000_ew_radar Sensor: esm TrackId: 100_ucav.41 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 1000_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:27:24.00n 117:32:40.00w 6 m Flags: L3 \
+  Truth: LLA: 38:27:24.00n 117:32:40.00w 0 m  Difference: 6 m  \
+  Track: Range: 108611 m Bearing: 281.038 deg Elevation: -6.11792 deg \
+  Truth: Range: 108612 m Bearing: 281.038 deg Elevation: -6.12108 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (185 MHz 185 MHz) ]
+00:00:04.0 LOCAL_TRACK_INITIATED 100_ucav 1000_ew_radar TrackId: 100_ucav.42 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 1000_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:27:24.00n 117:32:40.00w 6 m Flags: L3 \
+  Truth: LLA: 38:27:24.00n 117:32:40.00w 0 m  Difference: 6 m  \
+  Track: Range: 108611 m Bearing: 281.038 deg Elevation: -6.11792 deg \
+  Truth: Range: 108612 m Bearing: 281.038 deg Elevation: -6.12108 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (185 MHz 185 MHz) ] \
+ Source_TrackId: 100_ucav.41 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5
+00:00:04.0 SENSOR_TRACK_INITIATED 100_ucav 900_ew_radar Sensor: esm TrackId: 100_ucav.43 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 900_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:15:56.00n 117:44:36.00w 6 m Flags: L3 \
+  Truth: LLA: 38:15:56.00n 117:44:36.00w 0 m  Difference: 6 m  \
+  Track: Range: 124243 m Bearing: 269.866 deg Elevation: -5.47753 deg \
+  Truth: Range: 124243 m Bearing: 269.866 deg Elevation: -5.48029 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (180 MHz 180 MHz) ]
+00:00:04.0 LOCAL_TRACK_INITIATED 100_ucav 900_ew_radar TrackId: 100_ucav.44 \
+  Start_Time: 00:00:04.0 Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 900_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:15:56.00n 117:44:36.00w 6 m Flags: L3 \
+  Truth: LLA: 38:15:56.00n 117:44:36.00w 0 m  Difference: 6 m  \
+  Track: Range: 124243 m Bearing: 269.866 deg Elevation: -5.47753 deg \
+  Truth: Range: 124243 m Bearing: 269.866 deg Elevation: -5.48029 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (180 MHz 180 MHz) ] \
+ Source_TrackId: 100_ucav.43 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:04.0 Update_Count: 0 Quality: 0.5
+00:00:40.0 SENSOR_TRACK_INITIATED 400_ew_radar 100_ucav Sensor: ew_radar TrackId: 400_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 39:04:09.00n 116:32:53.00w 6 m \
+  Track: LLA: 38:16:13.89n 116:19:41.99w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 555.648 m  \
+  Track: Range: 90701.6 m Bearing: 167.76 deg \
+  Truth: Range: 90701.6 m Bearing: 167.76 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 500_ew_radar 100_ucav Sensor: ew_radar TrackId: 500_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 39:03:39.00n 116:33:34.00w 6 m \
+  Track: LLA: 38:16:13.81n 116:19:41.59w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 560.981 m  \
+  Track: Range: 90018.3 m Bearing: 167.009 deg \
+  Truth: Range: 90018.3 m Bearing: 167.009 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 600_ew_radar 100_ucav Sensor: ew_radar TrackId: 600_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:41:35.00n 117:05:57.00w 6 m \
+  Track: LLA: 38:16:21.98n 116:19:22.43w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 627.518 m  \
+  Track: Range: 82248.9 m Bearing: 124.317 deg \
+  Truth: Range: 82248.9 m Bearing: 124.317 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 800_ew_radar 100_ucav Sensor: ew_radar TrackId: 800_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:15:56.00n 117:44:36.00w 6 m \
+  Track: LLA: 38:16:36.04n 116:19:25.62w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 360.852 m  \
+  Track: Range: 124243 m Bearing: 88.991 deg \
+  Truth: Range: 124243 m Bearing: 88.991 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 900_ew_radar 100_ucav Sensor: ew_radar TrackId: 900_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:15:56.00n 117:44:36.00w 6 m \
+  Track: LLA: 38:16:36.04n 116:19:25.62w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 360.852 m  \
+  Track: Range: 124243 m Bearing: 88.991 deg \
+  Truth: Range: 124243 m Bearing: 88.991 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1000_ew_radar 100_ucav Sensor: ew_radar TrackId: 1000_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:27:24.00n 117:32:40.00w 6 m \
+  Track: LLA: 38:16:32.25n 116:19:23.65w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 438.261 m  \
+  Track: Range: 108611 m Bearing: 100.284 deg \
+  Truth: Range: 108611 m Bearing: 100.284 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1100_ew_radar 100_ucav Sensor: ew_radar TrackId: 1100_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:26:08.00n 118:18:59.00w 6 m \
+  Track: LLA: 38:16:34.47n 116:19:30.77w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 195.719 m  \
+  Track: Range: 174978 m Bearing: 95.1835 deg \
+  Truth: Range: 174978 m Bearing: 95.1835 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1600_ew_radar 100_ucav Sensor: ew_radar TrackId: 1600_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:01:09.00n 117:26:07.00w 6 m \
+  Track: LLA: 38:16:41.72n 116:19:22.89w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 479.465 m  \
+  Track: Range: 101655 m Bearing: 73.2221 deg \
+  Truth: Range: 101655 m Bearing: 73.2221 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1700_ew_radar 100_ucav Sensor: ew_radar TrackId: 1700_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:52:02.00n 117:29:15.00w 6 m \
+  Track: LLA: 38:16:43.70n 116:19:25.81w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 420.486 m  \
+  Track: Range: 111871 m Bearing: 65.5369 deg \
+  Truth: Range: 111871 m Bearing: 65.5369 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1800_ew_radar 100_ucav Sensor: ew_radar TrackId: 1800_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:53:09.00n 117:27:47.00w 6 m \
+  Track: LLA: 38:16:43.69n 116:19:25.28w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 435.645 m  \
+  Track: Range: 109073 m Bearing: 66.0749 deg \
+  Truth: Range: 109073 m Bearing: 66.0749 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 1900_ew_radar 100_ucav Sensor: ew_radar TrackId: 1900_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:53:10.00n 117:27:25.00w 6 m \
+  Track: LLA: 38:16:43.75n 116:19:25.22w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 438.437 m  \
+  Track: Range: 108572 m Bearing: 65.9779 deg \
+  Truth: Range: 108572 m Bearing: 65.9779 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2000_ew_radar 100_ucav Sensor: ew_radar TrackId: 2000_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:49:22.00n 117:14:50.00w 6 m \
+  Track: LLA: 38:16:47.40n 116:19:24.66w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 519.356 m  \
+  Track: Range: 95645.7 m Bearing: 57.68 deg \
+  Truth: Range: 95645.7 m Bearing: 57.68 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2100_ew_radar 100_ucav Sensor: ew_radar TrackId: 2100_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:49:17.00n 117:15:16.00w 6 m \
+  Track: LLA: 38:16:47.30n 116:19:24.75w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 515.048 m  \
+  Track: Range: 96262.4 m Bearing: 57.8013 deg \
+  Truth: Range: 96262.4 m Bearing: 57.8013 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2300_ew_radar 100_ucav Sensor: ew_radar TrackId: 2300_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:06:53.00n 116:52:58.00w 6 m \
+  Track: LLA: 38:16:48.65n 116:19:04.37w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 1045.34 m  \
+  Track: Range: 52782.4 m Bearing: 69.4627 deg \
+  Truth: Range: 52782.4 m Bearing: 69.4627 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2400_ew_radar 100_ucav Sensor: ew_radar TrackId: 2400_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:06:52.00n 116:52:58.00w 6 m \
+  Track: LLA: 38:16:48.67n 116:19:04.39w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 1045.11 m  \
+  Track: Range: 52793.1 m Bearing: 69.4307 deg \
+  Truth: Range: 52793.1 m Bearing: 69.4307 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2500_ew_radar 100_ucav Sensor: ew_radar TrackId: 2500_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 37:54:54.00n 116:08:57.00w 6 m \
+  Track: LLA: 38:17:16.15n 116:20:08.18w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 1260.32 m  \
+  Track: Range: 44497 m Bearing: 338.495 deg \
+  Truth: Range: 44497 m Bearing: 338.495 deg
+00:00:40.0 SENSOR_TRACK_INITIATED 2600_ew_radar 100_ucav Sensor: ew_radar TrackId: 2600_ew_radar.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:07:15.00n 116:52:20.00w 6 m \
+  Track: LLA: 38:16:48.69n 116:19:03.41w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 1069.49 m  \
+  Track: Range: 51701 m Bearing: 69.8212 deg \
+  Truth: Range: 51701 m Bearing: 69.8212 deg
+00:00:40.5 LOCAL_TRACK_INITIATED 100_radar_company 100_ucav TrackId: 100_radar_company.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:41:35.00n 117:05:57.00w 6 m \
+  Track: LLA: 38:16:21.98n 116:19:22.43w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 627.518 m  \
+  Track: Range: 82248.9 m Bearing: 124.317 deg \
+  Truth: Range: 82248.9 m Bearing: 124.317 deg \
+ Source_TrackId: 600_ew_radar.1 Sensor: ew_radar Type: EW_RADAR Mode: default Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5
+00:00:40.5 LOCAL_TRACK_INITIATED 700_radar_company 100_ucav TrackId: 700_radar_company.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:15:56.00n 117:44:36.00w 6 m \
+  Track: LLA: 38:16:36.04n 116:19:25.62w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 360.852 m  \
+  Track: Range: 124243 m Bearing: 88.991 deg \
+  Truth: Range: 124243 m Bearing: 88.991 deg \
+ Source_TrackId: 800_ew_radar.1 Sensor: ew_radar Type: EW_RADAR Mode: default Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5
+00:00:40.5 LOCAL_TRACK_INITIATED 1500_radar_company 100_ucav TrackId: 1500_radar_company.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:01:09.00n 117:26:07.00w 6 m \
+  Track: LLA: 38:16:41.72n 116:19:22.89w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 479.465 m  \
+  Track: Range: 101655 m Bearing: 73.2221 deg \
+  Truth: Range: 101655 m Bearing: 73.2221 deg \
+ Source_TrackId: 1600_ew_radar.1 Sensor: ew_radar Type: EW_RADAR Mode: default Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5
+00:00:40.5 LOCAL_TRACK_INITIATED 2200_radar_company 100_ucav TrackId: 2200_radar_company.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:06:53.00n 116:52:58.00w 6 m \
+  Track: LLA: 38:16:48.65n 116:19:04.37w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 1045.34 m  \
+  Track: Range: 52782.4 m Bearing: 69.4627 deg \
+  Truth: Range: 52782.4 m Bearing: 69.4627 deg \
+ Source_TrackId: 2300_ew_radar.1 Sensor: ew_radar Type: EW_RADAR Mode: default Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5
+00:00:41.0 LOCAL_TRACK_INITIATED 10_iads_cmdr 100_ucav TrackId: 10_iads_cmdr.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:41:35.00n 117:05:57.00w 6 m \
+  Track: LLA: 38:16:21.98n 116:19:22.43w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 627.518 m  \
+  Track: Range: 82248.9 m Bearing: 124.317 deg \
+  Truth: Range: 82248.9 m Bearing: 124.317 deg \
+ Source_TrackId: 100_radar_company.1 Update_Time: 00:00:40.0 Update_Count: 0 Quality: 0.5
+00:01:02.3 TASK_ASSIGNED 3200_large_sam_battalion 100_ucav 10_iads_cmdr Task_Type: ENGAGE Resource: <none> \
+ TrackId: 10_iads_cmdr.1 \
+  Start_Time: 00:00:40.0 Update_Time: 00:00:56.3 Update_Count: 7 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:26:08.00n 118:18:59.00w 6 m \
+  Track: LLA: 38:16:35.14n 116:19:38.37w 6993.9137 m Flags: LRB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 3681.65 m  \
+  Track: Range: 174978 m Bearing: 95.1835 deg Elevation: 1.50465 deg \
+  Truth: Range: 174978 m Bearing: 95.1835 deg Elevation: 2.71021 deg \
+ Assignee->Target_Range: 55882.2 m True_Bearing: 91.8401 deg
+00:01:02.8 LOCAL_TRACK_INITIATED 3200_large_sam_battalion 100_ucav TrackId: 3200_large_sam_battalion.1 \
+  Start_Time: 00:00:56.3 Update_Time: 00:00:56.3 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:26:08.00n 118:18:59.00w 6 m \
+  Track: LLA: 38:16:35.14n 116:19:38.37w 6993.9137 m Flags: LRB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 3681.65 m  \
+  Track: Range: 174978 m Bearing: 95.1835 deg Elevation: 1.50465 deg \
+  Truth: Range: 174978 m Bearing: 95.1835 deg Elevation: 2.71021 deg \
+ Source_TrackId: 10_iads_cmdr.1 Update_Time: 00:00:56.3 Update_Count: 7 Quality: 0.5
+00:01:03.5 OPERATING_LEVEL_CHANGED 3210_acq_radar task_mgr Name: ENGAGE Level: 1
+00:01:06.3 SENSOR_TURNED_ON 3210_acq_radar Sensor: acq_radar Type: ACQ_RADAR \
+ LLA: 38:17:39.00n 116:57:37.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:01:06.5 SENSOR_TRACK_INITIATED 100_ucav 3210_acq_radar Sensor: esm TrackId: 100_ucav.45 \
+  Start_Time: 00:01:06.5 Update_Time: 00:01:06.5 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 3210_acq_radar Type: ACQ_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:17:39.00n 116:57:37.00w 5 m Flags: L3 \
+  Truth: LLA: 38:17:39.00n 116:57:37.00w 0 m  Difference: 5 m  \
+  Track: Range: 56243.6 m Bearing: 272.213 deg Elevation: -11.176 deg \
+  Truth: Range: 56244.6 m Bearing: 272.213 deg Elevation: -11.181 deg \
+  Type_ID: ACQ_RADAR \
+  Frequency: [ (3.1 GHz 3.1 GHz) ]
+00:01:06.5 LOCAL_TRACK_INITIATED 100_ucav 3210_acq_radar TrackId: 100_ucav.46 \
+  Start_Time: 00:01:06.5 Update_Time: 00:01:06.5 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 3210_acq_radar Type: ACQ_RADAR Side: red \
+  Originator: LLA: 38:16:36.00n 116:19:48.00w 10668 m \
+  Track: LLA: 38:17:39.00n 116:57:37.00w 5 m Flags: L3 \
+  Truth: LLA: 38:17:39.00n 116:57:37.00w 0 m  Difference: 5 m  \
+  Track: Range: 56243.6 m Bearing: 272.213 deg Elevation: -11.176 deg \
+  Truth: Range: 56244.6 m Bearing: 272.213 deg Elevation: -11.181 deg \
+  Type_ID: ACQ_RADAR \
+  Frequency: [ (3.1 GHz 3.1 GHz) ] \
+ Source_TrackId: 100_ucav.45 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:01:06.5 Update_Count: 0 Quality: 0.5
+00:01:26.5 SENSOR_TRACK_INITIATED 3210_acq_radar 100_ucav Sensor: acq_radar TrackId: 3210_acq_radar.1 \
+  Start_Time: 00:01:26.5 Update_Time: 00:01:26.5 Update_Count: 0 Quality: 0.6 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:17:39.00n 116:57:37.00w 5 m \
+  Track: LLA: 38:16:36.00n 116:19:48.00w 10668 m Flags: 3RBE \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 3.41061e-12 m  \
+  Track: Range: 56243.6 m Bearing: 91.8223 deg Elevation: 10.681 deg \
+  Truth: Range: 56243.6 m Bearing: 91.8223 deg Elevation: 10.681 deg
+00:01:40.0 SENSOR_TRACK_INITIATED 200_ew_radar 100_ucav Sensor: ew_radar TrackId: 200_ew_radar.1 \
+  Start_Time: 00:01:40.0 Update_Time: 00:01:40.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 39:22:36.00n 117:33:25.00w 6 m \
+  Track: LLA: 38:16:25.03n 116:19:36.04w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 227.564 m  \
+  Track: Range: 162538 m Bearing: 138.509 deg \
+  Truth: Range: 162538 m Bearing: 138.509 deg
+00:02:00.0 SENSOR_TRACK_INITIATED 1400_ew_radar 100_ucav Sensor: ew_radar TrackId: 1400_ew_radar.1 \
+  Start_Time: 00:02:00.0 Update_Time: 00:02:00.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:00:58.00n 118:14:58.00w 6 m \
+  Track: LLA: 38:16:38.22n 116:19:30.59w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 205.047 m  \
+  Track: Range: 171188 m Bearing: 79.6546 deg \
+  Truth: Range: 171188 m Bearing: 79.6546 deg
+00:02:20.0 SENSOR_TRACK_INITIATED 300_ew_radar 100_ucav Sensor: ew_radar TrackId: 300_ew_radar.1 \
+  Start_Time: 00:02:20.0 Update_Time: 00:02:20.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 39:22:34.00n 117:33:10.00w 6 m \
+  Track: LLA: 38:16:25.00n 116:19:36.05w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 228.345 m  \
+  Track: Range: 162254 m Bearing: 138.593 deg \
+  Truth: Range: 162254 m Bearing: 138.593 deg
+00:02:20.0 SENSOR_TRACK_INITIATED 1300_ew_radar 100_ucav Sensor: ew_radar TrackId: 1300_ew_radar.1 \
+  Start_Time: 00:02:20.0 Update_Time: 00:02:20.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: 100_ucav Type: UCAV Side: blue \
+  Originator: LLA: 38:26:19.00n 118:18:07.00w 6 m \
+  Track: LLA: 38:16:34.42n 116:19:30.68w 0 m Flags: RB \
+  Truth: LLA: 38:16:36.00n 116:19:48.00w 10668 m  Difference: 198.694 m  \
+  Track: Range: 173755 m Bearing: 95.3418 deg \
+  Truth: Range: 173755 m Bearing: 95.3418 deg

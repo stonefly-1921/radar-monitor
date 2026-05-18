@@ -15,7 +15,7 @@ PDU_TYPE_SIGNAL = 4
 PDU_TYPE_START_RESUME = 10
 PDU_TYPE_STOP_FREEZE = 11
 
-EXERCISE_ID_DEFAULT = 1
+EXERCISE_ID_DEFAULT = 0
 
 # =============================================================================
 # Struct Formats (DIS uses big-endian/network byte order)

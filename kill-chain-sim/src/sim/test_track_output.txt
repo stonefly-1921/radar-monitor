@@ -1,0 +1,29 @@
+# Test: IADS commander with track monitoring
+# Minimal scenario: IADS with one radar detecting a blue UCAV
+define_path_variable CASE test_track_output
+log_file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\$(CASE).log
+
+realtime
+
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\scenarios\iads_laydown.txt
+
+# Blue UCAV flying through IADS coverage area (creation_time=0 = immediate)
+platform 100_ucav UCAV
+   side blue
+   commander SELF
+   creation_time 0.0 min
+   position 38:16:36n 116:19:48w altitude 35000 ft msl
+   route
+      navigation
+         position 38:16:36n 116:19:48w altitude 35000 ft msl
+         position 38:10:24n 117:02:48w altitude 35000 ft msl
+         position 38:24:12n 117:21:12w altitude 35000 ft msl
+      end_navigation
+   end_route
+end_platform
+
+event_output   file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\$(CASE).evt   end_event_output
+event_pipe     file NULL end_event_pipe
+
+end_time 3 min

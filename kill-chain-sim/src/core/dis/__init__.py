@@ -27,6 +27,7 @@ from .dis_dispatcher import DisDispatcher
 from .entity_tracker import EntityTracker, TrackedEntity, Location
 from .fire_control import FireControl, FireMission, get_fire_control
 from .esm_client import EsmClient, EsmReport, EmitterType
+from .esm_trajectory_tracker import EsmTrajectoryTracker
 
 __all__ = [
     # Client
@@ -66,4 +67,5 @@ __all__ = [
     "EsmClient",
     "EsmReport",
     "EmitterType",
+    "EsmTrajectoryTracker",
 ]

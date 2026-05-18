@@ -1,44 +1,19 @@
-# ****************************************************************************
-# Kill Chain Kill Chain Simulation - Main Scenario
-#
-# Integrates kill-chain-sim DIS client with AFSIM IADS simulation
-# Tests: Entity tracking, MILP allocation, engagement evaluation
-#
-# Usage:
-#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_scenario.txt
-#
-# Created: 2026-05-18
-# Project: kill-chain-sim
-# ****************************************************************************
-
-define_path_variable CASE kill_chain
-log_file output/$(CASE).log
+# Minimal DIS test - use dis_realtime.txt as-is (default 224.2.25.55:3225)
+define_path_variable CASE dis_test_only
+log_file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\$(CASE).log
 
 realtime
 
-# Core setup (platform types, common defs, terrain)
 include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\dis_realtime.txt
 
-# DIS entity type definitions
-include D:\afsim-2.9.0-win64\demos\iads\dis_data.txt
-# NOTE: dis_realtime.txt removed - using xio_interface for DIS output instead
-# include D:\afsim-2.9.0-win64\demos\iads\dis_realtime.txt
+# One simple platform
+platform test_radar EW_RADAR
+  side red
+  position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
 
-# XIO Interface (AFSIM -> Python DIS client)
-include D:\afsim-2.9.0-win64\demos\iads\xio_interface.txt
-
-# IADS Red Force laydown (radars, SAMs, commanders)
-include D:\afsim-2.9.0-win64\demos\iads\scenarios\iads_laydown.txt
-
-# Blue Force strikers (attackers)
-include D:\afsim-2.9.0-win64\demos\iads\scenarios\strike.txt
-
-# Kill chain evaluation settings
-event_output   file output/kill_chain.evt   end_event_output
+event_output   file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\$(CASE).evt   end_event_output
 event_pipe     file NULL end_event_pipe
 
-dis_interface
-   application 2
-end_dis_interface
-
-end_time 10 min
+end_time 2 min
