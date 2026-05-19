@@ -47,8 +47,9 @@ class TrackFileMonitor:
 
     def stop(self):
         self.running = False
-        if self.thread.is_alive():
+        if hasattr(self, 'thread') and self.thread.is_alive():
             self.thread.join(timeout=2)
+        self.shm_client.close()
 
     def _run(self, poll_interval: float):
         file_pos = 0

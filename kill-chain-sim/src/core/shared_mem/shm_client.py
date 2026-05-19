@@ -185,27 +185,37 @@ class ShmClient:
         """Connect to or create the shared memory file."""
         try:
             os.makedirs(self.shm_path.parent, exist_ok=True)
-            # Create/truncate the file
-            self.fd = os.open(str(self.shm_path), os.O_RDWR | os.O_CREAT | os.O_TRUNC, 0o666)
-            os.ftruncate(self.fd, SHM_SIZE)
-            self.mm = mmap.mmap(self.fd, 0, access=mmap.ACCESS_WRITE)
+            # Try to open existing file without O_TRUNC first.
+            # This avoids EINVAL when another process (e.g. TrackFileMonitor)
+            # already has the file mmapped — O_TRUNC destroys the size while
+            # a mmap of that same file still exists.
+            try:
+                self.fd = os.open(str(self.shm_path), os.O_RDWR, 0o666)
+            except FileNotFoundError:
+                self.fd = os.open(str(self.shm_path), os.O_RDWR | os.O_CREAT | os.O_TRUNC, 0o666)
+                os.ftruncate(self.fd, SHM_SIZE)
+            self.mm = mmap.mmap(self.fd, SHM_SIZE, access=mmap.ACCESS_WRITE)
 
-            # Write fence marker at end
-            self.mm.seek(CMDACK_OFFSET + MAX_CMDS * CMD_SIZE)
-            self.mm.write(struct.pack("<Q", FENCE_VALUE))
-
-            # Initialize header
-            header = ShmHeader()
-            header.magic = MAGIC
-            header.version = 1
-            header.track_count = 0
-            header.timestamp_ms = 0
-            header.cmd_in = 0
-            header.cmd_out = 0
-            header.afsim_ready = 0
-            header.padding = (0,) * 7
-            header.fence = FENCE_VALUE
-            self._write_header(header)
+            # Only write header + fence for a brand-new file.
+            # For existing files, preserve whatever tracks have been written
+            # (e.g. by TrackFileMonitor or a previous monitor instance).
+            header = self._read_header()
+            if header is None or header.magic != MAGIC:
+                # Write fence marker at end
+                self.mm.seek(CMDACK_OFFSET + MAX_CMDS * CMD_SIZE)
+                self.mm.write(struct.pack("<Q", FENCE_VALUE))
+                # Initialize header
+                header = ShmHeader()
+                header.magic = MAGIC
+                header.version = 1
+                header.track_count = 0
+                header.timestamp_ms = 0
+                header.cmd_in = 0
+                header.cmd_out = 0
+                header.afsim_ready = 0
+                header.padding = (0,) * 7
+                header.fence = FENCE_VALUE
+                self._write_header(header)
 
             return True
         except Exception as e:
