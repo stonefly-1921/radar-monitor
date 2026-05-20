@@ -1,0 +1,53 @@
+# Kill Chain Track Writer - Standalone Test
+#
+# Usage:
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_writer_test.txt
+
+define_path_variable CASE kill_chain_writer
+log_file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\kill_chain_writer.log
+
+realtime
+
+# Base setup
+file_path D:\afsim-2.9.0-win64\demos\iads
+include setup.txt
+
+# Blue strikers (includes blue players)
+include platforms/blue_players.txt
+
+# IADS laydown (radars, but NOT the IADS commander since include_once blocked it)
+file_path D:\afsim-2.9.0-win64\demos\iads
+include scenarios/iads_laydown.txt
+
+# Define our processor BEFORE using it
+file_path C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim\processors
+include kill_chain_track_writer.txt
+
+# Create IADS commander WITH track writer attached (bypass include_once issue)
+platform 10_iads_cmdr IADS_CMDR
+   processor track_writer KILL_CHAIN_TRACK_WRITER
+   end_processor
+end_platform
+
+# Blue UCAV - will be detected by radars
+platform 100_ucav UCAV
+   side blue
+   commander SELF
+   creation_time 0.5 min
+   position 38:16:36n 116:19:48w altitude 35000 ft msl
+   route
+      navigation
+         position 38:16:36n 116:19:48w altitude 35000 ft msl
+         position 38:10:24n 117:02:48w altitude 35000 ft msl
+         position 38:24:12n 117:21:12w altitude 35000 ft msl
+      end_navigation
+   end_route
+end_platform
+
+# Output
+log_file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\kill_chain_writer_tracks.log
+
+event_output   file C:\Users\15041\.openclaw\workspace\kill-chain-sim\output\kill_chain_writer.evt end_event_output
+event_pipe     file NULL end_event_pipe
+
+end_time 3 min

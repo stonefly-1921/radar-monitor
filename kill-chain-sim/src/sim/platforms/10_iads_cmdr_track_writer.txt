@@ -1,0 +1,9 @@
+# Track Writer Platform Override
+# Adds the track_writer processor to the existing iads_cmdr platform
+
+edit platform 10_iads_cmdr
+
+   processor track_writer KILL_CHAIN_TRACK_WRITER
+   end_processor
+
+end_edit

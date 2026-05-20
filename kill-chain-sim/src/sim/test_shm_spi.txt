@@ -1,0 +1,74 @@
+# Kill Chain SHM Command Reader - Standalone Test
+# Inline processor definition (no include needed)
+# AFSIM loads built-in platform_types from plugins (IADS_CMDR, EW_RADAR, etc.)
+
+processor KILL_CHAIN_CMD_READER WSF_SCRIPT_PROCESSOR
+   script_debug_writes true
+   script_variables
+      double mLastReadTime = 0.0;
+      int mTotalCmdCount = 0;
+   end_script_variables
+   update_interval 0.5 sec
+   on_update
+      int count = wsf_shm_process_new_commands();
+      if (count > 0)
+      {
+         mTotalCmdCount = mTotalCmdCount + count;
+         writeln_d("KC_SPI: ", count, " new cmds (total=", mTotalCmdCount, ")");
+         int idx = wsf_shm_get_cmd_in() - count;
+         if (idx < 0) { idx = 0; }
+         int rem = count;
+         while (rem > 0)
+         {
+            uint32_t cid; uint8_t ctype;
+            uint32_t ctid; uint32_t cp1; uint32_t cp2;
+            int ok = wsf_shm_read_cmd(idx, cid, ctype, ctid, cp1, cp2);
+            if (ok > 0)
+            {
+               if (ctype == 3)
+               {
+                  writeln_d("KC_SPI: ENGAGE interceptor=", cp1, " target=", cp2);
+               }
+               elsif (ctype == 4)
+               {
+                  writeln_d("KC_SPI: ALLOCATE weapon=", cp1, " target=", cp2);
+               }
+               else
+               {
+                  writeln_d("KC_SPI: type=", ctype, " p1=", cp1, " p2=", cp2);
+               }
+            }
+            idx = idx + 1; rem = rem - 1;
+         }
+      }
+   end_on_update
+end_processor
+
+# IADS Commander
+platform 10_iads_cmdr IADS_CMDR
+   side red
+   commander SELF
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+# EW Radar
+platform 200_ew_radar EW_RADAR
+   side red
+   commander 10_iads_cmdr
+   position 39:22:36n 117:33:25w altitude 0.0 m agl
+   edit sensor ew_radar
+      transmitter
+         frequency 150.0 mhz
+      end_transmitter
+   end_sensor
+end_platform
+
+# Blue aircraft (target to be tracked)
+platform 500_hostile AIRCRAFT
+   side blue
+   state
+      lat 39.0 lon -117.5 alt 3000.0 m heading 270 speed 200.0 mps
+   end_state
+end_platform
+
+end_time 20 sec

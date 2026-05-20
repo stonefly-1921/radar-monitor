@@ -1,0 +1,89 @@
+# ****************************************************************************
+# Kill Chain Command Reader - Script Processor
+#
+# Reads command entries written by Python (via wsf_shm.dll ctypes)
+# from the shared memory buffer and logs them.
+#
+# Python side: wsf_shm_client.py writes cmd entries
+# AFSIM side:  This processor reads them via wsf_shm_process_new_commands()
+#
+# Command types:
+#   1 = SENSOR   - param1=sensor_id, param2=mode
+#   2 = WEAPON   - param1=weapon_id, param2=weapon_mode
+#   3 = ENGAGE   - param1=interceptor_track_id, param2=target_track_id
+#   4 = ALLOCATE - param1=weapon_id, param2=target_track_id
+#
+# Created: 2026-05-19
+# Project: kill-chain-sim
+# ****************************************************************************
+
+processor KILL_CHAIN_CMD_READER WSF_SCRIPT_PROCESSOR
+
+   script_debug_writes true
+
+   script_variables
+      double mLastReadTime = 0.0;
+      double READ_INTERVAL = 0.5 sec;
+      int mTotalCmdCount = 0;
+   end_script_variables
+
+   update_interval 0.5 sec
+
+   on_update
+      int count = wsf_shm_process_new_commands();
+      if (count > 0)
+      {
+         mTotalCmdCount = mTotalCmdCount + count;
+         writeln_d("KC_CMD_READER: ", count, " new commands (total=", mTotalCmdCount, ")");
+
+         # Iterate through the new commands (circular buffer)
+         int cmd_in = wsf_shm_get_cmd_in();
+         # We can only read one at a time via read_cmd(index)
+         # Re-read cmd_in to find where we are in the buffer
+         int start_idx = cmd_in - count;
+         if (start_idx < 0) { start_idx = 0; }
+
+         int idx = start_idx;
+         int remaining = count;
+         while (remaining > 0)
+         {
+            int ok = wsf_shm_read_cmd(idx,
+               uint32_t cid, uint8_t ctype,
+               uint32_t ctid, uint32_t cp1, uint32_t cp2);
+
+            if (ok > 0)
+            {
+               if (ctype == 1)
+               {
+                  writeln_d("KC_CMD: type=SENSOR sender=", cid,
+                            " target=", ctid, " sensor=", cp1, " mode=", cp2);
+               }
+               elsif (ctype == 2)
+               {
+                  writeln_d("KC_CMD: type=WEAPON sender=", cid,
+                            " target=", ctid, " weapon=", cp1, " mode=", cp2);
+               }
+               elsif (ctype == 3)
+               {
+                  writeln_d("KC_CMD: type=ENGAGE sender=", cid,
+                            " interceptor_track=", cp1, " target_track=", cp2);
+               }
+               elsif (ctype == 4)
+               {
+                  writeln_d("KC_CMD: type=ALLOCATE sender=", cid,
+                            " weapon=", cp1, " target_track=", cp2);
+               }
+               else
+               {
+                  writeln_d("KC_CMD: type=", ctype,
+                            " sender=", cid, " target=", ctid,
+                            " p1=", cp1, " p2=", cp2);
+               }
+            }
+            idx = idx + 1;
+            remaining = remaining - 1;
+         }
+      }
+   end_on_update
+
+end_processor

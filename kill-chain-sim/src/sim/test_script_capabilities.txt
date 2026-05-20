@@ -1,0 +1,19 @@
+# test_script_capabilities.txt
+# 测试 AFSIM script 能力
+
+file_path D:\afsim-2.9.0-win64\demos\iads
+include setup.txt
+
+end_time 10 sec
+
+# 测试 writeln (已知可用)
+execute at_interval_of 1 s
+   writeln("TICK: t=", TIME_NOW);
+end_execute
+
+# 测试能否读 SHM (via wsf_shm.dll)
+execute at_interval_of 2 s
+   // 尝试调用 DLL 函数
+   int tc = wsf_shm_get_track_count();
+   writeln("SHM tracks=", tc);
+end_execute

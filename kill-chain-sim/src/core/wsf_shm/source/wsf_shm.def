@@ -1,0 +1,14 @@
+EXPORTS
+    wsf_shm_open
+    wsf_shm_close
+    wsf_shm_set_debug
+    wsf_shm_get_track_count
+    wsf_shm_get_cmd_in
+    wsf_shm_read_header
+    wsf_shm_read_track
+    wsf_shm_read_cmd
+    wsf_shm_process_new_commands
+    wsf_shm_create
+    wsf_shm_write_cmd
+    wsf_shm_write_track
+    wsf_shm_clear_tracks

@@ -1,0 +1,43 @@
+# ==============================================================================
+# Custom IADS Commander with track output via KILL_CHAIN_MGR
+# Extends the standard iads_cmdr platform with track writing capability
+# ==============================================================================
+
+# First include the standard iads_cmdr definition
+include D:\afsim-2.9.0-win64\demos\iads\platforms\iads_cmdr.txt
+
+# Now edit the platform to add the KILL_CHAIN_MGR processor
+# Note: KILL_CHAIN_MGR is defined in kill_chain_mgr.txt
+# which must be included before this edit block
+edit platform 10_iads_cmdr
+
+   # Kill Chain track writer - periodic output of all tracks
+   processor track_writer KILL_CHAIN_MGR
+      update_interval 1.0 sec
+
+      script void WriteTrackInfo()
+         // Output all tracks from the IADS track table
+         WsfTrackTable table = PLATFORM.TrackTable()
+         if (table != null) then
+            int n = table.NumTracks()
+            if (n > 0) then
+               foreach (WsfTrack t in table.Tracks())
+               {
+                  writeln("TRACK: id=", t.TrackId(),
+                          " lat=", t.Lat(),
+                          " lon=", t.Lon(),
+                          " alt=", t.Altitude(),
+                          " vel=", t.Velocity(),
+                          " hdg=", t.Heading())
+               }
+            end
+         end
+      end_script
+
+      on_update
+         WriteTrackInfo()
+      end_on_update
+
+   end_processor
+
+end_edit

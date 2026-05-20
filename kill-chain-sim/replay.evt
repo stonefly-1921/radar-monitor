@@ -1,0 +1,53 @@
+00:00:00.0 SENSOR_TURNED_ON 200_ew_radar Sensor: ew_radar Type: EW_RADAR \
+ LLA: 39:22:36.00n 117:33:25.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:00.0 SENSOR_TURNED_ON blue_strike1 Sensor: esm Type: UCAV_ESM \
+ LLA: 39:22:40.00n 117:33:30.00w 9144 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+ Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ]
+00:00:01.3 SENSOR_TRACK_INITIATED blue_strike1 200_ew_radar Sensor: esm TrackId: blue_strike1.1 \
+  Start_Time: 00:00:01.3 Update_Time: 00:00:01.3 Update_Count: 0 Quality: 0.5 Domain: land Type: M \
+  Target_Truth: Name: 200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 39:22:40.00n 117:33:30.00w 9144 m \
+  Track: LLA: 39:22:36.00n 117:33:25.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:36.00n 117:33:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 9139.62 m Bearing: 135.868 deg Elevation: -88.9225 deg \
+  Truth: Range: 9145.62 m Bearing: 135.868 deg Elevation: -88.9232 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (200 MHz 200 MHz) ]
+00:00:01.3 LOCAL_TRACK_INITIATED blue_strike1 200_ew_radar TrackId: blue_strike1.2 \
+  Start_Time: 00:00:01.3 Update_Time: 00:00:01.3 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: 200_ew_radar Type: EW_RADAR Side: red \
+  Originator: LLA: 39:22:40.00n 117:33:30.00w 9144 m \
+  Track: LLA: 39:22:36.00n 117:33:25.00w 6 m Flags: L3 \
+  Truth: LLA: 39:22:36.00n 117:33:25.00w 0 m  Difference: 6 m  \
+  Track: Range: 9139.62 m Bearing: 135.868 deg Elevation: -88.9225 deg \
+  Truth: Range: 9145.62 m Bearing: 135.868 deg Elevation: -88.9232 deg \
+  Type_ID: EW_RADAR \
+  Frequency: [ (200 MHz 200 MHz) ] \
+ Source_TrackId: blue_strike1.1 Sensor: esm Type: UCAV_ESM Mode: default Update_Time: 00:00:01.3 Update_Count: 0 Quality: 0.5
+00:01:00.0 SENSOR_TRACK_INITIATED 200_ew_radar blue_strike1 Sensor: ew_radar TrackId: 200_ew_radar.1 \
+  Start_Time: 00:01:00.0 Update_Time: 00:01:00.0 Update_Count: 0 Quality: 0.5 Domain: air Type: M \
+  Target_Truth: Name: blue_strike1 Type: UCAV Side: blue \
+  Originator: LLA: 39:22:36.00n 117:33:25.00w 6 m \
+  Track: LLA: 39:26:08.63n 117:37:51.11w 0 m Flags: RB \
+  Truth: LLA: 39:22:40.00n 117:33:30.00w 9144 m  Difference: 8967.5 m  \
+  Track: Range: 9139.62 m Bearing: 315.869 deg \
+  Truth: Range: 9139.62 m Bearing: 315.869 deg
+00:01:00.0 LOCAL_TRACK_INITIATED 100_radar_company blue_strike1 TrackId: 100_radar_company.1 \
+  Start_Time: 00:01:00.0 Update_Time: 00:01:00.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: blue_strike1 Type: UCAV Side: blue \
+  Originator: LLA: 39:22:36.00n 117:33:25.00w 6 m \
+  Track: LLA: 39:26:08.63n 117:37:51.11w 0 m Flags: RB \
+  Truth: LLA: 39:22:40.00n 117:33:30.00w 9144 m  Difference: 8967.5 m  \
+  Track: Range: 9139.62 m Bearing: 315.869 deg \
+  Truth: Range: 9139.62 m Bearing: 315.869 deg \
+ Source_TrackId: 200_ew_radar.1 Sensor: ew_radar Type: EW_RADAR Mode: default Update_Time: 00:01:00.0 Update_Count: 0 Quality: 0.5
+00:01:00.0 LOCAL_TRACK_INITIATED 10_iads_cmdr blue_strike1 TrackId: 10_iads_cmdr.1 \
+  Start_Time: 00:01:00.0 Update_Time: 00:01:00.0 Update_Count: 0 Quality: 0.5 Domain: air Type: P \
+  Target_Truth: Name: blue_strike1 Type: UCAV Side: blue \
+  Originator: LLA: 39:22:36.00n 117:33:25.00w 6 m \
+  Track: LLA: 39:26:08.63n 117:37:51.11w 0 m Flags: RB \
+  Truth: LLA: 39:22:40.00n 117:33:30.00w 9144 m  Difference: 8967.5 m  \
+  Track: Range: 9139.62 m Bearing: 315.869 deg \
+  Truth: Range: 9139.62 m Bearing: 315.869 deg \
+ Source_TrackId: 100_radar_company.1 Update_Time: 00:01:00.0 Update_Count: 0 Quality: 0.5

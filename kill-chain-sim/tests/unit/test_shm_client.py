@@ -4,6 +4,7 @@ import sys
 import time
 import mmap
 import tempfile
+import pytest
 from pathlib import Path
 
 # Ensure project root in path
@@ -13,25 +14,38 @@ from src.core.shared_mem.shm_client import (
     ShmClient, TrackEntry, SensorEntry, WeaponEntry, CmdEntry,
     SensorMode, WeaponStatus, CmdType, TargetType,
     MAGIC, FENCE_VALUE, MAX_TRACKS, MAX_CMDS,
-    TRACKS_OFFSET, CMDS_OFFSET, TRACK_SIZE, CMD_SIZE, HEADER_SIZE
+    TRACKS_OFFSET, CMDS_OFFSET, CMDACK_OFFSET, TRACK_SIZE, CMD_SIZE, HEADER_SIZE
 )
 
 
-def test_shm_creation():
-    """Test that we can create and connect to shared memory."""
+@pytest.fixture(scope="module")
+def clean_shm_client():
+    """Provide a ShmClient connected to a clean shared memory state.
+
+    Resets cmd_in/cmd_out and clears command slots before any tests run,
+    so each test starts from a known-clean queue regardless of prior
+    test runs or other processes that may have written to the .dat file.
+    """
     client = ShmClient("test_kill_chain_shm")
-    assert client.connect(), "Failed to connect to shared memory"
+    if not client.connect():
+        pytest.fail("Failed to connect to shared memory")
+    client.reinitialize()
+    yield client
+    client.close()
+
+
+def test_shm_creation(clean_shm_client):
+    """Test that we can create and connect to shared memory."""
+    client = clean_shm_client
     assert client.is_valid(), "Invalid magic after connect"
     header = client._read_header()
     assert header.magic == MAGIC
-    client.close()
     print("PASS: test_shm_creation")
 
 
-def test_track_roundtrip():
+def test_track_roundtrip(clean_shm_client):
     """Test writing and reading back a TrackEntry."""
-    client = ShmClient("test_kill_chain_shm")
-    assert client.connect()
+    client = clean_shm_client
 
     # Write a track
     track = TrackEntry()
@@ -67,14 +81,12 @@ def test_track_roundtrip():
     assert t.force == 1
     assert t.track_quality == 85
 
-    client.close()
     print("PASS: test_track_roundtrip")
 
 
-def test_command_queue():
+def test_command_queue(clean_shm_client):
     """Test sending a command and getting acknowledgment."""
-    client = ShmClient("test_kill_chain_shm")
-    assert client.connect()
+    client = clean_shm_client
 
     # Queue a sensor control command
     sensor_id = 100
@@ -84,7 +96,7 @@ def test_command_queue():
 
     # Read the queued command
     header = client._read_header()
-    assert header.cmd_in == 1
+    assert header.cmd_in == 1, f"cmd_in={header.cmd_in}, expected 1"
     idx = (header.cmd_in - 1) % MAX_CMDS
     cmd = client._read_cmd(CMDS_OFFSET + idx * CMD_SIZE)
 
@@ -94,22 +106,20 @@ def test_command_queue():
     assert cmd.param2 == int(mode)
     assert cmd.acknowledged == 0
 
-    # Acknowledge it (simulate AFSIM response)
+    # Acknowledge it (simulate AFSIM response) — AFSIM writes to CmdAck region
     cmd.acknowledged = 1
-    client._write_cmd(CMDS_OFFSET + idx * CMD_SIZE, cmd)
+    client._write_cmd(CMDACK_OFFSET + idx * CMD_SIZE, cmd)
 
     # Poll for ack
     ack = client.poll_command_ack(1, timeout_ms=500)
     assert ack, "poll_command_ack timed out"
 
-    client.close()
     print("PASS: test_command_queue")
 
 
-def test_multiple_tracks():
+def test_multiple_tracks(clean_shm_client):
     """Test writing multiple tracks."""
-    client = ShmClient("test_kill_chain_shm")
-    assert client.connect()
+    client = clean_shm_client
 
     header = client._read_header()
     header.track_count = 3
@@ -135,14 +145,12 @@ def test_multiple_tracks():
     assert tracks[1].track_id == 2
     assert tracks[2].track_id == 3
 
-    client.close()
     print("PASS: test_multiple_tracks")
 
 
-def test_weapon_assign_command():
+def test_weapon_assign_command(clean_shm_client):
     """Test WEAPON_ASSIGN command."""
-    client = ShmClient("test_kill_chain_shm")
-    assert client.connect()
+    client = clean_shm_client
 
     result = client.send_weapon_assign(weapon_id=5, track_id=100, priority=0.95)
     assert result
@@ -156,15 +164,4 @@ def test_weapon_assign_command():
     assert cmd.target_id == 100  # track_id
     assert abs(cmd.param3 - 0.95) < 0.001
 
-    client.close()
     print("PASS: test_weapon_assign_command")
-
-
-if __name__ == "__main__":
-    test_shm_creation()
-    test_track_roundtrip()
-    test_command_queue()
-    test_multiple_tracks()
-    test_weapon_assign_command()
-    print()
-    print("All tests passed!")

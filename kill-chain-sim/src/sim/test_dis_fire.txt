@@ -1,0 +1,105 @@
+# test_dis_fire.txt
+# 测试 DIS Fire PDU → AFSIM 本地武器交战
+# Python 发送 Fire PDU → AFSIM 拦截
+
+file_path D:\afsim-2.9.0-win64\demos\iads
+include setup.txt
+
+end_time 120 sec
+
+# =============================================================================
+# DIS 接口
+# =============================================================================
+dis_interface
+   # multicast 239.1.2.3 0.0.0.0
+   receive_port 3000
+   send_port 3000
+   exercise 1
+   site 1
+   application 1
+   # no_join_exercise  # 移除，测试是否影响接收
+
+   # 外部 missile → 映射到 LARGE_SAM 武器
+   # 格式: Kind:Domain:Country:Category:Subcategory:Specific:Extra
+   incoming_weapon_transfer 1:3:1:1:0:0:0 using LARGE_SAM
+
+   log_created_entities
+   debug_warfare_pdu 3
+end_dis_interface
+
+# =============================================================================
+# IADS Commander (带雷达 + 武器)
+# =============================================================================
+platform_type IADS_CMDR_WITH_TRACKER_AND_WEPAON WSF_PLATFORM
+   icon Ground_Radar
+
+   infrared_signature VEHICLE_INFRARED_SIGNATURE
+   optical_signature VEHICLE_OPTICAL_SIGNATURE
+   radar_signature VEHICLE_RADAR_SIGNATURE
+
+   sensor simple_radar WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 555600 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 1.0;
+      end_script_variables
+      update_interval 1.0 sec
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.TrackCount();
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK: id=", t.TrackId().Number(),
+                          " lat=", t.Latitude(),
+                          " lon=", t.Longitude(),
+                          " alt=", t.Altitude());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+
+   weapon sam LARGE_SAM
+      quantity 4
+   end_weapon
+end_platform_type
+
+# =============================================================================
+# 实例化
+# =============================================================================
+platform radar1 IADS_CMDR_WITH_TRACKER_AND_WEPAON
+   side red
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+platform target1 TARGET
+   side blue
+   position 38:04:10n 117:14:00w altitude 5000 ft msl
+end_platform
+
+# 调试（简单输出）
+execute at_interval_of 5 sec
+   writeln("T=", TIME_NOW, " DIS listening on 239.1.2.3:3000");
+end_execute

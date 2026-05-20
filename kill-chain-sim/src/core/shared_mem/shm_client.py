@@ -62,11 +62,13 @@ class ShmHeader(ctypes.Structure):
         ("magic",           ctypes.c_uint32),
         ("version",         ctypes.c_uint16),
         ("track_count",     ctypes.c_uint16),
+        ("sensor_count",    ctypes.c_uint16),
+        ("weapon_count",    ctypes.c_uint16),
         ("timestamp_ms",    ctypes.c_uint32),
         ("cmd_in",          ctypes.c_uint32),
         ("cmd_out",         ctypes.c_uint32),
         ("afsim_ready",     ctypes.c_uint8),
-        ("padding",         ctypes.c_uint8 * 7),
+        ("padding",         ctypes.c_uint8 * 5),
         ("fence",           ctypes.c_uint64),
     ]
 
@@ -209,11 +211,13 @@ class ShmClient:
                 header.magic = MAGIC
                 header.version = 1
                 header.track_count = 0
+                header.sensor_count = 0
+                header.weapon_count = 0
                 header.timestamp_ms = 0
                 header.cmd_in = 0
                 header.cmd_out = 0
                 header.afsim_ready = 0
-                header.padding = (0,) * 7
+                header.padding = (0,) * 5
                 header.fence = FENCE_VALUE
                 self._write_header(header)
 
@@ -351,7 +355,7 @@ class ShmClient:
             header = self._read_header()
             if not header or header.magic != MAGIC:
                 return []
-            count = min(header.track_count, MAX_SENSORS)
+            count = min(header.sensor_count, MAX_SENSORS)
             for i in range(count):
                 sensor = self._read_sensor(SENSORS_OFFSET + i * SENSOR_SIZE)
                 if sensor and sensor.sensor_id != 0:
@@ -368,7 +372,7 @@ class ShmClient:
             header = self._read_header()
             if not header or header.magic != MAGIC:
                 return []
-            count = min(header.track_count, MAX_WEAPONS)
+            count = min(header.weapon_count, MAX_WEAPONS)
             for i in range(count):
                 weapon = self._read_weapon(WEAPONS_OFFSET + i * WEAPON_SIZE)
                 if weapon and weapon.weapon_id != 0:
@@ -453,7 +457,7 @@ class ShmClient:
                     break
                 # Check all pending acks
                 for i in range(MAX_CMDS):
-                    offset = CMDS_OFFSET + i * CMD_SIZE
+                    offset = CMDACK_OFFSET + i * CMD_SIZE
                     cmd = self._read_cmd(offset)
                     if cmd and cmd.cmd_id == cmd_id and cmd.acknowledged == 1:
                         return True
@@ -461,6 +465,34 @@ class ShmClient:
             except Exception:
                 break
         return False
+
+    def reinitialize(self) -> bool:
+        """Re-initialize header counters to zero without closing mmap.
+
+        Use this to reset cmd_in/cmd_out before a test that expects
+        a clean command queue, without destroying data already written
+        by other processes (e.g. TrackFileMonitor).
+        """
+        try:
+            header = self._read_header()
+            if not header:
+                return False
+            header.cmd_in = 0
+            header.cmd_out = 0
+            # Clear the command queue slots and ack slots
+            for i in range(MAX_CMDS):
+                offset = CMDS_OFFSET + i * CMD_SIZE
+                self.mm.seek(offset)
+                self.mm.write(b'\x00' * CMD_SIZE)
+            for i in range(MAX_CMDS):
+                offset = CMDACK_OFFSET + i * CMD_SIZE
+                self.mm.seek(offset)
+                self.mm.write(b'\x00' * CMD_SIZE)
+            self._write_header(header)
+            return True
+        except Exception as e:
+            print(f"reinitialize failed: {e}")
+            return False
 
     def close(self) -> None:
         """Close shared memory connection."""

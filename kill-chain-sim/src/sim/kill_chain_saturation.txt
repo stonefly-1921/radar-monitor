@@ -1,0 +1,153 @@
+# =============================================================================
+# Kill Chain Saturation Scenario
+# Purpose: Test MILP allocator with 3 targets, limited weapons, priority-based取舍
+#
+# Geometry (all flying toward red radar at 38:00:00N 117:00:00W):
+#   Target 1 (HIGH priority): closest, 50km north — should be intercepted first
+#   Target 2 (HIGHEST priority): 100km north — missile, fast
+#   Target 3 (LOW priority): 80km north — slow aircraft
+#   Weapon 1 (SAM): long range 250km, KP=85%
+#   Weapon 2 (SAM): medium range 150km, KP=75%
+#   Weapon 3 (AAA): short range 80km, KP=90%
+#
+# Expected: All 3 targets intercepted (3 weapons, 3 targets)
+# but Weapon 3 (AAA) only has range for Target 1 (50km < 80km)
+# Target 2 (missile, 500kt) exceeds AAA max speed → only SAMs can engage
+#
+# Usage:
+#   cd C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_saturation.txt
+# =============================================================================
+
+log_file output/kill_chain_saturation.log
+realtime
+end_time 10 min
+
+# =============================================================================
+# Platform Types
+# =============================================================================
+
+platform_type RED_RADAR WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor red_sensor WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 300000 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 0.1;
+      end_script_variables
+
+      update_interval 0.1 sec
+
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.TrackCount();
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK: id=", t.TrackId().Number(),
+                          " lat=", t.Latitude(),
+                          " lon=", t.Longitude(),
+                          " alt=", t.Altitude(),
+                          " vel=", t.Speed(),
+                          " hdg=", t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+platform_type UCAV WSF_PLATFORM
+   icon UCAV
+   mover WSF_AIR_MOVER
+      default_radial_acceleration 1.5 g
+      at_end_of_path remove
+   end_mover
+end_platform_type
+
+platform_type INCOMING_MISSILE WSF_PLATFORM
+   icon Missile
+   mover WSF_AIR_MOVER
+      default_radial_acceleration 5.0 g
+      at_end_of_path remove
+   end_mover
+end_platform_type
+
+# =============================================================================
+# Platforms
+# =============================================================================
+
+platform red_radar RED_RADAR
+   side red
+   position 38:00:00n 117:00:00w altitude 0.0 m agl
+end_platform
+
+# Target 1: Closest, HIGH priority, 390 kts (200 m/s)
+# Position: 38:15:00n = 38.25°N, 117°W → ~28km north of radar at 38°N
+platform target1 UCAV
+   side blue
+   position 38:15:00n 117:00:00w altitude 5000.0 m msl
+   route
+      navigation
+         position 38:15:00n 117:00:00w altitude 5000.0 m msl
+            speed 390 kts
+         position 37:30:00n 117:00:00w altitude 5000.0 m msl
+            speed 390 kts
+      end_navigation
+   end_route
+   heading 180.0 degrees
+end_platform
+
+# Target 2: HIGHEST priority missile, 500 kts (257 m/s)
+# Position: 38:45:00n = 38.75°N → ~83km north of radar
+platform target2 INCOMING_MISSILE
+   side blue
+   position 38:45:00n 117:00:00w altitude 3000.0 m msl
+   route
+      navigation
+         position 38:45:00n 117:00:00w altitude 3000.0 m msl
+            speed 500 kts
+         position 37:30:00n 117:00:00w altitude 3000.0 m msl
+            speed 500 kts
+      end_navigation
+   end_route
+   heading 180.0 degrees
+end_platform
+
+# Target 3: LOW priority slow aircraft, 200 kts (103 m/s)
+# Position: 38:30:00n = 38.5°N → ~56km north of radar
+platform target3 UCAV
+   side blue
+   position 38:30:00n 117:00:00w altitude 10000.0 m msl
+   route
+      navigation
+         position 38:30:00n 117:00:00w altitude 10000.0 m msl
+            speed 200 kts
+         position 37:30:00n 117:00:00w altitude 10000.0 m msl
+            speed 200 kts
+      end_navigation
+   end_route
+   heading 180.0 degrees
+end_platform

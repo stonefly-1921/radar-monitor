@@ -1,0 +1,112 @@
+# =============================================================================
+# Kill Chain Evasion Scenario
+# Purpose: Test kill chain with a target that makes a 90° evasive maneuver
+#
+# Geometry:
+#   Red radar: 38:00:00N 117:00:00W
+#   Target starts north, flies south, does 90° east turn at WP1
+#
+# Expected behavior:
+#   Phase 1 (T+0 to ~T+2min): Target approaching south, heading=180
+#   Phase 2 (after maneuver): Heading changes to ~90° (east), lat/lon changes
+#
+# Usage:
+#   cd C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_evasion.txt
+# =============================================================================
+
+log_file output/kill_chain_evasion.log
+realtime
+end_time 10 min
+
+# =============================================================================
+# Platform Types
+# =============================================================================
+
+platform_type TARGET WSF_PLATFORM
+   icon Fighter
+   mover WSF_AIR_MOVER
+      default_radial_acceleration 1.5 g
+      at_end_of_path remove
+   end_mover
+end_platform_type
+
+platform_type RED_RADAR WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor red_sensor WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 300000 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 0.1;
+      end_script_variables
+
+      update_interval 0.1 sec
+
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.TrackCount();
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK: id=", t.TrackId().Number(),
+                          " lat=", t.Latitude(),
+                          " lon=", t.Longitude(),
+                          " alt=", t.Altitude(),
+                          " vel=", t.Speed(),
+                          " hdg=", t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+# =============================================================================
+# Platforms
+# =============================================================================
+
+platform red_radar RED_RADAR
+   side red
+   position 38:00:00n 117:00:00w altitude 0.0 m agl
+end_platform
+
+# Target: starts 38:15:00n, flies south to WP1 at 38:10:00n, then turns east
+# Speed: 300 kts (~154 m/s), ~60s to reach WP1
+# After WP1: flies east along 38:10:00n latitude
+platform blue_target TARGET
+   side blue
+   position 38:15:00n 117:00:00w altitude 8000.0 m msl
+   route
+      navigation
+         position 38:15:00n 117:00:00w altitude 8000.0 m msl
+            speed 300 kts
+         position 38:10:00n 117:00:00w altitude 8000.0 m msl
+            speed 300 kts
+         position 38:10:00n 116:00:00w altitude 8000.0 m msl
+            speed 300 kts
+      end_navigation
+   end_route
+   heading 180.0 degrees
+end_platform

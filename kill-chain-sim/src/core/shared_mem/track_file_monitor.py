@@ -65,7 +65,7 @@ class TrackFileMonitor:
             if current_size < file_pos:
                 # File was truncated/rotated
                 file_pos = 0
-                self.shm_client.shm_client.connect()  # Re-init header
+                self.shm_client.connect()  # Re-init header
 
             if current_size > file_pos:
                 with open(self.log_path, "r", encoding="utf-8", errors="replace") as f:

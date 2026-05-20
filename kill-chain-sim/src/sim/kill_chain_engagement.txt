@@ -1,0 +1,113 @@
+# =============================================================================
+# Kill Chain Engagement Scenario
+# Purpose: Verify kill chain logic with dynamic blue target approaching red radar
+#
+# Geometry:
+#   Red radar: 38:00:00N 117:00:00W (Nevada), range 200km
+#   Blue target: starts 150km north at 38:30:00N 117:00:00W
+#   Target flies south toward radar at 200 m/s (~390 km/h), altitude 8000m
+#   Detection window: ~45 minutes before target exits radar coverage
+#
+# Expected tracks:
+#   Blue target enters radar coverage at ~T+2min (start delay)
+#   Track lat/lon/alt updates at 10Hz (WRITE_INTERVAL=0.1s)
+#   Speed and heading detected correctly
+#
+# Usage:
+#   cd C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_engagement.txt
+# =============================================================================
+
+log_file output/kill_chain_engagement.log
+realtime
+end_time 10 min
+
+# =============================================================================
+# Platform Types
+# =============================================================================
+
+platform_type TARGET WSF_PLATFORM
+   icon Fighter
+   mover WSF_AIR_MOVER
+      default_radial_acceleration 1.5 g
+   end_mover
+end_platform_type
+
+platform_type RED_RADAR WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor red_sensor WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 200000 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 0.1;
+      end_script_variables
+
+      update_interval 0.1 sec
+
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.TrackCount();
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK: id=", t.TrackId().Number(),
+                          " lat=", t.Latitude(),
+                          " lon=", t.Longitude(),
+                          " alt=", t.Altitude(),
+                          " vel=", t.Speed(),
+                          " hdg=", t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+# =============================================================================
+# Platforms
+# =============================================================================
+
+platform red_radar RED_RADAR
+   side red
+   position 38:00:00n 117:00:00w altitude 0.0 m agl
+end_platform
+
+# Blue target starts 150km north of radar
+# At 38:30:00N, 117:00:00W: ~150km north of radar at 38:00:00N
+# Heading south (0°), speed 200 m/s, altitude 8000m MSL
+# Will be detected within first few minutes
+platform blue_target TARGET
+   side blue
+   position 38:30:00n 117:00:00w altitude 8000.0 m msl
+   route
+      navigation
+         position 38:30:00n 117:00:00w altitude 8000.0 m msl
+            speed 390 kts
+         position 37:30:00n 117:00:00w altitude 8000.0 m msl
+            speed 390 kts
+      end_navigation
+   end_route
+   heading 180.0 degrees
+end_platform

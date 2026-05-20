@@ -1,0 +1,39 @@
+# Test SHM command reader
+# Python writes commands via wsf_shm.dll → AFSIM reads via wsf_shm_process_new_commands()
+
+include 'D:\afsim-2.9.0-win64\demos\iads\setup.txt'
+include '../processors/kill_chain_cmd_reader.txt'
+
+end_time 20.0 sec
+verbose on
+
+# Use the standard IADS commander platform
+platform IADS_CMDR 10_iads_cmdr
+   name "IADS Commander"
+   state
+      lat 35.0 lon -120.0 alt 10000.0 m heading 0 speed 0 mps
+   end_state
+   use_processor KILL_CHAIN_CMD_READER
+end_platform
+
+platform EW_RADAR_RED 20_radar
+   name "Red Radar"
+   state
+      lat 34.5 lon -120.5 alt 500.0 m heading 0 speed 0 mps
+   end_state
+end_platform
+
+# Red aircraft targets
+platform AIRCRAFT_RED 30_red1
+   name "Red Ace"
+   state
+      lat 34.0 lon -120.0 alt 3000.0 m heading 90 speed 200.0 mps
+   end_state
+end_platform
+
+platform AIRCRAFT_RED 31_red2
+   name "Red Baron"
+   state
+      lat 33.5 lon -120.0 alt 3500.0 m heading 90 speed 180.0 mps
+   end_state
+end_platform

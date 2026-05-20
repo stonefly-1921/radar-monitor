@@ -1,0 +1,50 @@
+# ****************************************************************************
+# Kill Chain Track Writer - Script Processor
+#
+# Outputs all IADS tracks to log file in TRACK: format
+# Uses WSF_SCRIPT_PROCESSOR (AFSIM 2.9.0)
+#
+# API: PLATFORM.MasterTrackList() -> WsfTrackList
+#       foreach (WsfTrack t in trackList)
+#       t.Latitude(), t.Longitude(), t.Altitude(), t.Speed(), t.Heading()
+#       t.TrackId().Number() for numeric track ID
+#
+# Created: 2026-05-19
+# Project: kill-chain-sim
+# ****************************************************************************
+
+processor KILL_CHAIN_TRACK_WRITER WSF_SCRIPT_PROCESSOR
+
+   script_debug_writes true
+
+   script_variables
+      double mLastWriteTime = 0.0;
+      double WRITE_INTERVAL = 1.0;
+      int mWriteCount = 0;
+   end_script_variables
+
+   update_interval 1.0 sec
+
+   on_update
+      if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+      {
+         mWriteCount = mWriteCount + 1;
+         writeln_d("DEBUG: WriteAllTracks #", mWriteCount, " at sim time ", TIME_NOW);
+         WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+         if (trackList.Count() >= 1)
+         {
+            foreach (WsfTrack t in trackList)
+            {
+               writeln_d("TRACK: id=", t.TrackId().Number(),
+                         " lat=", t.Latitude(),
+                         " lon=", t.Longitude(),
+                         " alt=", t.Altitude(),
+                         " vel=", t.Speed(),
+                         " hdg=", t.Heading());
+            }
+         }
+         mLastWriteTime = TIME_NOW;
+      }
+   end_on_update
+
+end_processor

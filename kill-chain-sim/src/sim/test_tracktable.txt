@@ -1,0 +1,72 @@
+# Test MasterTrackList - approach: redefine iads_cmdr AFTER laydown loads
+# First include everything from laydown (which defines 10_iads_cmdr IADS_CMDR),
+# then use edit platform to... no wait, can't do that.
+# Alternative: don't include laydown, manually add what we need
+
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\scenarios\nets_zones.txt
+
+# Copy the IADS_CMDR definition with our processor added
+processor kill_chain_writer WSF_SCRIPT_PROCESSOR
+   update_interval 2.0 sec
+   on_update
+      writeln("KC_WRITER: on_update firing");
+      WsfLocalTrackList tlist = PLATFORM.MasterTrackList();
+      if (tlist != null)
+      {
+         int n = tlist.Count();
+         writeln("KC_WRITER: T=", TIME_NOW, " track_count=", n);
+         if (n > 0)
+         {
+            foreach (WsfLocalTrack lt in tlist)
+            {
+               writeln("KC_WRITER:   track id=", lt.TrackId().ToString(),
+                       " lat=", lt.Latitude(), " lon=", lt.Longitude(),
+                       " alt=", lt.Altitude());
+            }
+         }
+      }
+      else
+      {
+         writeln("KC_WRITER: MasterTrackList is null");
+      }
+   end_on_update
+end_processor
+
+platform_type IADS_CMDR_WITH_TRACKER IADS_CMDR
+   processor kcw kill_chain_writer
+   end_processor
+end_platform_type
+
+# Redefine 10_iads_cmdr to use our type - but laydown already defined it!
+# Use edit... but edit can't change type. So this will fail if laydown defined it.
+# Solution: DON'T include laydown. Define the commander manually.
+
+# Skip laydown, define the minimal set from scratch:
+platform 10_iads_cmdr IADS_CMDR_WITH_TRACKER
+   side red
+   commander SELF
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+# Add red radar company (WSF_TRACK_PROCESSOR that reports to commander)
+platform 100_radar_company RADAR_COMPANY
+   side red
+   commander 10_iads_cmdr
+   position 38:41:35n 117:05:57w altitude 0.0 m agl
+end_platform
+
+# Add red EW radar as subordinate to radar company (NOT directly to commander)
+platform 200_ew_radar EW_RADAR
+   side red
+   commander 100_radar_company
+   position 39:22:36n 117:33:25w altitude 0.0 m agl
+end_platform
+
+# Add blue aircraft to trigger track detection
+platform blue_strike1 UCAV
+   side blue
+   position 39:22:40n 117:33:30w altitude 30 kft agl
+end_platform
+
+end_time 120 sec

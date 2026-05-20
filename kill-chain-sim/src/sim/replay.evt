@@ -1,0 +1,2166 @@
+00:00:00.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.976576 Detected: 1
+00:00:00.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.205203 Detected: 1
+00:00:01.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.918243 Detected: 1
+00:00:01.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.554019 Detected: 1
+00:00:02.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.521574 Detected: 1
+00:00:02.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.597452 Detected: 1
+00:00:03.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.654888 Detected: 1
+00:00:03.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.792841 Detected: 1
+00:00:04.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.64989 Detected: 1
+00:00:04.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.613974 Detected: 1
+00:00:05.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.717305 Detected: 1
+00:00:05.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0548026 Detected: 1
+00:00:06.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.65809 Detected: 1
+00:00:06.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.968191 Detected: 1
+00:00:07.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.412605 Detected: 1
+00:00:07.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.964994 Detected: 1
+00:00:08.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.289257 Detected: 1
+00:00:08.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.761923 Detected: 1
+00:00:09.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.269615 Detected: 1
+00:00:09.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.76372 Detected: 1
+00:00:10.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.325515 Detected: 1
+00:00:10.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.226437 Detected: 1
+00:00:11.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.646059 Detected: 1
+00:00:11.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.176357 Detected: 1
+00:00:12.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.366492 Detected: 1
+00:00:12.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0295428 Detected: 1
+00:00:13.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.250494 Detected: 1
+00:00:13.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0142593 Detected: 1
+00:00:14.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.317877 Detected: 1
+00:00:14.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0203341 Detected: 1
+00:00:15.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.408825 Detected: 1
+00:00:15.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.839186 Detected: 1
+00:00:16.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.156644 Detected: 1
+00:00:16.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.604295 Detected: 1
+00:00:17.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0202498 Detected: 1
+00:00:17.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.775981 Detected: 1
+00:00:18.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.470918 Detected: 1
+00:00:18.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.170841 Detected: 1
+00:00:19.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.40836 Detected: 1
+00:00:19.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.105358 Detected: 1
+00:00:20.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.937229 Detected: 1
+00:00:20.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.184266 Detected: 1
+00:00:21.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.187214 Detected: 1
+00:00:21.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.588292 Detected: 1
+00:00:22.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.839393 Detected: 1
+00:00:22.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.66823 Detected: 1
+00:00:23.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.974709 Detected: 1
+00:00:23.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.539179 Detected: 1
+00:00:24.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.945886 Detected: 1
+00:00:24.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.908015 Detected: 1
+00:00:25.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.681897 Detected: 1
+00:00:25.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.283173 Detected: 1
+00:00:26.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.778151 Detected: 1
+00:00:26.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.291493 Detected: 1
+00:00:27.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.894127 Detected: 1
+00:00:27.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.45116 Detected: 1
+00:00:28.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.739919 Detected: 1
+00:00:28.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.644852 Detected: 1
+00:00:29.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.984433 Detected: 1
+00:00:29.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.609144 Detected: 1
+00:00:30.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.458413 Detected: 1
+00:00:30.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0703105 Detected: 1
+00:00:31.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.888027 Detected: 1
+00:00:31.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.379202 Detected: 1
+00:00:32.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0398968 Detected: 1
+00:00:32.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.623288 Detected: 1
+00:00:33.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.747026 Detected: 1
+00:00:33.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.2961 Detected: 1
+00:00:34.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.899311 Detected: 1
+00:00:34.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.328062 Detected: 1
+00:00:35.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.622332 Detected: 1
+00:00:35.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.256592 Detected: 1
+00:00:36.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.935435 Detected: 1
+00:00:36.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.737009 Detected: 1
+00:00:37.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.823347 Detected: 1
+00:00:37.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.948236 Detected: 1
+00:00:38.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.744495 Detected: 1
+00:00:38.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.461139 Detected: 1
+00:00:39.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.072271 Detected: 1
+00:00:39.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.502437 Detected: 1
+00:00:40.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.812782 Detected: 1
+00:00:40.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.914194 Detected: 1
+00:00:41.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.174975 Detected: 1
+00:00:41.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.025673 Detected: 1
+00:00:42.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.230489 Detected: 1
+00:00:42.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.66397 Detected: 1
+00:00:43.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.44175 Detected: 1
+00:00:43.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.905578 Detected: 1
+00:00:44.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.568963 Detected: 1
+00:00:44.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.967802 Detected: 1
+00:00:45.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.788394 Detected: 1
+00:00:45.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.707312 Detected: 1
+00:00:46.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.124641 Detected: 1
+00:00:46.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.432307 Detected: 1
+00:00:47.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.514699 Detected: 1
+00:00:47.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.86501 Detected: 1
+00:00:48.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.509603 Detected: 1
+00:00:48.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.276983 Detected: 1
+00:00:49.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.657894 Detected: 1
+00:00:49.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.287174 Detected: 1
+00:00:50.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.527899 Detected: 1
+00:00:50.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.480925 Detected: 1
+00:00:51.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.905811 Detected: 1
+00:00:51.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0779296 Detected: 1
+00:00:52.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.282404 Detected: 1
+00:00:52.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.776388 Detected: 1
+00:00:53.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.284827 Detected: 1
+00:00:53.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.363951 Detected: 1
+00:00:54.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.202663 Detected: 1
+00:00:54.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.945099 Detected: 1
+00:00:55.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.154709 Detected: 1
+00:00:55.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.540819 Detected: 1
+00:00:56.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.566574 Detected: 1
+00:00:56.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.109976 Detected: 1
+00:00:57.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.253298 Detected: 1
+00:00:57.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.169016 Detected: 1
+00:00:58.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.161807 Detected: 1
+00:00:58.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.109186 Detected: 1
+00:00:59.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.73187 Detected: 1
+00:00:59.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.104226 Detected: 1
+00:01:00.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0620714 Detected: 1
+00:01:00.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.581934 Detected: 1
+00:01:01.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.395659 Detected: 1
+00:01:01.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.596489 Detected: 1
+00:01:02.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.554078 Detected: 1
+00:01:02.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.690377 Detected: 1
+00:01:03.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.190335 Detected: 1
+00:01:03.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.453701 Detected: 1
+00:01:04.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.592205 Detected: 1
+00:01:04.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0667847 Detected: 1
+00:01:05.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.658007 Detected: 1
+00:01:05.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.474254 Detected: 1
+00:01:06.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.925755 Detected: 1
+00:01:06.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.381924 Detected: 1
+00:01:07.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.634537 Detected: 1
+00:01:07.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.469757 Detected: 1
+00:01:08.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.611731 Detected: 1
+00:01:08.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.730929 Detected: 1
+00:01:09.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.872307 Detected: 1
+00:01:09.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.69341 Detected: 1
+00:01:10.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.56774 Detected: 1
+00:01:10.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.806128 Detected: 1
+00:01:11.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.211823 Detected: 1
+00:01:11.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.782636 Detected: 1
+00:01:12.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.286286 Detected: 1
+00:01:12.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.321221 Detected: 1
+00:01:13.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.269036 Detected: 1
+00:01:13.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.172423 Detected: 1
+00:01:14.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.360192 Detected: 1
+00:01:14.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.278757 Detected: 1
+00:01:15.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.23856 Detected: 1
+00:01:15.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.824233 Detected: 1
+00:01:16.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0473435 Detected: 1
+00:01:16.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.396101 Detected: 1
+00:01:17.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.227628 Detected: 1
+00:01:17.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.733202 Detected: 1
+00:01:18.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.721443 Detected: 1
+00:01:18.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.102303 Detected: 1
+00:01:19.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.153388 Detected: 1
+00:01:19.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.11802 Detected: 1
+00:01:20.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.180108 Detected: 1
+00:01:20.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.52302 Detected: 1
+00:01:21.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.743633 Detected: 1
+00:01:21.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0374946 Detected: 1
+00:01:22.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.498826 Detected: 1
+00:01:22.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.251361 Detected: 1
+00:01:23.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.236545 Detected: 1
+00:01:23.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.233191 Detected: 1
+00:01:24.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.067487 Detected: 1
+00:01:24.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.380183 Detected: 1
+00:01:25.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.246897 Detected: 1
+00:01:25.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.00926365 Detected: 1
+00:01:26.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.852314 Detected: 1
+00:01:26.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.924543 Detected: 1
+00:01:27.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.470814 Detected: 1
+00:01:27.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.110699 Detected: 1
+00:01:28.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.940408 Detected: 1
+00:01:28.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.75302 Detected: 1
+00:01:29.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.34085 Detected: 1
+00:01:29.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.249297 Detected: 1
+00:01:30.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.395045 Detected: 1
+00:01:30.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.821252 Detected: 1
+00:01:31.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.440231 Detected: 1
+00:01:31.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.171527 Detected: 1
+00:01:32.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.792983 Detected: 1
+00:01:32.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.426438 Detected: 1
+00:01:33.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.943175 Detected: 1
+00:01:33.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.395831 Detected: 1
+00:01:34.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0802488 Detected: 1
+00:01:34.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.746862 Detected: 1
+00:01:35.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.214028 Detected: 1
+00:01:35.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.610647 Detected: 1
+00:01:36.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.379173 Detected: 1
+00:01:36.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.212775 Detected: 1
+00:01:37.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0922339 Detected: 1
+00:01:37.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.227499 Detected: 1
+00:01:38.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.561049 Detected: 1
+00:01:38.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.455317 Detected: 1
+00:01:39.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.509678 Detected: 1
+00:01:39.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.289686 Detected: 1
+00:01:40.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.62248 Detected: 1
+00:01:40.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.160771 Detected: 1
+00:01:41.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.649617 Detected: 1
+00:01:41.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.607887 Detected: 1
+00:01:42.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.508787 Detected: 1
+00:01:42.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.365669 Detected: 1
+00:01:43.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0327041 Detected: 1
+00:01:43.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.533227 Detected: 1
+00:01:44.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.329382 Detected: 1
+00:01:44.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.697337 Detected: 1
+00:01:45.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.369917 Detected: 1
+00:01:45.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.499917 Detected: 1
+00:01:46.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.818917 Detected: 1
+00:01:46.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.666253 Detected: 1
+00:01:47.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.317328 Detected: 1
+00:01:47.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.166232 Detected: 1
+00:01:48.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.337895 Detected: 1
+00:01:48.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.807484 Detected: 1
+00:01:49.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.696417 Detected: 1
+00:01:49.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.42961 Detected: 1
+00:01:50.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0276835 Detected: 1
+00:01:50.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0419691 Detected: 1
+00:01:51.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.390561 Detected: 1
+00:01:51.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.912774 Detected: 1
+00:01:52.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.438628 Detected: 1
+00:01:52.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.127882 Detected: 1
+00:01:53.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.604221 Detected: 1
+00:01:53.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.163365 Detected: 1
+00:01:54.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.97993 Detected: 1
+00:01:54.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.590694 Detected: 1
+00:01:55.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.539592 Detected: 1
+00:01:55.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.271147 Detected: 1
+00:01:56.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.757126 Detected: 1
+00:01:56.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.378742 Detected: 1
+00:01:57.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.765712 Detected: 1
+00:01:57.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0344323 Detected: 1
+00:01:58.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.295238 Detected: 1
+00:01:58.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.5005 Detected: 1
+00:01:59.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.108252 Detected: 1
+00:01:59.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0466216 Detected: 1
+00:02:00.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.711327 Detected: 1
+00:02:00.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.100632 Detected: 1
+00:02:01.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.127254 Detected: 1
+00:02:01.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.609908 Detected: 1
+00:02:02.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.93567 Detected: 1
+00:02:02.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.152853 Detected: 1
+00:02:03.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.390186 Detected: 1
+00:02:03.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.352644 Detected: 1
+00:02:04.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.300901 Detected: 1
+00:02:04.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.197276 Detected: 1
+00:02:05.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0376895 Detected: 1
+00:02:05.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.897693 Detected: 1
+00:02:06.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.247187 Detected: 1
+00:02:06.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.300283 Detected: 1
+00:02:07.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.057339 Detected: 1
+00:02:07.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.434573 Detected: 1
+00:02:08.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.443248 Detected: 1
+00:02:08.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.366296 Detected: 1
+00:02:09.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.472508 Detected: 1
+00:02:09.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.471052 Detected: 1
+00:02:10.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0179864 Detected: 1
+00:02:10.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.701256 Detected: 1
+00:02:11.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.984623 Detected: 1
+00:02:11.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.20834 Detected: 1
+00:02:12.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.302517 Detected: 1
+00:02:12.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.341364 Detected: 1
+00:02:13.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.462922 Detected: 1
+00:02:13.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.808195 Detected: 1
+00:02:14.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.23955 Detected: 1
+00:02:14.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.726362 Detected: 1
+00:02:15.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.949675 Detected: 1
+00:02:15.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.877478 Detected: 1
+00:02:16.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.916555 Detected: 1
+00:02:16.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.89138 Detected: 1
+00:02:17.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.770988 Detected: 1
+00:02:17.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.713897 Detected: 1
+00:02:18.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.955012 Detected: 1
+00:02:18.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.834068 Detected: 1
+00:02:19.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.149932 Detected: 1
+00:02:19.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.751566 Detected: 1
+00:02:20.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.271069 Detected: 1
+00:02:20.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.00584126 Detected: 1
+00:02:21.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.618159 Detected: 1
+00:02:21.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.383576 Detected: 1
+00:02:22.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.393927 Detected: 1
+00:02:22.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.423966 Detected: 1
+00:02:23.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.341072 Detected: 1
+00:02:23.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.426201 Detected: 1
+00:02:24.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.503626 Detected: 1
+00:02:24.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.694718 Detected: 1
+00:02:25.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.787815 Detected: 1
+00:02:25.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.836176 Detected: 1
+00:02:26.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.786449 Detected: 1
+00:02:26.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.200079 Detected: 1
+00:02:27.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.821161 Detected: 1
+00:02:27.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.823019 Detected: 1
+00:02:28.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0910745 Detected: 1
+00:02:28.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.896341 Detected: 1
+00:02:29.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.468312 Detected: 1
+00:02:29.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.541938 Detected: 1
+00:02:30.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.600935 Detected: 1
+00:02:30.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.752366 Detected: 1
+00:02:31.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.165501 Detected: 1
+00:02:31.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.24269 Detected: 1
+00:02:32.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.234616 Detected: 1
+00:02:32.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.637523 Detected: 1
+00:02:33.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.268027 Detected: 1
+00:02:33.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.5654 Detected: 1
+00:02:34.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.744745 Detected: 1
+00:02:34.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.265766 Detected: 1
+00:02:35.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.277574 Detected: 1
+00:02:35.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.525487 Detected: 1
+00:02:36.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.449334 Detected: 1
+00:02:36.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.140061 Detected: 1
+00:02:37.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.148455 Detected: 1
+00:02:37.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.598711 Detected: 1
+00:02:38.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.58656 Detected: 1
+00:02:38.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.32348 Detected: 1
+00:02:39.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.392167 Detected: 1
+00:02:39.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.817428 Detected: 1
+00:02:40.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.445745 Detected: 1
+00:02:40.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.212854 Detected: 1
+00:02:41.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.651314 Detected: 1
+00:02:41.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.66891 Detected: 1
+00:02:42.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.489193 Detected: 1
+00:02:42.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0143544 Detected: 1
+00:02:43.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.93789 Detected: 1
+00:02:43.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.187696 Detected: 1
+00:02:44.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0825786 Detected: 1
+00:02:44.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.788448 Detected: 1
+00:02:45.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.170246 Detected: 1
+00:02:45.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.245331 Detected: 1
+00:02:46.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.46248 Detected: 1
+00:02:46.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.982884 Detected: 1
+00:02:47.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0361965 Detected: 1
+00:02:47.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.78649 Detected: 1
+00:02:48.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.435924 Detected: 1
+00:02:48.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.456644 Detected: 1
+00:02:49.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.111279 Detected: 1
+00:02:49.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.155642 Detected: 1
+00:02:50.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.861246 Detected: 1
+00:02:50.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.328508 Detected: 1
+00:02:51.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.284164 Detected: 1
+00:02:51.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.508109 Detected: 1
+00:02:52.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.196701 Detected: 1
+00:02:52.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.74456 Detected: 1
+00:02:53.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.409368 Detected: 1
+00:02:53.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.815399 Detected: 1
+00:02:54.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.776812 Detected: 1
+00:02:54.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0730395 Detected: 1
+00:02:55.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.241196 Detected: 1
+00:02:55.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.522822 Detected: 1
+00:02:56.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.778483 Detected: 1
+00:02:56.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.244329 Detected: 1
+00:02:57.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.228934 Detected: 1
+00:02:57.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.80989 Detected: 1
+00:02:58.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.987379 Detected: 1
+00:02:58.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0341525 Detected: 1
+00:02:59.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.0890881 Detected: 1
+00:02:59.5 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.966104 Detected: 1
+00:03:00.0 SENSOR_DETECTION_ATTEMPT radar1 target1 Sensor: simple_radar Mode: default Beam: 1 \
+  Rcvr: Type: WSF_GEOMETRIC_SENSOR LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Tgt: Type: TARGET LLA: 38:04:10.00n 117:14:00.00w 1524 m Heading: 0 deg Pitch: 0 deg Roll: 0 deg Speed: 0 m/s \
+  Rcvr->Tgt: Range: 1.52898 km (0.825585 nm) Brg: 0 deg El: 85.3723 deg \
+  Tgt->Rcvr: Range: 1.52898 km (0.825585 nm) Brg: 180 deg El: -85.3734 deg \
+  Pd: 1 RequiredPd: 0.197388 Detected: 1

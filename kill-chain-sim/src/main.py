@@ -201,14 +201,30 @@ class KillChainManager:
 
         for entity in entities:
             if entity.category_name == "AIR" and entity.force_side == "red":
+                # Velocity: magnitude of ECEF velocity vector in knots
+                # ECEF m/s → speed in knots: * 1.94384
+                vel_kt = (entity.velocity.x**2 + entity.velocity.y**2 + entity.velocity.z**2) ** 0.5 * 1.94384
+                # Target type from DIS entity kind
+                target_type = "aircraft"
+                if entity.entity_type.kind == 2:
+                    target_type = "missile"
+                elif "UCAV" in str(entity.entity_type):
+                    target_type = "ucav"
+                elif "JAMMER" in str(entity.entity_type):
+                    target_type = "jammer"
+                # ECEF coordinates (meters) - used as-is for range calculations
+                # altitude in meters, convert to feet for allocator
+                alt_ft = entity.location.alt * 3.28084 if entity.location.alt else 10000.0
+                lat = entity.location.x  # ECEF x (meters) - used as proxy for range calc
+                lon = entity.location.y  # ECEF y (meters)
                 targets.append(Target(
                     id=entity.entity_id.entity_id,
                     priority=5.0,
-                    velocity_kts=300,
-                    type="aircraft",
-                    lat=entity.location.lat if hasattr(entity.location, 'lat') else 0,
-                    lon=entity.location.lon if hasattr(entity.location, 'lon') else 0,
-                    altitude_ft=10000,
+                    velocity_kts=vel_kt,
+                    type=target_type,
+                    lat=lat,
+                    lon=lon,
+                    altitude_ft=alt_ft,
                     range_to_sensors={1: 100}
                 ))
 

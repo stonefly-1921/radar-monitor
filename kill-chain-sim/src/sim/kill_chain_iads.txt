@@ -1,48 +1,46 @@
-# Kill Chain IADS Simulation Scenario
-# Tests kill chain management with red IADS vs blue strikers
-#
-# Usage:
-#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_iads.txt
-#
-# Created: 2026-05-18
-# Project: kill-chain-sim
+# Kill Chain IADS with Track Output
 
 define_path_variable CASE kill_chain
-log_file output/kill_chain.log
+log_file D:\afsim-2.9.0-win64\output\kill_chain.log
 
 realtime
 
-# Core setup (with file_path for relative includes)
-file_path D:\afsim-2.9.0-win64\demos\iads
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\event_output.txt
+include D:\afsim-2.9.0-win64\demos\iads\scenarios/iads_laydown.txt
 
-include setup.txt
+# Restore file_path so our processor can be found
+file_path C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
 
-# DIS entity types
-include dis_data.txt
+# Include the track writer processor
+include processors/kill_chain_track_writer.txt
 
-# XIO - connects to Python DIS client on 235.7.11.27:3002
-include xio_interface.txt
+# Attach track writer to the IADS commander platform
+edit platform 10_iads_cmdr
+   processor track_writer KILL_CHAIN_TRACK_WRITER
+   end_processor
+end_edit
 
-# DIS interface - matches xio_interface settings
-# Exercise ID 1, Site 25, App 2 maps to AFSIM's internal DIS
-dis_interface
-   exercise    1
-   site        25
-   application 2
-   multicast   235.7.11.27 10.
-   port        3002
-   autostart
-end_dis_interface
+# Blue UCAV - flies through IADS coverage area
+platform 100_ucav UCAV
+   side blue
+   commander SELF
+   creation_time 0.0 min
+   position 38:16:36n 116:19:48w altitude 35000 ft msl
+   route
+      navigation
+         position 38:16:36n 116:19:48w altitude 35000 ft msl
+         position 38:10:24n 117:02:48w altitude 35000 ft msl
+         position 38:24:12n 117:21:12w altitude 35000 ft msl
+      end_navigation
+   end_route
+end_platform
 
-# Red force IADS
-include scenarios/iads_laydown.txt
+# Track output log
+log_file D:\afsim-2.9.0-win64\output\kill_chain_tracks.log
 
-# Blue force strikers
-include scenarios/strike.txt
-
-# Disable event output (avoid file issues)
-event_output file NULL end_event_output
+event_output   file D:\afsim-2.9.0-win64\output\kill_chain.evt end_event_output
 csv_event_output file NULL end_csv_event_output
-event_pipe file NULL end_event_pipe
+event_pipe     file NULL end_event_pipe
 
-end_time 5 min
+end_time 3 min

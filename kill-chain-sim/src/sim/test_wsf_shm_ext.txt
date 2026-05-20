@@ -1,0 +1,45 @@
+# Test wsf_shm bidirectional via extension interface
+# AFSIM scenario registers SHM extension, Python writes commands via wsf_shm.dll
+
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\scenarios\nets_zones.txt
+
+# Register the SHM extension
+extension shm_interface
+   shm_name kill_chain_shm
+   debug true
+end_extension
+
+# Script processor that triggers the SHM extension
+processor TEST_SHM_READER WSF_SCRIPT_PROCESSOR
+   update_interval 1.0 sec
+
+   on_update
+      writeln("TEST_SHM: calling extension...");
+      WsfShmExtension* shm = static_cast<WsfShmExtension*>(
+         GetScenario().FindExtension("shm_interface"));
+      if (shm != null)
+      {
+         writeln("TEST_SHM: found extension, triggering update");
+         shm.Update(TIME_NOW);
+      }
+      else
+      {
+         writeln("TEST_SHM: extension not found");
+      }
+   end_on_update
+
+end_processor
+
+platform_type IADS_CMDR_WITH_TEST IADS_CMDR
+   processor test TEST_SHM_READER
+   end_processor
+end_platform_type
+
+platform 10_iads_cmdr IADS_CMDR_WITH_TEST
+   side red
+   commander SELF
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+end_time 10 sec

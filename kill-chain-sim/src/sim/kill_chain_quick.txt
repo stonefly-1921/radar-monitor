@@ -1,0 +1,86 @@
+# Kill Chain Track Writer - Verified Inline Processor
+#
+# Usage:
+#   cd C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
+#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_minimal.txt
+#
+# Real-time bridge: AFSIM stdout TRACK: → Python reads → Kill chain eval → SHM commands
+
+log_file output/kill_chain.log
+realtime
+end_time 20 sec
+
+file_path D:\afsim-2.9.0-win64\demos\iads
+include setup.txt
+
+# =============================================================================
+# Radar platform with inline track writer processor
+# =============================================================================
+platform_type RADAR_WITH_TRACKER WSF_PLATFORM
+   icon Ground_Radar
+
+   infrared_signature VEHICLE_INFRARED_SIGNATURE
+   optical_signature VEHICLE_OPTICAL_SIGNATURE
+   radar_signature VEHICLE_RADAR_SIGNATURE
+
+   sensor simple_radar WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 555600 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 1.0;
+      end_script_variables
+
+      update_interval 1.0 sec
+
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.TrackCount();
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK: id=", t.TrackId().Number(),
+                          " lat=", t.Latitude(),
+                          " lon=", t.Longitude(),
+                          " alt=", t.Altitude(),
+                          " vel=", t.Speed(),
+                          " hdg=", t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+# =============================================================================
+# Platforms
+# =============================================================================
+platform radar1 RADAR_WITH_TRACKER
+   side red
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+platform target1 TARGET
+   side blue
+   position 38:04:10n 117:14:00w altitude 5000 ft msl
+end_platform

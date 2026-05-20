@@ -1,0 +1,23 @@
+# Minimal test: can wsf_shm functions be called at all?
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+
+processor TEST_SHM WSF_SCRIPT_PROCESSOR
+   update_interval 2.0 sec
+   on_update
+      int tc = wsf_shm_get_track_count();
+      writeln("TEST_SHM: track_count=", tc);
+   end_on_update
+end_processor
+
+platform_type IADS_CMDR_WITH_TEST IADS_CMDR
+   processor test TEST_SHM
+   end_processor
+end_platform_type
+
+platform 10_iads_cmdr IADS_CMDR_WITH_TEST
+   side red
+   commander SELF
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+end_time 10 sec
