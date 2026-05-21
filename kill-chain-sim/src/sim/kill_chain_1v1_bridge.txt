@@ -1,0 +1,12 @@
+// Bridge scenario: run 1v1 demo with stdout output enabled
+// AFSIM runs from demos/ directory
+
+file_path .
+file_path air_to_air
+
+log_file output/kill_chain_1v1.log
+realtime
+end_time 3 min
+
+// Include the 1v1 scenario
+include_once air_to_air/scenarios/1v1.txt

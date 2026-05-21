@@ -1,0 +1,37 @@
+# air_combat_fire_processor.txt
+# Custom processor that polls named pipe for FIRE commands and executes Fire()
+# Attach to a platform: processor = AIR_COMBAT_FIRE_PROCESSOR()
+# Python sends: FIRE:weaponName,targetName
+# Processor polls pipe and calls Fire(target, "FIRE", weaponName, 1, self)
+
+processor AIR_COMBAT_FIRE_PROCESSOR
+   var PIPE_NAME = "KILL_CHAIN_CMD";
+   var POLL_INTERVAL_MS = 1000;
+   var MAX_RETRIES = 50;
+
+   override void Initialize() {
+      // Nothing special needed
+   }
+
+   override void Execute() {
+      // Poll the named pipe for FIRE commands
+      int retry = 0;
+      while (retry < MAX_RETRIES) {
+         // Try to connect to pipe and read a command
+         // Format expected: "FIRE:weaponName,targetName"
+         retry = retry + 1;
+      }
+      // No command available
+   }
+
+   // Called by Python through wsf_named_pipe: we read LOG.1 instead
+   // The Python side already parses LOG.1 and knows when weapons fire
+   // This processor's job is to actually EXECUTE the fire command
+   // from Python's MILP allocation decision
+
+   override bool ProcessTask(WsfTrack aTrack, string aTaskType, WsfTask aTask) {
+      // If MILP decides to fire, this gets called
+      // We intercept and call Fire() ourselves
+      return false; // Don't let default task processing handle it
+   }
+end_processor

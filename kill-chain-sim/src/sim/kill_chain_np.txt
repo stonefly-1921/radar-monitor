@@ -1,0 +1,164 @@
+// kill_chain_np.txt
+// AFSIM -> Python 闭环仿真场景（含武器交战）
+// - RED雷达跟踪BLUE目标
+// - RED发射武器拦截
+// - Python解析track和交战事件，做kill chain决策
+
+file_path D:/afsim-2.9.0-win64/demos
+file_path D:/afsim-2.9.0-win64/demos/base_types
+file_path D:/afsim-2.9.0-win64/demos/base_types/weapons/aam
+file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim
+
+log_file output/kill_chain_np.log
+realtime
+end_time 3 min
+
+// ============================================================================
+// Include base weapon types (AAM)
+// ============================================================================
+include_once simple_medium_range_missile.txt
+
+// ============================================================================
+// Platform Types
+// ============================================================================
+
+// RED: Radar + Shooter platform
+platform_type RED_SHOOTER WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor simple_radar WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 555600 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   // Weapon: AIM-120 medium range missile
+   weapon aim120_sim SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 4
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+
+   // Script: write track data every 2 sec
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 2.0;
+      end_script_variables
+      update_interval 2.0 sec
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.Count();
+            writeln("TRACK_COUNT: ", tc, " time=", TIME_NOW);
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK:",
+                     t.TrackId().Number(), ",",
+                     t.Latitude(), ",",
+                     t.Longitude(), ",",
+                     t.Altitude(), ",",
+                     t.Side(), ",",
+                     t.Speed(), ",",
+                     t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+
+end_platform_type
+
+// BLUE: Moving target
+platform_type BLUE_TARGET WSF_PLATFORM
+   icon Fighters
+   category aircraft
+end_platform_type
+
+// ============================================================================
+// Platforms
+// ============================================================================
+
+// RED: Radar + Shooter
+platform radar1 RED_SHOOTER
+   side red
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+// BLUE: Moving targets - fly toward radar at different speeds/altitudes
+route blue_route1
+   position 38:04:30n 117:14:00w altitude 3000 m msl speed 200.0 m/s
+   position 38:04:06n 117:14:00w altitude 3000 m msl speed 200.0 m/s
+end_route
+
+route blue_route2
+   position 38:04:20n 117:13:00w altitude 5000 m msl speed 250.0 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 250.0 m/s
+end_route
+
+route blue_route3
+   position 38:03:50n 117:14:30w altitude 4000 m msl speed 180.0 m/s
+   position 38:04:06n 117:14:00w altitude 4000 m msl speed 180.0 m/s
+end_route
+
+platform target1 BLUE_TARGET
+   side blue
+   route blue_route1
+end_platform
+
+platform target2 BLUE_TARGET
+   side blue
+   route blue_route2
+end_platform
+
+platform target3 BLUE_TARGET
+   side blue
+   route blue_route3
+end_platform
+
+// ============================================================================
+// Custom weapon event observer: output weapon results to stdout
+// ============================================================================
+script void mslend(WsfWeaponEngagement aWeaponEngagement)
+   bool tgt_valid = aWeaponEngagement.TargetPlatform().IsValid();
+   bool killed = !tgt_valid;
+   string result = "WEAPON_MISS";
+   if (killed) { result = "WEAPON_HIT"; }
+   int tgt_id = -1;
+   if (tgt_valid) { tgt_id = aWeaponEngagement.TargetPlatform().Index(); }
+   writeln(result, ": target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script
+
+script void FiredAt(WsfWeaponEngagement aWeaponEngagement, WsfTrack aTargetTrack)
+   if (!aWeaponEngagement.TargetPlatform().IsValid()) { return; }
+   int tgt_id = aWeaponEngagement.TargetPlatform().Index();
+   writeln("WEAPON_FIRED: target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script
+
+// ============================================================================
+// Event Output: capture engagement results (binary format for post-processing)
+// ============================================================================
+event_output
+   file output/kill_chain_weapon_events.log
+   enable WEAPON_HIT
+   enable WEAPON_MISSED
+   enable WEAPON_FIRED
+end_event_output

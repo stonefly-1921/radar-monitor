@@ -1,0 +1,12 @@
+{
+  session_id: ",
+ created_at: ,
+ updated_at: ,
+ status: in_progress,
+ turns: [],
+ memory: {
+ short_term: [],
+ long_term: [],
+ summaries: []
+ }
+}

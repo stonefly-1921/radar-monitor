@@ -15,6 +15,9 @@ AFSIM_SDK="/d/afsim-2.9.0-win64/swdev"
 # Include paths (order matters)
 INCLUDES="
   -I${AFSIM_SDK}/src/core/wsf/source
+  -I${AFSIM_SDK}/src/core/wsf/source/observer
+  -I${AFSIM_SDK}/src/core/wsf_util/source
+  -I${AFSIM_SDK}/src/core/wsf/source/comm
   -I${AFSIM_SDK}/BUILD/wsf/source
   -I${AFSIM_SDK}/BUILD/wsf/source/include
   -I${AFSIM_SDK}/BUILD/util/source
@@ -23,6 +26,7 @@ INCLUDES="
   -I${AFSIM_SDK}/BUILD
   -I${AFSIM_SDK}/BUILD/build_wsf_fires
   -I${AFSIM_SDK}/BUILD/util_script/source
+  -I${AFSIM_SDK}/BUILD/include
 "
 
 # Defines

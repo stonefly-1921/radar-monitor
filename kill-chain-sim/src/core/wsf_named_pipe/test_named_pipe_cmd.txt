@@ -1,0 +1,23 @@
+# Test NamedPipeCommand script class in AFSIM
+# This tests whether the new wsf_named_pipe.dll properly registers NamedPipeCommand
+
+script
+   var cmd = new NamedPipeCommand();
+   writeln("NamedPipeCommand created successfully");
+   
+   # Test HandleCommand
+   bool ok = cmd.HandleCommand("FIRE:fox3_1,red_1,Talon_1_1");
+   writeln("HandleCommand result: ", ok);
+   
+   # Test CheckQueue
+   int pending = cmd.CheckQueue();
+   writeln("Pending FIRE commands: ", pending);
+   
+   # Test PopQueue
+   string fire_cmd = cmd.PopQueue();
+   writeln("PopQueue returned: ", fire_cmd);
+   
+   # Test empty queue
+   pending = cmd.CheckQueue();
+   writeln("After pop, pending: ", pending);
+end_script

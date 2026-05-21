@@ -1,0 +1,6 @@
+LIBRARY wsf_named_pipe
+EXPORTS
+    WsfPluginVersion
+    WsfPluginSetup
+    WsfNamedPipeSendCommand
+    WsfNamedPipeSendCommandWithResponse

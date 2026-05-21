@@ -1,0 +1,26 @@
+// Self-contained test
+log_file D:\afsim-2.9.0-win64\output\wsf_shm_test.log
+
+realtime
+
+processor KILL_CHAIN_CMD_READER WSF_SCRIPT_PROCESSOR
+
+   update_interval 2.0 sec
+
+   on_initialize
+      writeln("KC Reader initialized")
+   end_on_initialize
+
+   on_update
+      int n = wsf_shm_get_track_count()
+      writeln_d("Tracks: ", n)
+   end_on_update
+
+end_processor
+
+platform testPlat TEST_PLATFORM
+   side blue
+   processor cmd_reader KILL_CHAIN_CMD_READER
+end_platform
+
+end_time 1 min

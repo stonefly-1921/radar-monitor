@@ -1,89 +1,21 @@
-# Kill Chain Track Writer - Standalone Scenario with Real-Time Support
-#
-# Usage:
-#   cd C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
-#   D:\afsim-2.9.0-win64\bin\mission.exe -rt kill_chain_minimal.txt
-#
-# Future: TRACK: log lines feed Python track_file_monitor.py,
-#         which writes commands to shared memory (SHM) for AFSIM to read back.
+// Kill Chain IADS test - no custom processors needed
+// Uses AFSIM's built-in event_output to push track data
 
-log_file output/kill_chain.log
+log_file D:\afsim-2.9.0-win64\output\kill_chain.log
+
 realtime
-end_time 20 sec
 
-# =============================================================================
-# Load base setup (signatures, common types, zones)
-# =============================================================================
-file_path D:\afsim-2.9.0-win64\demos\iads
-include setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\setup.txt
+include D:\afsim-2.9.0-win64\demos\iads\event_output.txt
+include D:\afsim-2.9.0-win64\demos\iads\scenarios/iads_laydown.txt
 
-# =============================================================================
-# Track Writer Processor - outputs TRACK: lines to log file
-# This is the real-time bridge: AFSIM writes tracks → log → Python reads
-# =============================================================================
-processor KILL_CHAIN_TRACK_WRITER WSF_SCRIPT_PROCESSOR
-   script_variables
-      double mLastWriteTime = 0.0;
-      double WRITE_INTERVAL = 1.0;
-      int mWriteCount = 0;
-   end_script_variables
+file_path C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim
 
-   update_interval 1.0 sec
-
-   on_update
-      if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
-      {
-         mWriteCount = mWriteCount + 1;
-         writeln_d("KC_DEBUG: Write #", mWriteCount, " at T=", TIME_NOW);
-         writeln_d("KC_DEBUG:   PLATFORM.Name()=", PLATFORM.Name());
-         writeln_d("KC_DEBUG:   PLATFORM.Type()=", PLATFORM.Type());
-         WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
-         int tc = trackList.TrackCount();
-         writeln_d("KC_DEBUG:   trackList.TrackCount()=", tc);
-         if (tc >= 1)
-         {
-            foreach (WsfTrack t in trackList)
-            {
-               writeln_d("TRACK: id=", t.TrackId().Number(),
-                         " lat=", t.Latitude(),
-                         " lon=", t.Longitude(),
-                         " alt=", t.Altitude(),
-                         " vel=", t.Speed(),
-                         " hdg=", t.Heading());
-            }
-         }
-         mLastWriteTime = TIME_NOW;
-      }
-   end_on_update
-end_processor
-
-# =============================================================================
-# Extended IADS Commander with track_writer + proper comm network
-# =============================================================================
-platform_type IADS_CMDR_WITH_TRACKER IADS_CMDR
-   processor track_writer KILL_CHAIN_TRACK_WRITER
-   end_processor
-end_platform_type
-
-# =============================================================================
-# Instantiate platforms
-# =============================================================================
-platform 10_iads_cmdr IADS_CMDR_WITH_TRACKER
-   side red
-   commander SELF
-   position 38:04:06n 117:14:00w altitude 0.0 m agl
-end_platform
-
-platform red_radar EW_RADAR
-   side red
-   commander 10_iads_cmdr
-   position 38:04:06n 117:14:00w altitude 0.0 m agl
-end_platform
-
-platform blue_ucav UCAV
+// Blue UCAV
+platform 100_ucav UCAV
    side blue
    commander SELF
-   creation_time 0.5 min
+   creation_time 0.0 min
    position 38:16:36n 116:19:48w altitude 35000 ft msl
    route
       navigation
@@ -93,3 +25,9 @@ platform blue_ucav UCAV
       end_navigation
    end_route
 end_platform
+
+event_output   file D:\afsim-2.9.0-win64\output\kill_chain.evt end_event_output
+csv_event_output file NULL end_csv_event_output
+event_pipe     file NULL end_event_pipe
+
+end_time 1 min

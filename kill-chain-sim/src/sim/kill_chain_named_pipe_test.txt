@@ -1,0 +1,35 @@
+// kill_chain_named_pipe_test.txt
+// Tests wsf_named_pipe.dll loading and connection to Python pipe server
+// Run: python wsf_named_pipe_server.py BEFORE starting AFSIM
+
+// Load the named pipe plugin
+plugin wsf_named_pipe.dll
+
+// Simple IADS scenario
+scenario:
+  set venue = @KILLCHAIN_IADS
+end
+
+processor KILL_CHAIN_IADS:
+  type = wsf_iads
+  debug_level = 1
+end
+
+// Event output to monitor what's happening
+event_output file D:\afsim-2.9.0-win64\output\named_pipe_test.evt
+
+sensor_platform 200_ew_radar:
+  name = EW_Radar_200
+  type = ew_radar
+  platform = patrol_fighter
+  latitude = 39:22:36.00n
+  longitude = 117:33:25.00w
+end
+
+sensor_platform 300_ew_radar:
+  name = EW_Radar_300
+  type = ew_radar
+  platform = patrol_fighter
+  latitude = 39:22:34.00n
+  longitude = 117:33:10.00w
+end

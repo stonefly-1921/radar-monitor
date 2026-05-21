@@ -1,0 +1,272 @@
+# Observer that outputs to stdout instead of log file
+# Based on demos/air_to_air/observer.txt
+
+script_variables
+   double total_aircraft  = 0;
+   double total_sam       = 0;
+   double red_aircraft    = 0;
+   double red_sam         = 0;
+   double blue_aircraft   = 0;
+   double blue_sam        = 0;
+   double blue_total_ac   = 0;
+   double blue_total_sam  = 0;
+   double red_total_ac    = 0;
+   double red_total_sam   = 0;
+   double total_total_ac  = 0; 
+   double total_total_sam = 0;
+   int total_entities     = 0;   
+   int total_interactions  = 0;
+   
+   WsfGeoPoint origin = WsfGeoPoint();
+   origin.Set(0,0,0);
+   
+   Array<WsfPlatform> dead_aircraft = Array<WsfPlatform>();
+   Array<int> msl_sht_tgt = Array<int>();
+end_script_variables
+
+include_once /d/afsim-2.9.0-win64/demos/air_to_air/observer_utils.txt
+
+# Disable log file output
+execute at_interval_of 5 s
+   # NO-OP: we output to stdout instead
+end_execute
+
+script void platformInitialized(WsfPlatform aPlatform)
+   int ac_index = aPlatform.Index();
+   double time = TIME_NOW;
+   if(!aPlatform.CategoryMemberOf("missile"))
+   {
+      writeln("EVENT PLATFORM_INITIALIZED id=", ac_index, " side=", aPlatform.Side(), " name=", aPlatform.Name(), " type=", aPlatform.Type(), " time=", Format.Fixed(time,2));
+   }
+end_script
+
+script void PlatformKilled(WsfPlatform aPlatform)
+   if(!aPlatform.CategoryMemberOf("missile") && TIME_NOW < WsfSimulation.EndTime())
+   {
+      int IndexKilled = aPlatform.Index();
+      double TimeKilled = TIME_NOW;
+      string side = aPlatform.Side();
+      
+      WsfPlatform deadguy = WsfSimulation.CreatePlatform(aPlatform.Type());
+      deadguy.SetLocation(aPlatform.Location());
+      deadguy.SetAuxData("platID",IndexKilled);
+      dead_aircraft.PushBack(deadguy);      
+      
+      if(side == "red" && !aPlatform.AuxDataBool("captured"))
+      {
+         if (aPlatform.CategoryMemberOf("aircraft"))
+         {
+            red_aircraft = red_aircraft - 1;
+            total_aircraft = total_aircraft - 1;
+         }
+         else if (aPlatform.SpatialDomain() == "land")
+         {
+            red_sam = red_sam - 1;
+            total_sam = total_sam - 1;
+         }
+      }
+      
+      if(side == "blue")
+      {
+         if (aPlatform.CategoryMemberOf("aircraft"))
+         {
+            blue_aircraft = blue_aircraft - 1;
+            total_aircraft = total_aircraft - 1;
+         }
+         else if (aPlatform.SpatialDomain() == "land")
+         {
+            blue_sam = blue_sam - 1;
+            total_sam = total_sam - 1;
+         }
+      }
+      
+      writeln("EVENT PLATFORM_KILLED id=", IndexKilled, " side=", side, " name=", aPlatform.Name(), " type=", aPlatform.Type(), " category=", aPlatform.Category(), " time=", Format.Fixed(TimeKilled,2));
+   }
+end_script
+
+script void mslendMissile(WsfWeaponEngagement aWeaponEngagement)
+   WsfPlatform target, shooter;
+   WsfPlatform missile = aWeaponEngagement.WeaponPlatform();
+   int target_index, shooter_index;
+   
+   if(aWeaponEngagement.TargetPlatform().IsValid())
+   {
+      target = aWeaponEngagement.TargetPlatform();
+      target_index = target.Index();
+   }
+   else
+   {
+      target = getDeadPlat(aWeaponEngagement,"target");
+      target_index = target.AuxDataInt("platID");
+   }
+   
+   if(aWeaponEngagement.FiringPlatform().IsValid())
+   {
+      shooter = aWeaponEngagement.FiringPlatform();
+      shooter_index = shooter.Index();
+   }
+   else
+   {
+      shooter = getDeadPlat(aWeaponEngagement,"shooter");
+      shooter_index = shooter.AuxDataInt("platID");
+   }   
+   
+   string weapon_name = aWeaponEngagement.WeaponPlatformName();
+   string weapon_type = aWeaponEngagement.WeaponSystemType();
+   double PkDrawn = aWeaponEngagement.PkDrawn();
+   double Pk = aWeaponEngagement.Pk()*aWeaponEngagement.PkDegrade();
+   
+   if (PkDrawn > 0)
+   {
+      string killed;
+      if (PkDrawn <= Pk)
+      {
+         killed = "KILL";
+      }
+      else
+      {
+         killed = "MISS";
+      }
+      writeln("EVENT WEAPON_TERMINATED weapon=", weapon_name, " type=", weapon_type, " shooter=", shooter_index, " target=", target_index, " miss_distance=", Format.Fixed(aWeaponEngagement.MissDistance()*MATH.FT_PER_M(),2), " Pk=", Format.Fixed(Pk,3), " PkDrawn=", Format.Fixed(PkDrawn,3), " result=", killed, " time=", Format.Fixed(TIME_NOW,2));
+   }
+   else if(PkDrawn < 0)
+   {
+      string fail_reason = "UNKNOWN";
+      if (aWeaponEngagement.ExtendedResult().Split().Size() > 1)
+      {
+         fail_reason = aWeaponEngagement.ExtendedResult().Split()[1];
+      }
+      else
+      {
+         fail_reason = aWeaponEngagement.ExtendedResult();
+      }
+      writeln("EVENT WEAPON_FAILED weapon=", weapon_name, " type=", weapon_type, " shooter=", shooter_index, " target=", target_index, " reason=", fail_reason, " time=", Format.Fixed(TIME_NOW,2));
+   }
+end_script
+
+script void mslendMSL(WsfWeaponEngagement aWeaponEngagement)
+   int shooter_index;
+   int target_index;
+   int weapon_index = aWeaponEngagement.WeaponPlatform().Index();
+   
+   if(aWeaponEngagement.TargetPlatform().IsValid())
+   {
+      target_index = aWeaponEngagement.TargetPlatform().Index();
+   }
+   else
+   {
+      WsfPlatform target = getDeadPlat(aWeaponEngagement,"target");
+      target_index = target.AuxDataInt("platID");
+   }
+   
+   if(aWeaponEngagement.FiringPlatform().IsValid())
+   {
+      shooter_index = aWeaponEngagement.FiringPlatform().Index();
+   }
+   else
+   {
+      WsfPlatform shooter = getDeadPlat(aWeaponEngagement,"shooter");
+      shooter_index = shooter.AuxDataInt("platID");
+   }
+
+   string weapon_type = aWeaponEngagement.WeaponSystemType();
+   bool condition = aWeaponEngagement.TargetPlatform().IsValid();
+         
+   if(condition == false)
+   {
+      writeln("EVENT TARGET_ALREADY_DEAD weapon_index=", weapon_index, " type=", weapon_type, " target=", target_index, " time=", Format.Fixed(TIME_NOW,2));
+   }
+end_script
+
+script void FiredAt(WsfWeaponEngagement aWeaponEngagement, WsfTrack aTargetTrack)
+   WsfPlatform target, shooter;
+   int target_index, shooter_index;
+   WsfPlatform weapon = aWeaponEngagement.WeaponPlatform();
+   int weapon_index = weapon.Index();
+
+   if(aWeaponEngagement.TargetPlatform().IsValid())
+   {
+      target = aWeaponEngagement.TargetPlatform();
+      target_index = target.Index();
+   }
+   else
+   {
+      target = getDeadPlat(aWeaponEngagement,"target");
+      target_index = target.AuxDataInt("platID");
+   }
+   
+   if(aWeaponEngagement.FiringPlatform().IsValid())
+   {
+      shooter = aWeaponEngagement.FiringPlatform();
+      shooter_index = shooter.Index();
+   }
+   else
+   {
+      shooter = getDeadPlat(aWeaponEngagement,"shooter");
+      shooter_index = shooter.AuxDataInt("platID");
+   }
+
+   msl_sht_tgt.PushBack(weapon_index);
+   msl_sht_tgt.PushBack(shooter_index);
+   msl_sht_tgt.PushBack(target_index);
+   
+   string weapon_name = aWeaponEngagement.WeaponPlatformName();
+   string weapon_type = aWeaponEngagement.WeaponSystemType();
+   double range = shooter.SlantRangeTo(target)*MATH.NM_PER_M();
+   
+   writeln("EVENT WEAPON_FIRED weapon=", weapon_name, " type=", weapon_type, " shooter=", shooter_index, " target=", target_index, " range=", Format.Fixed(range,1), " time=", Format.Fixed(TIME_NOW,2));
+end_script
+
+script void PlatformAdded (WsfPlatform aPlatform)
+   string side = aPlatform.Side();
+   total_entities+=1;
+   if (aPlatform.CategoryMemberOf("aircraft"))
+   { 
+      total_aircraft = total_aircraft + 1;
+      total_total_ac = total_total_ac + 1;
+   }
+   else if (aPlatform.SpatialDomain() == "land")
+   {
+      total_sam = total_sam + 1;
+      total_total_sam = total_total_sam + 1;
+   }
+   
+   if (side == "blue")
+   {
+      if (aPlatform.CategoryMemberOf("aircraft"))
+      { 
+         blue_aircraft = blue_aircraft + 1;
+         blue_total_ac = blue_total_ac + 1;
+      }
+      else if (aPlatform.SpatialDomain() == "land")
+      {
+         blue_sam = blue_sam + 1;
+         blue_total_sam = blue_total_sam + 1;
+      }
+   }
+   
+   if (side == "red")
+   {
+      if (aPlatform.CategoryMemberOf("aircraft"))
+      { 
+         red_aircraft = red_aircraft + 1;
+         red_total_ac = red_total_ac + 1;
+      }
+      else if (aPlatform.SpatialDomain() == "land")
+      {
+         red_sam = red_sam + 1;
+         red_total_sam = red_total_sam + 1;
+      }         
+   }
+end_script
+
+script void SimStart ()
+   writeln("EVENT SIM_START time=0");
+end_script
+
+script void SimEnd ()
+   writeln("EVENT SIM_END time=", Format.Fixed(TIME_NOW,2));
+   writeln("SUMMARY blue_aircraft=", Format.Fixed(blue_aircraft,0), " red_aircraft=", Format.Fixed(red_aircraft,0), " blue_total_killed=", Format.Fixed(red_total_ac-red_aircraft,0), " red_total_killed=", Format.Fixed(blue_total_ac-blue_aircraft,0));
+end_script
+
+# We don't need EndTotal, SimInitialize - keep things simple

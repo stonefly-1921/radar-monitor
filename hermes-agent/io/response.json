@@ -1,0 +1,13 @@
+{
+  "type": "response",
+  "content": "我来读取README.md文件。使用file_read工具。",
+  "tool_calls": [
+    {
+      "tool": "file_read",
+      "params": {
+        "path": "README.md"
+      }
+    }
+  ],
+  "timestamp": "2026-05-22T02:30:00+08:00"
+}
