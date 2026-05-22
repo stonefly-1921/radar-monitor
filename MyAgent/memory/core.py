@@ -6,7 +6,6 @@ import json
 from datetime import datetime
 from .storage import MemoryStorage
 from .context import ContextWindow
-from .token_count import total_tokens
 
 
 class Memory:
@@ -24,8 +23,6 @@ class Memory:
             max_turns=self.config.get("short_term_max", 100)
         )
         self.summary_threshold = self.config.get("summary_threshold", 80)
-        # Token compression threshold (200K default, 20% buffer)
-        self.max_tokens = self.config.get("max_tokens", 200000)
         self._needs_summary = False  # Flag: LLM summary needed
 
         # Load existing memory
@@ -58,20 +55,15 @@ class Memory:
         self.data["short_term"].append(turn)
         self.data["updated_at"] = datetime.now().isoformat()
 
-        # Check token-based compression trigger
-        if self._should_compress():
-            self._needs_summary = True
+        # Check turn-based compression trigger
+        if len(self.data["short_term"]) >= self.summary_threshold:
+            self._auto_summarize()
 
         self._save()
 
-    def _should_compress(self) -> bool:
-        """Check if compression is needed (token-based, not turn-based)."""
-        tokens = total_tokens(self.data["short_term"])
-        return tokens > self.max_tokens
-
     def _auto_summarize(self):
         """
-        Token limit reached - flag for LLM summarization.
+        Turn limit reached - flag for LLM summarization.
         Actual summarization is deferred to AgentLoop which calls LLM.
         """
         self._needs_summary = True
@@ -96,12 +88,9 @@ class Memory:
             content = t["content"][:200]
             history_lines.append(f"[{role}]: {content}")
         history_text = "\n".join(history_lines) if history_lines else "(无历史)"
-        tokens_est = total_tokens(short_term)
         return {
             "history_text": history_text,
             "history_lines": len(material),
-            "current_tokens": tokens_est,
-            "threshold_tokens": self.max_tokens
         }
 
     def add_long_term(self, content, tags=None):
