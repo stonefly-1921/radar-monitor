@@ -5,7 +5,6 @@
   "memory": {
     "short_term_max": 100,
     "long_term_enabled": true,
-    "summary_threshold": 80,
     "max_tokens": 200000
   },
   "session": {

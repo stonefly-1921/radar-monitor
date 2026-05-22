@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 from .storage import MemoryStorage
 from .context import ContextWindow
+from .token_count import total_tokens
 
 
 class Memory:
@@ -23,6 +24,8 @@ class Memory:
             max_turns=self.config.get("short_term_max", 100)
         )
         self.summary_threshold = self.config.get("summary_threshold", 80)
+        # Token compression threshold (200K default, 256K * 80% buffer)
+        self.max_tokens = self.config.get("max_tokens", 200000)
         self._needs_summary = False  # Flag: LLM summary needed
 
         # Load existing memory
@@ -55,16 +58,20 @@ class Memory:
         self.data["short_term"].append(turn)
         self.data["updated_at"] = datetime.now().isoformat()
 
-        # Check turn-based compression trigger
-        if len(self.data["short_term"]) >= self.summary_threshold:
-            self._auto_summarize()
+        # Check token-based compression trigger
+        if self._should_compress():
+            self._needs_summary = True
 
         self._save()
 
+    def _should_compress(self) -> bool:
+        """Check if compression is needed (token-based)."""
+        tokens = total_tokens(self.data["short_term"])
+        return tokens > self.max_tokens
+
     def _auto_summarize(self):
         """
-        Turn limit reached - flag for LLM summarization.
-        Actual summarization is deferred to AgentLoop which calls LLM.
+        Token limit reached - flag for LLM summarization.
         """
         self._needs_summary = True
 
