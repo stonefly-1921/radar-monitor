@@ -1,0 +1,114 @@
+{
+  "session_id": "session_20260522_200304_093043d0",
+  "created_at": "2026-05-22T20:03:04.717812",
+  "updated_at": "2026-05-22T20:07:28.340021",
+  "status": "in_progress",
+  "turns": [
+    {
+      "turn": 1,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页：第一页标题'欢迎'，第二页标题'总结'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:03:10.439213"
+    },
+    {
+      "turn": 2,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页：第一页标题'欢迎'，第二页标题'总结'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:03:30.220378"
+    },
+    {
+      "turn": 3,
+      "input": "在当前目录下的 io 目录里新建一个文件叫 test.txt，内容是'Hello from MyAgent'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:03:30.223183"
+    },
+    {
+      "turn": 4,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:04:12.848534"
+    },
+    {
+      "turn": 5,
+      "input": "在 io 目录里新建一个文件叫 e2e_test.txt，内容是'Hello from MyAgent E2E Test'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:04:20.561501"
+    },
+    {
+      "turn": 6,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:05:36.520384"
+    },
+    {
+      "turn": 7,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:06:03.718203"
+    },
+    {
+      "turn": 8,
+      "input": "在 io 目录里新建一个文件叫 e2e_test.txt，内容是'Hello from MyAgent E2E Test'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:06:11.356597"
+    },
+    {
+      "turn": 9,
+      "input": "在桌面上新建一个PPT，标题是'测试演示文稿'，包含两页",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:07:20.440146"
+    },
+    {
+      "turn": 10,
+      "input": "在 io 目录里新建一个文件叫 e2e_test.txt，内容是'Hello from MyAgent E2E Test'",
+      "prompt": {},
+      "response": {},
+      "tool_calls": [],
+      "tool_results": [],
+      "final_answer": "",
+      "timestamp": "2026-05-22T20:07:28.340021"
+    }
+  ],
+  "memory": {
+    "short_term": [],
+    "long_term": [],
+    "summaries": []
+  },
+  "config": {}
+}

@@ -13,7 +13,7 @@ def _run_powershell(script):
     import subprocess
     result = subprocess.run(
         ['powershell', '-NoProfile', '-NonInteractive', '-Command', script],
-        capture_output=True, text=True, timeout=120
+        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=120
     )
     return result.stdout.strip(), result.stderr.strip(), result.returncode
 

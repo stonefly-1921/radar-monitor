@@ -31,7 +31,7 @@ def _run_ps(script, timeout=120):
     """Run PowerShell via -Command (inline, for string-only scripts)."""
     result = subprocess.run(
         ['powershell', '-NoProfile', '-NonInteractive', '-Command', script],
-        capture_output=True, text=True, timeout=timeout
+        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=timeout
     )
     return result.stdout.strip(), result.stderr.strip(), result.returncode
 
@@ -44,7 +44,7 @@ def _run_ps_file(script, timeout=120):
     try:
         result = subprocess.run(
             ['powershell', '-NoProfile', '-NonInteractive', '-File', temp_path],
-            capture_output=True, text=True, timeout=timeout
+            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=timeout
         )
         return result.stdout.strip(), result.stderr.strip(), result.returncode
     finally:

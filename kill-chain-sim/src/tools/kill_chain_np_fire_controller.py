@@ -148,6 +148,9 @@ class KillChainController:
         self.sensor_mode = "SEARCH"
         self.sensor_track: Optional[int] = None
 
+        # Pending fire command (for ACK-based dispatch in run())
+        self.pending_fire: Optional[str] = None
+
         # File state
         self.last_track_content = ""
         self.last_cmd = ""
@@ -335,13 +338,13 @@ class KillChainController:
             # Run decision
             dec = self.decide()
 
-            # Dispatch commands
+            # Set pending fire for run() loop to dispatch (with ACK)
             if dec.fires:
-                self.write_cmd(dec.fires)
-                for f in dec.fires:
-                    tid = int(f.split(":")[-1])
-                    self.fired_tracks.add(tid)
-                    print(f"  [FIRE] {f}")
+                self.pending_fire = dec.fires[0]  # one at a time
+                self.sensor_mode = dec.sensor_mode
+                self.sensor_track = dec.sensor_track
+            else:
+                self.pending_fire = None
 
             self.write_sensor(dec.sensor_mode, dec.sensor_track)
 

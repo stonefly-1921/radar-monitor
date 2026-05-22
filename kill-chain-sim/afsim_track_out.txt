@@ -1,7 +1,2 @@
-TRACK_COUNT: 6 time=300.25
+TRACK_COUNT: 1 time=36.1
 TRACK: id=2 lat=38.0917 lon=-117.233 alt=500 vel=0 hdg=0
-TRACK: id=4 lat=38.0683 lon=-117.192 alt=600 vel=0 hdg=0
-TRACK: id=6 lat=38.1 lon=-117.267 alt=5000 vel=0 hdg=0
-TRACK: id=8 lat=38.0333 lon=-117.192 alt=5500 vel=0 hdg=0
-TRACK: id=10 lat=38.0083 lon=-117.233 alt=6000 vel=0 hdg=0
-TRACK: id=12 lat=38.0417 lon=-117.183 alt=4500 vel=0 hdg=0
