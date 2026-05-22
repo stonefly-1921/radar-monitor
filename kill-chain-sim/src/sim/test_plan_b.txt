@@ -1,0 +1,113 @@
+# Test Plan B: File polling + Fire()
+# RED_SHOOTER platform reads FIRE commands from file
+
+file_path D:/afsim-2.9.0-win64/demos
+file_path D:/afsim-2.9.0-win64/demos/base_types
+file_path D:/afsim-2.9.0-win64/demos/base_types/weapons/aam
+file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim
+
+log_file stdout
+realtime
+end_time 1 min
+
+include_once simple_medium_range_missile.txt
+include_once processors/kill_chain_np_cmd_reader.txt
+
+# Platform type: RED radar + shooter
+platform_type RED_SHOOTER WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor simple_radar WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 555600 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   weapon aim120_sim SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 4
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+
+   processor cmd_reader KILL_CHAIN_CMD_READER
+   end_processor
+
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 2.0;
+      end_script_variables
+      update_interval 2.0 sec
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.Count();
+            writeln("TRACK_COUNT: ", tc, " time=", TIME_NOW);
+            if (tc >= 1)
+            {
+               foreach (WsfTrack t in trackList)
+               {
+                  writeln("TRACK:",
+                     t.TrackId().Name(), ":",
+                     t.TrackId().Number(), ",",
+                     t.Latitude(), ",",
+                     t.Longitude(), ",",
+                     t.Altitude(), ",",
+                     t.Side(), ",",
+                     t.Speed(), ",",
+                     t.Heading());
+               }
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+platform_type BLUE_TARGET WSF_PLATFORM
+   icon Fighters
+   category aircraft
+   mover WSF_AIR_MOVER
+   end_mover
+end_platform_type
+
+# Platforms
+platform radar1 RED_SHOOTER
+   side red
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+platform target1 BLUE_TARGET
+   side blue
+   position 38:04:30n 117:14:00w altitude 3000 m msl
+end_platform
+
+script void mslend(WsfWeaponEngagement aWeaponEngagement)
+   bool killed = !aWeaponEngagement.TargetPlatform().IsValid();
+   string result = "WEAPON_MISS";
+   if (killed) { result = "WEAPON_HIT"; }
+   int tgt_id = -1;
+   if (aWeaponEngagement.TargetPlatform().IsValid()) { tgt_id = aWeaponEngagement.TargetPlatform().Index(); }
+   writeln(result, ": target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script
+
+script void FiredAt(WsfWeaponEngagement aWeaponEngagement, WsfTrack aTargetTrack)
+   if (!aWeaponEngagement.TargetPlatform().IsValid()) { return; }
+   int tgt_id = aWeaponEngagement.TargetPlatform().Index();
+   writeln("WEAPON_FIRED: target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script

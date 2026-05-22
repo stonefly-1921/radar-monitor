@@ -1,0 +1,46 @@
+// sensor_controller.txt
+// AFSIM sensor control via file commands from Python
+// Commands: SENSOR:radar_name:mode[:track_name:track_num]
+//   SENSOR:radar1:SEARCH           - switch to search mode
+//   SENSOR:radar1:TRACK:radar1:2   - switch to track mode, track radar1.2
+//   SENSOR:radar1:HIGH_RATE         - increase data rate (if in TRACK mode)
+
+processor SENSOR_CONTROL WSF_SCRIPT_PROCESSOR
+   script_variables
+      string mLastCmd = "";
+      FileIO mCmdFile = FileIO();
+   end_script_variables
+
+   update_interval 0.1 sec
+
+   on_update
+      string cmdPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/sensor_cmd.txt";
+
+      if (mCmdFile.Open(cmdPath))
+      {
+         string line = mCmdFile.Readln();
+         mCmdFile.Close();
+
+         if (line.Length() > 0 && line != mLastCmd)
+         {
+            Array<string> parts = line.Split(":");
+            if (parts.Size() >= 2)
+            {
+               string action = parts[0].Strip();
+               if (action == "SENSOR")
+               {
+                  string radarName = parts[1].Strip();
+                  string mode = parts[2].Strip();
+
+                  writeln("SENSOR_CTRL: ", radarName, " -> ", mode);
+
+                  // Note: actual radar mode switching requires WSF API access
+                  // For now this logs the command for verification
+                  // Real mode switching would need deeper integration
+               }
+            }
+            mLastCmd = line;
+         }
+      }
+   end_on_update
+end_processor

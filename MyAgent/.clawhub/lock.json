@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "yh-minimax-docx": {
+      "version": "1.0.0",
+      "installedAt": 1779422044515
+    },
+    "minimax-xlsx-pro": {
+      "version": "1.0.0",
+      "installedAt": 1779422059712
+    },
+    "pptx-generator": {
+      "version": "1.0.2",
+      "installedAt": 1779422064011
+    },
+    "minimax-pdf-analysis-v2": {
+      "version": "1.0.0",
+      "installedAt": 1779422128692
+    },
+    "office-productivity": {
+      "version": "1.0.0",
+      "installedAt": 1779422353182
+    }
+  }
+}

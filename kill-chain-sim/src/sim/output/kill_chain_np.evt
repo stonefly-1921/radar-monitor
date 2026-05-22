@@ -1,0 +1,35 @@
+00:00:01.0 WEAPON_FIRED radar1 target1 radar1_aim120_sim_1 Engagement: 1 Start_Time: 00:00:01.0 \
+ Launch: LLA: 38:04:06.00n 117:14:00.00w 0 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+  Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ] \
+ Target: LLA: 38:04:30.00n 117:14:00.00w 3000 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+  Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ] \
+ Truth: Slant_Range: 3089.96 m Ground_Range: 740.335 m Down_Range: 740.335 m Cross_Range: -1.34605e-10 m Relative_Alt: 2999.96 m \
+ Target_Track: radar1.2 \
+  Start_Time: 00:00:00.0 Update_Time: 00:00:01.0 Update_Count: 0 Quality: 0.5 Domain: land Type: P \
+  Target_Truth: Name: target1 Type: BLUE_TARGET Side: blue \
+  Originator: LLA: 38:04:06.00n 117:14:00.00w -4.0046871e-08 m \
+  Track: LLA: 38:04:30.00n 117:14:00.00w 3000 m Flags: L3B \
+  Truth: LLA: 38:04:30.00n 117:14:00.00w 3000 m  Difference: 0 m  \
+  Track: Vel: 0 m/s Hdg: 0 deg  Truth: Vel: 0 m/s Hdg: 0 deg \
+  Track: Range: 3089.96 m Bearing: 360 deg Elevation: 76.1374 deg \
+  Truth: Range: 3089.96 m Bearing: 360 deg Elevation: 76.1374 deg
+00:00:11.5 WEAPON_HIT radar1 target1 radar1_aim120_sim_1 Engagement: 1 Start_Time: 00:00:01.0 \
+ Intercept_Pk: 1 Pk_Degrade: 1 Pk: 1 Pk_Drawn: 0.437587 INTENDED_TARGET Damage_Factor: 1 Result: KILLED \
+ Extended_Result: Target_proximity \
+ Weapon: LLA: 38:04:30.45n 117:14:00.00w 2994.8634 m Heading: 7.904 deg Pitch: 76.818 deg Roll: 0.000 deg \
+  Speed: 518.503 m/s * [ 0.226 0.031 -0.974 ] Acceleration: 266.026 m/s2 * [ -0.905 0.313 -0.288 ] \
+ Target: LLA: 38:04:30.00n 117:14:00.00w 3000 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+  Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ] \
+ Miss_Distance: 14.8946 m \
+ Weapon_Loc_ECS: [ 13.9807 -0.0613767 5.13658 ] m \
+ Weapon_Vel_ECS: 518.503 m/s * [ 0.225883 0.0313582 -0.97365 ]
+00:00:11.5 WEAPON_TERMINATED radar1 target1 radar1_aim120_sim_1 Engagement: 1 Start_Time: 00:00:01.0 \
+ Intercept_Pk: 1 Pk_Degrade: 1 Pk: 1 Pk_Drawn: 0.437587 INTENDED_TARGET Damage_Factor: 1 Result: KILLED \
+ Extended_Result: Target_proximity \
+ Weapon: LLA: 38:04:30.45n 117:14:00.00w 2994.8634 m Heading: 7.904 deg Pitch: 76.818 deg Roll: 0.000 deg \
+  Speed: 518.503 m/s * [ 0.226 0.031 -0.974 ] Acceleration: 266.026 m/s2 * [ -0.905 0.313 -0.288 ] \
+ Target: LLA: 38:04:30.00n 117:14:00.00w 3000 m Heading: 0.000 deg Pitch: 0.000 deg Roll: 0.000 deg \
+  Speed: 0.000 m/s * [ 0.000 0.000 0.000 ] Acceleration: 0.000 m/s2 * [ 0.000 0.000 0.000 ] \
+ Miss_Distance: 14.8946 m \
+ Weapon_Loc_ECS: [ 13.9807 -0.0613767 5.13658 ] m \
+ Weapon_Vel_ECS: 518.503 m/s * [ 0.225883 0.0313582 -0.97365 ]

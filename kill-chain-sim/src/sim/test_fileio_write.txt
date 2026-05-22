@@ -1,0 +1,34 @@
+// Minimal test: FileIO write mode
+file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim
+
+log_file output/test_fileio_write.log
+realtime
+end_time 5 sec
+
+platform_type TEST_PLATFORM WSF_PLATFORM
+end_platform_type
+
+platform test TEST_PLATFORM
+   side red
+   position 38:04:06n 117:14:00w
+   processor test_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         FileIO mOut = FileIO();
+         string mPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/test_out.txt";
+      end_script_variables
+      update_interval 1.0 sec
+      on_update
+         writeln("TEST: attempting open at ", mPath);
+         if (mOut.Open(mPath))
+         {
+            writeln("TEST: open succeeded");
+            mOut.Writeln("HELLO FROM AFSIM");
+            mOut.Close();
+         }
+         else
+         {
+            writeln("TEST: open FAILED");
+         }
+      end_on_update
+   end_processor
+end_platform

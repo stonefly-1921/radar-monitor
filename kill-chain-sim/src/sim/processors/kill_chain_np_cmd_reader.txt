@@ -1,0 +1,89 @@
+processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
+   update_interval 0.1 sec
+   script_variables
+      string mLastLine = "";
+      FileIO mCmdFile = FileIO();
+      FileIO mAckFile = FileIO();
+      string mPendingCmd = "";
+   end_script_variables
+
+   script bool TryLaunch(string aWeaponName, string aTrackName, int aTrackNum)
+      WsfTrackId tid = WsfTrackId.Construct(aTrackName, aTrackNum);
+      WsfLocalTrack targetTrack = PLATFORM.MasterTrackList().Find(tid);
+
+      if (!targetTrack.IsValid())
+      {
+         writeln("KCMD: track not found: tid.Construct(", aTrackName, ",", aTrackNum, ")");
+         return false;
+      }
+
+      writeln("KCMD: track found, launching...");
+      WsfWeapon weap = PLATFORM.Weapon(aWeaponName);
+      if (!weap.IsValid())
+      {
+         writeln("KCMD: weapon not found: ", aWeaponName);
+         return false;
+      }
+
+      bool fired = Fire(targetTrack, "FIRE", aWeaponName, 1, PLATFORM);
+      writeln("KCMD: Fire ", aWeaponName, " at track ", aTrackNum, " -> ", fired);
+
+      return fired;
+   end_script
+
+   on_update
+      string cmdPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_chain_np_cmd.txt";
+      string ackPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_chain_np_ack.txt";
+
+      // Step 1: If a command is pending (previously read), process it
+      if (mPendingCmd.Length() > 0)
+      {
+         Array<string> parts = mPendingCmd.Split(":");
+         if (parts.Size() >= 4)
+         {
+            string action = parts[0].Strip();
+            string weaponName = parts[1].Strip();
+            string trackName = parts[2].Strip();
+            string trackNumStr = parts[3].Strip();
+            int trackNum = (int)trackNumStr;
+
+            if (action == "FIRE")
+            {
+               writeln("KCMD: trying FIRE - weapon=", weaponName,
+                       " track=", trackName, ":", trackNum);
+               bool fired = TryLaunch(weaponName, trackName, trackNum);
+               writeln("KCMD: command consumed.");
+               mPendingCmd = "";
+
+               // Write ACK so Python knows we finished
+               if (mAckFile.Open(ackPath, "out"))
+               {
+                  mAckFile.Write("ACK\n");
+                  mAckFile.Close();
+               }
+            }
+         }
+         return;
+      }
+
+      // Step 2: Read new command from file
+      if (mCmdFile.Open(cmdPath))
+      {
+         string line = mCmdFile.Readln();
+         mCmdFile.Close();
+
+         if (line.Length() > 0 && line != mLastLine)
+         {
+            writeln("KCMD: line: ", line);
+            mPendingCmd = line;   // defer processing to next cycle
+            mLastLine = line;
+
+            // Clear the command file immediately so Python can write next command
+            if (mCmdFile.Open(cmdPath, "out"))
+            {
+               mCmdFile.Close();
+            }
+         }
+      }
+   end_on_update
+end_processor

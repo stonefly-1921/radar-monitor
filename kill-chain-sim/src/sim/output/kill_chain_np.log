@@ -1,0 +1,7 @@
+2026-05-22 13:52:43 version wsf 2.9.0
+2026-05-22 13:52:43 file C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim\kill_chain_np.txt
+2026-05-22 13:52:43 file D:/afsim-2.9.0-win64/demos/base_types/weapons/aam/simple_medium_range_missile.txt
+2026-05-22 13:52:43 file C:\Users\15041\.openclaw\workspace\kill-chain-sim\src\sim\processors/kill_chain_np_cmd_reader.txt
+2026-05-22 13:52:43 Event output file: output/kill_chain_np.evt
+2026-05-22 13:52:43 start 1
+2026-05-22 13:55:44 complete 180.250 180.261 0.656

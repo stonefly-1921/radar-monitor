@@ -1,0 +1,23 @@
+{
+  "enabled_tools": [
+    "file_read",
+    "file_write",
+    "file_edit",
+    "file_list",
+    "shell_run",
+    "python_run",
+    "doc_read",
+    "doc_write",
+    "wiki_search",
+    "wiki_update"
+  ],
+  "tool_configs": {
+    "shell_run": {
+      "allowed_commands": ["dir", "type", "python", "pip"],
+      "timeout": 60
+    },
+    "python_run": {
+      "timeout": 120
+    }
+  }
+}
