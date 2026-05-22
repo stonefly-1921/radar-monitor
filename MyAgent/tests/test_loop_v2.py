@@ -10,6 +10,7 @@ Goals:
 
 import sys
 import os
+import json
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -68,8 +69,20 @@ def test_single_task_llm_calls():
     
     mock = MockLLMClient()
     loop = AgentLoopV2(llm_client=mock)
+    loop._testing_mode = True
+    loop._testing_input_queue = ["统计 tests 目录下有多少个 Python 文件"]
+    loop._testing_response_queue = [
+        json.dumps({"think": "需要文件列表", "action": "tool_call", "tools": [
+            {"tool": "file_list", "params": {"path": "tests/"}},
+            {"tool": "shell_run", "params": {"command": "dir tests\\*.py /b", "cwd": os.path.dirname(os.path.dirname(__file__))}}
+        ]}),
+        json.dumps({"think": "统计结果", "action": "tool_call", "tools": [
+            {"tool": "shell_run", "params": {"command": "dir tests\\*.py /b | find /c \".py\"", "cwd": os.path.dirname(os.path.dirname(__file__))}}
+        ]}),
+        json.dumps({"think": "完成", "action": "final", "answer": "tests 目录下共有 11 个 Python 文件。"})
+    ]
     
-    result = loop.run("统计 tests 目录下有多少个 Python 文件")
+    result = loop.run()  # calls rewrite_main_loop()
     
     print(f"\n[结果统计]")
     print(f"  LLM 调用次数: {mock.call_count}")
@@ -121,8 +134,16 @@ def test_manual_operation_count():
     
     mock = MockLLMClient()
     loop = AgentLoopV2(llm_client=mock)
+    loop._testing_mode = True
+    loop._testing_input_queue = ["简单任务测试"]
+    loop._testing_response_queue = [
+        json.dumps({"think": "开始", "action": "tool_call", "tools": [
+            {"tool": "shell_run", "params": {"command": "echo test"}}
+        ]}),
+        json.dumps({"think": "完成", "action": "final", "answer": "简单任务完成"})
+    ]
     
-    result = loop.run("简单任务测试")
+    result = loop.run()
     
     # In direct API mode, user only provides input once
     manual_ops = 1  # Just the initial input

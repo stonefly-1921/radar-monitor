@@ -115,6 +115,11 @@ class AgentLoopV2:
         self.session = None
         self.memory = None
 
+        # Testing mode: bypass input() for pytest
+        self._testing_mode = False
+        self._testing_input_queue = []  # list of strings to return from _wait_for_input
+        self._testing_response_queue = []  # list of LLM responses for _wait_for_response
+
         # I/O 路径 - 全部用 .txt 纯文本
         self.io_config = {
             "input_file": "io/input.txt",
@@ -139,10 +144,12 @@ class AgentLoopV2:
         print("  MyAgent v2")
         print("=" * 60)
 
-        # 清理旧的 I/O 文件（保留 session.json）
+        # 清理旧的 I/O 文件（保留 session.json 和 input.txt）
         io_dir = self._resolve_path("io")
         os.makedirs(io_dir, exist_ok=True)
-        for f in ["input.txt", "prompt.txt", "response.txt", "tool_result.json"]:
+        # input.txt 由用户预先写入（Win7 双击场景依赖此文件），不删除
+        # 保留 prompt.txt 用于调试
+        for f in ["response.txt", "tool_result.json"]:
             fpath = os.path.join(io_dir, f)
             if os.path.exists(fpath):
                 try:
@@ -264,8 +271,13 @@ class AgentLoopV2:
     # REPL 主循环
     # =========================================================================
 
-    def rewrite_main_loop(self):
-        """REPL 主循环入口。"""
+    def rewrite_main_loop(self, user_input: str = None):
+        """REPL 主循环入口。
+        
+        Args:
+            user_input: 如果提供，直接用这个输入启动任务（用于测试）。
+                       不提供则进入交互式等待模式。
+        """
         self.initialize()
 
         while True:
@@ -276,47 +288,102 @@ class AgentLoopV2:
             print("请在 input.txt 写任务，输入 quit 退出")
             print()
 
-            # 等待用户写 input.txt 并敲回车
-            user_input = self._wait_for_input()
+            if user_input is None:
+                # 交互模式：等待用户写 input.txt 并敲回车
+                user_input = self._wait_for_input()
+                if user_input is None:
+                    # 测试队列空，退出 REPL（None = 测试结束信号，!== quit）
+                    break
+            elif self._testing_mode:
+                # 测试模式：直接从队列取输入
+                user_input = self._wait_for_input()
+                if user_input is None:
+                    # 队列空，退出 REPL
+                    break
+
             if user_input == "quit":
                 print("[退出] 再见！")
                 break
 
             # === 任务执行层（可能多轮）===
-            self._execute_task(user_input)
-            # 任务完成后自动回到 input 层等新任务
+            task_result = self._execute_task(user_input)
+            # 测试模式：返回任务结果，不继续循环
+            if self._testing_mode:
+                return task_result
+            # 任务完成后，回到交互模式等下一轮
+            user_input = None  # 等下一轮任务
 
     def _wait_for_input(self) -> str:
         """
         等待用户准备 input.txt。
         用户敲回车后读取 input.txt 内容。
         直接输入 quit 字符串则退出程序。
-        """
-        input("按回车继续（输入 quit 退出）...\n")
 
-        # 检查是否要退出
-        # 注意：用户输入 quit 时，input() 会返回 "quit"
-        # 但我们用文件模式，用户在 input.txt 里写 quit 才是取消任务
-        # 这里 stdin 的 quit 是退出程序
+        测试模式下跳过 input() 调用，直接从 _testing_input_queue 取值。
+        如果队列为空但 input.txt 有内容，直接读取（Win7 双击场景）。
+        返回 None 表示测试结束（队列空且文件也空）。
+        Win7 双击场景：优先读 input.txt，有内容就直接执行，不需敲回车。
+        """
+        if self._testing_mode:
+            # 优先从队列取值
+            if self._testing_input_queue:
+                return self._testing_input_queue.pop(0)
+            # 队列空：仍然检查 input.txt（Win7 双击 / echo 管道场景）
+            input_file = self._resolve_path(self.io_config["input_file"])
+            if os.path.exists(input_file):
+                with open(input_file, 'r', encoding='utf-8') as f:
+                    content = f.read().strip()
+                if content:
+                    # 清空文件（防止重复执行）
+                    try:
+                        with open(input_file, 'w', encoding='utf-8') as f:
+                            f.write('')
+                    except Exception:
+                        pass
+                    return content
+            return None
 
         input_file = self._resolve_path(self.io_config["input_file"])
 
-        # 如果文件不存在，等用户创建
-        while not os.path.exists(input_file):
-            print("[等待] 请在 input.txt 写任务...")
-            input("按回车继续...\n")
+        # === 优先：input.txt 有内容就直接用（Win7 双击 / echo 管道场景）===
+        if os.path.exists(input_file):
+            with open(input_file, 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+            if content:
+                try:
+                    with open(input_file, 'w', encoding='utf-8') as f:
+                        f.write('')
+                except Exception:
+                    pass
+                return content
 
-        # 读取内容
-        with open(input_file, 'r', encoding='utf-8') as f:
-            content = f.read().strip()
+        # === 非交互环境（无 tty）且文件为空 → 正常跳过，让文件流程处理 ===
+        if not sys.stdin.isatty():
+            # Win7 双击场景：stdin 无 tty，但文件操作正常
+            # 文件有内容 → 在前面读取；文件无内容或不存在 → 等待用户写文件后重试
+            pass  # 不退出，继续往下走文件等待逻辑
 
-        # 空内容，继续等
+        # === 正常交互模式：等用户敲回车或输入 quit ===
+        try:
+            user_quit = input("按回车继续（输入 quit 退出）...\n")
+            if user_quit.strip().lower() == "quit":
+                return "quit"
+        except (EOFError, OSError):
+            # 非交互环境（Win7双击 / 重定向 / pytest），安全退出
+            print("[退出] 输入流关闭，程序退出")
+            return None
+
+        # 敲回车后读文件（正常交互流程）
+        if os.path.exists(input_file):
+            with open(input_file, 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+        else:
+            content = ''
+
         if not content:
-            # 清空并继续等待
             print("[提示] input.txt 为空，请写入任务")
             return self._wait_for_input()
 
-        # 清空 input.txt（用户自己管）
         try:
             with open(input_file, 'w', encoding='utf-8') as f:
                 f.write('')
@@ -325,13 +392,20 @@ class AgentLoopV2:
 
         return content
 
+
     def _wait_for_response(self) -> str:
         """
         等待用户粘贴 LLM 回复到 response.txt。
         用户敲回车后读取 response.txt。
         如果文件不存在或为空，持续等待。
         如果内容是 quit 字符串，取消当前任务。
+        
+        测试模式下优先从 _testing_response_queue 取值（MockLLM 的回复）。
         """
+        # 测试模式：优先用队列中的模拟 LLM 回复
+        if self._testing_mode and self._testing_response_queue:
+            return self._testing_response_queue.pop(0)
+
         response_file = self._resolve_path(self.io_config["response_file"])
 
         while True:
@@ -348,8 +422,25 @@ class AgentLoopV2:
                         pass
                     return content
 
+            if self._testing_mode:
+                # Testing: no queued response AND file doesn't exist or is empty.
+                # Return "quit" so caller knows to cancel. Caller is responsible
+                # for any polling between prompt generations.
+                return "quit"
+
+            if not sys.stdin.isatty():
+                # 非交互环境（Win7 双击）：等待文件出现
+                import time
+                print("[等待] 请把 LLM 回复粘贴到 response.txt...")
+                time.sleep(2)
+                continue
+
             print("[等待] 请把 LLM 回复粘贴到 response.txt...")
-            input("按回车继续...\n")
+            try:
+                input("按回车继续...\n")
+            except (EOFError, OSError):
+                print("[退出] 输入流关闭，程序退出")
+                return "quit"
 
     def _do_summary(self):
         """
@@ -387,18 +478,21 @@ class AgentLoopV2:
         print(f"[生成] 摘要提示词已写入 summary_prompt.txt ({ctx['history_lines']} 轮对话)")
         print(f"[下一步] 请复制 summary_prompt.txt 内容到 LLM")
         print(f"[等待] 把 LLM 的摘要粘贴到 summary_response.txt，按回车继续...")
-        input()
-        
-        # 读取 LLM 摘要
-        summary_file = self._resolve_path("io/summary_response.txt")
-        if os.path.exists(summary_file):
-            with open(summary_file, 'r', encoding='utf-8') as f:
-                summary_text = f.read().strip()
-            # 清空文件
-            with open(summary_file, 'w', encoding='utf-8') as f:
-                f.write('')
+        if self._testing_mode:
+            summary_text = "[测试摘要]"
         else:
-            summary_text = "[摘要内容为空]"
+            input()
+            
+            # 读取 LLM 摘要
+            summary_file = self._resolve_path("io/summary_response.txt")
+            if os.path.exists(summary_file):
+                with open(summary_file, 'r', encoding='utf-8') as f:
+                    summary_text = f.read().strip()
+                # 清空文件
+                with open(summary_file, 'w', encoding='utf-8') as f:
+                    f.write('')
+            else:
+                summary_text = "[摘要内容为空]"
         
         print(f"[摘要] 已收到摘要: {summary_text[:50]}...")
         
@@ -446,10 +540,10 @@ class AgentLoopV2:
             # === 等待用户粘贴回复 ===
             response_text = self._wait_for_response()
 
-            # quit 字符串（用户粘贴了 quit）取消任务
+            # quit 字符串（用户粘贴了 quit）取消任务，回到 input 层继续等下一轮
             if response_text.strip().lower() == "quit":
                 print("[取消] 当前任务已取消，回到等待输入")
-                return
+                return {"cancelled": True}
 
             # === 解析 response ===
             parsed = parse_response(response_text)
@@ -491,7 +585,13 @@ class AgentLoopV2:
                     turn_data["final_answer"] = final_content
                 self.session.save()
 
-                return  # 回到 input 层
+                return {
+                    "success": True,
+                    "content": final_content,
+                    "tool_calls": turn - 1,
+                    "iterations": turn,
+                    "session_id": self.session.session_id if self.session else None
+                }  # 回到 input 层
 
     def _execute_tools_display(self, tool_calls: list) -> list:
         """
@@ -537,7 +637,7 @@ class AgentLoopV2:
 
     def run(self, user_input: str = None):
         """兼容旧接口，直接进入 REPL 模式。"""
-        self.rewrite_main_loop()
+        return self.rewrite_main_loop()
 
     # =========================================================================
     # 入口

@@ -31,7 +31,7 @@ def _run_ps(script, timeout=120):
     """Run PowerShell via -Command (inline, for string-only scripts)."""
     result = subprocess.run(
         ['powershell', '-NoProfile', '-NonInteractive', '-Command', script],
-        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=timeout
+        capture_output=True, text=True, encoding='gbk', errors='replace', timeout=timeout
     )
     return result.stdout.strip(), result.stderr.strip(), result.returncode
 
@@ -44,7 +44,7 @@ def _run_ps_file(script, timeout=120):
     try:
         result = subprocess.run(
             ['powershell', '-NoProfile', '-NonInteractive', '-File', temp_path],
-            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=timeout
+            capture_output=True, text=True, encoding='gbk', errors='replace', timeout=timeout
         )
         return result.stdout.strip(), result.stderr.strip(), result.returncode
     finally:
@@ -470,6 +470,10 @@ class PptxCreateTool(Tool):
 
         if not output_path:
             return {"success": False, "error": "Missing output_path"}
+
+        # Resolve relative paths to absolute
+        if not os.path.isabs(output_path):
+            output_path = os.path.abspath(output_path)
 
         out_ps = _ps_str(output_path)
         title_ps = _ps_str(title)

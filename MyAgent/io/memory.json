@@ -1,28 +1,39 @@
 {
   "short_term": [
     {
-      "role": "assistant",
-      "content": "助手回复8",
-      "timestamp": "2026-05-22T19:56:20.215232"
+      "role": "user",
+      "content": "审查 agent/loop.py 文件",
+      "timestamp": "2026-05-22T23:39:08.769191"
     },
     {
       "role": "user",
-      "content": "用户消息9",
-      "timestamp": "2026-05-22T19:56:20.215232"
+      "content": "之前的对话记录",
+      "timestamp": "2026-05-22T23:39:08.917864"
     },
     {
       "role": "assistant",
-      "content": "助手回复9",
-      "timestamp": "2026-05-22T19:56:20.215232"
+      "content": "我记住了",
+      "timestamp": "2026-05-22T23:39:08.918865"
     }
   ],
-  "long_term": [],
-  "summaries": [
+  "long_term": [
     {
-      "summary": "这是一个测试摘要",
-      "timestamp": "2026-05-22T19:56:20.217237",
-      "turns_before": 20
+      "content": "agent/loop.py 包含 bug",
+      "tags": [
+        "bug",
+        "agent"
+      ],
+      "timestamp": "2026-05-22T23:39:08.769191"
+    },
+    {
+      "content": "agent/loop_v2.py 已修复",
+      "tags": [
+        "fix",
+        "v2"
+      ],
+      "timestamp": "2026-05-22T23:39:08.770198"
     }
   ],
-  "updated_at": "2026-05-22T19:56:20.215232"
+  "summaries": [],
+  "updated_at": "2026-05-22T23:39:08.918865"
 }

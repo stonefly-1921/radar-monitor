@@ -7,6 +7,7 @@ with the new optimized agent loop.
 
 import sys
 import os
+import json
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -80,8 +81,20 @@ def test_code_review_skill():
     
     mock = MockLLMClient()
     loop = AgentLoopV2(llm_client=mock)
+    loop._testing_mode = True
+    loop._testing_input_queue = ["使用 code_review 技能审查 agent/loop_v2.py 的代码质量"]
+    loop._testing_response_queue = [
+        json.dumps({"think": "使用技能", "action": "tool_call", "tools": [
+            {"tool": "doc_read", "params": {"path": "skills/code_review.md"}},
+            {"tool": "file_read", "params": {"path": "agent/loop_v2.py"}}
+        ]}),
+        json.dumps({"think": "分析代码", "action": "tool_call", "tools": [
+            {"tool": "shell_run", "params": {"command": "echo Linting done"}}
+        ]}),
+        json.dumps({"think": "完成", "action": "final", "answer": "## 代码审查报告\n\n### 发现\n1. [UnicodeEncodeError风险] (严重程度: 中)\n   - 位置: 多处 print 语句\n   - 建议: 使用 safe_print 或设置环境编码\n\n### 总体评价\n好 - 代码结构清晰，逻辑完整\n\n### 使用的技能\ncode_review"})
+    ]
     
-    result = loop.run("使用 code_review 技能审查 agent/loop_v2.py 的代码质量")
+    result = loop.run()
     
     print(f"\n[结果]")
     print(f"  LLM 调用: {mock.call_count} 次")
@@ -165,7 +178,22 @@ def test_skill_workflow_integration():
     
     mock = WikiMockClient()
     loop = AgentLoopV2(llm_client=mock)
-    result = loop.run("使用 wiki_manager 技能创建一个测试知识条目")
+    loop._testing_mode = True
+    loop._testing_input_queue = ["使用 wiki_manager 技能创建一个测试知识条目"]
+    loop._testing_response_queue = [
+        json.dumps({"think": "加载技能", "action": "tool_call", "tools": [
+            {"tool": "doc_read", "params": {"path": "skills/wiki_manager.md"}}
+        ]}),
+        json.dumps({"think": "创建条目", "action": "tool_call", "tools": [
+            {"tool": "wiki_update", "params": {
+                "title": "AgentLoop v2 测试",
+                "content": "这是一个测试条目",
+                "tags": ["test", "v2"]
+            }}
+        ]}),
+        json.dumps({"think": "完成", "action": "final", "answer": "## 知识库更新报告\n\n已创建条目: AgentLoop v2 测试\n标签: test, v2\n\n技能使用: wiki_manager"})
+    ]
+    result = loop.run()
     
     print(f"\n  LLM 调用: {mock.call_count}")
     print(f"  工具调用: {result.get('tools_called', 0)}")

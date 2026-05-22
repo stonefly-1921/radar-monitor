@@ -13,7 +13,7 @@ def _run_powershell(script):
     import subprocess
     result = subprocess.run(
         ['powershell', '-NoProfile', '-NonInteractive', '-Command', script],
-        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=120
+        capture_output=True, text=True, encoding='gbk', errors='replace', timeout=120
     )
     return result.stdout.strip(), result.stderr.strip(), result.returncode
 
@@ -203,10 +203,15 @@ class WordNewDocTool(Tool):
     def execute(self, **kwargs):
         output_path = kwargs.get("output_path", "")
         content = kwargs.get("content", "")
-        
+
         if not output_path:
             return {"success": False, "error": "Missing output_path"}
-        
+
+
+        # Resolve relative paths to absolute
+        if not os.path.isabs(output_path):
+            output_path = os.path.abspath(output_path)
+
         output_path_ps = output_path.replace("'", "''")
         content_escaped = content.replace("'", "''").replace("\n", "`n")
         

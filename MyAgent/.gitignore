@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Test artifacts
+io/test*.docx
+io/test*.pdf
+io/test*.pptx
+io/prompt.txt
+io/input.txt
+io/response.txt
+io/tool_result.json
+io/summary_prompt.txt
+io/summary_response.txt
+
+# Session/memory (runtime state)
+io/session.json
+io/memory.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
