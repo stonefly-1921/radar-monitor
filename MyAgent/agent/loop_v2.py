@@ -351,6 +351,62 @@ class AgentLoopV2:
             print("[等待] 请把 LLM 回复粘贴到 response.txt...")
             input("按回车继续...\n")
 
+    def _do_summary(self):
+        """
+        执行 LLM 摘要流程。
+        当 memory.get_needs_summary() 为 True 时调用。
+        
+        流程：
+        1. 生成 summary_prompt.txt（包含待摘要的对话历史）
+        2. 提示用户复制到 LLM
+        3. 等待用户粘贴 LLM 摘要到 summary_response.txt
+        4. 读取摘要，调用 compress_conversation
+        """
+        print("\n[摘要] 对话过长，需要生成摘要...")
+        
+        # 获取待摘要的对话历史
+        ctx = self.memory.get_summary_context()
+        
+        # 生成摘要提示词
+        summary_prompt = f"""请总结以下对话的要点，要求：
+1. 100字以内
+2. 只返回摘要文字，不要其他内容
+3. 涵盖主要内容和关键结论
+
+---对话历史---
+{ctx['history_text']}
+---结束---
+
+摘要："""
+        
+        # 写入 summary_prompt.txt
+        prompt_file = self._resolve_path("io/summary_prompt.txt")
+        with open(prompt_file, 'w', encoding='utf-8') as f:
+            f.write(summary_prompt)
+        
+        print(f"[生成] 摘要提示词已写入 summary_prompt.txt ({ctx['history_lines']} 轮对话)")
+        print(f"[下一步] 请复制 summary_prompt.txt 内容到 LLM")
+        print(f"[等待] 把 LLM 的摘要粘贴到 summary_response.txt，按回车继续...")
+        input()
+        
+        # 读取 LLM 摘要
+        summary_file = self._resolve_path("io/summary_response.txt")
+        if os.path.exists(summary_file):
+            with open(summary_file, 'r', encoding='utf-8') as f:
+                summary_text = f.read().strip()
+            # 清空文件
+            with open(summary_file, 'w', encoding='utf-8') as f:
+                f.write('')
+        else:
+            summary_text = "[摘要内容为空]"
+        
+        print(f"[摘要] 已收到摘要: {summary_text[:50]}...")
+        
+        # 执行压缩
+        self.memory.compress_conversation(summary_text)
+        self.memory.set_needs_summary(False)
+        print(f"[摘要] 对话已压缩，当前 {self.memory.turn_count} 轮")
+
     def _execute_task(self, user_input: str):
         """
         执行任务，可能多轮循环。
@@ -370,6 +426,10 @@ class AgentLoopV2:
         self.session.save()
 
         while True:
+            # === Token 超限检查：需要摘要时先做摘要 ===
+            if self.memory.get_needs_summary():
+                self._do_summary()
+
             # === 生成 prompt.txt ===
             conversation = self.session.get_conversation_history()
             prompt_text = self.build_prompt_text(
@@ -406,6 +466,10 @@ class AgentLoopV2:
                     turn_data["tool_calls"] = tool_calls
                     turn_data["tool_results"] = results
                 self.session.save()
+
+                # === 工具执行后再次检查是否需要摘要 ===
+                if self.memory.get_needs_summary():
+                    self._do_summary()
 
                 # 下一轮
                 tool_results = results
