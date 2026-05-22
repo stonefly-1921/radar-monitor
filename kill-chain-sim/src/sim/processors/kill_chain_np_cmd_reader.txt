@@ -1,10 +1,8 @@
 processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
    update_interval 0.1 sec
    script_variables
-      string mLastLine = "";
       FileIO mCmdFile = FileIO();
       FileIO mAckFile = FileIO();
-      string mPendingCmd = "";
    end_script_variables
 
    script bool TryLaunch(string aWeaponName, string aTrackName, int aTrackNum)
@@ -13,11 +11,10 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
 
       if (!targetTrack.IsValid())
       {
-         writeln("KCMD: track not found: tid.Construct(", aTrackName, ",", aTrackNum, ")");
+         writeln("KCMD: track not found: ", aTrackName, ":", aTrackNum);
          return false;
       }
 
-      writeln("KCMD: track found, launching...");
       WsfWeapon weap = PLATFORM.Weapon(aWeaponName);
       if (!weap.IsValid())
       {
@@ -27,62 +24,91 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
 
       bool fired = Fire(targetTrack, "FIRE", aWeaponName, 1, PLATFORM);
       writeln("KCMD: Fire ", aWeaponName, " at track ", aTrackNum, " -> ", fired);
-
       return fired;
+   end_script
+
+   script void ProcessSensorCommand(Array<string> parts)
+      // SENSOR:radar_name:MODE[:extra]
+      // Examples:
+      //   SENSOR:radar1:SEARCH
+      //   SENSOR:radar1:TRACK:radar1:2
+      //   SENSOR:radar1:HIGH_RATE
+      if (parts.Size() < 3)
+      {
+         writeln("KCMD: SENSOR command too short");
+         return;
+      }
+      string radarName = parts[1].Strip();
+      string mode = parts[2].Strip();
+
+      // Forward to sensor_cmd.txt for sensor_controller processor to handle
+      string sensorCmdPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/sensor_cmd.txt";
+      FileIO sf;
+      if (sf.Open(sensorCmdPath, "out"))
+      {
+         string fullCmd = "SENSOR:" + radarName + ":" + mode;
+         if (parts.Size() >= 4)
+            fullCmd = fullCmd + ":" + parts[3].Strip();
+         if (parts.Size() >= 5)
+            fullCmd = fullCmd + ":" + parts[4].Strip();
+         sf.Write(fullCmd + "\n");
+         sf.Close();
+         writeln("KCMD: SENSOR -> ", fullCmd);
+      }
    end_script
 
    on_update
       string cmdPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_chain_np_cmd.txt";
       string ackPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_chain_np_ack.txt";
 
-      // Step 1: If a command is pending (previously read), process it
-      if (mPendingCmd.Length() > 0)
-      {
-         Array<string> parts = mPendingCmd.Split(":");
-         if (parts.Size() >= 4)
-         {
-            string action = parts[0].Strip();
-            string weaponName = parts[1].Strip();
-            string trackName = parts[2].Strip();
-            string trackNumStr = parts[3].Strip();
-            int trackNum = (int)trackNumStr;
+      int processed = 0;
 
-            if (action == "FIRE")
-            {
-               writeln("KCMD: trying FIRE - weapon=", weaponName,
-                       " track=", trackName, ":", trackNum);
-               bool fired = TryLaunch(weaponName, trackName, trackNum);
-               writeln("KCMD: command consumed.");
-               mPendingCmd = "";
-
-               // Write ACK so Python knows we finished
-               if (mAckFile.Open(ackPath, "out"))
-               {
-                  mAckFile.Write("ACK\n");
-                  mAckFile.Close();
-               }
-            }
-         }
-         return;
-      }
-
-      // Step 2: Read new command from file
+      // Open file once, read ALL lines until EOF
       if (mCmdFile.Open(cmdPath))
       {
          string line = mCmdFile.Readln();
+         while (line.Length() > 0)
+         {
+            Array<string> parts = line.Split(":");
+            if (parts.Size() >= 4)
+            {
+               string action = parts[0].Strip();
+               string weaponName = parts[1].Strip();
+               string trackName = parts[2].Strip();
+               string trackNumStr = parts[3].Strip();
+
+               if (action == "FIRE")
+               {
+                  writeln("KCMD: FIRE ", weaponName, " ", trackName, ":", trackNumStr);
+                  int trackNum = (int)trackNumStr;
+                  TryLaunch(weaponName, trackName, trackNum);
+                  processed = processed + 1;
+               }
+               else if (action == "SENSOR")
+               {
+                  writeln("KCMD: SENSOR cmd received");
+                  ProcessSensorCommand(parts);
+                  processed = processed + 1;
+               }
+            }
+            line = mCmdFile.Readln();
+         }
          mCmdFile.Close();
 
-         if (line.Length() > 0 && line != mLastLine)
+         // Clear command file
+         if (mCmdFile.Open(cmdPath, "out"))
          {
-            writeln("KCMD: line: ", line);
-            mPendingCmd = line;   // defer processing to next cycle
-            mLastLine = line;
+            mCmdFile.Close();
+         }
+      }
 
-            // Clear the command file immediately so Python can write next command
-            if (mCmdFile.Open(cmdPath, "out"))
-            {
-               mCmdFile.Close();
-            }
+      // Write ONE ACK after all commands processed
+      if (processed > 0)
+      {
+         if (mAckFile.Open(ackPath, "out"))
+         {
+            mAckFile.Write("ACK\n");
+            mAckFile.Close();
          }
       }
    end_on_update

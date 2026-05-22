@@ -13,7 +13,7 @@ file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim/processors
 
 log_file output/kill_chain_np_multi.log
 realtime
-end_time 5 min
+end_time 2 min
 
 event_output
    file output/kill_chain_np_multi.evt
@@ -32,11 +32,15 @@ radar_signature ASM_SIG
    constant 2 m^2
 end_radar_signature
 
+// Infrared signature for all targets (required for IR-guided missile seeker)
+infrared_signature TARGET_IR_SIG
+   constant 50 watts/steradian
+end_infrared_signature
+
 include_once simple_medium_range_missile.txt
 include_once processors/kill_chain_np_cmd_reader.txt
 include_once processors/sensor_controller.txt
 include_once blue_adv_fighter_1_base.txt
-
 // ============================================================================
 // Platform Types
 // ============================================================================
@@ -88,6 +92,10 @@ platform_type RED_SHOOTER WSF_PLATFORM
    processor cmd_reader KILL_CHAIN_CMD_READER
    end_processor
 
+   // Handle SENSOR mode commands (writes sensor_cmd.txt)
+   processor sensor_ctrl SENSOR_CONTROL
+   end_processor
+
    // Write track data for Python to consume
    processor track_writer WSF_SCRIPT_PROCESSOR
       script_variables
@@ -131,6 +139,7 @@ end_platform_type
 platform_type ASM_TARGET WSF_PLATFORM
    icon Missiles
    category aircraft
+   infrared_signature TARGET_IR_SIG
    mover WSF_AIR_MOVER
       maximum_speed 300.0 m/s
       maximum_altitude 2000 m
@@ -182,6 +191,7 @@ platform fighter1 BLUE_ADV_FIGHTER_1_BASE
    position 38:06:00n 117:16:00w altitude 5000 m msl
    heading 135.0 deg
    radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
 end_platform
 
 // Fighter-2: from SW, enters at t=80s
@@ -191,6 +201,7 @@ platform fighter2 BLUE_ADV_FIGHTER_1_BASE
    position 38:02:00n 117:11:30w altitude 5500 m msl
    heading 315.0 deg
    radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
 end_platform
 
 // Fighter-3: from south, enters at t=100s
@@ -200,6 +211,7 @@ platform fighter3 BLUE_ADV_FIGHTER_1_BASE
    position 38:00:30n 117:14:00w altitude 6000 m msl
    heading 0.0 deg
    radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
 end_platform
 
 // Fighter-4: from SE, enters at t=120s
@@ -209,6 +221,7 @@ platform fighter4 BLUE_ADV_FIGHTER_1_BASE
    position 38:02:30n 117:11:00w altitude 4500 m msl
    heading 225.0 deg
    radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
 end_platform
 
 // ============================================================================

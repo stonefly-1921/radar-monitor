@@ -1,0 +1,8 @@
+Found: วงฮส Rect:-7,-7,1446,858
+Window size: 1453x865
+Clicked at screen (719,728)
+SendKeys: 0
+Enter: 0
+MESSAGE_SENT
+SCREENSHOT:(1453, 865)
+DONE

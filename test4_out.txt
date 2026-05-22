@@ -1,0 +1,11 @@
+Found: วงฮส HWND:133298 Rect:-16000,-16000,-15843,-15975
+Window is minimized, restoring...
+New rect after restore: -7,-7,1446,858
+WINDOW_FOCUSED
+Clicking at 719,641
+CLICK_DONE
+SendKeys result: 0
+Enter result: 0
+TEXT_SENT
+SCREENSHOT_SAVED:(1453, 865)
+ALL_DONE

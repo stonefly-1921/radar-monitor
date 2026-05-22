@@ -1,0 +1,13 @@
+START
+WINDOW_FOCUSED
+CLICKED:1440,1198
+Processing -File 'C:/Users/15041/.openclaw/workspace/keyboard_control.ps1.txt' failed because the file does not have a '.ps1' extension. Specify a valid Windows PowerShell script file name, and then try again.
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+KEYS_SENT
+ENTER_SENT
+SCREENSHOT_SAVED:(2906, 1730)
+ALL_DONE

@@ -1,0 +1,28 @@
+Exception in thread Thread-2 (_readerthread):
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "D:\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\anaconda3\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xaf in position 104: illegal multibyte sequence
+
+============================================================
+  MyAgent v2
+============================================================
+
+[会话] ID=session_20260522_200304_093043d0, 轮次=27
+[工具] 35 个可用: doc_read, doc_write, docx_create, docx_edit, docx_read, file_edit, file_list, file_read, file_write, office_excel_new, office_excel_read, office_excel_to_pdf, office_excel_write, office_ppt_new, office_ppt_to_pdf, office_word_edit, office_word_new, office_word_read, office_word_to_pdf, pdf_merge, pdf_read, pptx_create, python_run, shell_run, wiki_delete, wiki_index, wiki_link_check, wiki_lint, wiki_read, wiki_search, wiki_update, wiki_write, xlsx_create, xlsx_read, xlsx_write
+
+Task written to input.txt
+prompt.txt generated, length: 6673
+Connecting to Qwen...
+Clicked input area at (1440, 1198)
+Sending prompt via PowerShell...
+Clipboard set: False
+Sent!
+Waiting 10s for Qwen to respond...
+Screenshot saved: (2906, 1730)
+DONE

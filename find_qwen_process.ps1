@@ -1,0 +1,1 @@
+Get-Process | Where-Object { $_.ProcessName -like "*qian*" -or $_.ProcessName -like "*qwen*" } | Select-Object Id, ProcessName

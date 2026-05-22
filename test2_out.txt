@@ -1,0 +1,32 @@
+START
+CLIP:0
+CONNECTING
+FOCUSED
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywinauto\timings.py", line 458, in wait_until_passes
+    raise err
+pywinauto.timings.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\15041\.openclaw\workspace\MyAgentTest2.py", line 30, in <module>
+    win_rect = win.element_info.rectangle
+               ^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywinauto\application.py", line 396, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywinauto\application.py", line 261, in __resolve_control
+    raise e.original_exception
+  File "D:\anaconda3\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywinauto\application.py", line 203, in __get_ctrl
+    dialog = self.backend.generic_wrapper_class(findwindows.find_element(**criteria[0]))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\pywinauto\findwindows.py", line 87, in find_element
+    raise ElementNotFoundError(kwargs)
+pywinauto.findwindows.ElementNotFoundError: {'title': 'วงฮส', 'backend': 'uia', 'process': 21024}

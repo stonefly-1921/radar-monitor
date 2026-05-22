@@ -1,0 +1,1 @@
+Get-Process qianwen -ErrorAction SilentlyContinue | Select-Object Id, ProcessName, Path
