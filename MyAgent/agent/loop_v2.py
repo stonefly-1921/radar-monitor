@@ -36,9 +36,11 @@ def parse_response(raw: str) -> dict:
     """
     解析 response.txt 的内容，支持多种格式：
     1. 纯文本 -> {"content": raw, "action": "final", "tool_calls": []}
-    2. JSON with result -> 提取 result 转 content
-    3. JSON with content -> 直接返回
+    2. JSON with tool_calls -> 返回 tool_call action
+    3. JSON with tool_results (Hermes 格式) -> 转为 tool_calls 返回 tool_call action
     4. JSON with think/action/tools -> 转为 tool_calls 格式
+    5. JSON with content + tool_calls -> 优先 tool_calls
+    6. JSON with result (Hermes) -> 当 final（无工具时）
     """
     if not raw or not raw.strip():
         return {"content": "", "action": "final", "tool_calls": []}
@@ -56,21 +58,38 @@ def parse_response(raw: str) -> dict:
         # JSON 解析失败，当纯文本处理
         return {"content": raw, "action": "final", "tool_calls": []}
 
-    # 已有 content 字段
-    if 'content' in data:
-        if data.get('tool_calls'):
+    # ============================================================
+    # 优先检查 tool_calls（最明确的工具调用格式）
+    # ============================================================
+    if 'tool_calls' in data and data['tool_calls']:
+        return {
+            "content": data.get('content', ''),
+            "action": "tool_call",
+            "tool_calls": data['tool_calls']
+        }
+
+    # ============================================================
+    # 检查 tool_results (Hermes/MyAgent 格式)
+    # tool_results = [{"tool": "xxx", "params": {...}, "result": {...}}]
+    # ============================================================
+    if 'tool_results' in data and data['tool_results']:
+        tool_calls = []
+        for tr in data['tool_results']:
+            if isinstance(tr, dict) and 'tool' in tr:
+                tool_calls.append({
+                    "tool": tr['tool'],
+                    "params": tr.get('params', {})
+                })
+        if tool_calls:
             return {
-                "content": data.get('content', ''),
+                "content": data.get('result', data.get('content', '')),
                 "action": "tool_call",
-                "tool_calls": data['tool_calls']
+                "tool_calls": tool_calls
             }
-        return {"content": data['content'], "action": "final", "tool_calls": []}
 
-    # hermes-agent 格式: result -> content
-    if 'result' in data:
-        return {"content": data['result'], "action": "final", "tool_calls": []}
-
+    # ============================================================
     # think/action 格式（prompt 约定的格式）
+    # ============================================================
     if 'think' in data and 'action' in data:
         action = data['action']
         if action == 'tool_call' and 'tools' in data:
@@ -85,6 +104,18 @@ def parse_response(raw: str) -> dict:
                 "action": "final",
                 "tool_calls": []
             }
+
+    # ============================================================
+    # 有 content 字段但无工具 -> final answer
+    # ============================================================
+    if 'content' in data:
+        return {"content": data['content'], "action": "final", "tool_calls": []}
+
+    # ============================================================
+    # 只有 result 字段 (Hermes 无工具格式) -> final answer
+    # ============================================================
+    if 'result' in data:
+        return {"content": data['result'], "action": "final", "tool_calls": []}
 
     # 其他 JSON 格式，当纯文本
     return {"content": raw, "action": "final", "tool_calls": []}
@@ -144,22 +175,33 @@ class AgentLoopV2:
         print("  MyAgent v2")
         print("=" * 60)
 
-        # 清理旧的 I/O 文件（保留 session.json 和 input.txt）
+        # 清理旧的 I/O 文件
         io_dir = self._resolve_path("io")
         os.makedirs(io_dir, exist_ok=True)
-        # input.txt 由用户预先写入（Win7 双击场景依赖此文件），不删除
-        # 保留 prompt.txt 用于调试
-        for f in ["response.txt", "tool_result.json"]:
+        # 每次启动清空所有 IO 文件，保持干净状态
+        for f in ["input.txt", "prompt.txt", "response.txt", "tool_result.json"]:
             fpath = os.path.join(io_dir, f)
             if os.path.exists(fpath):
                 try:
                     os.remove(fpath)
                 except Exception:
                     pass
+            # 创建空文件占位
+            with open(fpath, 'w', encoding='utf-8') as fh:
+                pass
 
-        # Session
+        # Session - 加载后去重
         session_file = self._resolve_path(self.io_config["session_file"])
         self.session = Session.load_or_create(session_file)
+        
+        # 启动时对 session turns 去重压缩
+        if self.session.turns:
+            original_count = len(self.session.turns)
+            self.session.deduplicate_turns()
+            self.session.save()
+            if original_count > len(self.session.turns):
+                print(f"[整理] 合并重复输入: {original_count} -> {len(self.session.turns)} 轮")
+        
         print(f"\n[会话] ID={self.session.session_id}, 轮次={self.session.turn_count}")
 
         # Memory
@@ -229,7 +271,11 @@ class AgentLoopV2:
                 success = result.get('success', False)
                 if success:
                     res_val = result.get('result', result.get('output', ''))
-                    tool_results_text += f"- {name}({params}) = {str(res_val)[:100]}\n"
+                    # 大幅增加截断限制，支持长内容（当前 context 205k，大模型有能力处理）
+                    truncated = str(res_val)
+                    if len(truncated) > 10000:
+                        truncated = truncated[:10000] + "\n[...内容已截断...]\n"
+                    tool_results_text += f"- {name}({params}) = {truncated}\n"
                 else:
                     err = result.get('error', 'unknown')
                     tool_results_text += f"- {name}({params}) = FAIL: {err}\n"
@@ -258,6 +304,11 @@ class AgentLoopV2:
 
 # 最终答案时:
 {{"think": "你的思考", "action": "final", "answer": "你的回答"}}
+
+【注意】Windows 路径中的反斜杠在 JSON 中需要转义：
+- 正确: {{"path": "C:\\\\Users\\\\15041\\\\Desktop"}}
+- 错误: {{"path": "C:\\Users\\15041\\Desktop"}}  (缺少转义)
+- 错误: {{"path": "C:Users15041Desktop"}}  (没有反斜杠)
 """
         return prompt
 
@@ -414,24 +465,28 @@ class AgentLoopV2:
                     content = f.read().strip()
 
                 if content:
-                    # 清空 response.txt
+                    # 清空 response.txt（防止重复使用）
                     try:
                         with open(response_file, 'w', encoding='utf-8') as f:
                             f.write('')
                     except Exception:
                         pass
                     return content
+            else:
+                content = ''
 
             if self._testing_mode:
                 # Testing: no queued response AND file doesn't exist or is empty.
-                # Return "quit" so caller knows to cancel. Caller is responsible
-                # for any polling between prompt generations.
+                # Return "quit" so caller knows to cancel.
                 return "quit"
 
             if not sys.stdin.isatty():
-                # 非交互环境（Win7 双击）：等待文件出现
+                # 非交互环境（Win7 双击）：等待用户粘贴文件内容
+                # 先检测文件是否存在且有内容，没有则等待
                 import time
-                print("[等待] 请把 LLM 回复粘贴到 response.txt...")
+                if not os.path.exists(response_file):
+                    print("[等待] 请把 LLM 回复粘贴到 response.txt...")
+                # 文件存在但为空，说明用户正在粘贴中，继续等待
                 time.sleep(2)
                 continue
 

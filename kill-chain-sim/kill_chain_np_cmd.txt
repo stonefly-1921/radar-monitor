@@ -1,0 +1,4 @@
+FIRE:aim120_sim_1:radar1:2
+FIRE:aim120_sim_2:radar1:4
+FIRE:aim120_sim_3:radar1:6
+FIRE:aim120_sim_4:radar1:8

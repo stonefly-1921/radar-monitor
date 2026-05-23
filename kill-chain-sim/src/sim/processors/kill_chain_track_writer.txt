@@ -23,10 +23,10 @@ processor KILL_CHAIN_TRACK_WRITER WSF_SCRIPT_PROCESSOR
       int mWriteCount = 0;
    end_script_variables
 
-   update_interval 1.0 sec
+   update_interval 0.1 sec
 
    on_update
-      if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+      if ((TIME_NOW - mLastWriteTime) >= 0.1)
       {
          mWriteCount = mWriteCount + 1;
          writeln_d("DEBUG: WriteAllTracks #", mWriteCount, " at sim time ", TIME_NOW);

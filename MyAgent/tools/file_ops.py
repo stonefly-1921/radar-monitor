@@ -172,12 +172,31 @@ class FileListTool(Tool):
         {"name": "pattern", "type": "string", "required": False, "description": "文件匹配模式（如 *.py）"}
     ]
     
+    def _fix_windows_path(self, path):
+        """修复 Windows 路径中缺少反斜杠的问题。
+        例如：'C:Users15041Desktop' → 'C:\\Users\\15041\\Desktop'
+        检测驱动器字母后没有反斜杠的情况。
+        """
+        import re
+        # 检测驱动器路径格式：C: 或 D: 开头但没有反斜杠
+        # 例如 C:Users → C:\Users (但 C:\Users 保持不变)
+        match = re.match(r'^([A-Za-z]):([^\\/])', path)
+        if match:
+            drive = match.group(1)
+            rest = match.group(2)
+            # 将 C:Users 转换为 C:\Users
+            return f'{drive}:\\{rest}'
+        return path
+    
     def execute(self, **kwargs):
         path = kwargs.get("path")
         pattern = kwargs.get("pattern", "*")
         
         if not path:
             return {"success": False, "error": "缺少目录路径参数"}
+        
+        # 修复 Windows 路径问题（C:Users → C:\Users）
+        path = self._fix_windows_path(path)
         
         try:
             if not os.path.exists(path):

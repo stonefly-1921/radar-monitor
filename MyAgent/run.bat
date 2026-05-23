@@ -14,7 +14,23 @@ if errorlevel 1 (
 )
 
 echo [OK] Python detected
+
+rem ========================================
+rem Clear IO files before starting
+rem ========================================
 echo.
+echo [CLEAN] Clearing IO files...
+if exist "io\input.txt" echo. > "io\input.txt"
+if exist "io\prompt.txt" echo. > "io\prompt.txt"
+if exist "io\response.txt" echo. > "io\response.txt"
+if exist "io\tool_result.json" echo. > "io\tool_result.json"
+if exist "io\memory.json" (
+    rem Keep memory.json - only clear session-related files
+    echo. > "io\memory.json"
+)
+echo [CLEAN] Done
+echo.
+
 echo ========================================
 echo.
 

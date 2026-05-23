@@ -1,5 +1,5 @@
 processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
-   update_interval 0.1 sec
+   update_interval 0.05 sec
    script_variables
       FileIO mCmdFile = FileIO();
       FileIO mAckFile = FileIO();
@@ -19,6 +19,17 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
       if (!weap.IsValid())
       {
          writeln("KCMD: weapon not found: ", aWeaponName);
+         return false;
+      }
+
+      // Check if the underlying platform is still alive
+      if (targetTrack.TargetPlatform().IsValid())
+      {
+         // Platform still alive — allow engagement
+      }
+      else
+      {
+         writeln("KCMD: target platform already killed: ", aTrackName, ":", aTrackNum);
          return false;
       }
 

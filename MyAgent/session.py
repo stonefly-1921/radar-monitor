@@ -181,6 +181,43 @@ class Session:
         self._create_new()
         self.save()
     
+    def deduplicate_turns(self):
+        """
+        对 session.turns 去重压缩。
+        规则：
+        - 连续重复的 input 保留最后一个
+        - 合并相同 input 的多次 tool_calls（只保留最后一次的结果）
+        
+        去重后保留最后一个 turn（而非第一个），因为最后的结果通常是最完整的。
+        """
+        if not self.turns:
+            return
+        
+        # 建立去重后的 turns 列表
+        deduped = []
+        for turn in self.turns:
+            input_text = turn.get('input', '').strip()
+            
+            # 跳过完全重复前面内容的 turn
+            if deduped and deduped[-1].get('input', '').strip() == input_text:
+                # 如果新 turn 有 final_answer 或 tool_results，而上一个没有，替换
+                last = deduped[-1]
+                has_new_content = (
+                    turn.get('final_answer') and not last.get('final_answer')
+                ) or (
+                    turn.get('tool_results') and not last.get('tool_results')
+                )
+                if has_new_content:
+                    deduped.pop()
+                    deduped.append(turn)
+                # 否则跳过（丢弃这个重复的 turn）
+                continue
+            
+            deduped.append(turn)
+        
+        self.turns = deduped
+        self.updated_at = datetime.now().isoformat()
+    
     def to_dict(self):
         """Export session as dict."""
         return {

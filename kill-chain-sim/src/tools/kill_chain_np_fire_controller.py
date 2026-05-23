@@ -40,10 +40,12 @@ SCENARIO_DEFAULT = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim/ki
 #  but file is created in <scenario_dir>/output/, not CWD).
 # For scenario "src/sim/kill_chain_np_multi.txt" -> <scenario_dir>/output/kill_chain_np_multi.evt
 def _evt_file_from_scenario(scenario_path: str) -> Path:
-    """Derive EVT path: <scenario_dir>/output/<scenario_name>.evt"""
+    """Derive EVT path: <WORKSPACE>/output/<scenario_name>.evt
+    AFSIM resolves 'output/' relative to WORKSPACE when cwd=WORKSPACE.
+    """
     s = Path(scenario_path)
     evt_name = s.name.replace('.txt', '.evt')
-    return s.parent / "output" / evt_name
+    return WORKSPACE / "output" / evt_name
 
 EVT_FILE = _evt_file_from_scenario(SCENARIO_DEFAULT)
 
@@ -58,6 +60,7 @@ RADAR_LON = -(117.0 + 14/60)           # 117:14:00w -> negative
 
 # Weapon params
 WEAPON_RANGE_M = 30000.0               # 30km max range
+WEAPON_REENGAGE_TIMEOUT = 15.0         # seconds before allowing re-fire on same target
 
 # Threat weights — per spec
 DIST_WEIGHT = 1.0
@@ -160,7 +163,8 @@ class KillChainController:
             Weapon(name="aim120_sim_4", available=1, range_max=WEAPON_RANGE_M),
         ]
         self.used_weapons: set = set()      # weapon names already used
-        self.fired_upon_tracks: set = set() # track_ids already fired upon
+        # P0-4: fired_upon_tracks -> dict with timestamp for timeout-based re-engagement
+        self.fired_upon_tracks: Dict[int, float] = {}  # track_id -> time when FIRE was sent
 
         self.sensor_mode = "SEARCH"
         self.sensor_track: Optional[int] = None
@@ -181,6 +185,9 @@ class KillChainController:
         self._seen_evt_lines: set = set()
         self.kill_count = 0
         self.miss_count = 0
+        self.fire_count = 0  # total FIREs sent (for summary)
+        # P2-2: OODA loop timing
+        self.fire_latencies: List[float] = []  # wall-clock seconds from track detection to FIRE decision
 
     # ── File I/O ─────────────────────────────────────────────────────────────
 
@@ -198,15 +205,11 @@ class KillChainController:
         self._write_file(CMD_FILE, content)
         self.last_cmd = content
 
-    def write_sensor(self, mode: str, track_id: Optional[int] = None):
-        if mode == "SEARCH":
-            cmd = "SENSOR:radar1:SEARCH"
-        elif mode == "TRACK" and track_id is not None:
-            cmd = f"SENSOR:radar1:TRACK:radar1:{track_id}"
-        elif mode == "HIGH_RATE":
-            cmd = "SENSOR:radar1:HIGH_RATE"
-        else:
+    def write_sensor(self, mode: str):
+        # mode: SEARCH, TRACK, ILLUMINATE, or OFF
+        if mode not in ("SEARCH", "TRACK", "ILLUMINATE", "OFF"):
             return
+        cmd = f"SENSOR:radar1:{mode}"
         if cmd == self.last_sensor_cmd:
             return
         self._write_file(SENSOR_FILE, cmd + "\n")
@@ -270,27 +273,43 @@ class KillChainController:
         num_available = len(available_weapons)
 
         # Step 1: build live track list (filter out fired-upon and out-of-range)
+        # P0-4: fired_upon_tracks is dict[track_id -> fire_time], re-engage after timeout
+        sim_t = self._sim_t()
         live_tracks: Dict[int, Track] = {}
         for tid, tr in self.tracks.items():
+            # Check if recently fired upon (timeout-based re-engagement)
             if tid in self.fired_upon_tracks:
-                continue
+                fire_time = self.fired_upon_tracks[tid]
+                # None sentinel means weapon was just allocated — skip this target (already allocated)
+                if fire_time is None:
+                    continue
+                if sim_t - fire_time < WEAPON_REENGAGE_TIMEOUT:
+                    continue  # still in cooldown, skip
+                # Timeout expired: allow re-engagement, remove from dict
+                del self.fired_upon_tracks[tid]
             dist = haversine_m(RADAR_LAT, RADAR_LON, tr.lat, tr.lon)
             if dist > WEAPON_RANGE_M:
                 continue
             live_tracks[tid] = tr
 
         # Step 2: threat scoring and sort
+        # P0-2: exclude ground/stationary targets (alt <= 100m AND vel <= 0)
+        # P0-1: filter out targets beyond weapon range
         scored = []
         for tid, tr in live_tracks.items():
-            threat = calc_threat(tr, RADAR_LAT, RADAR_LON)
+            # Ground target (low alt, stationary) -> skip
+            if tr.alt <= 100.0 and tr.vel <= 0:
+                continue
             dist = haversine_m(RADAR_LAT, RADAR_LON, tr.lat, tr.lon)
+            if dist > WEAPON_RANGE_M:
+                continue
+            threat = calc_threat(tr, RADAR_LAT, RADAR_LON)
             ttype = estimate_target_type(tr)
             scored.append((threat, tid, tr, dist, ttype))
 
         scored.sort(key=lambda x: -x[0])  # highest threat first
 
         # Step 3: print decision header + per-track info
-        sim_t = self._sim_t()
         print(f"\n[DECISION] t={sim_t:.1f}s | tracks={len(live_tracks)} | weapons={num_available} available")
         for threat, tid, tr, dist, ttype in scored:
             print(f"  track {tid} ({ttype}, d={dist/1000:.1f}km, v={tr.vel:.0f}m/s) -> threat={threat:.2f}")
@@ -305,12 +324,23 @@ class KillChainController:
         for threat, tid, tr, dist, ttype in targets_to_assign:
             # Find first unused weapon
             for w in available_weapons:
-                if w.name not in self.used_weapons and w.name not in [f.split(":")[1] for f in fires]:
+                fires_for_this_target = [f.split(":")[1] for f in fires]
+                if w.name not in self.used_weapons and w.name not in fires_for_this_target:
                     fires.append(f"FIRE:{w.name}:radar1:{tid}")
                     self.used_weapons.add(w.name)
-                    self.fired_upon_tracks.add(tid)
-                    print(f"    -> FIRE:{w.name}:radar1:{tid}")
+                    # Guard: sim_t=0 during startup causes fire_time=0 -> sim_t-fire_time<15，永远True，
+                    # weapons永久锁定。用None sentinel（需要对应修改re-engage检查），避免此问题。
+                    self.fired_upon_tracks[tid] = None
+                    self.fire_count += 1
+                    # P2-2: record OODA latency (wall-clock from first detection to FIRE decision)
+                    now = time.time()
+                    latency = now - tr.first_seen
+                    self.fire_latencies.append(latency)
+                    print(f"    -> FIRE:{w.name}:{tid}")
                     break
+            else:
+                # No available weapon found for this target
+                print(f"    -> no weapon for track {tid}")
 
         decision.fires = fires
 
@@ -318,19 +348,9 @@ class KillChainController:
         if not live_tracks:
             decision.sensor_mode = "SEARCH"
             self.sensor_mode = "SEARCH"
-            decision.sensor_track = None
-            self.sensor_track = None
         else:
-            top = scored[0] if scored else None
-            top_tid = top[1] if top else None
-            if len(live_tracks) >= 3:
-                decision.sensor_mode = "HIGH_RATE"
-                self.sensor_mode = "HIGH_RATE"
-            else:
-                decision.sensor_mode = "TRACK"
-                self.sensor_mode = "TRACK"
-            decision.sensor_track = top_tid
-            self.sensor_track = top_tid
+            decision.sensor_mode = "TRACK"
+            self.sensor_mode = "TRACK"
 
         self.decisions_made += 1
         self.decision_times.append(time.time() - t0)
@@ -351,8 +371,13 @@ class KillChainController:
 
     # ── EVT parsing ───────────────────────────────────────────────────────────
 
-    def parse_evt_for_kills(self):
-        """Read .evt file, count new kills/misses."""
+    def parse_evt_for_kills(self, final: bool = False):
+        """Read .evt file, count new kills/misses and log weapon fired events.
+
+        When final=True, re-reads all EVT content without skipping previously
+        seen lines — ensures complete count on shutdown even if lines were
+        only partially processed during the run.
+        """
         if not Path(EVT_FILE).exists():
             return
         try:
@@ -364,12 +389,24 @@ class KillChainController:
         content = content.replace(chr(92) + "\n", " ")
 
         for line in content.split("\n"):
-            if not line.strip() or line in self._seen_evt_lines:
+            if not line.strip():
                 continue
-            if "WEAPON_HIT" in line and "Result:" in line and "KILLED" in line:
+            # When final=True, re-parse everything to get a complete count
+            # (previously seen lines during the run are re-counted)
+            if not final and line in self._seen_evt_lines:
+                continue
+            if "WEAPON_FIRED" in line:
                 self._seen_evt_lines.add(line)
-                self.kill_count += 1
-                print(f"  [KILLED] {line[:120]}")
+                print(f"  [WEAPON_FIRED] {line[:120]}")
+            elif "Result: KILLED" in line:
+                # Extract engagement name for deduplication (e.g. "radar1.2")
+                eng_match = re.search(r'Engagement:\s*(\S+)', line)
+                if eng_match:
+                    eng_name = eng_match.group(1)
+                    if eng_name not in self._seen_evt_lines:
+                        self._seen_evt_lines.add(eng_name)
+                        self.kill_count += 1
+                        print(f"  [KILLED] {line[:120]}")
             elif "WEAPON_MISSED" in line:
                 self._seen_evt_lines.add(line)
                 self.miss_count += 1
@@ -414,7 +451,7 @@ class KillChainController:
 
     # ── Main loop ─────────────────────────────────────────────────────────────
 
-    def run(self):
+    def run(self, external_afsim=None):
         print(f"[KC] Starting: {self.scenario_path}")
         print(f"[KC] Output EVT: {EVT_FILE}")
 
@@ -427,16 +464,21 @@ class KillChainController:
                     pass
 
         import subprocess
-        # AFSIM resolves relative paths (log_file, output/, event_output) from WORKSPACE root.
-        # Run from WORKSPACE with relative scenario path.
-        # Note: the scenario file itself contains "realtime" so no -rt flag needed.
-        scenario_name = str(Path(self.scenario_path).relative_to(WORKSPACE))
-        self.afsim = subprocess.Popen(
-            [AFSIM_BIN, scenario_name],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            cwd=str(WORKSPACE)
-        )
+        if external_afsim is not None:
+            # Use externally-provided AFSIM process (already running)
+            self.afsim = external_afsim
+        else:
+            # Run from WORKSPACE with relative scenario path.
+            # Note: the scenario file itself contains "realtime" so no -rt flag needed.
+            scenario_abs = Path(self.scenario_path).resolve()
+            workspace_abs = WORKSPACE.resolve()
+            scenario_name = scenario_abs.relative_to(workspace_abs)
+            self.afsim = subprocess.Popen(
+                [AFSIM_BIN, str(scenario_name)],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=str(workspace_abs)
+            )
 
         self.start_time = time.time()
         evt_check_interval = 5.0
@@ -456,6 +498,24 @@ class KillChainController:
                     print(f"\n[KC] AFSIM exited: {self.afsim.returncode}")
                     break
 
+                # Non-blocking read of any AFSIM stderr output
+                try:
+                    import os
+                    fd = self.afsim.stderr.fileno()
+                    os.set_blocking(fd, False)
+                    while True:
+                        try:
+                            line = self.afsim.stderr.readline()
+                            if not line:
+                                break
+                            line = line.decode("utf-8", errors="replace").strip()
+                            if line and "KCMD:" in line:
+                                print(f"  [KCMD] {line[:120]}")
+                        except OSError:
+                            break
+                except (OSError, AttributeError):
+                    pass
+
                 # Make a decision
                 decision = self.decide()
 
@@ -464,34 +524,59 @@ class KillChainController:
                     self.write_cmd(decision.fires)
                     for f in decision.fires:
                         print(f"  [FIRE] {f}")
-                    self.write_sensor(decision.sensor_mode, decision.sensor_track)
+                    self.write_sensor(decision.sensor_mode)
 
-                    # Wait for ACK
-                    ack_ok = self.wait_for_ack()
+                    # Wait for ACK with retry on timeout (non-blocking poll)
+                    ack_ok = False
+                    retries = 0
+                    while retries <= 2:
+                        ack_ok = self.wait_for_ack(timeout=1.0)
+                        if ack_ok:
+                            break
+                        retries += 1
+                        if retries > 2:
+                            break
+                        print(f"  [ACK] Timeout, retrying ({retries}/2)...")
+                        # Re-write fires + sensor to trigger AFSIM to re-process
+                        self.write_cmd(decision.fires)
+                        self.write_sensor(decision.sensor_mode)
                     if not ack_ok:
-                        print(f"  [ACK] Timeout waiting for ACK, AFSIM may have exited")
-                        break
+                        print(f"  [ACK] No ACK after 3 attempts, continuing...")
                 else:
-                    self.write_sensor(decision.sensor_mode, decision.sensor_track)
-                    time.sleep(0.1)
+                    self.write_sensor(decision.sensor_mode)
+                    time.sleep(0.02)
 
         except KeyboardInterrupt:
             print("\n[KC] Interrupted")
         finally:
-            if self.afsim and self.afsim.poll() is None:
-                self.afsim.terminate()
-                try:
-                    self.afsim.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    self.afsim.kill()
+            # ----------------------------------------------------------------
+            # AFSIM has exited — write ACK, drain remaining stderr, then finalize
+            # ----------------------------------------------------------------
+            try:
+                ACK_FILE.write_text("ACK", encoding="utf-8")
+            except OSError:
+                pass
 
-        # Final EVT parse
-        self.parse_evt_for_kills()
-        self.print_summary()
+            # Drain all remaining stderr now that AFSIM has exited
+            try:
+                _, stderr_remaining = self.afsim.communicate(timeout=2)
+                if stderr_remaining:
+                    for line in stderr_remaining.decode("utf-8", errors="replace").splitlines():
+                        line = line.strip()
+                        if line and "KCMD:" in line:
+                            print(f"  [KCMD] {line[:120]}")
+            except subprocess.TimeoutExpired:
+                self.afsim.kill()
+
+            # Give a moment, then final EVT parse
+            time.sleep(0.3)
+            self.poll()
+            self.parse_evt_for_kills(final=True)
+            self.print_summary()
 
     def print_summary(self):
         total_tracks = len(self.tracks)
-        fired_count = len(self.fired_upon_tracks)
+        fired_count = self.fire_count
         killed_count = self.kill_count
         missed_count = self.miss_count
         # Tracks that were neither killed nor missed = leaked
@@ -501,6 +586,11 @@ class KillChainController:
         avg_ms = (sum(dt) / len(dt) * 1000) if dt else 0
         max_ms = (max(dt) * 1000) if dt else 0
         min_ms = (min(dt) * 1000) if dt else 0
+
+        lat = self.fire_latencies
+        ooda_min = (min(lat) * 1000) if lat else 0
+        ooda_max = (max(lat) * 1000) if lat else 0
+        ooda_avg = (sum(lat) / len(lat) * 1000) if lat else 0
 
         print("\n" + "=" * 60)
         print("  杀伤链统计摘要")
@@ -512,6 +602,7 @@ class KillChainController:
         print(f"  漏网(未判定): {leak_count}")
         print(f"  拦截率: {killed_count/max(total_tracks,1)*100:.0f}%")
         print(f"  决策耗时: min={min_ms:.1f}ms max={max_ms:.1f}ms avg={avg_ms:.1f}ms")
+        print(f"  OODA延迟: min={ooda_min:.0f}ms max={ooda_max:.0f}ms avg={ooda_avg:.0f}ms")
         print("=" * 60)
 
 

@@ -1,65 +1,42 @@
-import ctypes, time
-from PIL import ImageGrab
+import pyautogui
+import time
+import win32gui
+import win32con
 
-user32 = ctypes.windll.user32
+hwnd = 1575860
 
-class RECT(ctypes.Structure):
-    _fields_ = [('left', ctypes.c_long), ('top', ctypes.c_long), ('right', ctypes.c_long), ('bottom', ctypes.c_long)]
+# Bring to foreground
+win32gui.SetForegroundWindow(hwnd)
+time.sleep(0.5)
 
-results = []
-def callback(hwnd, _):
-    if user32.IsWindowVisible(hwnd):
-        n = user32.GetWindowTextLengthW(hwnd)
-        if n > 0:
-            buf = ctypes.create_unicode_buffer(n + 1)
-            user32.GetWindowTextW(hwnd, buf, n + 1)
-            title = buf.value
-            if title and '千问' in title:
-                r = RECT()
-                user32.GetWindowRect(hwnd, ctypes.byref(r))
-                results.append((hwnd, title, r.left, r.top, r.right, r.bottom))
-    return True
+# Save full screenshot
+pyautogui.screenshot('C:/Users/15041/.openclaw/workspace/qianwen_full.png')
+print('Screenshot saved')
 
-user32.EnumWindows(ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.c_void_p, ctypes.c_void_p)(callback), 0)
+# Also find all visible elements using UI Automation
+import ctypes
+from ctypes.wintypes import HWND, RECT, POINT
 
-if results:
-    hwnd, title, L, T, R, B = results[0]
-    print('Window:', L, T, R, B, 'Size:', R-L, 'x', B-T)
-    
-    # Screenshot
-    img = ImageGrab.grab(bbox=(L, T, R, B))
-    img.save('C:/Users/15041/.openclaw/workspace/qwen_input_test.png')
-    print('Screenshot saved')
-    
-    # Try clicking at different positions to find input field
-    # Let's try clicking at various heights to find the input box
-    positions = [
-        (L + (R-L)//2, T + int((B-T) * 0.85)),  # 85% down
-        (L + (R-L)//2, T + int((B-T) * 0.90)),  # 90% down  
-        (L + (R-L)//2, T + int((B-T) * 0.95)),  # 95% down
-        (L + (R-L)//2, B - 50),  # 50px from bottom
-        (L + (R-L)//2, B - 100),  # 100px from bottom
-    ]
-    
-    # Restore and focus
-    if user32.IsIconic(hwnd):
-        user32.ShowWindow(hwnd, 9)
-        time.sleep(1.0)
-        user32.GetWindowRect(hwnd, ctypes.byref(r))
-        L, T, R, B = r.left, r.top, r.right, r.bottom
-    
-    user32.SetForegroundWindow(hwnd)
-    time.sleep(0.5)
-    
-    for i, (cx, cy) in enumerate(positions):
-        print(f'Try {i+1}: clicking at ({cx}, {cy})')
-        user32.SetCursorPos(cx, cy)
-        time.sleep(0.2)
-        user32.mouse_event(0x02, 0, 0, 0, 0)
-        time.sleep(0.05)
-        user32.mouse_event(0x04, 0, 0, 0, 0)
-        time.sleep(1.0)
-    
-    print('Done trying positions')
-else:
-    print('Qwen not found')
+OLECMDID_NEW = 0
+OLECMDID_SAVE = 3
+
+# Try to find input area by searching for text
+try:
+    # Use accessible object from UI Automation
+    import pyhook
+except:
+    pass
+
+# Try direct win32gui approach for Edit controls
+windows = []
+def enum_cb(hwnd, results):
+    if win32gui.IsWindowVisible(hwnd):
+        title = win32gui.GetWindowText(hwnd)
+        cls = win32gui.GetClassName(hwnd)
+        if cls in ['Edit', 'RICHEDIT', 'WebViewEdit', 'Chrome_RenderWidgetHostHWND']:
+            rect = win32gui.GetWindowRect(hwnd)
+            results.append({'hwnd': hwnd, 'class': cls, 'title': title, 'rect': rect})
+
+win32gui.EnumChildWindows(hwnd, enum_cb, windows)
+for w in windows:
+    print(f'Found edit: HWND={w["hwnd"]} class={w["class"]} title={repr(w["title"])} rect={w["rect"]}')

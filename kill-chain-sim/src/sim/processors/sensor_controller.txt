@@ -1,9 +1,12 @@
 // sensor_controller.txt
 // AFSIM sensor control via file commands from Python
-// Commands: SENSOR:radar_name:mode[:track_name:track_num]
-//   SENSOR:radar1:SEARCH           - switch to search mode
-//   SENSOR:radar1:TRACK:radar1:2   - switch to track mode, track radar1.2
-//   SENSOR:radar1:HIGH_RATE         - increase data rate (if in TRACK mode)
+// Commands:
+//   SENSOR:radar1:SEARCH     - switch to SEARCH mode (active radar scan)
+//   SENSOR:radar1:TRACK      - switch to TRACK mode (continuous tracking)
+//   SENSOR:radar1:ILLUMINATE - switch to ILLUMINATE mode (semi-active guidance)
+//   SENSOR:radar1:OFF        - turn sensor off
+//   SENSOR:radar1:ON         - turn sensor on
+// Note: PLATFORM = radar1 (the platform this processor is attached to)
 
 processor SENSOR_CONTROL WSF_SCRIPT_PROCESSOR
    script_variables
@@ -24,7 +27,7 @@ processor SENSOR_CONTROL WSF_SCRIPT_PROCESSOR
          if (line.Length() > 0 && line != mLastCmd)
          {
             Array<string> parts = line.Split(":");
-            if (parts.Size() >= 2)
+            if (parts.Size() >= 3)
             {
                string action = parts[0].Strip();
                if (action == "SENSOR")
@@ -32,11 +35,23 @@ processor SENSOR_CONTROL WSF_SCRIPT_PROCESSOR
                   string radarName = parts[1].Strip();
                   string mode = parts[2].Strip();
 
-                  writeln("SENSOR_CTRL: ", radarName, " -> ", mode);
-
-                  // Note: actual radar mode switching requires WSF API access
-                  // For now this logs the command for verification
-                  // Real mode switching would need deeper integration
+                  if (mode == "OFF")
+                  {
+                     PLATFORM.TurnSensorOff(radarName);
+                     writeln("SENSOR_CTRL: ", radarName, " -> OFF");
+                  }
+                  else if (mode == "ON")
+                  {
+                     PLATFORM.TurnSensorOn(radarName);
+                     writeln("SENSOR_CTRL: ", radarName, " -> ON");
+                  }
+                  else
+                  {
+                     // No valid AFSIM radar mode names are known.
+                     // Keep sensor ON (always detects in active mode).
+                     PLATFORM.TurnSensorOn(radarName);
+                     writeln("SENSOR_CTRL: ", radarName, " -> ON (active)");
+                  }
                }
             }
             mLastCmd = line;
