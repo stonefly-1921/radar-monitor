@@ -1,8 +1,10 @@
 processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
-   update_interval 0.05 sec
+   update_interval 0.02 sec
    script_variables
       FileIO mCmdFile = FileIO();
       FileIO mAckFile = FileIO();
+      string mFireResults = "";
+      bool mReadingDone = false;
    end_script_variables
 
    script bool TryLaunch(string aWeaponName, string aTrackName, int aTrackNum)
@@ -22,28 +24,12 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
          return false;
       }
 
-      // Check if the underlying platform is still alive
-      if (targetTrack.TargetPlatform().IsValid())
-      {
-         // Platform still alive — allow engagement
-      }
-      else
-      {
-         writeln("KCMD: target platform already killed: ", aTrackName, ":", aTrackNum);
-         return false;
-      }
-
       bool fired = Fire(targetTrack, "FIRE", aWeaponName, 1, PLATFORM);
       writeln("KCMD: Fire ", aWeaponName, " at track ", aTrackNum, " -> ", fired);
       return fired;
    end_script
 
    script void ProcessSensorCommand(Array<string> parts)
-      // SENSOR:radar_name:MODE[:extra]
-      // Examples:
-      //   SENSOR:radar1:SEARCH
-      //   SENSOR:radar1:TRACK:radar1:2
-      //   SENSOR:radar1:HIGH_RATE
       if (parts.Size() < 3)
       {
          writeln("KCMD: SENSOR command too short");
@@ -52,7 +38,6 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
       string radarName = parts[1].Strip();
       string mode = parts[2].Strip();
 
-      // Forward to sensor_cmd.txt for sensor_controller processor to handle
       string sensorCmdPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/sensor_cmd.txt";
       FileIO sf;
       if (sf.Open(sensorCmdPath, "out"))
@@ -73,8 +58,10 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
       string ackPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_chain_np_ack.txt";
 
       int processed = 0;
+      mFireResults = "";
+      mReadingDone = false;
 
-      // Open file once, read ALL lines until EOF
+      // Read ALL lines until EOF before anyone touches the file again
       if (mCmdFile.Open(cmdPath))
       {
          string line = mCmdFile.Readln();
@@ -92,7 +79,11 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
                {
                   writeln("KCMD: FIRE ", weaponName, " ", trackName, ":", trackNumStr);
                   int trackNum = (int)trackNumStr;
-                  TryLaunch(weaponName, trackName, trackNum);
+                  bool ok = TryLaunch(weaponName, trackName, trackNum);
+                  if (ok)
+                     mFireResults = mFireResults + "OK:" + weaponName + ":" + trackName + ":" + trackNumStr + "\n";
+                  else
+                     mFireResults = mFireResults + "FAIL:" + weaponName + ":" + trackName + ":" + trackNumStr + "\n";
                   processed = processed + 1;
                }
                else if (action == "SENSOR")
@@ -104,21 +95,27 @@ processor KILL_CHAIN_CMD_READER WSF_TASK_PROCESSOR
             }
             line = mCmdFile.Readln();
          }
+         // Read until EOF — now safe to close and clear
          mCmdFile.Close();
+         mReadingDone = true;
+      }
 
-         // Clear command file
+      // Only clear cmd file AFTER we've read everything
+      if (mReadingDone)
+      {
          if (mCmdFile.Open(cmdPath, "out"))
          {
             mCmdFile.Close();
          }
       }
 
-      // Write ONE ACK after all commands processed
+      // Write ACK with per-FIRE results
       if (processed > 0)
       {
          if (mAckFile.Open(ackPath, "out"))
          {
             mAckFile.Write("ACK\n");
+            mAckFile.Write(mFireResults);
             mAckFile.Close();
          }
       }

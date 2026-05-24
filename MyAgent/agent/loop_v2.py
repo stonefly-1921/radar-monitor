@@ -29,6 +29,67 @@ from tools import get_initialized_registry
 
 
 # =============================================================================
+# 运行时上下文分隔符（用于在不污染 transcript 的情况下注入内部状态）
+# =============================================================================
+RUNTIME_CONTEXT_BEGIN = "<<<BEGIN_MYAGENT_INTERNAL_CONTEXT>>>"
+RUNTIME_CONTEXT_END = "<<<END_MYAGENT_INTERNAL_CONTEXT>>>"
+
+
+# =============================================================================
+# 工具结果摘要函数（非 LLM，基于规则提取关键行）
+# =============================================================================
+
+def _summarize_tool_result(result_text: str, max_chars: int = 5000) -> str:
+    """
+    智能摘要工具结果：优先保留关键行（错误/公式/常量），再按 max_chars 截断。
+
+    规则：
+    1. 如果总长度 <= max_chars，直接返回
+    2. 提取含关键词的行（error, fail, traceback, 公式, 数字常量等）
+    3. 保留文件开头（前 20 行）
+    4. 合并后截断到 max_chars
+    """
+    if len(result_text) <= max_chars:
+        return result_text
+
+    lines = result_text.split('\n')
+    key_lines = []
+
+    # 关键词：错误、公式、关键数字
+    KEYWORDS = [
+        'error', 'fail', 'traceback', 'exception', 'warning',
+        'def ', 'class ', 'import ', 'const', 'define',
+        'exp(', 'sin(', 'cos(', 'atan(', 'sqrt(',  # 数学公式
+        'v0x', 'v0z', 'tc', 'g =', 'dt', 'vz', 'vx',  # 弹道相关符号
+        'BALLISTIC', 'MISSILE', 'PATH', 'TRAJECTORY',  # 领域关键词
+        'def __init__', 'self.', 'return ', '-> ',  # 代码结构
+        '=', ': ',  # 赋值/类型标注
+    ]
+
+    for line in lines:
+        line_lower = line.lower()
+        if any(kw.lower() in line_lower for kw in KEYWORDS):
+            key_lines.append(line)
+
+    # 保留开头（通常含文件头/重要定义）
+    start_lines = lines[:20]
+
+    # 去重合并
+    seen = set()
+    merged = []
+    for group in [start_lines, key_lines]:
+        for line in group:
+            if line and line not in seen:
+                seen.add(line)
+                merged.append(line)
+
+    summarized = '\n'.join(merged)
+    if len(summarized) > max_chars:
+        summarized = summarized[:max_chars] + f"\n[...内容已截断，原始长度 {len(result_text)} 字符]"
+    return summarized
+
+
+# =============================================================================
 # Response 解析函数（来自 tests/test_response_parsing.py，已通过测试）
 # =============================================================================
 
@@ -151,6 +212,9 @@ class AgentLoopV2:
         self._testing_input_queue = []  # list of strings to return from _wait_for_input
         self._testing_response_queue = []  # list of LLM responses for _wait_for_response
 
+        # Task state for multi-turn optimization (TaskState section in prompt)
+        self._task_state = None
+
         # I/O 路径 - 全部用 .txt 纯文本
         self.io_config = {
             "input_file": "io/input.txt",
@@ -232,6 +296,58 @@ class AgentLoopV2:
         return "\n".join(lines)
 
     # =========================================================================
+    # TaskState 管理（用于 prompt 优化）
+    # =========================================================================
+
+    def _init_task_state(self, user_input: str):
+        """初始化 task_state，在每轮任务开始时调用。"""
+        self._task_state = {
+            "goal": user_input,
+            "turn": 1,
+            "steps_taken": [],  # [{"tool": "...", "finding": "..."}, ...]
+            "pending": None,
+            "errors": [],
+        }
+
+    def _update_task_state(self, tool_result: dict, finding: str):
+        """每轮工具执行后调用，更新 task_state。"""
+        if self._task_state is None:
+            return
+        tool_name = tool_result.get('tool', 'unknown')
+        self._task_state["steps_taken"].append({
+            "tool": tool_name,
+            "finding": finding,
+        })
+
+    def _build_task_state_text(self) -> str:
+        """生成 TaskState 块的文本，注入到 prompt。"""
+        if self._task_state is None:
+            return ""
+        ts = self._task_state
+        lines = ["【本轮状态】"]
+        lines.append(f"- 当前目标: {ts['goal']}")
+        lines.append(f"- 轮次: 第 {ts['turn']} 轮")
+        if ts["steps_taken"]:
+            lines.append("- 已完成:")
+            for step in ts["steps_taken"]:
+                lines.append(f"  · {step['tool']}: {step['finding']}")
+        if ts["pending"]:
+            lines.append(f"- 待解决: {ts['pending']}")
+        if ts["errors"]:
+            lines.append(f"- 错误记录:")
+            for err in ts["errors"]:
+                lines.append(f"  · {err}")
+
+        # Stuck detection: warn if same tool called 3+ times consecutively
+        if len(ts["steps_taken"]) >= 3:
+            last_three = ts["steps_taken"][-3:]
+            tools = [s["tool"] for s in last_three]
+            if tools[0] == tools[1] == tools[2]:
+                lines.append(f"\n⚠️ 检测到重复工具调用 [{tools[0]}] 连续 3 次，请重新评估策略或尝试其他方法。")
+
+        return "\n".join(lines)
+
+    # =========================================================================
     # Prompt 生成 - 输出纯文本 prompt.txt
     # =========================================================================
 
@@ -248,19 +364,37 @@ class AgentLoopV2:
         # 系统提示
         system = self.persona.get_system_prompt()
 
-        # 对话历史
-        history_lines = []
+        # 对话历史（超过 10 轮时压缩）
         if conversation:
-            for msg in conversation:
-                role = msg.get('role', 'user')
-                content = msg.get('content', '')
-                if role == 'user':
-                    history_lines.append(f"[用户]: {content}")
-                else:
-                    history_lines.append(f"[助手]: {content}")
-        history_text = "\n".join(history_lines) if history_lines else "(无历史)"
+            if len(conversation) > 10:
+                # 压缩：显示早期摘要 + 最近 10 轮
+                recent = conversation[-10:]
+                total = len(conversation)
+                history_lines = [
+                    f"[早期对话摘要] 共 {total} 轮，显示最近 10 轮"
+                ]
+                for msg in recent:
+                    role = msg.get('role', 'user')
+                    content = msg.get('content', '')
+                    if role == 'user':
+                        history_lines.append(f"[用户]: {content}")
+                    else:
+                        history_lines.append(f"[助手]: {content[:150]}")  # 截断每条到150字
+                history_text = "\n".join(history_lines)
+            else:
+                history_lines = []
+                for msg in conversation:
+                    role = msg.get('role', 'user')
+                    content = msg.get('content', '')
+                    if role == 'user':
+                        history_lines.append(f"[用户]: {content}")
+                    else:
+                        history_lines.append(f"[助手]: {content}")
+                history_text = "\n".join(history_lines) if history_lines else "(无历史)"
+        else:
+            history_text = "(无历史)"
 
-        # 工具结果（如果有）
+        # 工具结果（如果有）—— 智能摘要
         tool_results_text = ""
         if tool_results:
             tool_results_text = "\n\n【上次工具执行结果】\n"
@@ -271,14 +405,33 @@ class AgentLoopV2:
                 success = result.get('success', False)
                 if success:
                     res_val = result.get('result', result.get('output', ''))
-                    # 大幅增加截断限制，支持长内容（当前 context 205k，大模型有能力处理）
-                    truncated = str(res_val)
-                    if len(truncated) > 10000:
-                        truncated = truncated[:10000] + "\n[...内容已截断...]\n"
+                    max_chars = self.config.tool_result_max_chars
+                    truncated = _summarize_tool_result(str(res_val), max_chars)
                     tool_results_text += f"- {name}({params}) = {truncated}\n"
                 else:
                     err = result.get('error', 'unknown')
                     tool_results_text += f"- {name}({params}) = FAIL: {err}\n"
+
+        # TaskState 区域（turn > 1 显示进度）
+        task_state_text = self._build_task_state_text() if self._task_state and turn > 1 else ""
+
+        # 反思块（工具执行后强制先分析再决定）
+        reflect_text = ""
+        if tool_results:
+            reflect_text = """
+【工具执行结果分析】
+你刚执行了工具，分析结果后决定下一步：
+- 如果结果已经回答了用户问题 → action: final
+- 如果结果不够，说明还需要什么信息/工具
+- 如果有错误，分析原因并决定是否重试
+"""
+
+        # Memory 摘要（turn > 3 防止上下文膨胀）
+        memory_text = ""
+        if turn > 3 and self.memory and self.memory.turn_count > 3:
+            ctx = self.memory.get_summary_context()
+            if ctx and ctx.get('history_text'):
+                memory_text = f"\n\n【历史摘要】（防止上下文溢出）\n{ctx['history_text']}\n"
 
         # 工具列表
         tools_list = self._format_tools_list()
@@ -288,7 +441,10 @@ class AgentLoopV2:
 
 【当前任务】(第 {turn} 轮)
 {user_input}
+{task_state_text}
 {tool_results_text}
+{reflect_text}
+{memory_text}
 
 【对话历史】
 {history_text}
@@ -310,6 +466,31 @@ class AgentLoopV2:
 - 错误: {{"path": "C:\\Users\\15041\\Desktop"}}  (缺少转义)
 - 错误: {{"path": "C:Users15041Desktop"}}  (没有反斜杠)
 """
+
+        # === 注入运行时上下文（不污染 transcript） ===
+        runtime_sections = []
+
+        # Priority 1: Stuck detection warning (already in task_state_text, but also inject here)
+        if self._task_state and len(self._task_state["steps_taken"]) >= 3:
+            last_three = self._task_state["steps_taken"][-3:]
+            if all(s["tool"] == last_three[0]["tool"] for s in last_three):
+                runtime_sections.append(
+                    f"[警告] 检测到重复工具调用 [{last_three[0]['tool']}] 连续 3 次，请重新评估策略。"
+                )
+
+        # Priority 2: Memory compression summary (if needs summary)
+        if self.memory and self.memory.get_needs_summary():
+            ctx = self.memory.get_summary_context()
+            if ctx and ctx.get('history_text'):
+                runtime_sections.append(f"[Memory Summary] {ctx['history_text']}")
+
+        # Priority 3: System reminders (if any errors)
+        if self._task_state and self._task_state["errors"]:
+            runtime_sections.append(f"[Errors] {', '.join(self._task_state['errors'][:3])}")
+
+        if runtime_sections:
+            prompt = f"{prompt}\n\n{RUNTIME_CONTEXT_BEGIN}\n" + "\n\n".join(runtime_sections) + f"\n{RUNTIME_CONTEXT_END}"
+
         return prompt
 
     def _save_prompt(self, prompt_text: str):
@@ -331,6 +512,18 @@ class AgentLoopV2:
         """
         self.initialize()
 
+        # 测试模式：user_input 直接来自队列，不需要 input.txt 轮询
+        if self._testing_mode:
+            while True:
+                user_input = self._wait_for_input()
+                if user_input is None:
+                    break
+                if user_input == "quit":
+                    break
+                task_result = self._execute_task(user_input)
+                return task_result  # 测试模式：返回任务结果
+            return None
+
         while True:
             # === input 层 ===
             print("\n" + "=" * 60)
@@ -343,7 +536,7 @@ class AgentLoopV2:
                 # 交互模式：等待用户写 input.txt 并敲回车
                 user_input = self._wait_for_input()
                 if user_input is None:
-                    # 测试队列空，退出 REPL（None = 测试结束信号，!== quit）
+                    # 队列空，退出 REPL
                     break
             elif self._testing_mode:
                 # 测试模式：直接从队列取输入
@@ -454,8 +647,11 @@ class AgentLoopV2:
         测试模式下优先从 _testing_response_queue 取值（MockLLM 的回复）。
         """
         # 测试模式：优先用队列中的模拟 LLM 回复
-        if self._testing_mode and self._testing_response_queue:
-            return self._testing_response_queue.pop(0)
+        if self._testing_mode:
+            if self._testing_response_queue:
+                return self._testing_response_queue.pop(0)
+            # 测试队列为空：文件也不存在，直接返回 quit 通知上层取消任务
+            return "quit"
 
         response_file = self._resolve_path(self.io_config["response_file"])
 
@@ -570,6 +766,9 @@ class AgentLoopV2:
         turn = 1
         tool_results = None
 
+        # 初始化 TaskState（用于 prompt 优化）
+        self._init_task_state(user_input)
+
         # 保存用户输入到 session
         self.session.add_turn({"input": user_input})
         self.session.save()
@@ -616,6 +815,16 @@ class AgentLoopV2:
                     turn_data["tool_results"] = results
                 self.session.save()
 
+                # 更新 TaskState（工具结果记录）
+                for tr in results:
+                    tool_name = tr.get('tool', 'unknown')
+                    res = tr.get('result', {})
+                    if res.get('success'):
+                        finding = str(res.get('result', res.get('output', '')))[:80]
+                    else:
+                        finding = f"FAIL: {res.get('error', 'unknown')}"
+                    self._update_task_state(tr, finding)
+
                 # === 工具执行后再次检查是否需要摘要 ===
                 if self.memory.get_needs_summary():
                     self._do_summary()
@@ -623,6 +832,7 @@ class AgentLoopV2:
                 # 下一轮
                 tool_results = results
                 turn += 1
+                self._task_state["turn"] = turn
                 continue
 
             else:

@@ -1,0 +1,35 @@
+mission:
+    WSF Version: 2.9.0 02-25-2022
+    Built: Feb 25 2022 08:12:40
+Plugin API version info:
+    Version: 2.9
+    Compiler: win_1916_64bit_release-hwe
+Plugins Loaded:
+    wsf_alternate_locations.dll, wsf_coverage.dll, wsf_iads_c2.dll, wsf_prompt.dll, wsf_scenario_analyzer.dll, wsf_scenario_analyzer_iads_c2.dll, wsf_air_combat.dll, wsf_annotation.dll, wsf_argo8.dll, wsf_brawler.dll, wsf_fires.dll, wsf_multiresolution.dll, wsf_named_pipe.dll, wsf_oms_uci.dll, wsf_p6dof.dll, wsf_shm.dll, wsf_shm_v2.dll, wsf_six_dof.dll, wsf_sosm.dll
+Extensions Included: 
+    sensor_plot_lib, wsf_cyber, wsf_grammar_check, wsf_l16, wsf_mil, wsf_mil_parser, wsf_mtt, wsf_nx, wsf_parser, wsf_ripr, wsf_space, wsf_weapon_server, wsf_simdis
+Usage: mission [-es | -fs | -rt] <input_file1> [input_file2 ...]
+       mission -? | -h | -help
+-es                 Use the non-real-time event-stepped executive. (DEFAULT)
+-fs                 Use the non-real-time frame-stepped executive.
+-rt                 Use the real-time executive.
+-fio                Flush the output buffer when the simulation time is advanced
+-sm                 Suppress the periodic messages indicating advance of the
+                    simulation time
+-mi <interval>      Output periodic messages indicating advance of the simulation
+                    time at the given interval.
+-list-variables     List preprocessor variables used in the input files and quit
+-log-server-host    Hostname or IP Address of Log Server to which output should be logged
+-log-server-port    Port of Log Server to which output should be logged
+-?, -h, -help       Display command line options and quit
+-profiling-output   Destination to which to send profiling output.
+                    For AFPerf (default profiler) this is a file path, which
+                    will be created if it does not exist. Other profiling
+                    libraries may treat the output destination differently.
+                    Profiling is only enabled if this option is provided.
+-profiling-library  Path of alternate profiling library to load.
+                    If not provided, AFPerf will be used when profiling is enabled.
+-plot <name>        Plot any sensor_plot plots with the specified name or number
+-plot-all           Plot all sensor_plot plots
+***** FATAL: Could not process command line arguments.
+    Invalid command line argument: -f

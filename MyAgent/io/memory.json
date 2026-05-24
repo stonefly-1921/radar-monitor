@@ -1,1 +1,46 @@
- 
+{
+  "short_term": [
+    {
+      "role": "system",
+      "content": "[压缩摘要] 共 23 轮，保留最近2轮和工具调用轮",
+      "timestamp": "2026-05-24T23:47:05.531144"
+    },
+    {
+      "role": "user",
+      "content": "用户输入 18",
+      "timestamp": "2026-05-24T23:47:05.530144"
+    },
+    {
+      "role": "user",
+      "content": "用户输入 19",
+      "timestamp": "2026-05-24T23:47:05.531144"
+    }
+  ],
+  "long_term": [
+    {
+      "content": "agent/loop.py 包含 bug",
+      "tags": [
+        "bug",
+        "agent"
+      ],
+      "timestamp": "2026-05-24T23:47:04.339876"
+    },
+    {
+      "content": "agent/loop_v2.py 已修复",
+      "tags": [
+        "fix",
+        "v2"
+      ],
+      "timestamp": "2026-05-24T23:47:04.339876"
+    }
+  ],
+  "summaries": [
+    {
+      "summary": "[压缩摘要] 共 23 轮，保留最近2轮和工具调用轮",
+      "timestamp": "2026-05-24T23:47:05.531144",
+      "turns_before": 23,
+      "kept_count": 2
+    }
+  ],
+  "updated_at": "2026-05-24T23:47:05.531144"
+}

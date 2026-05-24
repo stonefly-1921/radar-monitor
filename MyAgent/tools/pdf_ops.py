@@ -1,25 +1,43 @@
 """
 PDF read tool using PyPDF2 (for text-based PDFs) or Tesseract OCR (for scanned PDFs).
+
+PDF tools are delay-loaded to avoid triggering numpy compatibility issues
+(pytesseract -> pandas -> numexpr -> numpy 2.x ABI crash).
+PyPDF2 and pytesseract are only imported when the tool is actually executed.
 """
 import os
 import sys
 from .base import Tool
 
-# Try to import PyPDF2
-try:
-    from PyPDF2 import PdfReader
-    PYPDF2_AVAILABLE = True
-except ImportError:
-    PYPDF2_AVAILABLE = False
+# Lazy availability flags (checked on first use, not at import time)
+_PYPDF2_AVAILABLE = None
+_PYTESSERACT_AVAILABLE = None
 
-# Try to import pytesseract / pdf2image
-try:
-    import pytesseract
-    from PIL import Image
-    from pdf2image import convert_from_path
-    PYTESSERACT_AVAILABLE = True
-except ImportError:
-    PYTESSERACT_AVAILABLE = False
+
+def _is_pypdf2_available():
+    """Check PyPDF2 availability lazily."""
+    global _PYPDF2_AVAILABLE
+    if _PYPDF2_AVAILABLE is None:
+        try:
+            from PyPDF2 import PdfReader  # noqa: F401
+            _PYPDF2_AVAILABLE = True
+        except Exception:
+            _PYPDF2_AVAILABLE = False
+    return _PYPDF2_AVAILABLE
+
+
+def _is_pytesseract_available():
+    """Check pytesseract availability lazily."""
+    global _PYTESSERACT_AVAILABLE
+    if _PYTESSERACT_AVAILABLE is None:
+        try:
+            import pytesseract  # noqa: F401
+            from PIL import Image  # noqa: F401
+            from pdf2image import convert_from_path  # noqa: F401
+            _PYTESSERACT_AVAILABLE = True
+        except Exception:
+            _PYTESSERACT_AVAILABLE = False
+    return _PYTESSERACT_AVAILABLE
 
 
 class PdfReadTool(Tool):
@@ -54,13 +72,14 @@ class PdfReadTool(Tool):
         if not path.lower().endswith(".pdf"):
             return {"success": False, "error": "不是 PDF 文件"}
 
-        if not PYPDF2_AVAILABLE:
+        if not _is_pypdf2_available():
             return {
                 "success": False,
                 "error": "PyPDF2 未安装。请运行: pip install installers/python_wheels/PyPDF2-3.0.1-py3-none-any.whl"
             }
 
         try:
+            from PyPDF2 import PdfReader
             reader = PdfReader(path)
             total_pages = len(reader.pages)
             all_text = []
@@ -86,7 +105,7 @@ class PdfReadTool(Tool):
             else:
                 # No text extracted - likely a scanned PDF
                 # Try OCR if pytesseract is available
-                if PYTESSERACT_AVAILABLE:
+                if _is_pytesseract_available():
                     ocr_result = self._ocr_pdf(path, max_chars)
                     return ocr_result
                 else:
@@ -108,8 +127,16 @@ class PdfReadTool(Tool):
             }
 
     def _ocr_pdf(self, pdf_path, max_chars):
-        """OCR a scanned PDF using Tesseract."""
+        """
+        OCR a scanned PDF using Tesseract.
+        pytesseract / pdf2image imports are deferred to avoid numpy crash
+        at tool registry initialization time.
+        """
         try:
+            import pytesseract
+            from PIL import Image
+            from pdf2image import convert_from_path
+
             pages = convert_from_path(pdf_path, dpi=200)
             text_pages = []
 

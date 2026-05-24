@@ -71,9 +71,44 @@ class Memory:
 
     def _auto_summarize(self):
         """
-        Token limit reached - flag for LLM summarization.
+        Token limit reached - compress short_term into summaries.
+        Keeps: system summary turn + last 2 turns + all tool-result turns.
         """
-        self._needs_summary = True
+        short = self.data["short_term"]
+        if len(short) <= 3:
+            self._needs_summary = False
+            return
+
+        # Identify turns to keep: last 2 + all tool-result turns
+        keep_indices = set()
+        for i, t in enumerate(short):
+            if i >= len(short) - 2:
+                keep_indices.add(i)
+            if t.get('role') == 'tool' or 'tool' in t.get('content', '').lower():
+                keep_indices.add(i)
+
+        kept = [short[i] for i in sorted(keep_indices)]
+
+        # Build compression summary
+        total = len(short)
+        summary_text = f"[压缩摘要] 共 {total} 轮，保留最近2轮和工具调用轮"
+
+        self.data["summaries"].append({
+            "summary": summary_text,
+            "timestamp": datetime.now().isoformat(),
+            "turns_before": total,
+            "kept_count": len(kept)
+        })
+
+        # Keep only summary + kept turns
+        self.data["short_term"] = [{"role": "system", "content": summary_text, "timestamp": datetime.now().isoformat()}] + kept
+
+        # Trim summaries to recent 5
+        if len(self.data["summaries"]) > 5:
+            self.data["summaries"] = self.data["summaries"][-5:]
+
+        self._needs_summary = False
+        self._save()
 
     def set_needs_summary(self, value: bool):
         self._needs_summary = value
@@ -214,5 +249,7 @@ class Memory:
 
     @property
     def turn_count(self):
-        """Get current turn count."""
+        """Get current turn count. Supports _turn_count_override for testing."""
+        if hasattr(self, '_turn_count_override'):
+            return self._turn_count_override
         return len(self.data["short_term"])

@@ -1,0 +1,56 @@
+// kill_assessment.txt
+// Intercepts kill-assessment results and reports back to Python via file
+// AFSIM calls on_intercept_attempt_result when a weapon finishes its intercept attempt
+
+processor KILL_ASSESSMENT WSF_WEAPON_FIRE_RESPONSE_PROCESSOR
+
+   script_variables
+      FileIO mResultFile = FileIO();
+      string mResultPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/kill_assessment_result.txt";
+   end_script_variables
+
+   // Called when this processor's weapon completes intercept attempt
+   script void on_intercept_attempt_result(
+      WsfWeapon aWeapon,
+      WsfTrack aTargetTrack,
+      WsfInterceptAttemptResult aResult)
+      string result_str = "MISS";
+      if (aResult == WSF_INTERCEPT_RESULT_HIT) { result_str = "HIT"; }
+      else if (aResult == WSF_INTERCEPT_RESULT_KILLED) { result_str = "KILLED"; }
+      else if (aResult == WSF_INTERCEPT_RESULT_COAST_TIME_EXCEEDED) { result_str = "COAST_EXCEEDED"; }
+      else if (aResult == WSF_INTERCEPT_RESULT_FUEL_EXHAUSTED) { result_str = "FUEL_EXHAUSTED"; }
+
+      // Get target platform info
+      string target_name = "unknown";
+      int target_id = -1;
+      if (aTargetTrack.IsValid())
+      {
+         target_name = aTargetTrack.Name();
+         target_id = aTargetTrack.TrackId().Number();
+      }
+
+      string weapon_name = aWeapon.Name();
+
+      writeln("KILL_ASM: result=", result_str,
+              " weapon=", weapon_name,
+              " target=", target_name,
+              " track=", target_id,
+              " time=", TIME_NOW);
+
+      // Write result to file for Python kill-chain logic to consume
+      if (mResultFile.Open(mResultPath, "out"))
+      {
+         string line = "KILL:" + result_str + ":" + weapon_name + ":" + target_name + ":" + (string)target_id;
+         mResultFile.Write(line);
+         mResultFile.Close();
+      }
+   end_script
+
+   // Called when this processor's weapon is fired at a target
+   script void on_weapon_fired(WsfWeapon aWeapon, WsfTrack aTargetTrack)
+      string target_name = "unknown";
+      if (aTargetTrack.IsValid()) { target_name = aTargetTrack.Name(); }
+      writeln("KILL_FIRE: weapon=", aWeapon.Name(), " target=", target_name, " time=", TIME_NOW);
+   end_script
+
+end_processor

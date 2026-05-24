@@ -33,6 +33,7 @@ TRACK_FILE = WORKSPACE / "afsim_track_out.txt"
 CMD_FILE = WORKSPACE / "kill_chain_np_cmd.txt"
 ACK_FILE = WORKSPACE / "kill_chain_np_ack.txt"
 SENSOR_FILE = WORKSPACE / "sensor_cmd.txt"
+KILL_RESULT_FILE = WORKSPACE / "kill_assessment_result.txt"
 SCENARIO_DEFAULT = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim/kill_chain_np_multi.txt"
 
 # EVT file: AFSIM resolves "output/<name>.evt" relative to the scenario file's directory
@@ -83,6 +84,7 @@ class Track:
     first_seen: float = 0.0
     last_seen: float = 0.0
     fired_upon: bool = False   # already had a weapon allocated
+    killed: bool = False      # kill-assessment confirmed target destroyed
 
 @dataclass
 class Weapon:
@@ -112,9 +114,13 @@ def haversine_m(lat1, lon1, lat2, lon2):
 
 def estimate_target_type(track: Track) -> str:
     """Infer target type from altitude and speed heuristics."""
+    # High-altitude stationary targets (e.g. AWACS at 8000m, vel=0) are high-value.
+    # Give them a minimum type_factor boost so they aren't under-weighted.
+    if track.alt >= 5000.0 and track.vel == 0.0:
+        return "FIGHTER"  # Treat as fighter-equivalent for threat ranking
     if track.alt < 2000.0 and track.vel < 400.0:
         return "ASM"
-    elif track.vel > 500.0:
+    elif track.vel >= 200.0:  # 300 m/s fighter is well above 200 threshold
         return "FIGHTER"
     else:
         return "UAV"
@@ -141,8 +147,10 @@ def calc_threat(track: Track, radar_lat: float, radar_lon: float) -> float:
     }.get(ttype, TYPE_FACTOR_FIGHTER)
 
     # threat = dist_weight * (1/dist_km) + speed_weight * speed + type_factor
+    # Stationary high-altitude targets (vel=0) still pose threat; use min floor for speed
+    speed_contribution = max(track.vel, 200.0)  # floor at 200 m/s for vel=0 targets
     threat = (DIST_WEIGHT * (1.0 / max(dist_km, 0.1))
-              + SPEED_WEIGHT * track.vel
+              + SPEED_WEIGHT * speed_contribution
               + type_factor)
     return threat
 
@@ -161,10 +169,14 @@ class KillChainController:
             Weapon(name="aim120_sim_2", available=1, range_max=WEAPON_RANGE_M),
             Weapon(name="aim120_sim_3", available=1, range_max=WEAPON_RANGE_M),
             Weapon(name="aim120_sim_4", available=1, range_max=WEAPON_RANGE_M),
+            Weapon(name="aim120_sim_5", available=1, range_max=WEAPON_RANGE_M),
+            Weapon(name="aim120_sim_6", available=1, range_max=WEAPON_RANGE_M),
         ]
         self.used_weapons: set = set()      # weapon names already used
-        # P0-4: fired_upon_tracks -> dict with timestamp for timeout-based re-engagement
-        self.fired_upon_tracks: Dict[int, float] = {}  # track_id -> time when FIRE was sent
+        # P0-4: fired_upon_tracks -> tracks currently locked by an in-flight weapon
+        # Value=None means weapon was just allocated (track is "busy" until ACK/confirmation)
+        # Value=timestamp means weapon was fired, waiting for kill confirmation
+        self.fired_upon_tracks: Dict[int, Optional[float]] = {}  # track_id -> None|fire_time
 
         self.sensor_mode = "SEARCH"
         self.sensor_track: Optional[int] = None
@@ -277,6 +289,9 @@ class KillChainController:
         sim_t = self._sim_t()
         live_tracks: Dict[int, Track] = {}
         for tid, tr in self.tracks.items():
+            # Skip targets confirmed killed by weapon kill-assessment
+            if tr.killed:
+                continue
             # Check if recently fired upon (timeout-based re-engagement)
             if tid in self.fired_upon_tracks:
                 fire_time = self.fired_upon_tracks[tid]
@@ -328,9 +343,6 @@ class KillChainController:
                 if w.name not in self.used_weapons and w.name not in fires_for_this_target:
                     fires.append(f"FIRE:{w.name}:radar1:{tid}")
                     self.used_weapons.add(w.name)
-                    # Guard: sim_t=0 during startup causes fire_time=0 -> sim_t-fire_time<15，永远True，
-                    # weapons永久锁定。用None sentinel（需要对应修改re-engage检查），避免此问题。
-                    self.fired_upon_tracks[tid] = None
                     self.fire_count += 1
                     # P2-2: record OODA latency (wall-clock from first detection to FIRE decision)
                     now = time.time()
@@ -385,8 +397,9 @@ class KillChainController:
         except OSError:
             return
 
-        # Join continuation lines: backslash + newline → space
-        content = content.replace(chr(92) + "\n", " ")
+        # Join continuation lines: strip any trailing backslash-newline combos
+        # (handle both Unix \n and Windows \r\n line endings)
+        content = re.sub(r'\\\r?\n', ' ', content)
 
         for line in content.split("\n"):
             if not line.strip():
@@ -399,18 +412,68 @@ class KillChainController:
                 self._seen_evt_lines.add(line)
                 print(f"  [WEAPON_FIRED] {line[:120]}")
             elif "Result: KILLED" in line:
-                # Extract engagement name for deduplication (e.g. "radar1.2")
-                eng_match = re.search(r'Engagement:\s*(\S+)', line)
-                if eng_match:
-                    eng_name = eng_match.group(1)
-                    if eng_name not in self._seen_evt_lines:
-                        self._seen_evt_lines.add(eng_name)
-                        self.kill_count += 1
-                        print(f"  [KILLED] {line[:120]}")
+                self.kill_count += 1
+                print(f"  [KILLED] {line[:120]}")
+                # Also parse the INTENDED_TARGET to find which track was killed.
+                # After joining continuation lines, the full WEAPON_HIT record
+                # is on ONE line (e.g. "WEAPON_HIT radar1 asm1 ... Result: KILLED").
+                # Extract target name from "WEAPON_HIT radar1 asm1 ..." -> "asm1".
+                hit_match = re.search(r'WEAPON_HIT\s+\S+\s+(\S+)', line)
+                if hit_match:
+                    target_name = hit_match.group(1)
+                    for tid, tr in self.tracks.items():
+                        if target_name in (f"asm{tid}", f"fighter{tid}", f"uav{tid}"):
+                            tr.killed = True
+                            print(f"  [KILL_FEEDBACK] track {tid} ({target_name}) marked killed via EVT")
             elif "WEAPON_MISSED" in line:
                 self._seen_evt_lines.add(line)
                 self.miss_count += 1
                 print(f"  [MISSED] {line[:120]}")
+
+    def poll_kill_assessment(self):
+        """Read kill_assessment_result.txt written by AFSIM KILL_ASSESSMENT processor.
+        Updates Track.killed flag so the decide() loop skips destroyed targets.
+        """
+        if not KILL_RESULT_FILE.exists():
+            return
+        try:
+            content = KILL_RESULT_FILE.read_text(encoding="utf-8").strip()
+        except OSError:
+            return
+        if not content:
+            return
+
+        # Format: "KILL:HIT:aim120_sim_1:asm1:2" or "KILL:KILLED:..."
+        parts = content.split(":")
+        if len(parts) < 5 or parts[0] != "KILL":
+            return
+
+        result_str = parts[1]  # HIT, KILLED, MISS, COAST_EXCEEDED, FUEL_EXHAUSTED
+        weapon_name = parts[2]
+        target_name = parts[3]  # e.g. "asm1", "fighter1"
+        try:
+            target_id = int(parts[4])
+        except ValueError:
+            target_id = -1
+
+        if result_str in ("HIT", "KILLED"):
+            # Mark track as killed so decide() excludes it from future allocation
+            if target_id in self.tracks:
+                self.tracks[target_id].killed = True
+                print(f"  [KILL_ASM] {result_str} confirmed: track {target_id} ({target_name}) by {weapon_name}")
+                self.kill_count += 1
+            elif result_str == "KILLED":
+                # Even without a track ID, log if target name is known
+                print(f"  [KILL_ASM] {result_str} confirmed: {target_name} by {weapon_name}")
+        elif result_str in ("MISS", "COAST_EXCEEDED", "FUEL_EXHAUSTED"):
+            print(f"  [KILL_ASM] {result_str}: target {target_name} by {weapon_name}")
+            self.miss_count += 1
+
+        # Clear the file after consuming
+        try:
+            KILL_RESULT_FILE.unlink()
+        except OSError:
+            pass
 
     # ── Poll tracks (no decision, no writes) ─────────────────────────────────
 
@@ -431,23 +494,33 @@ class KillChainController:
 
     # ── Wait for ACK ─────────────────────────────────────────────────────────
 
-    def wait_for_ack(self, timeout: float = 30.0) -> bool:
-        """Wait for ACK file to appear with 'ACK' content."""
+    def wait_for_ack(self, timeout: float = 30.0) -> tuple:
+        """Wait for ACK file, parse per-FIRE results.
+        Returns (bool, list) — (received, fire_results).
+        fire_results: list of "OK:weapon:track:num" or "FAIL:..." entries.
+        """
         deadline = time.time() + timeout
         while time.time() < deadline:
             if self.afsim and self.afsim.poll() is not None:
-                # AFSIM exited
-                return False
+                return (False, [])
+            # Keep polling tracks while waiting for ACK — prevents OODA stall
+            self.poll()
             try:
                 if ACK_FILE.exists():
-                    content = ACK_FILE.read_text(encoding="utf-8").strip()
-                    if content == "ACK":
+                    lines = ACK_FILE.read_text(encoding="utf-8").strip().splitlines()
+                    if not lines:
+                        time.sleep(0.05)
+                        continue
+                    first = lines[0].strip()
+                    if first == "ACK":
                         ACK_FILE.unlink()
-                        return True
+                        # Lines after ACK are per-fire results
+                        results = [l.strip() for l in lines[1:] if l.strip()]
+                        return (True, results)
             except OSError:
                 pass
             time.sleep(0.05)
-        return False
+        return (False, [])
 
     # ── Main loop ─────────────────────────────────────────────────────────────
 
@@ -456,7 +529,7 @@ class KillChainController:
         print(f"[KC] Output EVT: {EVT_FILE}")
 
         # Clean slate
-        for f in [CMD_FILE, SENSOR_FILE, ACK_FILE]:
+        for f in [CMD_FILE, SENSOR_FILE, ACK_FILE, KILL_RESULT_FILE]:
             if f.exists():
                 try:
                     f.unlink()
@@ -481,7 +554,7 @@ class KillChainController:
             )
 
         self.start_time = time.time()
-        evt_check_interval = 5.0
+        evt_check_interval = 1.0
         last_evt_check = 0.0
 
         try:
@@ -491,6 +564,7 @@ class KillChainController:
                 now = time.time()
                 if now - last_evt_check > evt_check_interval:
                     self.parse_evt_for_kills()
+                    self.poll_kill_assessment()
                     last_evt_check = now
 
                 if self.afsim.poll() is not None:
@@ -528,9 +602,10 @@ class KillChainController:
 
                     # Wait for ACK with retry on timeout (non-blocking poll)
                     ack_ok = False
+                    fire_results = []
                     retries = 0
                     while retries <= 2:
-                        ack_ok = self.wait_for_ack(timeout=1.0)
+                        ack_ok, fire_results = self.wait_for_ack(timeout=1.0)
                         if ack_ok:
                             break
                         retries += 1
@@ -542,6 +617,28 @@ class KillChainController:
                         self.write_sensor(decision.sensor_mode)
                     if not ack_ok:
                         print(f"  [ACK] No ACK after 3 attempts, continuing...")
+                    else:
+                        # Process fire results: OK entries mean weapon was actually fired
+                        # FAIL entries mean it wasn't — free that weapon slot for re-assignment
+                        confirmed_fired = set()
+                        for res in fire_results:
+                            if res.startswith("OK:"):
+                                items = res.split(":")
+                                if len(items) >= 2:
+                                    wname = items[1]
+                                    confirmed_fired.add(wname)
+                                    print(f"  [CONFIRMED] weapon {wname} fired OK")
+                                    self.used_weapons.add(wname)
+                            elif res.startswith("FAIL:"):
+                                # Weapon failed to fire — remove from used_weapons so it can be re-assigned
+                                items = res.split(":")
+                                if len(items) >= 2:
+                                    wname = items[1]
+                                    if wname in self.used_weapons:
+                                        self.used_weapons.discard(wname)
+                                        print(f"  [RETRY] weapon {wname} failed, will retry next frame")
+                        if not confirmed_fired:
+                            print(f"  [ACK] No weapons confirmed fired, may retry next frame")
                 else:
                     self.write_sensor(decision.sensor_mode)
                     time.sleep(0.02)

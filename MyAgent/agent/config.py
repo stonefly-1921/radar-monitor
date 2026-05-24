@@ -23,7 +23,8 @@ class AgentConfig:
         "loop": {
             "max_iterations": 50,
             "tool_timeout": 30,
-            "response_format": "json"
+            "response_format": "json",
+            "tool_result_max_chars": 100000
         }
     }
     
@@ -68,3 +69,7 @@ class AgentConfig:
     @property
     def io(self):
         return self.config.get("io", {})
+    
+    @property
+    def tool_result_max_chars(self):
+        return self.config.get("tool_result_max_chars", 100000)

@@ -37,18 +37,14 @@ def _run_ps(script, timeout=120):
 
 
 def _run_ps_file(script, timeout=120):
-    """Run PowerShell via temp .ps1 file with UTF-8 encoding (no BOM)."""
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.ps1', encoding='utf-8', delete=False) as f:
-        f.write(script)
-        temp_path = f.name
-    try:
-        result = subprocess.run(
-            ['powershell', '-NoProfile', '-NonInteractive', '-File', temp_path],
-            capture_output=True, text=True, encoding='gbk', errors='replace', timeout=timeout
-        )
-        return result.stdout.strip(), result.stderr.strip(), result.returncode
-    finally:
-        os.unlink(temp_path)
+    """Run PowerShell via -EncodedCommand (avoids temp file encoding issues on Win7/GBK)."""
+    # UTF-16-LE base64 so PowerShell can decode correctly regardless of system codepage
+    b64 = base64.b64encode(script.encode('utf-16-le')).decode()
+    result = subprocess.run(
+        ['powershell', '-NoProfile', '-NonInteractive', '-EncodedCommand', b64],
+        capture_output=True, text=True, encoding='gbk', errors='replace', timeout=timeout
+    )
+    return result.stdout.strip(), result.stderr.strip(), result.returncode
 
 
 # =============================================================================

@@ -12,8 +12,7 @@ file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim
 file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim/processors
 
 log_file output/kill_chain_np_multi.log
-realtime
-end_time 2 min
+end_time 5 min
 
 event_output
    file output/kill_chain_np_multi.evt
@@ -82,6 +81,17 @@ platform_type RED_SHOOTER WSF_PLATFORM
       firing_delay 0.5 sec
       salvo_interval 3.0 sec
    end_weapon
+   weapon aim120_sim_5 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+   weapon aim120_sim_6 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+
    weapon aim120_sim_4 SIMPLE_MEDIUM_RANGE_MISSILE
       quantity 1
       firing_delay 0.5 sec
@@ -148,6 +158,34 @@ platform_type ASM_TARGET WSF_PLATFORM
 end_platform_type
 
 // ============================================================================
+// Routes (must be defined before platforms that use them)
+// ============================================================================
+
+// Fighter radial route toward radar at 38:04:06N, 117:14:00W
+route fighter_radial_route
+   position 38:09:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+   position 38:03:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-2 radial: from south
+route fighter2_route
+   position 37:59:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-3 radial: from east
+route fighter3_route
+   position 38:04:06n 117:19:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-4 radial: from west
+route fighter4_route
+   position 38:04:06n 117:09:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// ============================================================================
 // Platforms
 // ============================================================================
 
@@ -184,42 +222,38 @@ end_platform
 // Uses BLUE_ADV_FIGHTER_1_BASE (default max ~563 m/s)
 // ---------------------------------------------------------------------------
 
-// Fighter-1: from NW, enters at t=60s
+// Fighter-1: from north, enters at t=60s, radial toward radar
 platform fighter1 BLUE_ADV_FIGHTER_1_BASE
    side blue
    creation_time 60.0 sec
-   position 38:06:00n 117:16:00w altitude 5000 m msl
-   heading 135.0 deg
+   use_route fighter_radial_route
    radar_signature ASM_SIG
    infrared_signature TARGET_IR_SIG
 end_platform
 
-// Fighter-2: from SW, enters at t=80s
+// Fighter-2: from south, enters at t=90s, radial toward radar
 platform fighter2 BLUE_ADV_FIGHTER_1_BASE
    side blue
-   creation_time 80.0 sec
-   position 38:02:00n 117:11:30w altitude 5500 m msl
-   heading 315.0 deg
+   creation_time 90.0 sec
+   use_route fighter2_route
    radar_signature ASM_SIG
    infrared_signature TARGET_IR_SIG
 end_platform
 
-// Fighter-3: from south, enters at t=100s
+// Fighter-3: from east, enters at t=120s, radial toward radar
 platform fighter3 BLUE_ADV_FIGHTER_1_BASE
    side blue
-   creation_time 100.0 sec
-   position 38:00:30n 117:14:00w altitude 6000 m msl
-   heading 0.0 deg
+   creation_time 120.0 sec
+   use_route fighter3_route
    radar_signature ASM_SIG
    infrared_signature TARGET_IR_SIG
 end_platform
 
-// Fighter-4: from SE, enters at t=120s
+// Fighter-4: from west, enters at t=150s, radial toward radar
 platform fighter4 BLUE_ADV_FIGHTER_1_BASE
    side blue
-   creation_time 120.0 sec
-   position 38:02:30n 117:11:00w altitude 4500 m msl
-   heading 225.0 deg
+   creation_time 150.0 sec
+   use_route fighter4_route
    radar_signature ASM_SIG
    infrared_signature TARGET_IR_SIG
 end_platform

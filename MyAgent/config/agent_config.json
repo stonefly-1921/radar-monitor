@@ -14,7 +14,8 @@
   "loop": {
     "max_iterations": 50,
     "tool_timeout": 30,
-    "response_format": "json"
+    "response_format": "json",
+    "tool_result_max_chars": 100000
   },
   "io": {
     "session_file": "io/session.json",

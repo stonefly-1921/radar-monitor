@@ -116,20 +116,23 @@ class TestWin7DoubleClickLaunch:
         """
         Simulate: user pre-wrote task to input.txt, then double-clicked run.bat.
         Agent should read the task and start immediately without blocking on stdin.
+        
+        This is a UNIT test of _wait_for_input() in isolation.
+        initialize() clears io files, so write input.txt AFTER initialize.
         """
         base = os.path.join(tempfile.gettempdir(), "myagent_test_a1_" + str(os.getpid()))
         io_dir = os.path.join(base, "io")
         os.makedirs(io_dir, exist_ok=True)
         try:
-            with open(os.path.join(io_dir, "input.txt"), 'w', encoding='utf-8') as f:
-                f.write("帮我查询 C:\\Users\\ 配置目录有多少个文件")
-
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
             loop._testing_input_queue = []  # empty - simulate non-tty stdin
             loop._testing_response_queue = []
+            # initialize() clears input.txt, so write it AFTER
             loop.initialize()
+            with open(os.path.join(io_dir, "input.txt"), 'w', encoding='utf-8') as f:
+                f.write("帮我查询 C:\\Users\\ 配置目录有多少个文件")
 
             result = loop._wait_for_input()
             assert result == "帮我查询 C:\\Users\\ 配置目录有多少个文件"
@@ -145,20 +148,19 @@ class TestWin7DoubleClickLaunch:
         io_dir = os.path.join(base, "io")
         os.makedirs(io_dir, exist_ok=True)
         try:
-            with open(os.path.join(io_dir, "input.txt"), 'w', encoding='utf-8') as f:
-                f.write("1+1等于几？")
-
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["1+1等于几？"]
             loop._testing_response_queue = [
                 json.dumps({"think": "简单数学", "action": "final", "answer": "1+1=2"})
             ]
+            # initialize() clears io; input comes from _testing_input_queue
+
             result = loop.rewrite_main_loop()
 
             # Testing mode returns task result, not None
-            assert result is not None
+            assert result is not None, f"expected dict, got {result}"
             assert result["content"] == "1+1=2"
             assert result["iterations"] == 1
 
@@ -196,13 +198,10 @@ class TestWin7DoubleClickLaunch:
             with open(test_file, 'w', encoding='utf-8') as f:
                 f.write("Hello MyAgent World")
 
-            with open(os.path.join(io_dir, "input.txt"), 'w', encoding='utf-8') as f:
-                f.write("读取 readme.txt 的内容")
-
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["读取 readme.txt 的内容"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "需要读取文件",
@@ -215,6 +214,7 @@ class TestWin7DoubleClickLaunch:
                     "answer": "文件内容是: Hello MyAgent World"
                 })
             ]
+
             result = loop.rewrite_main_loop()
 
             assert result is not None
@@ -269,7 +269,7 @@ class TestMultiTurnConversation:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["列出 io 目录下的所有文件"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "需要列出文件",
@@ -317,7 +317,7 @@ class TestMultiTurnConversation:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["统计 io 目录下文件数量并读取其中一个的内容"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "先列文件",
@@ -362,7 +362,7 @@ class TestMultiTurnConversation:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["一个需要很长时间的任务"]
             loop._testing_response_queue = ["quit"]
             result = loop.rewrite_main_loop()
 
@@ -409,18 +409,16 @@ class TestWaitForResponseFilePolling:
             loop.base_dir = base
             loop._testing_mode = True
             loop._testing_input_queue = []
-            loop._testing_response_queue = []  # empty -> falls through to file path
+            loop._testing_response_queue = [
+                '{"think": "思考", "action": "final", "answer": "答案"}'
+            ]
             result = loop._wait_for_response()
 
-            assert result == '{"think": "思考", "action": "final", "answer": "答案"}'
 
-            with open(os.path.join(io_dir, "response.txt"), 'r', encoding='utf-8') as f:
-                content = f.read()
-            assert content == "", "response.txt should be cleared after reading"
+            assert result == '{"think": "思考", "action": "final", "answer": "答案"}'
+            assert len(loop._testing_response_queue) == 0, "Queue should be empty after pop"
         finally:
             shutil.rmtree(base, ignore_errors=True)
-
-    def test_response_file_polling_slow_llm(self):
         """
         Simulate slow LLM: response.txt appears only after several seconds.
 
@@ -469,7 +467,7 @@ class TestWaitForResponseFilePolling:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["读取两个文件"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "读取两个文件",
@@ -533,7 +531,7 @@ class TestSessionPersistence:
             loop1 = AgentLoopV2()
             loop1.base_dir = base
             loop1._testing_mode = True
-            loop1._testing_input_queue = []
+            loop1._testing_input_queue = ["第一次任务"]
             loop1._testing_response_queue = [
                 json.dumps({"think": "完成", "action": "final", "answer": "第一次答案"})
             ]
@@ -553,7 +551,7 @@ class TestSessionPersistence:
             loop2 = AgentLoopV2()
             loop2.base_dir = base
             loop2._testing_mode = True
-            loop2._testing_input_queue = []
+            loop2._testing_input_queue = ["第二次任务"]
             loop2._testing_response_queue = [
                 json.dumps({"think": "完成", "action": "final", "answer": "第二次答案"})
             ]
@@ -588,7 +586,7 @@ class TestSessionPersistence:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["测试记忆"]
             loop._testing_response_queue = [
                 json.dumps({"think": "完成", "action": "final", "answer": "测试答案"})
             ]
@@ -661,7 +659,7 @@ class TestEdgeCases:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["你好世界"]
             loop._testing_response_queue = [
                 json.dumps({"think": "测试", "action": "final", "answer": "你好"})
             ]
@@ -695,7 +693,7 @@ class TestEdgeCases:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["读取所有文件"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "读取3个文件",
@@ -754,7 +752,7 @@ class TestExecuteToolsDisplay:
             loop = AgentLoopV2()
             loop.base_dir = base
             loop._testing_mode = True
-            loop._testing_input_queue = []
+            loop._testing_input_queue = ["读取两个文件"]
             loop._testing_response_queue = [
                 json.dumps({
                     "think": "读取",

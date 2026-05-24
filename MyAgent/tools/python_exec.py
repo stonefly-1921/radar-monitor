@@ -38,12 +38,16 @@ class PythonRunTool(Tool):
             
             try:
                 # Execute script
+                # 强制子进程用 UTF-8 输出，解决 Windows 控制台 GBK 乱码问题
+                env = os.environ.copy()
+                env['PYTHONIOENCODING'] = 'utf-8'
                 result = subprocess.run(
                     [self.python_path, temp_path],
                     capture_output=True,
                     timeout=timeout,
                     encoding='utf-8',
-                    errors='replace'
+                    errors='replace',
+                    env=env
                 )
                 
                 output = result.stdout if result.stdout else ""
