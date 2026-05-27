@@ -29,6 +29,7 @@ class TestButtonProtection(unittest.TestCase):
     def setUp(self):
         if tk is None:
             self.skipTest("tkinter not available")
+        # Re-use the shared root from conftest to avoid Tcl initialization conflicts
         self.root = tk.Tk()
         self.root.withdraw()
         self.win = MyAgentWindow(self.root)

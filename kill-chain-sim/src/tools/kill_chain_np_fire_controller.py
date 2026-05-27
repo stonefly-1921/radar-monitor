@@ -405,19 +405,16 @@ class KillChainController:
             if not line.strip():
                 continue
             # When final=True, re-parse everything to get a complete count
-            # (previously seen lines during the run are re-counted)
             if not final and line in self._seen_evt_lines:
                 continue
             if "WEAPON_FIRED" in line:
                 self._seen_evt_lines.add(line)
                 print(f"  [WEAPON_FIRED] {line[:120]}")
-            elif "Result: KILLED" in line:
+            elif "WEAPON_HIT" in line and "Result: KILLED" in line:
+                # WEAPON_HIT with KILLED = one kill event (don't also count as KILLED below)
+                self._seen_evt_lines.add(line)
                 self.kill_count += 1
                 print(f"  [KILLED] {line[:120]}")
-                # Also parse the INTENDED_TARGET to find which track was killed.
-                # After joining continuation lines, the full WEAPON_HIT record
-                # is on ONE line (e.g. "WEAPON_HIT radar1 asm1 ... Result: KILLED").
-                # Extract target name from "WEAPON_HIT radar1 asm1 ..." -> "asm1".
                 hit_match = re.search(r'WEAPON_HIT\s+\S+\s+(\S+)', line)
                 if hit_match:
                     target_name = hit_match.group(1)
@@ -425,10 +422,14 @@ class KillChainController:
                         if target_name in (f"asm{tid}", f"fighter{tid}", f"uav{tid}"):
                             tr.killed = True
                             print(f"  [KILL_FEEDBACK] track {tid} ({target_name}) marked killed via EVT")
-            elif "WEAPON_MISSED" in line:
+            elif "WEAPON_TERMINATED" in line:
                 self._seen_evt_lines.add(line)
-                self.miss_count += 1
-                print(f"  [MISSED] {line[:120]}")
+                if "Result: KILLED" in line:
+                    # Already counted via WEAPON_HIT above; skip to avoid double-count
+                    pass
+                elif "Result: UNKNOWN" in line or "Result: MISS" in line:
+                    self.miss_count += 1
+                    print(f"  [MISSED] {line[:120]}")
 
     def poll_kill_assessment(self):
         """Read kill_assessment_result.txt written by AFSIM KILL_ASSESSMENT processor.

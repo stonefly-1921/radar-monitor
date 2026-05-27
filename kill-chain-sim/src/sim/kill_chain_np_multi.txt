@@ -204,7 +204,7 @@ platform asm1 ASM_TARGET
    side blue
    creation_time 20.0 sec
    position 38:05:30n 117:14:00w altitude 500 m msl
-   heading 180.0 deg
+   use_route asm1_route
    radar_signature ASM_SIG
 end_platform
 
@@ -213,9 +213,21 @@ platform asm2 ASM_TARGET
    side blue
    creation_time 40.0 sec
    position 38:04:06n 117:11:30w altitude 600 m msl
-   heading 270.0 deg
+   use_route asm2_route
    radar_signature ASM_SIG
 end_platform
+
+// ASM-1 route: from north to south toward radar
+route asm1_route
+   position 38:05:30n 117:14:00w altitude 500 m msl speed 300 m/s
+   position 38:03:30n 117:14:00w altitude 500 m msl speed 300 m/s
+end_route
+
+// ASM-2 route: from east to west toward radar
+route asm2_route
+   position 38:04:06n 117:11:30w altitude 600 m msl speed 300 m/s
+   position 38:04:06n 117:16:30w altitude 600 m msl speed 300 m/s
+end_route
 
 // ---------------------------------------------------------------------------
 // Fighter targets: medium altitude, different bearings

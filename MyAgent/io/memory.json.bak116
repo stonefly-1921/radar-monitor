@@ -1,0 +1,36 @@
+{
+  "short_term": [
+    {
+      "role": "user",
+      "content": "User message 1",
+      "timestamp": "2026-05-25T19:36:59.495229"
+    },
+    {
+      "role": "assistant",
+      "content": "Assistant response 1",
+      "timestamp": "2026-05-25T19:36:59.508172"
+    },
+    {
+      "role": "user",
+      "content": "User message 2",
+      "timestamp": "2026-05-25T19:36:59.509438"
+    },
+    {
+      "role": "user",
+      "content": "帮我读取 README.md 文件",
+      "timestamp": "2026-05-25T19:36:59.547138"
+    }
+  ],
+  "long_term": [
+    {
+      "content": "Important fact about the project",
+      "tags": [
+        "project",
+        "important"
+      ],
+      "timestamp": "2026-05-25T19:36:59.511807"
+    }
+  ],
+  "summaries": [],
+  "updated_at": "2026-05-25T19:36:59.547138"
+}

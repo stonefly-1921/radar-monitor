@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-MyAgent Tkinter UI - Task E4: UI Beautification Tests
+MyAgent Tkinter UI - Task E4: UI Beautification Tests (DEPRECATED)
 
-Tests verify the dark theme color palette is correctly applied:
-- Window background: #1e1e1e (dark gray)
-- Panel background: #252526 (slightly lighter)
-- Button background: #0e639c (accent deep blue)
-- Status bar text: dimmed color
+⚠️ 这些测试验证的是深色主题 (#1e1e1e 背景)，但项目已决定采用浅色主题
+（白底 #ffffff + 浅灰面板 #f0f0f0）。深色主题被认为"太丑"已被放弃。
 
-TDD RED phase: write failing tests first.
+浅色主题测试请参考: test_simple_theme.py
+
+本文件已 skip，等待最终删除。
 """
 import unittest
 import tkinter as tk
@@ -31,8 +30,13 @@ def hex_to_rgb_16bit(hex_color):
     return (r * 257, g * 257, b * 257)
 
 
+@unittest.skip("深色主题已废弃，项目采用浅色主题（白底+灰框）")
 class TestUiBeautification(unittest.TestCase):
-    """Tests for UI beautification - dark theme color palette."""
+    """Tests for UI beautification - dark theme color palette.
+
+    DEPRECATED: 深色主题 (#1e1e1e) 已被放弃，保留此文件仅作为历史参考。
+    浅色主题正确性由 test_simple_theme.py 验证。
+    """
 
     @classmethod
     def setUpClass(cls):

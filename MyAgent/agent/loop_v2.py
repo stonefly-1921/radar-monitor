@@ -160,11 +160,58 @@ def parse_response(raw: str) -> dict:
                 "tool_calls": data['tools']
             }
         elif action == 'final':
+            answer_content = data.get('answer', '')
+            # 如果 answer 内容包含嵌套 JSON，深层提取真正的答案
+            if isinstance(answer_content, str):
+                # 尝试多层解析，直到找到真正的纯文本答案
+                max_depth = 3
+                for depth in range(max_depth):
+                    # 在当前 answer 中找 JSON 对象
+                    start = answer_content.find('{')
+                    end = answer_content.rfind('}')
+                    if start == -1 or end <= start:
+                        break
+                    json_str = answer_content[start:end+1]
+                    try:
+                        nested = json.loads(json_str)
+                        if 'action' in nested:
+                            if nested['action'] == 'final':
+                                inner_answer = nested.get('answer', '')
+                                # 检查 inner_answer 是否还是 JSON 字符串
+                                if isinstance(inner_answer, str) and inner_answer.startswith('{'):
+                                    # 继续解析深层
+                                    answer_content = inner_answer
+                                    continue
+                                # 找到真正的答案（不是 JSON 字符串）
+                                return {
+                                    "content": inner_answer,
+                                    "action": "final",
+                                    "tool_calls": []
+                                }
+                            elif nested['action'] == 'tool_call':
+                                return {
+                                    "content": nested.get('think', ''),
+                                    "action": "tool_call",
+                                    "tool_calls": nested.get('tools', [])
+                                }
+                        break
+                    except json.JSONDecodeError:
+                        break
             return {
-                "content": data.get('answer', ''),
+                "content": answer_content,
                 "action": "final",
                 "tool_calls": []
             }
+
+    # ============================================================
+    # action=final + answer 字段（LLM 返回 final 但不带 think）
+    # 例: {"action": "final", "answer": "2"}
+    # ============================================================
+    if data.get('action') == 'final' and 'answer' in data:
+        answer_text = data['answer']
+        if isinstance(answer_text, str):
+            return {"content": answer_text, "action": "final", "tool_calls": []}
+        return {"content": str(answer_text), "action": "final", "tool_calls": []}
 
     # ============================================================
     # 有 content 字段但无工具 -> final answer
@@ -228,6 +275,50 @@ class AgentLoopV2:
 
     def _resolve_path(self, filename):
         return os.path.join(self.base_dir, filename)
+
+    def _normalize_tool_params(self, tool_name: str, params: dict) -> dict:
+        """
+        规范化工具参数中的路径。
+
+        LLM 经常在文件路径前加上项目名（如 'MyAgent/_check_config.py'），
+        而 base_dir 已经是 MyAgent/ 根目录，导致 open() 访问了不存在的嵌套路径。
+        本方法将 'MyAgent/xxx' 形式的路径 strips 成相对路径 'xxx'。
+
+        支持工具：file_read, file_write, file_list, file_edit
+        """
+        FILE_TOOLS = {"file_read", "file_write", "file_list", "file_edit", "grep"}
+        PATH_KEYS = {"path", "file", "target"}
+
+        normalized = dict(params)
+        if tool_name not in FILE_TOOLS:
+            return normalized
+
+        # 获取 base_dir 的最终目录名（用于匹配 LLM 加的前缀）
+        # base_dir 典型值：C:\Users\15041\.openclaw\workspace\MyAgent 或 .
+        bd = os.path.abspath(self.base_dir)
+        base_name = os.path.basename(bd)  # "MyAgent"
+        if base_name == '.':
+            # base_dir 是当前目录，用 cwd 的名字
+            base_name = os.path.basename(os.getcwd())
+
+        for key in PATH_KEYS:
+            if key in normalized and isinstance(normalized[key], str):
+                path = normalized[key]
+                # 检查是否以 base_name + "/" 开头
+                prefix = base_name + "/"
+                if path.startswith(prefix):
+                    stripped = path[len(prefix):]
+                    stripped = stripped.replace("\\", "/")
+                    normalized[key] = stripped
+                    continue
+                # 也处理 Windows backslash 前缀
+                prefix_bs = base_name + "\\"
+                if path.startswith(prefix_bs):
+                    stripped = path[len(prefix_bs):]
+                    stripped = stripped.replace("\\", "/")
+                    normalized[key] = stripped
+
+        return normalized
 
     # =========================================================================
     # 初始化
@@ -304,9 +395,10 @@ class AgentLoopV2:
         self._task_state = {
             "goal": user_input,
             "turn": 1,
-            "steps_taken": [],  # [{"tool": "...", "finding": "..."}, ...]
+            "steps_taken": [],  # [{"tool": "...", "params": "...", "result_hash": "..."}, ...]
             "pending": None,
             "errors": [],
+            "result_history": [],  # [result_str, ...] 检测工具结果是否重复（停滞指标）
         }
 
     def _update_task_state(self, tool_result: dict, finding: str):
@@ -314,10 +406,20 @@ class AgentLoopV2:
         if self._task_state is None:
             return
         tool_name = tool_result.get('tool', 'unknown')
+        params = tool_result.get('params', {})
+        # 用结果文本的前100字符hash作为停滞检测依据
+        result_val = tool_result.get('result', {})
+        res_str = str(result_val.get('result', result_val.get('output', '')))[:100]
+        import hashlib
+        result_hash = hashlib.md5(res_str.encode()).hexdigest()[:8]
+
         self._task_state["steps_taken"].append({
             "tool": tool_name,
-            "finding": finding,
+            "params": str(params)[:50],
+            "result_hash": result_hash,
         })
+        # 记录结果文本用于停滞检测
+        self._task_state["result_history"].append(res_str)
 
     def _build_task_state_text(self) -> str:
         """生成 TaskState 块的文本，注入到 prompt。"""
@@ -330,7 +432,7 @@ class AgentLoopV2:
         if ts["steps_taken"]:
             lines.append("- 已完成:")
             for step in ts["steps_taken"]:
-                lines.append(f"  · {step['tool']}: {step['finding']}")
+                lines.append(f"  · {step['tool']}: {step.get('params', '')}")
         if ts["pending"]:
             lines.append(f"- 待解决: {ts['pending']}")
         if ts["errors"]:
@@ -344,6 +446,16 @@ class AgentLoopV2:
             tools = [s["tool"] for s in last_three]
             if tools[0] == tools[1] == tools[2]:
                 lines.append(f"\n⚠️ 检测到重复工具调用 [{tools[0]}] 连续 3 次，请重新评估策略或尝试其他方法。")
+
+        # Stagnation detection: warn if results are the same across consecutive calls
+        rh = ts.get("result_history", [])
+        if len(rh) >= 3:
+            # 检测最后3个结果是否完全相同（停滞）
+            if rh[-1] == rh[-2] == rh[-3]:
+                lines.append(f"\n⚠️ 检测到结果停滞：最后 3 次工具调用返回相同内容。请尝试不同策略或直接给出答案。")
+            # 检测最后2个结果是否相同（轻度警告）
+            elif rh[-1] == rh[-2]:
+                lines.append(f"\n⚠️ 结果与上一次相同，如无新信息请考虑收尾。")
 
         return "\n".join(lines)
 
@@ -418,10 +530,18 @@ class AgentLoopV2:
         # 反思块（工具执行后强制先分析再决定）
         reflect_text = ""
         if tool_results:
-            reflect_text = """
+            # 检查是否已经获得了实质性结果
+            last_result = tool_results[-1]
+            last_success = last_result.get('result', {}).get('success', False)
+            last_res_val = ""
+            if last_success:
+                last_res_val = str(last_result.get('result', {}).get('result',
+                           last_result.get('result', {}).get('output', '')))[:200]
+
+            reflect_text = f"""
 【工具执行结果分析】
 你刚执行了工具，分析结果后决定下一步：
-- 如果结果已经回答了用户问题 → action: final
+- 如果结果已经包含了你需要的信息来回答用户的问题 → **必须用 final action**
 - 如果结果不够，说明还需要什么信息/工具
 - 如果有错误，分析原因并决定是否重试
 """
@@ -433,11 +553,17 @@ class AgentLoopV2:
             if ctx and ctx.get('history_text'):
                 memory_text = f"\n\n【历史摘要】（防止上下文溢出）\n{ctx['history_text']}\n"
 
-        # 工具列表
+# 工具列表
         tools_list = self._format_tools_list()
 
+        # JSON 示例（不能用 f-string 内的 {} 语法，因为 JSON 本身包含 dict literal）
+        json_example = (
+            '{"think":"你的思考","action":"tool_call","tools":'
+            '[{"tool":"工具名","params":{"参数":"值"}}]}'
+        )
+
         # 完整 prompt
-        prompt = f"""{system}
+        prompt = f"""
 
 【当前任务】(第 {turn} 轮)
 {user_input}
@@ -452,19 +578,14 @@ class AgentLoopV2:
 【可用工具】
 {tools_list}
 
-【输出格式要求】
-完成思考后，严格按以下格式返回（不要输出任何其他内容）:
-
-# 需要工具时:
-{{"think": "你的思考", "action": "tool_call", "tools": [{{"tool": "工具名", "params": {{"参数": "值"}}}}]}}
-
-# 最终答案时:
-{{"think": "你的思考", "action": "final", "answer": "你的回答"}}
+【输出格式】严格按以下 JSON 格式返回（只输出 JSON，不要其他内容）：
+{json_example}
+当你有答案时，直接输出答案文本（不要JSON格式，不要加引号）：答案是X
 
 【注意】Windows 路径中的反斜杠在 JSON 中需要转义：
 - 正确: {{"path": "C:\\\\Users\\\\15041\\\\Desktop"}}
 - 错误: {{"path": "C:\\Users\\15041\\Desktop"}}  (缺少转义)
-- 错误: {{"path": "C:Users15041Desktop"}}  (没有反斜杠)
+- 错误: {{"path": "C:Users15041Desktop"}}  (没有转义)
 """
 
         # === 注入运行时上下文（不污染 transcript） ===
@@ -601,11 +722,24 @@ class AgentLoopV2:
                     pass
                 return content
 
-        # === 非交互环境（无 tty）且文件为空 → 正常跳过，让文件流程处理 ===
+        # === 非交互环境（无 tty）且文件为空 → 用时间轮询代替 stdin 等待 ===
         if not sys.stdin.isatty():
-            # Win7 双击场景：stdin 无 tty，但文件操作正常
-            # 文件有内容 → 在前面读取；文件无内容或不存在 → 等待用户写文件后重试
-            pass  # 不退出，继续往下走文件等待逻辑
+            # Win7 双击场景：stdin 是 pipe，但文件操作正常
+            # 每 2 秒检查一次 input.txt 和 response.txt 是否有内容
+            import time
+            while True:
+                time.sleep(2)
+                if os.path.exists(input_file):
+                    with open(input_file, 'r', encoding='utf-8') as f:
+                        content = f.read().strip()
+                    if content:
+                        try:
+                            with open(input_file, 'w', encoding='utf-8') as f:
+                                f.write('')
+                        except Exception:
+                            pass
+                        return content
+                # 文件为空，继续等待
 
         # === 正常交互模式：等用户敲回车或输入 quit ===
         try:
@@ -808,11 +942,15 @@ class AgentLoopV2:
                 print(f"\n[工具] 检测到 {len(tool_calls)} 个工具调用，执行中...")
                 results = self._execute_tools_display(tool_calls)
 
-                # 保存工具结果到 session
+# 保存工具结果到 session（追加而非覆盖，支持多轮工具调用）
                 turn_data = self.session.get_last_turn()
                 if turn_data:
-                    turn_data["tool_calls"] = tool_calls
-                    turn_data["tool_results"] = results
+                    existing = turn_data.get("tool_calls", [])
+                    existing.extend(tool_calls)
+                    turn_data["tool_calls"] = existing
+                    existing_res = turn_data.get("tool_results", [])
+                    existing_res.extend(results)
+                    turn_data["tool_results"] = existing_res
                 self.session.save()
 
                 # 更新 TaskState（工具结果记录）
@@ -879,7 +1017,11 @@ class AgentLoopV2:
             print(f"  {i}. {tool_name}: {params_str[:60]} ... ", end="", flush=True)
 
             # 执行工具
-            result = self.registry.execute(tool_name, **params)
+            # 路径规范化：如果 base_dir 是 MyAgent 根目录，
+            # 且工具参数包含 MyAgent/ 开头的路径（LLM 误加的前缀），
+            # 则 stripped 成相对路径
+            normalized_params = self._normalize_tool_params(tool_name, params)
+            result = self.registry.execute(tool_name, **normalized_params)
             ok = result.get("success")
 
             if ok:

@@ -60,11 +60,12 @@ class TestGuidedPrompts(unittest.TestCase):
         win._task_input_text.event_generate('<Button-1>')
         self.root.update()
 
-        # Placeholder should be cleared, color should be text_main (#d4d4d4)
+        # Placeholder should be cleared, color should be text_main (#333333)
+        # After click, actual user text is typed → dark gray visible on white bg
         content = win._task_input_text.get('1.0', tk.END).strip()
         self.assertNotEqual(content, win._placeholder_text)
         fg = win._task_input_text.cget('fg')
-        self.assertEqual(fg, '#d4d4d4')
+        self.assertEqual(fg, '#333333')
 
     def test_placeholder_restores_on_empty(self):
         """If user clears input without typing, placeholder restores on focus-out."""

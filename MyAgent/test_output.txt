@@ -1,0 +1,10 @@
+﻿python :   File "C:\Users\15041\.openclaw\workspace\MyAgent\run_10_tests.py", line 100
+所在位置 行:1 字符: 48
++ ... 5041\.openclaw\workspace\MyAgent; python run_10_tests.py 2>&1 | Out-F ...
++                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  File "C:\User...s.py", line 100:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    本报告记录弹道仿真测试结果。
+                 ^
+SyntaxError: invalid character '。' (U+3002)

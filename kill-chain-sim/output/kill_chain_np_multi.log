@@ -1,12 +1,12 @@
-2026-05-25 01:40:31 version wsf 2.9.0
-2026-05-25 01:40:31 file src\sim\kill_chain_np_multi.txt
-2026-05-25 01:40:31 file D:/afsim-2.9.0-win64/demos/base_types/weapons/aam/simple_medium_range_missile.txt
-2026-05-25 01:40:31 file src\sim\processors/kill_chain_np_cmd_reader.txt
-2026-05-25 01:40:31 file src\sim\processors/sensor_controller.txt
-2026-05-25 01:40:31 file D:/afsim-2.9.0-win64/demos/base_types/platforms/blue_adv_fighter_1_base.txt
-2026-05-25 01:40:31 file D:\afsim-2.9.0-win64\demos\base_types\platforms\../weapons/aam/simple_a2a_missile.txt
-2026-05-25 01:40:31 file D:\afsim-2.9.0-win64\demos\base_types\weapons\aam\blue_sr_a2a_ir_missile.txt
-2026-05-25 01:40:31 file D:\afsim-2.9.0-win64\demos\base_types\weapons\aam\blue_sr_a2a_ir_missile_ata_launch_computer_alt10kft_0.6mach.txt
-2026-05-25 01:40:31 Event output file: output/kill_chain_np_multi.evt
-2026-05-25 01:40:31 start 1
-2026-05-25 01:41:23 complete 300.000 51.570 25.578
+2026-05-25 12:21:07 version wsf 2.9.0
+2026-05-25 12:21:07 file src\sim\kill_chain_np_multi.txt
+2026-05-25 12:21:07 file D:/afsim-2.9.0-win64/demos/base_types/weapons/aam/simple_medium_range_missile.txt
+2026-05-25 12:21:07 file src\sim\processors/kill_chain_np_cmd_reader.txt
+2026-05-25 12:21:07 file src\sim\processors/sensor_controller.txt
+2026-05-25 12:21:07 file D:/afsim-2.9.0-win64/demos/base_types/platforms/blue_adv_fighter_1_base.txt
+2026-05-25 12:21:07 file D:\afsim-2.9.0-win64\demos\base_types\platforms\../weapons/aam/simple_a2a_missile.txt
+2026-05-25 12:21:07 file D:\afsim-2.9.0-win64\demos\base_types\weapons\aam\blue_sr_a2a_ir_missile.txt
+2026-05-25 12:21:07 file D:\afsim-2.9.0-win64\demos\base_types\weapons\aam\blue_sr_a2a_ir_missile_ata_launch_computer_alt10kft_0.6mach.txt
+2026-05-25 12:21:07 Event output file: output/kill_chain_np_multi.evt
+2026-05-25 12:21:07 start 1
+2026-05-25 12:21:41 complete 300.000 33.673 20.922

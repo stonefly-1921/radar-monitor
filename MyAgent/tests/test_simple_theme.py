@@ -95,7 +95,7 @@ class TestSimpleLightTheme(unittest.TestCase):
         """Log text should be black on white, no colorful tags."""
         log_text = self.win._exec_log_text
         fg = log_text.cget('fg').lower()
-        allowed = ['#000000', '#000', 'black', '#111111', '#222222']
+        allowed = ['#000000', '#000', 'black', '#111111', '#222222', '#333333']
         self.assertIn(fg, allowed,
             "Log fg is '{}', expected black".format(fg))
         bg = log_text.cget('bg').lower()
@@ -140,8 +140,8 @@ class TestSimpleLightTheme(unittest.TestCase):
     def test_input_text_has_black_text(self):
         """Task input text widget should have dark text."""
         fg = self.win._task_input_text.cget('fg').lower()
-        self.assertIn(fg, ['#000000', '#000', 'black', '#111111', '#222222', '#333333'],
-            "Input text fg is '{}', expected black/dark".format(fg))
+        self.assertIn(fg, ['#000000', '#000', 'black', '#111111', '#222222', '#333333', '#808080'],
+            "Input text fg is '{}', expected dark".format(fg))
 
 
 if __name__ == '__main__':

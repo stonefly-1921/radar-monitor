@@ -1,6 +1,6 @@
 TRACK_COUNT: 6 time=300
-TRACK: id=2 lat=38.0917 lon=-117.233 alt=500 vel=0 hdg=0
-TRACK: id=4 lat=38.0683 lon=-117.192 alt=600 vel=0 hdg=0
+TRACK: id=2 lat=37.3509 lon=-117.233 alt=500 vel=300 hdg=180
+TRACK: id=4 lat=38.0653 lon=-118.08 alt=600 vel=300 hdg=269.48
 TRACK: id=6 lat=37.5028 lon=-117.233 alt=5000 vel=300 hdg=180
 TRACK: id=8 lat=38.5497 lon=-117.233 alt=5000 vel=300 hdg=360
 TRACK: id=10 lat=38.067 lon=-116.703 alt=5000 vel=300 hdg=90.3515

@@ -1,0 +1,279 @@
+// kill_chain_np_multi.txt
+// 多目标杀伤链场景（含 Python 目标分配决策）
+// - 6个移动目标（ASM + 战机），从不同方向接近
+// - 4枚拦截弹（精确资源分配，饱和攻击）
+// - Python 决策：威胁评估 + 传感器控制 + 武器分配
+
+file_path D:/afsim-2.9.0-win64/demos
+file_path D:/afsim-2.9.0-win64/demos/base_types
+file_path D:/afsim-2.9.0-win64/demos/base_types/platforms
+file_path D:/afsim-2.9.0-win64/demos/base_types/weapons/aam
+file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim
+file_path C:/Users/15041/.openclaw/workspace/kill-chain-sim/src/sim/processors
+
+log_file output/kill_chain_np_multi.log
+end_time 5 min
+
+event_output
+   file output/kill_chain_np_multi.evt
+   time_format h:m:s.1
+   lat_lon_format d:m:s.2
+   print_track_in_message true
+   disable TEAM_NAME_DEFINITION
+   enable WEAPON_FIRED
+   enable WEAPON_HIT
+   enable WEAPON_MISSED
+   enable WEAPON_TERMINATED
+end_event_output
+
+// Radar signature for targets (RCS = 2 m^2)
+radar_signature ASM_SIG
+   constant 2 m^2
+end_radar_signature
+
+// Infrared signature for all targets (required for IR-guided missile seeker)
+infrared_signature TARGET_IR_SIG
+   constant 50 watts/steradian
+end_infrared_signature
+
+include_once simple_medium_range_missile.txt
+include_once processors/kill_chain_np_cmd_reader.txt
+include_once processors/sensor_controller.txt
+include_once blue_adv_fighter_1_base.txt
+// ============================================================================
+// Platform Types
+// ============================================================================
+
+// RED: Radar + Shooter platform
+platform_type RED_SHOOTER WSF_PLATFORM
+   icon Ground_Radar
+
+   sensor radar1 WSF_GEOMETRIC_SENSOR
+      on
+      azimuth_field_of_view -180.0 degrees 180.0 degrees
+      elevation_field_of_view -90.0 degrees 90.0 degrees
+      minimum_range 0 m
+      maximum_range 555600 m
+      frame_time 0.5 sec
+      reports_location
+      reports_velocity
+      reports_bearing
+      ignore_same_side
+      internal_link data_mgr
+   end_sensor
+
+   processor data_mgr WSF_TRACK_PROCESSOR
+      purge_interval 60 sec
+   end_processor
+
+   weapon aim120_sim_1 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+   weapon aim120_sim_2 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+   weapon aim120_sim_3 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+   weapon aim120_sim_5 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+   weapon aim120_sim_6 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+
+   weapon aim120_sim_4 SIMPLE_MEDIUM_RANGE_MISSILE
+      quantity 1
+      firing_delay 0.5 sec
+      salvo_interval 3.0 sec
+   end_weapon
+
+   // Read FIRE + SENSOR commands from file
+   processor cmd_reader KILL_CHAIN_CMD_READER
+   end_processor
+
+   // Handle SENSOR mode commands (writes sensor_cmd.txt)
+   processor sensor_ctrl SENSOR_CONTROL
+   end_processor
+
+   // Write track data for Python to consume
+   processor track_writer WSF_SCRIPT_PROCESSOR
+      script_variables
+         double mLastWriteTime = 0.0;
+         double WRITE_INTERVAL = 0.1;
+         FileIO mTrackFile = FileIO();
+         string mTrackPath = "C:/Users/15041/.openclaw/workspace/kill-chain-sim/afsim_track_out.txt";
+      end_script_variables
+      update_interval 0.1 sec
+      on_update
+         if ((TIME_NOW - mLastWriteTime) >= WRITE_INTERVAL)
+         {
+            WsfLocalTrackList trackList = PLATFORM.MasterTrackList();
+            int tc = trackList.Count();
+            if (mTrackFile.Open(mTrackPath, "out"))
+            {
+               string cntLine = "TRACK_COUNT: " + (string)tc + " time=" + (string)TIME_NOW;
+               mTrackFile.Writeln(cntLine);
+               if (tc >= 1)
+               {
+                  foreach (WsfTrack t in trackList)
+                  {
+                     string trackLine = "TRACK: id=" + (string)t.TrackId().Number() +
+                        " lat=" + (string)t.Latitude() +
+                        " lon=" + (string)t.Longitude() +
+                        " alt=" + (string)t.Altitude() +
+                        " vel=" + (string)t.Speed() +
+                        " hdg=" + (string)t.Heading();
+                     mTrackFile.Writeln(trackLine);
+                  }
+               }
+               mTrackFile.Close();
+            }
+            mLastWriteTime = TIME_NOW;
+         }
+      end_on_update
+   end_processor
+end_platform_type
+
+// Custom ASM target: low, slow mover
+platform_type ASM_TARGET WSF_PLATFORM
+   icon Missiles
+   category aircraft
+   infrared_signature TARGET_IR_SIG
+   mover WSF_AIR_MOVER
+      maximum_speed 300.0 m/s
+      maximum_altitude 2000 m
+      minimum_altitude 100 m
+   end_mover
+end_platform_type
+
+// ============================================================================
+// Routes (must be defined before platforms that use them)
+// ============================================================================
+
+// Fighter radial route toward radar at 38:04:06N, 117:14:00W
+route fighter_radial_route
+   position 38:09:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+   position 38:03:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-2 radial: from south
+route fighter2_route
+   position 37:59:00n 117:14:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-3 radial: from east
+route fighter3_route
+   position 38:04:06n 117:19:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// Fighter-4 radial: from west
+route fighter4_route
+   position 38:04:06n 117:09:00w altitude 5000 m msl speed 300 m/s
+   position 38:04:06n 117:14:00w altitude 5000 m msl speed 300 m/s
+end_route
+
+// ============================================================================
+// Platforms
+// ============================================================================
+
+// RED radar + shooter at center
+platform radar1 RED_SHOOTER
+   side red
+   position 38:04:06n 117:14:00w altitude 0.0 m agl
+end_platform
+
+// ---------------------------------------------------------------------------
+// ASM targets: low altitude, approaching from different bearings
+// ---------------------------------------------------------------------------
+
+// ASM-1: from north, low alt (~250 m/s), enters at t=20s
+platform asm1 ASM_TARGET
+   side blue
+   creation_time 20.0 sec
+   position 38:05:30n 117:14:00w altitude 500 m msl
+   heading 180.0 deg
+   radar_signature ASM_SIG
+end_platform
+
+// ASM-2: from east, low alt, enters at t=40s
+platform asm2 ASM_TARGET
+   side blue
+   creation_time 40.0 sec
+   position 38:04:06n 117:11:30w altitude 600 m msl
+   heading 270.0 deg
+   radar_signature ASM_SIG
+end_platform
+
+// ---------------------------------------------------------------------------
+// Fighter targets: medium altitude, different bearings
+// Uses BLUE_ADV_FIGHTER_1_BASE (default max ~563 m/s)
+// ---------------------------------------------------------------------------
+
+// Fighter-1: from north, enters at t=60s, radial toward radar
+platform fighter1 BLUE_ADV_FIGHTER_1_BASE
+   side blue
+   creation_time 60.0 sec
+   use_route fighter_radial_route
+   radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
+end_platform
+
+// Fighter-2: from south, enters at t=90s, radial toward radar
+platform fighter2 BLUE_ADV_FIGHTER_1_BASE
+   side blue
+   creation_time 90.0 sec
+   use_route fighter2_route
+   radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
+end_platform
+
+// Fighter-3: from east, enters at t=120s, radial toward radar
+platform fighter3 BLUE_ADV_FIGHTER_1_BASE
+   side blue
+   creation_time 120.0 sec
+   use_route fighter3_route
+   radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
+end_platform
+
+// Fighter-4: from west, enters at t=150s, radial toward radar
+platform fighter4 BLUE_ADV_FIGHTER_1_BASE
+   side blue
+   creation_time 150.0 sec
+   use_route fighter4_route
+   radar_signature ASM_SIG
+   infrared_signature TARGET_IR_SIG
+end_platform
+
+// ============================================================================
+// Weapon event observers (writeln to stderr for debug)
+// ============================================================================
+script void mslend(WsfWeaponEngagement aWeaponEngagement)
+   bool killed = !aWeaponEngagement.TargetPlatform().IsValid();
+   string result = "WEAPON_MISS";
+   if (killed) { result = "WEAPON_HIT"; }
+   int tgt_id = -1;
+   if (aWeaponEngagement.TargetPlatform().IsValid()) { tgt_id = aWeaponEngagement.TargetPlatform().Index(); }
+   writeln(result, ": target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script
+
+script void FiredAt(WsfWeaponEngagement aWeaponEngagement, WsfTrack aTargetTrack)
+   if (!aWeaponEngagement.TargetPlatform().IsValid()) { return; }
+   int tgt_id = aWeaponEngagement.TargetPlatform().Index();
+   writeln("WEAPON_FIRED: target_id=", tgt_id, " weapon=",
+           aWeaponEngagement.WeaponPlatformName(), " time=", TIME_NOW);
+end_script

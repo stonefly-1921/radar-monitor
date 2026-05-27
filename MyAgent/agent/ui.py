@@ -38,8 +38,8 @@ class MyAgentWindow(object):
     COLORS = {
         'bg_main': '#ffffff',        # Main window background (white)
         'bg_panel': '#f0f0f0',       # Panel background (light gray)
-        'text_main': '#333333',      # Main text (dark gray)
-        'text_dim': '#888888',       # Placeholder/dim text (medium gray)
+        'text_main': '#333333',      # Main text (dark gray) - 用户输入的实际内容用深色
+        'text_dim': '#808080',       # Placeholder/dim text (medium gray)
         'btn_bg': '#f0f0f0',         # Button background (light gray)
         'btn_fg': '#333333',         # Button foreground (dark gray)
         'btn_active': '#e0e0e0',     # Button active/hover background
@@ -454,6 +454,41 @@ class MyAgentWindow(object):
         self._prompt_text.config(state=tk.DISABLED)
         self._response_text.delete("1.0", tk.END)
 
+    def _update_button_states(self):
+        """Update button enabled/disabled states based on REPL state.
+
+        Button protection rules (Task E7):
+        - [_start_task_btn] NORMAL only in IDLE with non-empty non-placeholder input,
+          DISABLED otherwise
+        - [_interrupt_btn] NORMAL in GENERATING_PROMPT/WAITING_RESPONSE/PROCESSING,
+          DISABLED in IDLE
+        - [_submit_response_btn] NORMAL only in WAITING_RESPONSE, DISABLED otherwise
+        """
+        state = self._repl_state
+        is_idle = (state == 'IDLE')
+
+        # Check if task input has actual content (not empty, not placeholder)
+        input_content = self._task_input_text.get("1.0", tk.END).strip()
+        has_input = bool(input_content) and input_content != self._placeholder_text
+
+        # Start button: enabled only in IDLE with real input
+        if is_idle and has_input:
+            self._start_task_btn.config(state=tk.NORMAL)
+        else:
+            self._start_task_btn.config(state=tk.DISABLED)
+
+        # Interrupt button: enabled in non-IDLE states
+        if is_idle:
+            self._interrupt_btn.config(state=tk.DISABLED)
+        else:
+            self._interrupt_btn.config(state=tk.NORMAL)
+
+        # Submit response button: enabled only in WAITING_RESPONSE
+        if state == 'WAITING_RESPONSE':
+            self._submit_response_btn.config(state=tk.NORMAL)
+        else:
+            self._submit_response_btn.config(state=tk.DISABLED)
+
     # -----------------------------------------------------------------------
     # Task E1: State machine
     # -----------------------------------------------------------------------
@@ -501,7 +536,12 @@ class MyAgentWindow(object):
         """Launch loop_v2.py as a subprocess with piped stdin/stdout."""
         env = dict(os.environ)
         env['PYTHONIOENCODING'] = 'utf-8'
-        env['MINIMAX_API_KEY'] = os.environ.get('MINIMAX_API_KEY', '')
+        # 显式从 User 环境变量读取（os.environ 不包含 User 级变量）
+        user_api_key = subprocess.run(
+            ['powershell', '-Command', "[Environment]::GetEnvironmentVariable('MINIMAX_API_KEY', 'User')"],
+            capture_output=True, text=True, encoding='utf-8'
+        ).stdout.strip()
+        env['MINIMAX_API_KEY'] = user_api_key
         loop_v2_path = pathlib.Path(__file__).parent.parent / 'agent' / 'loop_v2.py'
         self._repl_process = subprocess.Popen(
             [sys.executable, str(loop_v2_path)],

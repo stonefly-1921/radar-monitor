@@ -40,14 +40,17 @@ class TestFullUIIntegration(unittest.TestCase):
         self.assertEqual(win.root.title(), "MyAgent v2")
 
     def test_left_console_has_all_elements(self):
-        """Verify left console has: task input Text, 开始任务 button, log Text, final answer Text, 打断 button."""
+        """Verify left console has: task input Text, 开始任务 button, log Text, 打断 button, 新任务 button."""
         from agent.ui import MyAgentWindow
         win = MyAgentWindow(self.root)
         self.root.update()
 
         # Task input Text
         self.assertIsNotNone(getattr(win, '_task_input_text', None))
-        self.assertEqual(win._task_input_text.get('1.0', '1.0'), '')  # empty at start
+        # Placeholder text is present at start (not empty)
+        placeholder = win._placeholder_text
+        content = win._task_input_text.get('1.0', 'end-1c')
+        self.assertEqual(content, placeholder, "task input should have placeholder at start")
 
         # 开始任务 button
         self.assertIsNotNone(getattr(win, '_start_task_btn', None))
@@ -56,12 +59,12 @@ class TestFullUIIntegration(unittest.TestCase):
         # Execution log Text
         self.assertIsNotNone(getattr(win, '_exec_log_text', None))
 
-        # Final answer Text
-        self.assertIsNotNone(getattr(win, '_final_answer_text', None))
-
         # 打断 button
         self.assertIsNotNone(getattr(win, '_interrupt_btn', None))
         self.assertEqual(win._interrupt_btn.cget('text'), '打断')
+
+        # 新任务 button
+        self.assertIsNotNone(getattr(win, '_new_task_btn', None))
 
     def test_right_panel_has_all_elements(self):
         """Verify right panel has: prompt Text, response Text, 复制prompt button, 粘贴&提交 button, 清空日志 button."""
@@ -106,11 +109,11 @@ class TestFullUIIntegration(unittest.TestCase):
         self.assertTrue(win._interrupt_event.is_set())
 
     def test_status_bar_initial_text(self):
-        """Verify status bar shows '状态: 等待输入' at start."""
+        """Verify status bar shows '状态: 就绪' at start."""
         from agent.ui import MyAgentWindow
         win = MyAgentWindow(self.root)
         self.root.update()
-        self.assertEqual(win._status_label.cget('text'), '状态: 等待输入')
+        self.assertEqual(win._status_label.cget('text'), '状态: 就绪')
 
 
 if __name__ == '__main__':
